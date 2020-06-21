@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小熊的作坊</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://vegard-bear.github.io/"/>
+  <updated>2020-06-21T15:07:18.757Z</updated>
+  <id>https://vegard-bear.github.io/</id>
+  
+  <author>
+    <name>小熊</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>fabric多机部署（raft共识）</title>
+    <link href="https://vegard-bear.github.io/2020/02/16/sort-algorithms/"/>
+    <id>https://vegard-bear.github.io/2020/02/16/sort-algorithms/</id>
+    <published>2020-02-16T07:09:23.000Z</published>
+    <updated>2020-06-21T15:07:18.757Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;fabric多机部署-（raft共识）&quot;&gt;&lt;a href=&quot;#fabric多机部署-（raft共识）&quot; class=&quot;headerlink&quot; title=&quot;fabric多机部署 （raft共识）&quot;&gt;&lt;/a&gt;fabric多机部署 （raft共识）&lt;/h1&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="编程算法" scheme="https://vegard-bear.github.io/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
+    
+      <category term="算法" scheme="https://vegard-bear.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+</feed>
