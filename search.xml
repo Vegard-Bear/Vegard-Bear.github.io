@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>向 fabric 贡献代码</title>
+      <link href="/2020/07/14/contribute/"/>
+      <url>/2020/07/14/contribute/</url>
+      
+        <content type="html"><![CDATA[<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>进入 fabric目录</p><p>cd fabric</p><h2 id="1-先获取对应分支"><a href="#1-先获取对应分支" class="headerlink" title="1. 先获取对应分支"></a>1. 先获取对应分支</h2><p>git fetch origin [目标分支]</p><h2 id="2-切到对应分支"><a href="#2-切到对应分支" class="headerlink" title="2. 切到对应分支"></a>2. 切到对应分支</h2><p>git checkout -b [目标分支]</p><h2 id="3-更新最新代码（此步骤可省略）"><a href="#3-更新最新代码（此步骤可省略）" class="headerlink" title="3. 更新最新代码（此步骤可省略）"></a>3. 更新最新代码（此步骤可省略）</h2><p>goland -&gt; vcs -&gt; git -&gt; Rebase my Github fork -&gt; 选择原代码仓库</p><p>参考：<a href="https://www.zhihu.com/question/28676261" target="_blank" rel="noopener">https://www.zhihu.com/question/28676261</a></p><p>或者：</p><pre><code>git remote add upstream https://github.com/hyperledger/fabricgit fetch upstreamgit checkout [目标分支]git rebase upstream/[目标分支]git push -f origin [目标分支]</code></pre><h2 id="4-新建一个用于开发的分支"><a href="#4-新建一个用于开发的分支" class="headerlink" title="4. 新建一个用于开发的分支"></a>4. 新建一个用于开发的分支</h2><p>名字格式为 FAB-XXXX （issue序号）</p><p>git checkout -b FAB-XXX</p><h2 id="5-正式干活"><a href="#5-正式干活" class="headerlink" title="5. 正式干活"></a>5. 正式干活</h2><p>愉快滴开发（此处省略一万字）</p><h2 id="6-提交-：-git-commit-a-s"><a href="#6-提交-：-git-commit-a-s" class="headerlink" title="6. 提交 ：$ git commit -a -s"></a>6. 提交 ：$ git commit -a -s</h2><p>-s 选项是用于在commit message中自动生成sign off签名的</p><h2 id="7-编辑commit信息"><a href="#7-编辑commit信息" class="headerlink" title="7. 编辑commit信息"></a>7. 编辑commit信息</h2><pre><code>[FAB-XXXX] &lt;标题,官方文档说本行不能超过72个字符，实测不能超过55个字符&gt;&lt;空行&gt;This fixes #FAB-XXXX&lt;内容：每行不超过80字符，其中应该包括- 你的提交做了什么？- 为何选用这种方式去进行改动- 为何这种改动能够成功，比如提交你成功的代码测试结果&gt;</code></pre><h2 id="8-推送代码"><a href="#8-推送代码" class="headerlink" title="8. 推送代码"></a>8. 推送代码</h2><p>vcs -&gt; git -&gt; push</p><h2 id="9-pull-request"><a href="#9-pull-request" class="headerlink" title="9. pull request"></a>9. pull request</h2><p>登录 github,找到刚刚push的分支，点击 compare and pull request</p><p>注意要推送的目标分支，一般默认是master，这里需要修改为要推送的分支</p><p>确认commit信息没问题后点击右下角 create pull request</p><h2 id="9-等待合并"><a href="#9-等待合并" class="headerlink" title="9.等待合并"></a>9.等待合并</h2><p>会跑一堆测试，所有测试都过了以后经过两个以上的人approve则会被merge</p><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><h3 id="git-push-ERROR-You-must-verify-your-email-address"><a href="#git-push-ERROR-You-must-verify-your-email-address" class="headerlink" title="git push ERROR: You must verify your email address"></a>git push ERROR: You must verify your email address</h3><p>解决方法：<a href="https://www.jianshu.com/p/30ee5daf1327" target="_blank" rel="noopener">https://www.jianshu.com/p/30ee5daf1327</a></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://davidkhala.github.io/2017/08/30/fabric-contribute/" target="_blank" rel="noopener">https://davidkhala.github.io/2017/08/30/fabric-contribute/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> fabric </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> fabric </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>GitLab CICD 自动化部署</title>
       <link href="/2020/07/14/cicd/"/>
       <url>/2020/07/14/cicd/</url>
