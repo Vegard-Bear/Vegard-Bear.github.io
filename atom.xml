@@ -80,7 +80,7 @@
     <link href="https://vegard-bear.github.io/2020/07/14/cicd/"/>
     <id>https://vegard-bear.github.io/2020/07/14/cicd/</id>
     <published>2020-07-14T07:54:16.000Z</published>
-    <updated>2020-07-19T07:15:12.274Z</updated>
+    <updated>2020-07-19T11:34:10.903Z</updated>
     
     <summary type="html">
     
@@ -97,6 +97,8 @@
     
     </summary>
     
+      <category term="GitLab" scheme="https://vegard-bear.github.io/categories/GitLab/"/>
+    
     
       <category term="GitLab" scheme="https://vegard-bear.github.io/tags/GitLab/"/>
     
@@ -107,7 +109,7 @@
     <link href="https://vegard-bear.github.io/2020/06/29/gm/"/>
     <id>https://vegard-bear.github.io/2020/06/29/gm/</id>
     <published>2020-06-29T06:35:21.000Z</published>
-    <updated>2020-07-19T07:15:12.283Z</updated>
+    <updated>2020-07-19T12:13:16.716Z</updated>
     
     <summary type="html">
     
@@ -163,8 +165,8 @@
   
   <entry>
     <title>fabric多机部署（raft共识）</title>
-    <link href="https://vegard-bear.github.io/2020/02/16/sort-algorithms/"/>
-    <id>https://vegard-bear.github.io/2020/02/16/sort-algorithms/</id>
+    <link href="https://vegard-bear.github.io/2020/02/16/deploy-fabric/"/>
+    <id>https://vegard-bear.github.io/2020/02/16/deploy-fabric/</id>
     <published>2020-02-16T07:09:23.000Z</published>
     <updated>2020-07-19T07:15:12.301Z</updated>
     

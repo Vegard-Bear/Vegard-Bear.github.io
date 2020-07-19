@@ -540,7 +540,6 @@ f">
 <p>然后我们看一下左边，X509模块主要提供的是有关证书的一系列方法。在这里fabric原先默认是使用标准X509的，底层直接调用的是Go SDK 原生的加密库。为了让X509支持国密的同时也兼容标准加密，这里我们就把证书相关的接口抽象出来，定义为X509接口。然后底层采用两套实现，标准加密和非国密实现，标准加密依旧是直接调用原生Go SDK标准加密库，而国密则是调用第三方的国密库。</p>
 <p>需要说明的是，在调用BCCSP模块的加密服务时，如果选择国密算法，需要加载一个国密的插件，而如果是标准加密，则不需要加密国密插件；在调用X509模块的证书服务时，不管是国密X509证书还是标准X509证书均需要加密X509插件。具体选择国密还是标准加密算法可通在orderer、peer和cli的配置文件中的配置项进行指定。</p>
 <h2 id="方法和接口一览"><a href="#方法和接口一览" class="headerlink" title="方法和接口一览"></a>方法和接口一览</h2><p>上面已经把fabirc国密改造整体涉及到的模块简单介绍了一下，下面我通过们一张图来看一下这些模块具体涉及到的接口和方法以及代码的调用逻辑等。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/F7B510940D0A4DBE9529C9E7B4C312C1/2837" alt></p>
 <h5 id="高清大图请戳这里"><a href="#高清大图请戳这里" class="headerlink" title="高清大图请戳这里"></a>高清大图请戳<a href="http://www.xmind.net/m/AimcSi" target="_blank" rel="noopener">这里</a></h5><h1 id="fabric-ca-国密改造"><a href="#fabric-ca-国密改造" class="headerlink" title="fabric ca 国密改造"></a>fabric ca 国密改造</h1><p>Fabric-ca国密支持改造，主要是指Fabric-ca端通过改造使其可以用以生成国密公私钥对、签发、吊销、查询国密类型的证书。证书申请和签发的流程如下图所示，所有改造工作都围绕证书申请和签发的流程展开的：</p>
 <p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/E0AD1345011E4AA194EDAB95D1A4DAE3/2719" alt></p>
 <p>Fabric-ca主要是调用Fabric的bccsp(blockchain cryptographic service provider,区块链加密服务提供者)模块来完成加解密及签名验签的工作。</p>
@@ -551,8 +550,7 @@ f">
 <li>Fabric-ca/util：该包数据工具类，主要在证书的编解码等操作中扩展国密算法；</li>
 <li>Fabric-ca/vendor：因为CA沿用Fabric中的BCCSP套件，所以需要替换对Fabric的包的引用，提供对国密算法的支持。</li>
 </ol>
-<h2 id="具体接口和方法一览"><a href="#具体接口和方法一览" class="headerlink" title="具体接口和方法一览"></a>具体接口和方法一览</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/CD117F2C191D48BBB9C23028B1CAE41F/2875" alt></p>
-<h5 id="高清大图请戳这里-1"><a href="#高清大图请戳这里-1" class="headerlink" title="高清大图请戳这里"></a>高清大图请戳<a href="http://www.xmind.net/m/DpWJni" target="_blank" rel="noopener">这里</a></h5><h1 id="fabric-sdk-国密改造"><a href="#fabric-sdk-国密改造" class="headerlink" title="fabric sdk 国密改造"></a>fabric sdk 国密改造</h1><p>未完待续……</p>
+<h2 id="具体接口和方法一览"><a href="#具体接口和方法一览" class="headerlink" title="具体接口和方法一览"></a>具体接口和方法一览</h2><h5 id="高清大图请戳这里-1"><a href="#高清大图请戳这里-1" class="headerlink" title="高清大图请戳这里"></a>高清大图请戳<a href="http://www.xmind.net/m/DpWJni" target="_blank" rel="noopener">这里</a></h5><h1 id="fabric-sdk-国密改造"><a href="#fabric-sdk-国密改造" class="headerlink" title="fabric sdk 国密改造"></a>fabric sdk 国密改造</h1><p>未完待续……</p>
 
             </div>
             <hr />
@@ -1061,6 +1059,13 @@ f">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-14
                         </span>
                         <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/GitLab/" class="post-category" target="_blank">
+                                    GitLab
+                                </a>
+                            
                             
                         </span>
                     </div>

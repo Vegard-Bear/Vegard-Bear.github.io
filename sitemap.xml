@@ -2,7 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://vegard-bear.github.io/2020/02/16/sort-algorithms/</loc>
+    <loc>https://vegard-bear.github.io/about/index.html</loc>
+    
+    <lastmod>2020-07-19T12:20:31.103Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vegard-bear.github.io/2020/06/29/gm/</loc>
+    
+    <lastmod>2020-07-19T12:13:16.716Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vegard-bear.github.io/2020/07/14/cicd/</loc>
+    
+    <lastmod>2020-07-19T11:34:10.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vegard-bear.github.io/2020/02/16/deploy-fabric/</loc>
     
     <lastmod>2020-07-19T07:15:12.301Z</lastmod>
     
@@ -23,23 +44,9 @@
   </url>
   
   <url>
-    <loc>https://vegard-bear.github.io/2020/06/29/gm/</loc>
-    
-    <lastmod>2020-07-19T07:15:12.283Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://vegard-bear.github.io/2020/07/18/govendor/</loc>
     
     <lastmod>2020-07-19T07:15:12.278Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://vegard-bear.github.io/2020/07/14/cicd/</loc>
-    
-    <lastmod>2020-07-19T07:15:12.274Z</lastmod>
     
   </url>
   
@@ -54,13 +61,6 @@
     <loc>https://vegard-bear.github.io/contact/index.html</loc>
     
     <lastmod>2020-06-21T11:47:23.496Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://vegard-bear.github.io/about/index.html</loc>
-    
-    <lastmod>2020-06-21T11:23:03.017Z</lastmod>
     
   </url>
   
