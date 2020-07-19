@@ -1,6 +1,6 @@
 https://vegard-bear.github.io/2020/07/18/govendor/
 https://vegard-bear.github.io/2020/07/14/contribute/
 https://vegard-bear.github.io/2020/07/14/cicd/
-https://vegard-bear.github.io/2020/06/29/bccsp/
+https://vegard-bear.github.io/2020/06/29/gm/
 https://vegard-bear.github.io/2020/06/29/plantuml/
 https://vegard-bear.github.io/2020/02/16/sort-algorithms/

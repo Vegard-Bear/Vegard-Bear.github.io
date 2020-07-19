@@ -8,7 +8,10 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="什么是 CI/CD 流水线？CI 代表持续集成（Continuous Integration），CD 代表持续交付（Continuous Delivery）和持续部署（Continuous Deployment）。也可以将它们看作是类似于软">
+    <meta name="description" content="
+本文简单记录了自学使用GitLab CI进行自动化部署的过程
+
+什么是 CI/CD 流水线？CI 代表持续集成（Continuous Integration），CD 代表持续交付（Continuous Delivery）和持续部署（Con">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -329,7 +332,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -498,7 +501,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="什么是-CI-CD-流水线？"><a href="#什么是-CI-CD-流水线？" class="headerlink" title="什么是 CI/CD 流水线？"></a>什么是 CI/CD 流水线？</h1><p>CI 代表持续集成（Continuous Integration），CD 代表持续交付（Continuous Delivery）和持续部署（Continuous Deployment）。也可以将它们看作是类似于软件开发生命周期的过程。</p>
+                <blockquote>
+<p>本文简单记录了自学使用GitLab CI进行自动化部署的过程</p>
+</blockquote>
+<h1 id="什么是-CI-CD-流水线？"><a href="#什么是-CI-CD-流水线？" class="headerlink" title="什么是 CI/CD 流水线？"></a>什么是 CI/CD 流水线？</h1><p>CI 代表持续集成（Continuous Integration），CD 代表持续交付（Continuous Delivery）和持续部署（Continuous Deployment）。也可以将它们看作是类似于软件开发生命周期的过程。</p>
 <h4 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h4><p>持续集成指在和向远程仓库 push 代码后，在这次提交合并入主分支前进行一系列测试，构建等流程。假设现在有个应用的代码存储在 gitlab 上，每天开发者都 push 很多次提交，针对每次 push，你可以创建一系列脚本进行自动测试，降低往应用里引入错误的概率。这就是持续集成，它可应用在包括开发分支在内的多个分支上。</p>
 <h4 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h4><p>持续部署在持续集成的基础上更进一步，指将推送指仓库默认分支的部署至产品环境。如果这部分需要手动触发，这就是一个持续交付（Continuous Delivery）环节</p>
 <p><img src="https://static.geekbang.org/infoq/5cac03c74862e.png?imageView2/0/w/800" alt></p>
@@ -1193,7 +1199,7 @@ docker:stable</code></pre><h2 id="运行-docker-命令报错"><a href="#运行-d
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="向 fabric 贡献代码">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="向 fabric 贡献代码">
                         
                         <span class="card-title">向 fabric 贡献代码</span>
                     </div>
@@ -1238,19 +1244,19 @@ docker:stable</code></pre><h2 id="运行-docker-命令报错"><a href="#运行-d
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/29/bccsp/">
+                <a href="/2020/06/29/gm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="BCCSP调用栈">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="fabric国密改造全记录">
                         
-                        <span class="card-title">BCCSP调用栈</span>
+                        <span class="card-title">fabric国密改造全记录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            用一张图简要分析 BCCSP 模块的调用栈，供大家参考。
+                            最近应公司项目需求，需要对fabric中的加密相关模块进行国密化改造。
                         
                     </div>
                     <div class="publish-info">
@@ -1451,7 +1457,7 @@ docker:stable</code></pre><h2 id="运行-docker-命令报错"><a href="#运行-d
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">8.4k</span>
+            <span class="white-color">10.3k</span>
             
 
             <br>
