@@ -364,11 +364,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/tags/fabric/" title="fabric: 2">
+                <a href="/tags/fabric/" title="fabric: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="fabric" style="background-color: #F5EEF8;">fabric
-                        <span class="tag-length">2</span>
+                        <span class="tag-length">4</span>
                     </span>
                 </a>
                 
@@ -391,10 +391,19 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
+                <a href="/tags/orderer/" title="orderer: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="orderer" style="background-color: #FEF9E7;">orderer
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/tags/fabric部署/" title="fabric部署: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="fabric部署" style="background-color: #FEF9E7;">fabric部署
+                            data-tagname="fabric部署" style="background-color: #F8F9F9;">fabric部署
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -412,11 +421,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article tag-post col s12 m6 l4" data-tags="fabric, 密码" data-aos="fade-up">
                 <div class="card">
-                    <a href="/2020/06/29/gm/">
+                    <a href="/2020/06/29/fabric-gm/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="fabric国密改造全记录">
+                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="fabric国密改造全记录">
                             
                             <span class="card-title">fabric国密改造全记录</span>
                         </div>
@@ -453,7 +462,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">11.6k</span>
+            <span class="white-color">14.8k</span>
             
 
             <br>
@@ -529,7 +538,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 clearInterval(int);
             }
             if ($("#busuanzi_container_site_pv").css("display") != "none") {
-                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据
                 clearInterval(int);
             }
         }
@@ -559,7 +568,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         minutes - 0-59之间的整数，做为date对象的分钟数
         seconds - 0-59之间的整数，做为date对象的秒数
         microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-        var t1 = Date.UTC(2017, 09, 11, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t1 = Date.UTC(2020, 06, 21, 00, 00, 00); //北京时间2018-2-13 00:00:00
         var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
         var diff = t2 - t1;
         var diffYears = Math.floor(diff / years);
@@ -571,6 +580,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
     siteTime();
 </script>
+
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">

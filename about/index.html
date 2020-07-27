@@ -358,7 +358,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">6</a></span>
+    <span class="count"><a href="/" target="_blank">8</a></span>
     <span class="name">文章</span>
 </div>
 
@@ -372,7 +372,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
 
 <div class="statis">
-    <span class="count"><a href="/tags" target="_blank">5</a></span>
+    <span class="count"><a href="/tags" target="_blank">6</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -387,7 +387,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">6</a></span>
+    <span class="count"><a href="/" target="_blank">8</a></span>
     <span class="name">文章</span>
 </div>
 
@@ -401,7 +401,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
 
 <div class="statis">
-    <span class="count"><a href="/tags" target="_blank">5</a></span>
+    <span class="count"><a href="/tags" target="_blank">6</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -550,7 +550,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,1,0,0,0,2,3],
+                data: [0,0,0,0,0,0,0,0,0,0,0,3,5],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -592,7 +592,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"GitLab","value":1},{"name":"fabric","value":3},{"name":"go","value":2}],
+                data: [{"name":"GitLab","value":1},{"name":"fabric","value":5},{"name":"go","value":2}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -616,7 +616,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         xAxis: [
             {
                 type: 'category',
-                data: ["fabric","go","GitLab","密码","fabric部署"]
+                data: ["fabric","go","GitLab","密码","orderer","fabric部署"]
             }
         ],
         yAxis: [
@@ -629,7 +629,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [2,2,1,1,1],
+                data: [4,2,1,1,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -821,6 +821,12 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
+            <a href="/tags/orderer/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">orderer</span>
+            </a>
+            
+            
+            
             <a href="/tags/fabric部署/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">fabric部署</span>
             </a>
@@ -879,7 +885,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">11.6k</span>
+            <span class="white-color">14.8k</span>
             
 
             <br>
@@ -955,7 +961,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 clearInterval(int);
             }
             if ($("#busuanzi_container_site_pv").css("display") != "none") {
-                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据
                 clearInterval(int);
             }
         }
@@ -985,7 +991,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         minutes - 0-59之间的整数，做为date对象的分钟数
         seconds - 0-59之间的整数，做为date对象的秒数
         microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-        var t1 = Date.UTC(2017, 09, 11, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t1 = Date.UTC(2020, 06, 21, 00, 00, 00); //北京时间2018-2-13 00:00:00
         var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
         var diff = t2 - t1;
         var diffYears = Math.floor(diff / years);
@@ -997,6 +1003,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
     siteTime();
 </script>
+
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">

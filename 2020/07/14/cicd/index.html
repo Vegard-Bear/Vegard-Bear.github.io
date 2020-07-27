@@ -332,7 +332,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -613,7 +613,7 @@ Please enter the executor: docker, shell, ssh, docker+machine, docker-ssh+machin
 shell
 
 Runner registered successfully. Feel free to start it, but if it&#39;s running already the config should be automatically reloaded!</code></pre><p>以上流程注册成功之后，就可以在你的项目仓库中 Settings -&gt; CI/CD -&gt; Runner看到这个 Runner 了。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/EE6BA5A809BA4D5E8DE7A943D7A8EB14/2579" alt></p>
+<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/EE6BA5A809BA4D5E8DE7A943D7A8EB14/2579?ynotemdtimestamp=1595666133983" alt></p>
 <h2 id="安装共享runner"><a href="#安装共享runner" class="headerlink" title="安装共享runner"></a>安装共享runner</h2><p>安装共享runner与安装专有runner类似，主要区别在于共享runner需要gitlab的管理员权限，进入管理员界面，overview-&gt;runner，将runner的token和URL复制下来，在注册的时候添加进去就可以，此处不再赘述，详细步骤请参考<a href="https://cloud.tencent.com/developer/article/1411267" target="_blank" rel="noopener">此处</a></p>
 <h1 id="GitLab-runner-常用命令"><a href="#GitLab-runner-常用命令" class="headerlink" title="GitLab runner 常用命令"></a>GitLab runner 常用命令</h1><p>下面表格列出了 Gitlab runner 的常用命令：</p>
 <table>
@@ -662,7 +662,7 @@ Runner registered successfully. Feel free to start it, but if it&#39;s running a
 </tbody></table>
 <p>更多命令请参考 <a href="https://docs.gitlab.com/runner/commands/README.html" target="_blank" rel="noopener">GitLab Runner commands</a></p>
 <p>此时，再回 gitlab 仓库查看并重新运行之前刮起的pipeline，等待一会儿会发现运行通过了</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/6E07FADE32774BABB8735C787120F04B/2601" alt="pipeline"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/6E07FADE32774BABB8735C787120F04B/2601?ynotemdtimestamp=1595666133983" alt="pipeline"></p>
 <h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
 <li><p>每次向 gitlab 推送完代码后，会自动触发一条 pipeline，可点击 gitlab 左侧边栏的 CI/ID 进行查看 pipeline 的运行情况。</p>
 <p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/221CC727BF154DC8B47E53D732299ED3/3030" alt></p>
@@ -698,25 +698,25 @@ CONTAINER ID        IMAGE                         COMMAND                  CREAT
 <li><p>可能是 gitlab-runner 容器挂掉了, 可以登录gitlab-runner所在服务器执行</p>
 <pre><code>docker restart gitlab-runner</code></pre></li>
 </ol>
-<h2 id="pipeline-运行时报错【Permission-denied】"><a href="#pipeline-运行时报错【Permission-denied】" class="headerlink" title="pipeline 运行时报错【Permission denied】"></a>pipeline 运行时报错【Permission denied】</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/C512459EDB3A41A7938D5DB227C26E61/2630" alt></p>
+<h2 id="pipeline-运行时报错【Permission-denied】"><a href="#pipeline-运行时报错【Permission-denied】" class="headerlink" title="pipeline 运行时报错【Permission denied】"></a>pipeline 运行时报错【Permission denied】</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/C512459EDB3A41A7938D5DB227C26E61/2630?ynotemdtimestamp=1595666133983" alt></p>
 <p>在跑 CICD的时候发现以上错误，一开始以为是权限的问题，但是加了dudo依然未能解决，后来通过复盘 gitlab runner安装、注册等全过程，发现在安装gitlab是采用的docker模式，但是注册gitlab时指定的运行环境是shell，于是换成了docker，重新跑了一下，原来的错误消失了</p>
 <p>PS: 指定执行环境是docker后，还需指定 docker image 为 stable, 如下：</p>
 <pre><code>Please enter the executor: virtualbox, docker+machine, docker-ssh, shell, parallels, ssh, docker-ssh+machine, kubernetes, custom, docker:
 docker
 Please enter the default Docker image (e.g. ruby:2.6):
 docker:stable</code></pre><h2 id="运行-docker-命令报错"><a href="#运行-docker-命令报错" class="headerlink" title="运行 docker 命令报错"></a>运行 docker 命令报错</h2><p>运行docker info命令时报错</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/5308331A5FF94826A5BFB66F128CF7CF/2644" alt></p>
+<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/5308331A5FF94826A5BFB66F128CF7CF/2644?ynotemdtimestamp=1595666133983" alt></p>
 <p>查找资料<br><a href="https://gitlab.com/gitlab-org/gitlab-runner/-/issues/4566" target="_blank" rel="noopener">https://gitlab.com/gitlab-org/gitlab-runner/-/issues/4566</a></p>
 <p>修改配置文件</p>
 <pre><code>vim gitlab-runner/config/config.toml</code></pre><p>volumes 配置项</p>
 <pre><code>volumes = [&quot;/cache&quot;, &quot;/var/run/docker.sock:/var/run/docker.sock&quot;]</code></pre><p>重新启动 gitlab runner </p>
 <pre><code>docker restart 99451b349e7f</code></pre><p>其中 99451b349e7f 为容器ID</p>
 <p>再重新跑pipeline，发现原来的错误消失了</p>
-<h2 id="执行shell脚本报错"><a href="#执行shell脚本报错" class="headerlink" title="执行shell脚本报错"></a>执行shell脚本报错</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/3B9F8F27F2A049CD92C6C92BB1A35B19/2664" alt></p>
+<h2 id="执行shell脚本报错"><a href="#执行shell脚本报错" class="headerlink" title="执行shell脚本报错"></a>执行shell脚本报错</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/3B9F8F27F2A049CD92C6C92BB1A35B19/2664?ynotemdtimestamp=1595666133983" alt></p>
 <p>通过搜寻资料发现</p>
 <p>请注意，docker镜像是基于alpine的，默认不提供bash。<br>所以脚本应该使用sh，以便更加通用。</p>
 <p>改成如下格式后经过测试通过</p>
-<pre><code>sh scripts/fmt.sh</code></pre><h2 id="curl命令未找到-【curl-not-found】"><a href="#curl命令未找到-【curl-not-found】" class="headerlink" title="curl命令未找到 【curl: not found】"></a>curl命令未找到 【curl: not found】</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/24C3D0434AB147BC80AE067140047D01/2671" alt></p>
+<pre><code>sh scripts/fmt.sh</code></pre><h2 id="curl命令未找到-【curl-not-found】"><a href="#curl命令未找到-【curl-not-found】" class="headerlink" title="curl命令未找到 【curl: not found】"></a>curl命令未找到 【curl: not found】</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/24C3D0434AB147BC80AE067140047D01/2671?ynotemdtimestamp=1595666133983" alt></p>
 <p>搜寻资料<a href="https://stackoverflow.com/questions/46031069/curl-command-not-found-on-gitlab-ci-yml" target="_blank" rel="noopener">curl command not found on .gitlab-ci.yml</a></p>
 <p>使用apk命令下载 curl 命令，而不是 apt-get</p>
 <pre><code>services:
@@ -726,12 +726,12 @@ docker:stable</code></pre><h2 id="运行-docker-命令报错"><a href="#运行-d
     - apk add --update curl &amp;&amp; rm -rf /var/cache/apk/*</code></pre><h2 id="编译报错-not-found"><a href="#编译报错-not-found" class="headerlink" title="编译报错 not found"></a>编译报错 not found</h2><p>参考<br><a href="https://www.dyxmq.cn/uncategorized/installed-go-binary-not-found-in-path-on-alpine-linux-docker.html" target="_blank" rel="noopener">https://www.dyxmq.cn/uncategorized/installed-go-binary-not-found-in-path-on-alpine-linux-docker.html</a></p>
 <p>编译时添加参数CGO_ENABLED=0</p>
 <pre><code>CGO_ENABLED=0 go build</code></pre><h2 id="安装-go-环境失败"><a href="#安装-go-环境失败" class="headerlink" title="安装 go 环境失败"></a>安装 go 环境失败</h2><p>下载了 go 的安装包且配置好了 GOROOT 和 GOPATH 等，但执行 go version 依旧报错</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/F3FF604F026B45F38A44D48691D10B37/2694" alt></p>
+<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/F3FF604F026B45F38A44D48691D10B37/2694?ynotemdtimestamp=1595666133983" alt></p>
 <p>查找资料<br><a href="https://stackoverflow.com/questions/34729748/installed-go-binary-not-found-in-path-on-alpine-linux-docker" target="_blank" rel="noopener">https://stackoverflow.com/questions/34729748/installed-go-binary-not-found-in-path-on-alpine-linux-docker</a></p>
 <p>执行以下命令修复丢失的依赖项，解决</p>
 <pre><code>mkdir /lib64 &amp;&amp; ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2</code></pre><h2 id="执行-golangci-lint-run-报错：DecodeRuneInString-not-declared-by-package-utf8-typecheck"><a href="#执行-golangci-lint-run-报错：DecodeRuneInString-not-declared-by-package-utf8-typecheck" class="headerlink" title="执行 golangci-lint run 报错：DecodeRuneInString not declared by package utf8 (typecheck)"></a>执行 golangci-lint run 报错：DecodeRuneInString not declared by package utf8 (typecheck)</h2><p><a href="https://github.com/golangci/golangci-lint/issues/658" target="_blank" rel="noopener">https://github.com/golangci/golangci-lint/issues/658</a></p>
 <p>替换 golangci-lint 版本由 v1.16.0 为 v1.18.0 解决问题</p>
-<h2 id="跑-golangci-lint-报错【could-not-import-C-no-metadata-for-C-typecheck-】"><a href="#跑-golangci-lint-报错【could-not-import-C-no-metadata-for-C-typecheck-】" class="headerlink" title="跑 golangci-lint 报错【could not import C (no metadata for C) (typecheck)】"></a>跑 golangci-lint 报错【could not import C (no metadata for C) (typecheck)】</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/7617F64AB4A84C01813E6514C27128CB/2882" alt></p>
+<h2 id="跑-golangci-lint-报错【could-not-import-C-no-metadata-for-C-typecheck-】"><a href="#跑-golangci-lint-报错【could-not-import-C-no-metadata-for-C-typecheck-】" class="headerlink" title="跑 golangci-lint 报错【could not import C (no metadata for C) (typecheck)】"></a>跑 golangci-lint 报错【could not import C (no metadata for C) (typecheck)】</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/7617F64AB4A84C01813E6514C27128CB/2882?ynotemdtimestamp=1595666133983" alt></p>
 <p>搜索资料</p>
 <p><a href="https://github.com/golangci/golangci-lint/issues/602" target="_blank" rel="noopener">https://github.com/golangci/golangci-lint/issues/602</a></p>
 <p>需要安装 gcc，但由于 alpine-linux 环境不支持 apt-get 命令，只能用 apk 安装 gcc </p>
@@ -740,7 +740,7 @@ docker:stable</code></pre><h2 id="运行-docker-命令报错"><a href="#运行-d
 <p>通过修改源加快安装速度</p>
 <pre><code>echo &quot;https://mirror.tuna.tsinghua.edu.cn/alpine/v3.8/main&quot; &gt; /etc/apk/repositories
 echo &quot;https://mirror.tuna.tsinghua.edu.cn/alpine/v3.8/community&quot; &gt;&gt; /etc/apk/repositories</code></pre><p>然后再安装 gcc</p>
-<pre><code>apk add build-base</code></pre><h2 id="跑-golangci-lint-遇到-【no-go-files-to-analyze】问题"><a href="#跑-golangci-lint-遇到-【no-go-files-to-analyze】问题" class="headerlink" title="跑 golangci-lint 遇到 【no go files to analyze】问题"></a>跑 golangci-lint 遇到 【no go files to analyze】问题</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/B8CDA49BABF54CC093121CC9C0E92F51/2897" alt></p>
+<pre><code>apk add build-base</code></pre><h2 id="跑-golangci-lint-遇到-【no-go-files-to-analyze】问题"><a href="#跑-golangci-lint-遇到-【no-go-files-to-analyze】问题" class="headerlink" title="跑 golangci-lint 遇到 【no go files to analyze】问题"></a>跑 golangci-lint 遇到 【no go files to analyze】问题</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/B8CDA49BABF54CC093121CC9C0E92F51/2897?ynotemdtimestamp=1595666133983" alt></p>
 <p>说明少了对应的包，需要去导入包</p>
 <h1 id="gitlab-ci-yaml-样例"><a href="#gitlab-ci-yaml-样例" class="headerlink" title=".gitlab-ci.yaml 样例"></a>.gitlab-ci.yaml 样例</h1><pre><code>variables:
   REGISTRY_USER: admin
@@ -1378,11 +1378,11 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/07/14/contribute/">
+                <a href="/2020/07/14/fabric-contribute/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="向 fabric 贡献代码">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="向 fabric 贡献代码">
                         
                         <span class="card-title">向 fabric 贡献代码</span>
                     </div>
@@ -1427,11 +1427,11 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/29/gm/">
+                <a href="/2020/06/29/fabric-gm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="fabric国密改造全记录">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="fabric国密改造全记录">
                         
                         <span class="card-title">fabric国密改造全记录</span>
                     </div>
@@ -1640,7 +1640,7 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">11.6k</span>
+            <span class="white-color">14.8k</span>
             
 
             <br>
@@ -1716,7 +1716,7 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
                 clearInterval(int);
             }
             if ($("#busuanzi_container_site_pv").css("display") != "none") {
-                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据
                 clearInterval(int);
             }
         }
@@ -1746,7 +1746,7 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
         minutes - 0-59之间的整数，做为date对象的分钟数
         seconds - 0-59之间的整数，做为date对象的秒数
         microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-        var t1 = Date.UTC(2017, 09, 11, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t1 = Date.UTC(2020, 06, 21, 00, 00, 00); //北京时间2018-2-13 00:00:00
         var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
         var diff = t2 - t1;
         var diffYears = Math.floor(diff / years);
@@ -1758,6 +1758,7 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
     }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
     siteTime();
 </script>
+
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
