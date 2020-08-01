@@ -330,7 +330,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -547,12 +547,12 @@ orderer
 
 23 directories, 3 files</code></pre><p>相信大家这样过了一遍心里有个大致印象，但还是一脸懵逼，不过没关系，我们接着往下看：</p>
 <h1 id="功能概述"><a href="#功能概述" class="headerlink" title="功能概述"></a>功能概述</h1><p>Orderer排序节点管理着系统通道与所有应用通道，负责通道创建、通道配置更新等操作，并处理客户端提交的交易消息请求，对交易进行排序并按规则打包成新区块，提交账本并维护通道账本数据，为全网节点提供Broadcast交易广播服务、Orderer共识排序服务、Deliver区块分发服务等。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/fb2139f538e307d2f0da030a223a1bac/xmlnote/1D6F3E67093448C69B07282BEA5F228E/1552" alt></p>
+<p><img src="http://note.youdao.com/yws/res/63/WEBRESOURCE0d039e7a4924db2b6d979c334fd14e9d" alt="orderer功能概述"></p>
 <blockquote>
 <p>图片源自《Hyperledger Fabric技术内幕 架构设计与实现原理》</p>
 </blockquote>
 <h2 id="一笔交易在Orderer中经历的过程"><a href="#一笔交易在Orderer中经历的过程" class="headerlink" title="一笔交易在Orderer中经历的过程"></a>一笔交易在Orderer中经历的过程</h2><p>还记得在上一篇中我们介绍了一笔交易在fabric中所经历的过程，那么这一节我们依旧以交易为切入点，聚焦于交易在orderer这部分到底经历了什么。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/BF0EF49DFB374B918C2D8DBA797AFD86/3284" alt></p>
+<p><img src="http://note.youdao.com/yws/res/84/WEBRESOURCEb122473b5b7acef549a64630e6570d63" alt="一笔交易在 orderer 中的处理流程"></p>
 <p>如图所示，orderer节点首先通过<strong>Broadcast广播交易服务</strong>从客户端获取经过背书的交易消息，然后将交易进行排序并打包成区块，最后通过<strong>Deliver区块分发服务</strong>向peer节点分发打包好的区块。</p>
 <p>其中将交易进行排序和打包成区块的步骤又可以进一步分解为:</p>
 <ol>
@@ -572,7 +572,7 @@ orderer
 </ol>
 <p>除此之外，在分析源码之前我们还需要了解 Ordrer 的核心数据结构以及 Orderer节点的启动流程。</p>
 <p>综上所述，orderer源码解析的知识图谱就呼之欲出了。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/A93E99DBAC7540F199B803F4B4170358/3336" alt></p>
+<p><img src="http://note.youdao.com/yws/res/70/WEBRESOURCE94ead357ff1974f130ca9b572e879016" alt="Orderer 知识图谱"></p>
 <p>这张图描绘了 orderer 这块源码我们需要掌握的主要知识点，现在肯定还有很多地方看不懂，不过没关系，有个大致印象就好，等我们把所有的知识点都理一遍再回过头来看这张图，相信会有一种“一览众山小”的感觉。</p>
 <p>接下来，我们就将以这种图为线索，正式开始我们的orderer源码分析之旅。</p>
 
@@ -1068,7 +1068,7 @@ orderer
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Fabric 1.4源码分析1：Orderer功能概述">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Fabric 1.4源码分析1：Orderer功能概述">
                         
                         <span class="card-title">Fabric 1.4源码分析1：Orderer功能概述</span>
                     </div>
@@ -1122,7 +1122,7 @@ orderer
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Fabric交易处理流程">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Fabric交易处理流程">
                         
                         <span class="card-title">Fabric交易处理流程</span>
                     </div>
