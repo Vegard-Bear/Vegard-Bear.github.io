@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2020-08-02T04:02:54.982Z</updated>
+  <updated>2020-08-08T12:42:53.542Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,98 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>fabric 2.2 生命周期链码实战</title>
+    <link href="https://vegard-bear.github.io/2020/08/08/fabric-chaincode-2-2/"/>
+    <id>https://vegard-bear.github.io/2020/08/08/fabric-chaincode-2-2/</id>
+    <published>2020-08-08T12:39:42.000Z</published>
+    <updated>2020-08-08T12:42:53.542Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命周期管理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;打包（package）&quot;&gt;&lt;a href=&quot;#打包（package）&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="fabric" scheme="https://vegard-bear.github.io/categories/fabric/"/>
+    
+    
+      <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
+    
+      <category term="chaincode" scheme="https://vegard-bear.github.io/tags/chaincode/"/>
+    
+      <category term="2.2" scheme="https://vegard-bear.github.io/tags/2-2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>fabric 2.2 的新特性</title>
+    <link href="https://vegard-bear.github.io/2020/08/08/fabric-newfeature-2-2/"/>
+    <id>https://vegard-bear.github.io/2020/08/08/fabric-newfeature-2-2/</id>
+    <published>2020-08-08T12:37:31.000Z</published>
+    <updated>2020-08-08T12:43:00.924Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;2-2-的新特性&quot;&gt;&lt;a href=&quot;#2-2-的新特性&quot; class=&quot;headerlink&quot; title=&quot;2.2 的新特性&quot;&gt;&lt;/a&gt;2.2 的新特性&lt;/h1&gt;&lt;h2 id=&quot;1-分权的chaincode⽣命周期的管理&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="fabric" scheme="https://vegard-bear.github.io/categories/fabric/"/>
+    
+    
+      <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
+    
+      <category term="2.2" scheme="https://vegard-bear.github.io/tags/2-2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>fabric 1.4 升级到 2.2 的⽅案</title>
+    <link href="https://vegard-bear.github.io/2020/08/08/fabric-upgrade-2-2/"/>
+    <id>https://vegard-bear.github.io/2020/08/08/fabric-upgrade-2-2/</id>
+    <published>2020-08-08T12:32:23.000Z</published>
+    <updated>2020-08-08T12:36:52.969Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;v2.2是Fabric
+        
+      
+    
+    </summary>
+    
+      <category term="fabric" scheme="https://vegard-bear.github.io/categories/fabric/"/>
+    
+    
+      <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
+    
+      <category term="2.2" scheme="https://vegard-bear.github.io/tags/2-2/"/>
+    
+      <category term="upgrade" scheme="https://vegard-bear.github.io/tags/upgrade/"/>
+    
+  </entry>
   
   <entry>
     <title>Fabric 1.4源码分析2：Orderer 核心数据结构</title>

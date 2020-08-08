@@ -4,14 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="fabric多机部署（raft共识）, 小熊的作坊">
+    <meta name="keywords" content="fabric 1.4 升级到 2.2 的⽅案, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="
-本文介绍了如何搭建一个多机多节点的fabric区块链网络的过程，希望能为小伙伴提供帮助。
+v2.2是Fabric v2.x的第一个长期支持（LTS）版本，Fabric的2.1和2.2版本是稳定版本，具有错误修复和其他形式的代码强化功能。从2.0升级到2.2不需要特别的考虑，也不需要特定的镜像版本或通道配置更新。
 
-fabric多机部署 （raft共识）0. 准备工作克隆项目git clone git@192.168.9.251:jilg/deployFabr">
+1.4 升级">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@ fabric多机部署 （raft共识）0. 准备工作克隆项目git clone git@192.
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>fabric多机部署（raft共识） | 小熊的作坊</title>
+    <title>fabric 1.4 升级到 2.2 的⽅案 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +332,13 @@ fabric多机部署 （raft共识）0. 准备工作克隆项目git clone git@192.
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        fabric多机部署（raft共识）
+                        fabric 1.4 升级到 2.2 的⽅案
                     </div>
                 </div>
             </div>
@@ -449,8 +449,16 @@ fabric多机部署 （raft共识）0. 准备工作克隆项目git clone git@192.
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/fabric部署/" target="_blank">
-                            <span class="chip bg-color">fabric部署</span>
+                        <a href="/tags/fabric/" target="_blank">
+                            <span class="chip bg-color">fabric</span>
+                        </a>
+                        
+                        <a href="/tags/2-2/" target="_blank">
+                            <span class="chip bg-color">2.2</span>
+                        </a>
+                        
+                        <a href="/tags/upgrade/" target="_blank">
+                            <span class="chip bg-color">upgrade</span>
                         </a>
                         
                     </div>
@@ -473,7 +481,7 @@ fabric多机部署 （raft共识）0. 准备工作克隆项目git clone git@192.
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-21
+                    2020-08-08
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -487,14 +495,14 @@ fabric多机部署 （raft共识）0. 准备工作克隆项目git clone git@192.
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.1k
+                    4.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    24 分
+                    21 分
                 </div>
                 
                 
@@ -511,729 +519,380 @@ fabric多机部署 （raft共识）0. 准备工作克隆项目git clone git@192.
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>本文介绍了如何搭建一个多机多节点的fabric区块链网络的过程，希望能为小伙伴提供帮助。</p>
+<p>v2.2是Fabric v2.x的第一个长期支持（LTS）版本，Fabric的2.1和2.2版本是稳定版本，具有错误修复和其他形式的代码强化功能。从2.0升级到2.2不需要特别的考虑，也不需要特定的镜像版本或通道配置更新。</p>
 </blockquote>
-<h1 id="fabric多机部署-（raft共识）"><a href="#fabric多机部署-（raft共识）" class="headerlink" title="fabric多机部署 （raft共识）"></a>fabric多机部署 （raft共识）</h1><h2 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0. 准备工作"></a>0. 准备工作</h2><h4 id="克隆项目"><a href="#克隆项目" class="headerlink" title="克隆项目"></a>克隆项目</h4><pre><code>git clone git@192.168.9.251:jilg/deployFabric_Raft.git</code></pre><h4 id="节点分配"><a href="#节点分配" class="headerlink" title="节点分配"></a>节点分配</h4><table>
-<thead>
-<tr>
-<th>主机1</th>
-<th>主机 2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Org1 peer0 1</td>
-<td>Org2 peer 0 1</td>
-</tr>
-<tr>
-<td>Orderer 0 1 2</td>
-<td>Orderer 0 1</td>
-</tr>
-</tbody></table>
-<br>
-下面的步骤先在一台主机上操作
+<h1 id="1-4-升级到-2-2-的主要过程包括（与升级到-2-0-基本一致）"><a href="#1-4-升级到-2-2-的主要过程包括（与升级到-2-0-基本一致）" class="headerlink" title="1.4 升级到 2.2 的主要过程包括（与升级到 2.0 基本一致）"></a>1.4 升级到 2.2 的主要过程包括（与升级到 2.0 基本一致）</h1><ol>
+<li>升级镜像</li>
+<li>升级兼容性配置</li>
+<li>激活 chaincode 的新的⽣命周期管理 </li>
+</ol>
+<h1 id="1-升级镜像"><a href="#1-升级镜像" class="headerlink" title="1. 升级镜像"></a>1. 升级镜像</h1><p>升级镜像主要包括两个步骤： </p>
+<ul>
+<li>备份账本和 MSP 的相关⽂件</li>
+<li>升级镜像⽂件到最新版本 </li>
+</ul>
+<h2 id="1-1-升级-orderer-节点"><a href="#1-1-升级-orderer-节点" class="headerlink" title="1.1 升级 orderer 节点"></a>1.1 升级 orderer 节点</h2><p>对每个 orderer 节点执行以下操作：</p>
+<ol>
+<li>停掉 orderer 节点 </li>
+<li>备份 orderer 节点的账本和 MSP </li>
+<li>移除掉 orderer 节点容器 </li>
+<li>使⽤新镜像创建⼀个 orderer 容器</li>
+</ol>
+<h2 id="1-2-升级-peer-节点"><a href="#1-2-升级-peer-节点" class="headerlink" title="1.2 升级 peer 节点"></a>1.2 升级 peer 节点</h2><ol>
+<li><p>停掉 peer 节点 </p>
+</li>
+<li><p>备份 peer 节点的账本和 MSP </p>
+</li>
+<li><p>移除掉 chaincode 容器（由于 2.0 版本中将 shim 从 fabric ⼯程中移出为单独的⼯程，所以是否删除镜像需要进⾏讨论） </p>
+<ul>
+<li>如果该 chaincode 已经做好了升级准备，那么原来的镜像可以直接删除掉。 </li>
+<li>如果 chaincode 不打算升级，当环境从 1.4 升级到 2.0 后还需要继续使⽤。  <ul>
+<li>不删除chaincode 镜像，那么当升级到2.0后会继续使⽤该镜像创建容器，原 chaincode 可以正常运⾏。</li>
+<li>删除掉了 chaincode 镜像，那么需要对 peer 节点进⾏配置，让其使⽤ ccenv 1.4 版本的镜像来创建chaincode镜像。如 果没有专⻔配置，使⽤了 2.0 版本的 ccenv 的话，会出现错误。（ 因为 2.0 版本 ccenv ⾥没有 shim ），在 base/peer-base.yaml 增加如下内容：<pre><code> - CORE_CHAINCODE_BUILDER=hyperledger/fabric-ccenv:1.4.6</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>移除掉 peer 节点容器</p>
+</li>
+<li><p>升级 peer 节点的数据库 </p>
+<ul>
+<li>由于 2.0 版本的状态数据库和历史数据库的数据格式与 1.4 有所不同，升级到2.0版本需要对数据库进⾏升级。<pre><code>docker run --rm -v /var/lib/docker/volumes/net_peer0.org1.example.com/_data/:/var/hyperledger/production/ -v /home/centos/gopath/src/github.com/hyperledger/fabric-samples/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/:/etc/hyperledger/fabric/msp/ --name peer0.org1.example.com hyperledger/fabric-peer:2.0 peer node upgrade-dbs </code></pre></li>
+</ul>
+</li>
+<li><p>使⽤新的镜像创建⼀个 peer 容器</p>
+</li>
+</ol>
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><ul>
+<li>可以先 ./byfn.sh 起一个 byfn，然后停掉所有 orderer 节点和 peer 节点</li>
+</ul>
+<pre><code>docker-compose -f docker-compose-cli.yaml down</code></pre><ul>
+<li>修改配置文件 base/peer-base.yaml 和 docker-compose-cli.yaml 中的镜像tag</li>
+</ul>
+<pre><code>image: hyperledger/fabric-peer:2.2
+image: hyperledger/fabric-orderer:2.2
+image: hyperledger/fabric-tools:2.2</code></pre><ul>
+<li>升级所有 peer 节点的数据库（不升级会报错）</li>
+</ul>
+<pre><code>docker run --rm -v /var/lib/docker/volumes/net_peer0.org1.example.com/_data/:/var/hyperledger/production/ -v /Users/xiongweigang/go/src/github.com/hyperledger/fabric-samples/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/:/etc/hyperledger/fabric/msp/ --name peer0.org1.example.com hyperledger/fabric-peer:2.2 peer node upgrade-dbs
+docker run --rm -v /var/lib/docker/volumes/net_peer1.org1.example.com/_data/:/var/hyperledger/production/ -v /Users/xiongweigang/go/src/github.com/hyperledger/fabric-samples/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/:/etc/hyperledger/fabric/msp/ --name peer1.org1.example.com hyperledger/fabric-peer:2.2 peer node upgrade-dbs
+docker run --rm -v /var/lib/docker/volumes/net_peer0.org2.example.com/_data/:/var/hyperledger/production/ -v /Users/xiongweigang/go/src/github.com/hyperledger/fabric-samples/first-network/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/:/etc/hyperledger/fabric/msp/ --name peer0.org2.example.com hyperledger/fabric-peer:2.2 peer node upgrade-dbs
+docker run --rm -v /var/lib/docker/volumes/net_peer1.org2.example.com/_data/:/var/hyperledger/production/ -v /Users/xiongweigang/go/src/github.com/hyperledger/fabric-samples/first-network/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/msp/:/etc/hyperledger/fabric/msp/ --name peer1.org2.example.com hyperledger/fabric-peer:2.2 peer node upgrade-dbs</code></pre><p>最后再重启节点</p>
+<pre><code>docker-compose -f docker-compose-cli.yaml up -d</code></pre><h1 id="2-升级兼容性配置"><a href="#2-升级兼容性配置" class="headerlink" title="2. 升级兼容性配置"></a>2. 升级兼容性配置</h1><p>升级兼容性配置主要包括，升级系统链配置以及升级应⽤链配置两个⽅⾯。 </p>
+<p>在升级过程中可以使⽤ jq 命令来对配置进⾏修改，也可以使⽤其他编辑器对⽂件直接进⾏⼿动的修改。为了⽅便 jq 命令的使 ⽤，⾸先创建⼀个名为capabilities.json的⽂件。⽂件包括以下内容:</p>
+<pre><code>{ 
+    &quot;channel&quot;: { 
+        &quot;mod_policy&quot;: &quot;Admins&quot;, 
+            &quot;value&quot;: { 
+                &quot;capabilities&quot;: {
+                    &quot;V2_0&quot;: {} 
+                 }
+            }, 
+        &quot;version&quot;: &quot;0&quot; 
+    },
+    &quot;orderer&quot;: { 
+        &quot;mod_policy&quot;: &quot;Admins&quot;, 
+            &quot;value&quot;: { 
+                &quot;capabilities&quot;: { 
+                    &quot;V2_0&quot;: {} 
+                } 
+            }, 
+        &quot;version&quot;: &quot;0&quot; 
+    },
+    &quot;application&quot;: { 
+        &quot;mod_policy&quot;: &quot;Admins&quot;, 
+            &quot;value&quot;: { 
+                &quot;capabilities&quot;: {
+                    &quot;V2_0&quot;: {} 
+                } 
+            }, 
+        &quot;version&quot;: &quot;0&quot; 
+    } 
+} </code></pre><h3 id="具体操作-1"><a href="#具体操作-1" class="headerlink" title="具体操作"></a>具体操作</h3><p>进入 cli 容器</p>
+<pre><code>docker exec -it cli bash </code></pre><p>进入 script 文件夹</p>
+<pre><code>cd scripts</code></pre><p>将 capabilities.json 复制到 此文件夹中即 fabric-samples/firstnetwork/scripts 文件夹</p>
+<h2 id="2-1-升级系统链的兼容性配置"><a href="#2-1-升级系统链的兼容性配置" class="headerlink" title="2.1 升级系统链的兼容性配置"></a>2.1 升级系统链的兼容性配置</h2><p>参考脚本updating_capabilities_sys.sh</p>
+<ul>
+<li>⾸先需要对⼀些环境变量进⾏设置<ul>
+<li>CH_NAME :系统链的名称，例如⽬前的 fabric-samples/first-network中的 CH_NAME=byfn-sys-channel </li>
+<li>CORE_PEER_LOCALMSPID :Orderer组织的MSPID，例如⽬前的 fabric-samples/first-network 中的 CORE_PEER_LOCALMSPID=OrdererMSP</li>
+<li>TLS_ROOT_CA : Orderer组织的TLS的CA证书，例如⽬前的 fabric-samples/first-network 中的 TLS_ROOT_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/ orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem </li>
+<li>CORE_PEER_MSPCONFIGPATH :Orderer组织的MSP的配置地址，例如⽬前的fabric-samples/first-network 中的 CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/users/Admin@example.com/msp </li>
+<li>ORDERER_CONTAINER :Orderer组织的容器节点，例如⽬前的fabric-samples/first-network中的 ORDERER_CONTAINER=orderer.example.com:7050</li>
+</ul>
+</li>
+<li>获取系统链原有的配置 <ul>
+<li>获取原有配置<pre><code>peer channel fetch config config_block.pb -o $ORDERER_CONTAINER -c $CH_NAME --tls --cafile $TLS_ROOT_CA</code></pre></li>
+<li>将配置转化为json格式 <pre><code>configtxlator proto_decode --input config_block.pb --type common.Block --output config_block.json</code></pre></li>
+<li>从json中只提取出来配置的部分<pre><code>jq .data.data[0].payload.data.config config_block.json &gt; config.json</code></pre></li>
+</ul>
+</li>
+<li>修改兼容性配置<ul>
+<li>可以使⽤ jq 命令对配置进⾏修改<pre><code>jq -s &#39;.[0] * {&quot;channel_group&quot;:{&quot;groups&quot;:{&quot;Orderer&quot;: {&quot;values&quot;: {&quot;Capabilities&quot;: .[1].orderer}}}}}&#39; config.json ./capabilities.json &gt; modified_config1.json
+jq -s &#39;.[0] * {&quot;channel_group&quot;:{&quot;values&quot;: {&quot;Capabilities&quot;: .[1].channel}}}&#39; modified_config1.json ./capabilities.json &gt; modified_config.json</code></pre></li>
+<li>也可以打开编辑器，将Capabilities相关的配置改为”V2_0”</li>
+</ul>
+</li>
+<li>计算配置的deltaSet，⽣成pb⽂件<ul>
+<li>计算deltaSet<pre><code>configtxlator proto_encode --input config.json --type common.Config --output config.pb
+configtxlator proto_encode --input modified_config.json --type common.Config --output modified_config.pb 
+configtxlator compute_update --channel_id $CH_NAME --original config.pb --updated modified_config.pb --output config_update.pb</code></pre></li>
+<li>⽣成通道更新的pb⽂件<pre><code>configtxlator proto_decode --input config_update.pb --type common.ConfigUpdate --output config_update.json
+echo &#39;{&quot;payload&quot;:{&quot;header&quot;:{&quot;channel_header&quot;:{&quot;channel_id&quot;:&quot;&#39;$CH_NAME&#39;&quot;, &quot;type&quot;:2}},&quot;data&quot;:{&quot;config_update&quot;:&#39;$(cat config_update.json)&#39;}}}&#39; | jq . &gt; config_update_in_envelope.json
+configtxlator proto_encode --input config_update_in_envelope.json --type common.Envelope --output config_update_in_envelope.pb</code></pre></li>
+</ul>
+</li>
+<li>提交更新到通道<ul>
+<li>这⾥假设orderer只有⼀家组织，如果有多家则需要每⼀家先对 config_update_in_envelope.pb 进⾏ signconfigtx 操作 <pre><code>peer channel update -f config_update_in_envelope.pb -c $CH_NAME -o $ORDERER_CONTAINER --tls true --cafile $TLS_ROOT_CA</code></pre><h3 id="具体操作-2"><a href="#具体操作-2" class="headerlink" title="具体操作"></a>具体操作</h3></li>
+</ul>
+</li>
+</ul>
+<p>进入 cli 容器</p>
+<pre><code>docker exec -it cli bash </code></pre><p>进入 script 文件夹</p>
+<pre><code>cd scripts</code></pre><p>将脚本 capabilities.json 复制到 此文件夹中即 fabric-sanples/firstnetwork/scripts 文件夹</p>
+<p>然后给该脚本添加可执行权限并执行</p>
+<pre><code>chmod +x updating_capabilities_sys.sh
+./updating_capabilities_sys.sh</code></pre><h2 id="2-2-升级已有应⽤链的系统配置"><a href="#2-2-升级已有应⽤链的系统配置" class="headerlink" title="2.2 升级已有应⽤链的系统配置"></a>2.2 升级已有应⽤链的系统配置</h2><p>参考脚本 updating_capabilities_mychannel.sh</p>
+<ul>
+<li><p>对环境变量进⾏配置，这⾥以 fabric-samples/first-network中的mychannel为例，mychannel 中包含了 Org1 和 Org2 两个组织</p>
+<pre><code>CH_NAME=mychannel
+CORE_PEER_LOCALMSPID=Org1MSP 
+TLS_ROOT_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp 
+ORDERER_CONTAINER=orderer.example.com:7050 </code></pre></li>
+<li><p>获取mychannel的原有配置</p>
+<ul>
+<li>获取原有配置<pre><code>peer channel fetch config config_block.pb -o $ORDERER_CONTAINER -c $CH_NAME --tls --cafile $TLS_ROOT_CA</code></pre></li>
+<li>将配置转化为json格式<pre><code>configtxlator proto_decode --input config_block.pb --type common.Block --output config_block.json</code></pre></li>
+<li>从json中只提取出来配置的部分 jq<pre><code>.data.data[0].payload.data.config config_block.json &gt; config.json</code></pre></li>
+</ul>
+</li>
+<li><p>修改兼容性配置注意应⽤通道⽐系统通道多了⼀个Application的兼容性需要修改</p>
+<pre><code>  jq -s &#39;.[0] * {&quot;channel_group&quot;:{&quot;groups&quot;:{&quot;Orderer&quot;: {&quot;values&quot;: {&quot;Capabilities&quot;: .[1].orderer}}}}}&#39; config.json ./capabilities.json &gt; modified_config1.json
+  jq -s &#39;.[0] * {&quot;channel_group&quot;:{&quot;values&quot;: {&quot;Capabilities&quot;: .[1].channel}}}&#39; modified_config1.json ./capabilities.json &gt; modified_config2.json
+  jq -s &#39;.[0] * {&quot;channel_group&quot;:{&quot;groups&quot;:{&quot;Application&quot;: {&quot;values&quot;: {&quot;Capabilities&quot;: .[1].application}}}}}&#39; modified_config2.json ./capabilities.json &gt; modified_config.json</code></pre></li>
+<li><p>计算配置的deltaSet，⽣成pb⽂件</p>
+<ul>
+<li>计算deltaSet<pre><code>configtxlator proto_encode --input config.json --type common.Config --output config.pb
+configtxlator proto_encode --input modified_config.json --type common.Config --output modified_config.pb
+configtxlator compute_update --channel_id $CH_NAME --original config.pb --updated modified_config.pb --output config_update.pb</code></pre></li>
+</ul>
+</li>
+<li><p>⽣成通道更新的pb⽂件</p>
+<pre><code>  configtxlator proto_decode --input config_update.pb --type common.ConfigUpdate --output config_update.json 
+  echo &#39;{&quot;payload&quot;:{&quot;header&quot;:{&quot;channel_header&quot;:{&quot;channel_id&quot;:&quot;&#39;$CH_NAME&#39;&quot;, &quot;type&quot;:2}},&quot;data&quot;:{&quot;config_update&quot;:&#39;$(cat config_update.json)&#39;}}}&#39; | jq . &gt; config_update_in_envelope.json 
+  configtxlator proto_encode --input config_update_in_envelope.json --type common.Envelope --output config_update_in_envelope.pb</code></pre></li>
+<li><p>提交更新到通道<br>  因为mychannel中有Org1和Org2两个组织（实际上还有Orderer的配置），对通道配置进⾏修改需要通道多数<br>  组织的签名，以及对Orderer配置修改需要Orderer组织的签名。 所以这⾥假设，先让Org1和Org2进⾏签名，再由Orderer进更新的提交。</p>
+<ul>
+<li>Org1签名<pre><code>peer channel signconfigtx -f config_update_in_envelope.pb</code></pre></li>
+<li>切换为Org2<pre><code>CORE_PEER_LOCALMSPID=Org2MSP
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp</code></pre></li>
+<li>Org2签名<pre><code>peer channel signconfigtx -f config_update_in_envelope.pb</code></pre></li>
+<li>切换为Orderer的组织<pre><code>CORE_PEER_LOCALMSPID=OrdererMSP
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/users/Admin@example.com/msp</code></pre></li>
+<li>Orderer组织提交变更<pre><code>peer channel update -f config_update_in_envelope.pb -c $CH_NAME -o $ORDERER_CONTAINER --tls true --cafile $TLS_ROOT_CA </code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="具体操作-3"><a href="#具体操作-3" class="headerlink" title="具体操作"></a>具体操作</h3><p>进入 cli 容器</p>
+<pre><code>docker exec -it cli bash </code></pre><p>进入 script 文件夹</p>
+<pre><code>cd scripts</code></pre><p>将脚本 updating_capabilities_sys.sh 复制到 此文件夹中，即 fabric-sanples/firstnetwork/scripts 文件夹</p>
+<p>然后给该脚本添加可执行权限并执行</p>
+<pre><code>chmod +x updating_capabilities_sys.sh
+./updating_capabilities_sys.sh</code></pre><h1 id="3-激活chaincode的新的⽣命周期管理"><a href="#3-激活chaincode的新的⽣命周期管理" class="headerlink" title="3. 激活chaincode的新的⽣命周期管理"></a>3. 激活chaincode的新的⽣命周期管理</h1><p>只更改兼容性，通道若要使⽤chaincode的新的⽣命周期管理⽅案会出现错误，这是因为原有1.4的通道配置中，缺少通道<br>Endorsement和LifecycleEndorsement的配置。 为了⽅便使⽤ jq 命令来添加这两部分内容，⾸先准备包含以下内容的 enable_lifecycle.json⽂件，注意这⾥假设了通道内有两家组织，分别为Org1和Org2，他们的MSPID分别为Org1MSP,Org2MSP。 请根据需要进⾏修改。</p>
+<pre><code>{ 
+    &quot;Org1MSPPolicies&quot;: { 
+        &quot;Endorsement&quot;: { 
+            &quot;mod_policy&quot;: &quot;Admins&quot;, 
+            &quot;policy&quot;: { 
+                &quot;type&quot;: 1, 
+                &quot;value&quot;: { 
+                &quot;identities&quot;: [ 
+                    { 
+                        &quot;principal&quot;: { 
+                            &quot;msp_identifier&quot;: &quot;Org1MSP&quot;, 
+                            &quot;role&quot;: &quot;PEER&quot; 
+                        },
+                        &quot;principal_classification&quot;: &quot;ROLE&quot; 
+                    } 
+                ],
+                &quot;rule&quot;: { 
+                    &quot;n_out_of&quot;: { 
+                        &quot;n&quot;: 1, 
+                        &quot;rules&quot;: [ 
+                            { 
+                             &quot;signed_by&quot;: 0 
+                            }
+                        ] 
+                    } 
+                },
+                &quot;version&quot;: 0 
+            } 
+        },
+        &quot;version&quot;: &quot;0&quot; 
+        } 
+    }, 
+    &quot;Org2MSPPolicies&quot;: { 
+        &quot;Endorsement&quot;: { 
+            &quot;mod_policy&quot;: &quot;Admins&quot;, 
+            &quot;policy&quot;: { 
+                &quot;type&quot;: 1, 
+                &quot;value&quot;: { 
+                &quot;identities&quot;: [ 
+                { 
+                    &quot;principal&quot;: { 
+                        &quot;msp_identifier&quot;: &quot;Org2MSP&quot;, 
+                        &quot;role&quot;: &quot;PEER&quot; 
+                },
+                &quot;principal_classification&quot;: &quot;ROLE&quot;
+                } 
+            ],
+            &quot;rule&quot;: { 
+                &quot;n_out_of&quot;: { 
+                    &quot;n&quot;: 1, 
+                    &quot;rules&quot;: [ 
+                    { 
+                        &quot;signed_by&quot;: 0 
+                    }
+                    ] 
+                } 
+            },
+            &quot;version&quot;: 0 
+            } 
+        },
+        &quot;version&quot;: &quot;0&quot; 
+     } 
+    },
+    &quot;appPolicies&quot;: { 
+        &quot;Endorsement&quot;: { 
+            &quot;mod_policy&quot;: &quot;Admins&quot;, 
+            &quot;policy&quot;: { 
+                &quot;type&quot;: 3, 
+                &quot;value&quot;: { 
+                    &quot;rule&quot;: &quot;MAJORITY&quot;, 
+                    &quot;sub_policy&quot;: &quot;Endorsement&quot; 
+                } 
+            },
+            &quot;version&quot;: &quot;0&quot; 
+        },
+        &quot;LifecycleEndorsement&quot;: { 
+            &quot;mod_policy&quot;: &quot;Admins&quot;, 
+            &quot;policy&quot;: { 
+                &quot;type&quot;: 3, 
+                &quot;value&quot;: { 
+                    &quot;rule&quot;: &quot;MAJORITY&quot;, 
+                    &quot;sub_policy&quot;: &quot;Endorsement&quot; 
+                } 
+            },
+            &quot;version&quot;: &quot;0&quot; 
+        } 
+    } 
+} </code></pre><h2 id="3-1-更改系统链配置"><a href="#3-1-更改系统链配置" class="headerlink" title="3.1 更改系统链配置"></a>3.1 更改系统链配置</h2><p>参考脚本enable_cc_lifecycle_sys.sh</p>
+<ul>
+<li><p>对环境变量进⾏配置</p>
+<pre><code>CH_NAME=byfn-sys-channel
+CORE_PEER_LOCALMSPID=OrdererMSP
+TLS_ROOT_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/users/Admin@example.com/msp
+ORDERER_CONTAINER=orderer.example.com:7050
+ORGNAME=Org1MSP
+CONSORTIUM_NAME=SampleConsortium</code></pre></li>
+<li><p>获取原有的配置</p>
+<pre><code>peer channel fetch config config_block.pb -o $ORDERER_CONTAINER -c $CH_NAME --tls --cafile $TLS_ROOT_CA
+configtxlator proto_decode --input config_block.pb --type common.Block --output config_block.json
+jq .data.data[0].payload.data.config config_block.json &gt; config.json</code></pre></li>
+<li><p>修改相应配置</p>
+<ul>
+<li>修改Org1的配置，增加Org1的Endorsement的配置 <pre><code>jq -s &quot;.[0] * {\&quot;channel_group\&quot;:{\&quot;groups\&quot;:{\&quot;Consortiums\&quot;:{\&quot;groups\&quot;: {\&quot;$CONSORTIUM_NAME\&quot;: {\&quot;groups\&quot;: {\&quot;$ORGNAME\&quot;: {\&quot;policies\&quot;: .[1].${ORGNAME}Policies}}}}}}}}&quot; config.json ./enable_lifecycle.json &gt; modified_config1.json</code></pre></li>
+<li>修改Org2的配置，增加Org2的Endorsement的配置<pre><code>ORGNAME=Org2MSP
+jq -s &quot;.[0] * jq -s &quot;.[0] * {\&quot;channel_group\&quot;:{\&quot;groups\&quot;:{\&quot;Consortiums\&quot;:{\&quot;groups\&quot;: {\&quot;$CONSORTIUM_NAME\&quot;: {\&quot;groups\&quot;: {\&quot;$ORGNAME\&quot;: {\&quot;policies\&quot;: .[1].${ORGNAME}Policies}}}}}}}}&quot; modified_config1.json ./enable_lifecycle.json &gt; modified_config.json</code></pre></li>
+</ul>
+</li>
+<li><p>计算配置的deltaSet，⽣成pb⽂件</p>
+<ul>
+<li>计算deltaSet<pre><code>configtxlator proto_encode --input config.json --type common.Config --output config.pb
+configtxlator proto_encode --input modified_config.json --type common.Config --output modified_config.pb
+configtxlator compute_update --channel_id $CH_NAME --original config.pb --updated modified_config.pb --output config_update.pb</code></pre></li>
+<li>⽣成通道更新的pb⽂件<pre><code>configtxlator proto_decode --input config_update.pb --type common.ConfigUpdate --output config_update.json
+echo &#39;{&quot;payload&quot;:{&quot;header&quot;:{&quot;channel_header&quot;:{&quot;channel_id&quot;:&quot;&#39;$CH_NAME&#39;&quot;, &quot;type&quot;:2}},&quot;data&quot;:{&quot;config_update&quot;:&#39;$(cat config_update.json)&#39;}}}&#39; | jq . &gt; config_update_in_envelope.json
+configtxlator proto_encode --input config_update_in_envelope.json --type common.Envelope --output config_update_in_envelope.pb</code></pre></li>
+</ul>
+</li>
+<li><p>提交更新到通道<br>  因为Consortium中有Org1和Org2两个组织，对每个组织的内容修改都需要该组织的Admin的签名，然后对系 统通道配置进⾏修改需要Orderer组织的Admin签名。 </p>
+<ul>
+<li>Orderer签名<pre><code>peer channel signconfigtx -f config_update_in_envelope.pb </code></pre></li>
+<li>切换为Org1，org1 签名<pre><code>CORE_PEER_LOCALMSPID=Org1MSP
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+peer channel signconfigtx -f config_update_in_envelope.pb</code></pre></li>
+<li>切换为Org2 ，org2 签名<pre><code>CORE_PEER_LOCALMSPID=Org2MSP
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+peer channel signconfigtx -f config_update_in_envelope.pb</code></pre></li>
+<li>切换回Orderer<pre><code>CORE_PEER_LOCALMSPID=OrdererMSP
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/users/Admin@example.com/msp</code></pre></li>
+<li>提交更新<pre><code>peer channel update -f config_update_in_envelope.pb -c $CH_NAME -o $ORDERER_CONTAINER --tls true --cafile $TLS_ROOT_CA</code></pre><h2 id="3-2-更改已有的应⽤通道配置"><a href="#3-2-更改已有的应⽤通道配置" class="headerlink" title="3.2 更改已有的应⽤通道配置"></a>3.2 更改已有的应⽤通道配置</h2></li>
+</ul>
+</li>
+</ul>
+<p>以fabric-samples/first-network中的mychannel为例。 参考脚本enable_cc_lifecycle_mychannel.sh</p>
+<ul>
+<li>对环境变量进⾏配置<pre><code>CH_NAME=mychannel
+CORE_PEER_LOCALMSPID=Org1MSP
+TLS_ROOT_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+ORDERER_CONTAINER=orderer.example.com:7050
+ORGNAME=Org1MSP
+CONSORTIUM_NAME=SampleConsortium</code></pre></li>
+<li>获取原有的配置<pre><code>peer channel fetch config config_block.pb -o $ORDERER_CONTAINER -c $CH_NAME --tls --cafile $TLS_ROOT_CA
+configtxlator proto_decode --input config_block.pb --type common.Block --output config_block.json
+jq .data.data[0].payload.data.config config_block.json &gt; config.json </code></pre></li>
+<li>修改相应配置注意需要⽐系统通道多修改Application的Endorsement和LifeCycleEndorsement<ul>
+<li>修改Org1的配置，增加Org1的Endorsement的配置<pre><code>jq -s &quot;.[0] * {\&quot;channel_group\&quot;:{\&quot;groups\&quot;:{\&quot;Application\&quot;:{\&quot;groups\&quot;: {\&quot;$ORGNAME\&quot;: {\&quot;policies\&quot;: .[1].${ORGNAME}Policies}}}}}}&quot; config.json ./enable_lifecycle.json &gt; modified_config1.json</code></pre></li>
+<li>切换为Org2<pre><code>ORGNAME=Org2MSP</code></pre></li>
+<li>修改Org2的配置，增加Org2的Endorsement的配置<pre><code>jq -s &quot;.[0] * {\&quot;channel_group\&quot;:{\&quot;groups\&quot;:{\&quot;Application\&quot;:{\&quot;groups\&quot;: {\&quot;$ORGNAME\&quot;: {\&quot;policies\&quot;: .[1].${ORGNAME}Policies}}}}}}&quot; modified_config1.json ./enable_lifecycle.json &gt; modified_config2.json</code></pre></li>
+<li>修改通道配置，增加Endorsement和LifeCycleEndorsement配置<pre><code>jq -s &#39;.[0] * {&quot;channel_group&quot;:{&quot;groups&quot;:{&quot;Application&quot;: {&quot;policies&quot;: .[1].appPolicies}}}}&#39; modified_config2.json ./enable_lifecycle.json &gt; modified_config.json</code></pre></li>
+</ul>
+</li>
+<li>计算配置的deltaSet，⽣成pb⽂件<ul>
+<li>计算deltaSet<pre><code>configtxlator proto_encode --input config.json --type common.Config --output config.pb
+configtxlator proto_encode --input modified_config.json --type common.Config --output modified_config.pb
+configtxlator compute_update --channel_id $CH_NAME --original config.pb --updated modified_config.pb --output config_update.pb</code></pre></li>
+<li>⽣成通道更新的pb⽂件<pre><code>configtxlator proto_decode --input config_update.pb --type common.ConfigUpdate --output config_update.json
+echo &#39;{&quot;payload&quot;:{&quot;header&quot;:{&quot;channel_header&quot;:{&quot;channel_id&quot;:&quot;&#39;$CH_NAME&#39;&quot;, &quot;type&quot;:2}},&quot;data&quot;:{&quot;config_update&quot;:&#39;$(cat config_update.json)&#39;}}}&#39; | jq . &gt; config_update_in_envelope.json
+configtxlator proto_encode --input config_update_in_envelope.json --type common.Envelope --output config_update_in_envelope.pb</code></pre></li>
+</ul>
+</li>
+<li>提交更新到通道 因为Consortium中有Org1和Org2两个组织，对每个组织的内容修改都需要该组织的Admin的签名。<ul>
+<li>Org1签名<pre><code>peer channel signconfigtx -f config_update_in_envelope.pb</code></pre></li>
+<li>切换为Org2 <pre><code>CORE_PEER_LOCALMSPID=Org2MSP
+CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp</code></pre></li>
+<li>Org2来提交通道变更<pre><code>peer channel update -f config_update_in_envelope.pb -c $CH_NAME -o $ORDERER_CONTAINER --tls true --cafile $TLS_ROOT_CA
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h1 id="4-⼀些验证过的特殊场景"><a href="#4-⼀些验证过的特殊场景" class="headerlink" title="4. ⼀些验证过的特殊场景"></a>4. ⼀些验证过的特殊场景</h1><h3 id="4-1-是否可以升级镜像但不升级兼容性"><a href="#4-1-是否可以升级镜像但不升级兼容性" class="headerlink" title="4.1 是否可以升级镜像但不升级兼容性"></a>4.1 是否可以升级镜像但不升级兼容性</h3><p>可以的，只升级镜像不升级兼容性的话，还是按照1.4的功能来运⾏</p>
+<h3 id="4-2-是否可以只升级某些通道的兼容性"><a href="#4-2-是否可以只升级某些通道的兼容性" class="headerlink" title="4.2 是否可以只升级某些通道的兼容性"></a>4.2 是否可以只升级某些通道的兼容性</h3><p>可以的，不过建议先升级系统通道，这样之后新⽣成的通道就可以是最新的兼容性配置了。</p>
+<h3 id="4-3-通道中原有的链码是否还可以正常使⽤"><a href="#4-3-通道中原有的链码是否还可以正常使⽤" class="headerlink" title="4.3 通道中原有的链码是否还可以正常使⽤"></a>4.3 通道中原有的链码是否还可以正常使⽤</h3><p>升级镜像后，原有的链码可以正常使⽤，但是需要注意链码镜像的问题，如果保留了原链码的镜像则⽆需关⼼该问题，没有保留的 话，需要将ccenv配置为1.4的镜像版本。通道兼容性的升级也不会影响已有链码的使⽤。</p>
+<h3 id="4-4-升级之后原有链码也有升级需求应该怎么操作"><a href="#4-4-升级之后原有链码也有升级需求应该怎么操作" class="headerlink" title="4.4 升级之后原有链码也有升级需求应该怎么操作"></a>4.4 升级之后原有链码也有升级需求应该怎么操作</h3><p>升级了镜像以及兼容性后，如果原有链码也需要升级，则需要⾛2.0的lifecycle的升级流程，即需要package-install- approveformyorg-commit那⼀套流程。</p>
+<blockquote>
+<p>Fabric的2.1和2.2版本是稳定版本，具有错误修复和其他形式的代码强化功能。升级的时候不需要特别的考虑，也不需要特定的镜像版本或通道配置更新。</p>
+</blockquote>
+<p>#下面是升级到 2.2 新增的一些内容</p>
+<h2 id="从2-0-升级到-2-1"><a href="#从2-0-升级到-2-1" class="headerlink" title="从2.0 升级到 2.1"></a>从2.0 升级到 2.1</h2><p>之前 1.4 升级到 2.0 时，升级peer数据库需要先删除 peer 的数据库，也就是执行 peer node upgrade-dbs 命令</p>
+<pre><code>docker run --rm -v /opt/backup/$PEER_CONTAINER/:/var/hyperledger/production/ \
+            -v /opt/msp/:/etc/hyperledger/fabric/msp/ \
+            --env-file ./env&lt;name of node&gt;.list \
+            --name $PEER_CONTAINER \
+            hyperledger/fabric-peer:2.0 peer node upgrade-dbs</code></pre><p>然后执行 peer node start 命令重建 peer 数据库</p>
+<pre><code>docker run -d -v /opt/backup/$PEER_CONTAINER/:/var/hyperledger/production/ \
+            -v /opt/msp/:/etc/hyperledger/fabric/msp/ \
+            --env-file ./env&lt;name of node&gt;.list \
+            --name $PEER_CONTAINER \
+            hyperledger/fabric-peer:2.0 peer node start</code></pre><p>如果在升级过程中未删除 peer 数据库，则启动 peer 时将返回一条错误信息，提示需要先删除数据库。</p>
+<p>如果升级到 2.1 的话，在上面的命令中将 2.0 换成 2.1 就行</p>
+<h2 id="从-2-1-升级到-2-2"><a href="#从-2-1-升级到-2-2" class="headerlink" title="从 2.1 升级到 2.2"></a>从 2.1 升级到 2.2</h2><p>如果升级到 2.2 的话，删除数据库的命令都省了，如果是使用CouchDB作为状态数据库，则从v2.2 开始， peer 支持自动删除该数据库。为了利用这种支持，在运行 upgrade-dbs 命令之前，需要将 peer 的状态数据库配置为 CouchDB，并启动 CouchDB。在v2.0和v2.1中，peer 不会自动删除CouchDB状态数据库。需要手动好删除。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://hyperledger-fabric.readthedocs.io/en/release-2.2/upgrade_to_newest_version.html" target="_blank" rel="noopener">Considerations for getting to v2.x</a></p>
 
-<h2 id="1-修改证书，创始区块配置文件"><a href="#1-修改证书，创始区块配置文件" class="headerlink" title="1. 修改证书，创始区块配置文件"></a>1. 修改证书，创始区块配置文件</h2><p>先删除原有配置</p>
-<pre><code>rm -rf crypto-config
-
-rm -rf channel-artifacts</code></pre><h4 id="crypto-config-yaml"><a href="#crypto-config-yaml" class="headerlink" title="crypto-config.yaml"></a>crypto-config.yaml</h4><pre><code>PeerOrgs:
-  - Name: Org1
-    Domain: org1.example.com
-    EnableNodeOUs: true
-    Template:
-      Count: 2
-    Users:
-      Count: 1
-    Specs:
-      - Hostname: orderer0
-      - Hostname: orderer1
-      - Hostname: orderer2
-  - Name: Org2
-    Domain: org2.example.com
-    EnableNodeOUs: true
-    Template:
-      Count: 2
-    Users:
-      Count: 1
-    Specs:
-      - Hostname: orderer0
-      - Hostname: orderer1</code></pre><h4 id="configtx-yaml"><a href="#configtx-yaml" class="headerlink" title="configtx.yaml"></a>configtx.yaml</h4><pre><code>SampleMultiNodeEtcdRaft:
-        &lt;&lt;: *ChannelDefaults
-        Capabilities:
-            &lt;&lt;: *ChannelCapabilities
-        Orderer:
-            &lt;&lt;: *OrdererDefaults
-            OrdererType: etcdraft
-            EtcdRaft:
-                Consenters:
-                - Host: orderer0.org1.example.com
-                  Port: 7050
-                  ClientTLSCert: crypto-config/peerOrganizations/org1.example.com/peers/orderer0.org1.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/peerOrganizations/org1.example.com/peers/orderer0.org1.example.com/tls/server.crt
-                - Host: orderer1.org1.example.com
-                  Port: 8050
-                  ClientTLSCert: crypto-config/peerOrganizations/org1.example.com/peers/orderer1.org1.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/peerOrganizations/org1.example.com/peers/orderer1.org1.example.com/tls/server.crt
-                - Host: orderer2.org1.example.com
-                  Port: 9050
-                  ClientTLSCert: crypto-config/peerOrganizations/org1.example.com/peers/orderer2.org1.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/peerOrganizations/org1.example.com/peers/orderer2.org1.example.com/tls/server.crt
-                - Host: orderer0.org2.example.com
-                  Port: 7050
-                  ClientTLSCert: crypto-config/peerOrganizations/org2.example.com/peers/orderer0.org2.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/peerOrganizations/org2.example.com/peers/orderer0.org2.example.com/tls/server.crt
-                - Host: orderer1.org2.example.com
-                  Port: 8050
-                  ClientTLSCert: crypto-config/peerOrganizations/org2.example.com/peers/orderer1.org2.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/peerOrganizations/org2.example.com/peers/orderer1.org2.example.com/tls/server.crt
-            Addresses:
-                - orderer0.org1.example.com:7050
-                - orderer1.org1.example.com:8050
-                - orderer2.org1.example.com:9050
-                - orderer0.org2.example.com:7050
-                - orderer1.org2.example.com:8050
-            Organizations:
-            - *Org1
-            - *Org2
-            Capabilities:
-                &lt;&lt;: *OrdererCapabilities
-        Application:
-            &lt;&lt;: *ApplicationDefaults
-            Organizations:
-            - &lt;&lt;: *Org1
-            - &lt;&lt;: *Org2
-
-        Consortiums:
-            SampleConsortium:
-                Organizations:
-                - *Org1
-                - *Org2</code></pre><p>1、生成公私钥和证书</p>
-<pre><code>../bin/cryptogen generate --config=./crypto-config.yaml </code></pre><p>2、生成创世区块</p>
-<pre><code>../bin/configtxgen -profile SampleMultiNodeEtcdRaft -outputBlock ./channel-artifacts/genesis.block</code></pre><p>3、生成Channel配置区块</p>
-<pre><code>../bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID mychannel </code></pre><p>4、更新锚节点</p>
-<pre><code>../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID mychannel -asOrg Org1MSP
-
-../bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org2MSPanchors.tx -channelID mychannel -asOrg Org2MSP</code></pre><h2 id="3-修改peer配置"><a href="#3-修改peer配置" class="headerlink" title="3. 修改peer配置"></a>3. 修改peer配置</h2><h4 id="docker-compose-base-yaml"><a href="#docker-compose-base-yaml" class="headerlink" title="docker-compose-base.yaml"></a>docker-compose-base.yaml</h4><pre><code># Copyright IBM Corp. All Rights Reserved.
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-
-version: &#39;2&#39;
-
-services:
-
-  orderer.example.com:
-    container_name: orderer.example.com
-    extends:
-      file: peer-base.yaml
-      service: orderer-base
-    volumes:
-        - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-        - ../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
-        - ../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/:/var/hyperledger/orderer/tls
-    ports:
-      - 7050:7050
-
-  peer0.org1.example.com:
-    container_name: peer0.org1.example.com
-    extends:
-      file: peer-base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer0.org1.example.com
-      - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.org1.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.example.com:8051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.example.com:7051
-      - CORE_PEER_LOCALMSPID=Org1MSP
-      - CORE_PEER_ENBLKROUTER=true
-    volumes:
-        - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/fabric/msp
-        - ../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/fabric/tls
-        - peer0.org1.example.com:/var/hyperledger/production
-    ports:
-      - 7051:7051
-      - 9099:9099
-
-  peer1.org1.example.com:
-    container_name: peer1.org1.example.com
-    extends:
-      file: peer-base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer1.org1.example.com
-      - CORE_PEER_ADDRESS=peer1.org1.example.com:8051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
-      - CORE_PEER_CHAINCODEADDRESS=peer1.org1.example.com:8052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.example.com:8051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051
-      - CORE_PEER_LOCALMSPID=Org1MSP
-      - CORE_PEER_ENBLKROUTER=true
-    volumes:
-        - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp:/etc/hyperledger/fabric/msp
-        - ../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls:/etc/hyperledger/fabric/tls
-        - peer1.org1.example.com:/var/hyperledger/production
-
-    ports:
-      - 8051:8051
-      - 10099:9099
-
-  peer0.org2.example.com:
-    container_name: peer0.org2.example.com
-    extends:
-      file: peer-base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer0.org2.example.com
-      - CORE_PEER_ADDRESS=peer0.org2.example.com:9051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.org2.example.com:9052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.example.com:9051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.example.com:10051
-      - CORE_PEER_LOCALMSPID=Org2MSP
-      - CORE_PEER_ENBLKROUTER=true
-    volumes:
-        - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp:/etc/hyperledger/fabric/msp
-        - ../crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls:/etc/hyperledger/fabric/tls
-        - peer0.org2.example.com:/var/hyperledger/production
-    ports:
-      - 9051:9051
-      - 9099:9099
-
-  peer1.org2.example.com:
-    container_name: peer1.org2.example.com
-    extends:
-      file: peer-base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer1.org2.example.com
-      - CORE_PEER_ADDRESS=peer1.org2.example.com:10051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:10051
-      - CORE_PEER_CHAINCODEADDRESS=peer1.org2.example.com:10052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:10052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org2.example.com:10051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:9051
-      - CORE_PEER_LOCALMSPID=Org2MSP
-      - CORE_PEER_ENBLKROUTER=true
-    volumes:
-        - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/msp:/etc/hyperledger/fabric/msp
-        - ../crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls:/etc/hyperledger/fabric/tls
-        - peer1.org2.example.com:/var/hyperledger/production
-    ports:
-      - 10051:10051
-      - 10099:9099</code></pre><h2 id="4-修改组织1配置"><a href="#4-修改组织1配置" class="headerlink" title="4. 修改组织1配置"></a>4. 修改组织1配置</h2><h4 id="docker-compose-org1-35-yaml"><a href="#docker-compose-org1-35-yaml" class="headerlink" title="docker-compose-org1-35.yaml"></a>docker-compose-org1-35.yaml</h4><pre><code>version: &#39;2&#39;
-
-volumes:
-  orderer0.org1.example.com:
-  orderer1.org1.example.com:
-  orderer2.org1.example.com:
-  peer0.org1.example.com:
-  peer1.org1.example.com:
-
-networks:
-  byfn:
-
-services:
-
-  orderer0.org1.example.com:
-    environment:
-      - ORDERER_GENERAL_LOCALMSPID=Org1MSP
-    extends:
-      file: base/peer-base.yaml
-      service: orderer-base
-    container_name: orderer0.org1.example.com
-    networks:
-      - byfn
-    volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/peerOrganizations/org1.example.com/peers/orderer0.org1.example.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/peerOrganizations/org1.example.com/peers/orderer0.org1.example.com/tls/:/var/hyperledger/orderer/tls
-      - orderer0.org1.example.com:/var/hyperledger/production/orderer
-    ports:
-      - 7050:7050
-    extra_hosts:
-      - orderer0.org1.example.com:192.168.9.35
-      - orderer1.org1.example.com:192.168.9.35
-      - orderer2.org1.example.com:192.168.9.35
-      - orderer0.org2.example.com:192.168.9.28
-      - orderer1.org2.example.com:192.168.9.28
-
-  orderer1.org1.example.com:
-    environment:
-      - ORDERER_GENERAL_LOCALMSPID=Org1MSP
-    extends:
-      file: base/peer-base.yaml
-      service: orderer-base
-    container_name: orderer1.org1.example.com
-    networks:
-      - byfn
-    volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/peerOrganizations/org1.example.com/peers/orderer1.org1.example.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/peerOrganizations/org1.example.com/peers/orderer1.org1.example.com/tls/:/var/hyperledger/orderer/tls
-      - orderer1.org1.example.com:/var/hyperledger/production/orderer
-    ports:
-      - 8050:7050
-    extra_hosts:
-      - orderer0.org1.example.com:192.168.9.35
-      - orderer1.org1.example.com:192.168.9.35
-      - orderer2.org1.example.com:192.168.9.35
-      - orderer0.org2.example.com:192.168.9.28
-      - orderer1.org2.example.com:192.168.9.28
-
-  orderer2.org1.example.com:
-    environment:
-      - ORDERER_GENERAL_LOCALMSPID=Org1MSP
-    extends:
-      file: base/peer-base.yaml
-      service: orderer-base
-    container_name: orderer2.org1.example.com
-    networks:
-      - byfn
-    volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/peerOrganizations/org1.example.com/peers/orderer2.org1.example.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/peerOrganizations/org1.example.com/peers/orderer2.org1.example.com/tls/:/var/hyperledger/orderer/tls
-      - orderer2.org1.example.com:/var/hyperledger/production/orderer
-    ports:
-      - 9050:7050
-    extra_hosts:
-      - orderer0.org1.example.com:192.168.9.35
-      - orderer1.org1.example.com:192.168.9.35
-      - orderer2.org1.example.com:192.168.9.35
-      - orderer0.org2.example.com:192.168.9.28
-      - orderer1.org2.example.com:192.168.9.28
-
-  peer0.org1.example.com:
-    container_name: peer0.org1.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer0.org1.example.com
-    networks:
-      - byfn
-    extra_hosts:
-      - orderer0.org1.example.com:192.168.9.35
-      - orderer1.org1.example.com:192.168.9.35
-      - orderer2.org1.example.com:192.168.9.35
-      - orderer0.org2.example.com:192.168.9.28
-      - orderer1.org2.example.com:192.168.9.28
-
-  peer1.org1.example.com:
-    container_name: peer1.org1.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer1.org1.example.com
-    networks:
-      - byfn
-    extra_hosts:
-      - orderer0.org1.example.com:192.168.9.35
-      - orderer1.org1.example.com:192.168.9.35
-      - orderer2.org1.example.com:192.168.9.35
-      - orderer0.org2.example.com:192.168.9.28
-      - orderer1.org2.example.com:192.168.9.28
-
-  cli:
-    container_name: cli
-    image: 192.168.9.8:80/fabric1.4performance/hyperledger/fabric-tools:sles12sp3-latest
-    tty: true
-    stdin_open: true
-    environment:
-      - GOPATH=/opt/gopath
-      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      #- FABRIC_LOGGING_SPEC=DEBUG
-      - FABRIC_LOGGING_SPEC=INFO
-      - CORE_PEER_BCCSP_DEFAULT=GM
-      - CORE_PEER_ID=cli
-      - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-      - CORE_PEER_LOCALMSPID=Org1MSP
-      - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
-      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-    command: /bin/bash
-    volumes:
-      - /var/run/:/host/var/run/
-      - ./../chaincode/:/opt/gopath/src/github.com/chaincode
-      - ./../unionbank/:/opt/gopath/src/unionbank
-      - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
-      - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
-      - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
-    extra_hosts:
-      - orderer0.org1.example.com:192.168.9.35
-      - orderer1.org1.example.com:192.168.9.35
-      - orderer2.org1.example.com:192.168.9.35
-      - orderer0.org2.example.com:192.168.9.28
-      - orderer1.org2.example.com:192.168.9.28
-      - peer0.org1.example.com:192.168.9.35
-      - peer1.org1.example.com:192.168.9.35
-      - peer0.org2.example.com:192.168.9.28
-      - peer1.org2.example.com:192.168.9.28
-    networks:
-      - byfn</code></pre><h2 id="5-修改组织2配置"><a href="#5-修改组织2配置" class="headerlink" title="5. 修改组织2配置"></a>5. 修改组织2配置</h2><h4 id="docker-compose-org2-28-yaml"><a href="#docker-compose-org2-28-yaml" class="headerlink" title="docker-compose-org2-28.yaml"></a>docker-compose-org2-28.yaml</h4><pre><code>version: &#39;2&#39;
-
-volumes:
-  orderer0.org2.example.com:
-  orderer1.org2.example.com:
-  peer0.org2.example.com:
-  peer1.org2.example.com:
-
-networks:
-  byfn:
-
-services:
-
-  orderer0.org2.example.com:
-    environment:
-      - ORDERER_GENERAL_LOCALMSPID=Org2MSP
-    extends:
-      file: base/peer-base.yaml
-      service: orderer-base
-    container_name: orderer0.org2.example.com
-    networks:
-      - byfn
-    volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/peerOrganizations/org2.example.com/peers/orderer0.org2.example.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/peerOrganizations/org2.example.com/peers/orderer0.org2.example.com/tls/:/var/hyperledger/orderer/tls
-      - orderer0.org2.example.com:/var/hyperledger/production/orderer
-    ports:
-      - 7050:7050
-    extra_hosts:
-      - orderer0.org1.example.com:192.168.9.35
-      - orderer1.org1.example.com:192.168.9.35
-      - orderer2.org1.example.com:192.168.9.35
-      - orderer0.org2.example.com:192.168.9.28
-      - orderer1.org2.example.com:192.168.9.28
-
-  orderer1.org2.example.com:
-    environment:
-      - ORDERER_GENERAL_LOCALMSPID=Org2MSP
-    extends:
-      file: base/peer-base.yaml
-      service: orderer-base
-    container_name: orderer1.org2.example.com
-    networks:
-      - byfn
-    volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/peerOrganizations/org2.example.com/peers/orderer1.org2.example.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/peerOrganizations/org2.example.com/peers/orderer1.org2.example.com/tls/:/var/hyperledger/orderer/tls
-      - orderer1.org2.example.com:/var/hyperledger/production/orderer
-    ports:
-      - 8050:7050
-    extra_hosts:
-      - orderer0.org1.example.com:192.168.9.35
-      - orderer1.org1.example.com:192.168.9.35
-      - orderer2.org1.example.com:192.168.9.35
-      - orderer0.org2.example.com:192.168.9.28
-      - orderer1.org2.example.com:192.168.9.28
-
-  peer0.org2.example.com:
-    container_name: peer0.org2.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer0.org2.example.com
-    networks:
-      - byfn
-    extra_hosts:
-      - orderer0.org1.example.com:192.168.9.35
-      - orderer1.org1.example.com:192.168.9.35
-      - orderer2.org1.example.com:192.168.9.35
-      - orderer0.org2.example.com:192.168.9.28
-      - orderer1.org2.example.com:192.168.9.28
-
-  peer1.org2.example.com:
-    container_name: peer1.org2.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer1.org2.example.com
-    networks:
-      - byfn
-    extra_hosts:
-      - orderer0.org1.example.com:192.168.9.35
-      - orderer1.org1.example.com:192.168.9.35
-      - orderer2.org1.example.com:192.168.9.35
-      - orderer0.org2.example.com:192.168.9.28
-      - orderer1.org2.example.com:192.168.9.28</code></pre><p>以上步骤完成后，将项目拷贝到其他的主机上</p>
-<h2 id="6-启动fabric网络"><a href="#6-启动fabric网络" class="headerlink" title="6. 启动fabric网络"></a>6. 启动fabric网络</h2><p>启动主机1</p>
-<pre><code>docker-compose -f docker-compose-org1-35.yaml up -d</code></pre><p>启动主机2</p>
-<pre><code>docker-compose -f docker-compose-org2-28.yaml up -d</code></pre><p>启动脚本</p>
-<pre><code>#!/bin/bash
-export CHANNEL_NAME=mychannel
-export ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/orderer0.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem
-
-## Create channel
-peer channel create -o orderer0.org1.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/channel.tx --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA
-## Join all the peers to the channel
-peer channel join -b $CHANNEL_NAME.block
-## Set the anchor peers for each org in the channel
-peer channel update -o orderer0.org1.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/Org1MSPanchors.tx --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA
-## Install chaincode on peer0.org1
-peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02
-peer chaincode install -n public -v 1.0 -p unionbank/chaincode/public
-peer chaincode install -n forfeiting -v 1.0 -p unionbank/chaincode/forfeiting
-
-sleep 5
-## pee1.org1
-export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-export CORE_PEER_ADDRESS=peer1.org1.example.com:8051
-export CORE_PEER_LOCALMSPID=&quot;Org1MSP&quot;
-export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
-peer channel join -b $CHANNEL_NAME.block
-peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02
-peer chaincode install -n public -v 1.0 -p unionbank/chaincode/public
-peer chaincode install -n forfeiting -v 1.0 -p unionbank/chaincode/forfeiting
-sleep 5
-
-## peer0.org2
-export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
-export CORE_PEER_ADDRESS=peer0.org2.example.com:9051
-export CORE_PEER_LOCALMSPID=&quot;Org2MSP&quot;
-export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
-peer channel join -b $CHANNEL_NAME.block
-peer channel update -o orderer0.org1.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/Org2MSPanchors.tx --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA
-peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02
-peer chaincode install -n public -v 1.0 -p unionbank/chaincode/public
-peer chaincode install -n forfeiting -v 1.0 -p unionbank/chaincode/forfeiting
-sleep 5
-
-## peer1.org2
-export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
-export CORE_PEER_ADDRESS=peer1.org2.example.com:10051
-export CORE_PEER_LOCALMSPID=&quot;Org2MSP&quot;
-export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt
-peer channel join -b $CHANNEL_NAME.block
-peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02
-peer chaincode install -n public -v 1.0 -p unionbank/chaincode/public
-peer chaincode install -n forfeiting -v 1.0 -p unionbank/chaincode/forfeiting
-sleep 5
-
-# Instantiate chaincode on peer0.org1
-echo &quot;Instantiating chaincode on peer0.org1...&quot;
-export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-export CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-export CORE_PEER_LOCALMSPID=&quot;Org1MSP&quot;
-export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
-sleep 5
-peer chaincode instantiate -o orderer0.org1.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc -v 1.0 -c &#39;{&quot;Args&quot;:[&quot;init&quot;,&quot;a&quot;, &quot;100&quot;, &quot;b&quot;,&quot;200&quot;]}&#39;
-sleep 5
-peer chaincode instantiate -o orderer0.org1.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n public -v 1.0 -c &#39;{&quot;Args&quot;:[]}&#39;
-sleep 5
-peer chaincode instantiate -o orderer0.org1.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n forfeiting -v 1.0 -c &#39;{&quot;Args&quot;:[]}&#39;
-sleep 5
-# Query chaincode on peer0.org1
-peer chaincode query -C $CHANNEL_NAME -n mycc -c &#39;{&quot;Args&quot;:[&quot;query&quot;,&quot;a&quot;]}&#39;
-# Invoke chaincode on peer0.org1
-peer chaincode invoke -o orderer0.org1.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc  -c &#39;{&quot;Args&quot;:[&quot;invoke&quot;,&quot;a&quot;,&quot;b&quot;,&quot;10&quot;]}&#39;
-sleep 5
-# Query chaincode on peer0.org1
-peer chaincode query -C $CHANNEL_NAME -n mycc -c &#39;{&quot;Args&quot;:[&quot;query&quot;,&quot;a&quot;]}&#39;</code></pre><p>注意清除原有不需要的容器和镜像，否则可能会用老的镜像，就比如某些链码的镜像</p>
-<pre><code>docker rm -f $(docker ps -a|grep  dev|awk &#39;{print $1}&#39;)
-docker rmi -f $(docker images|grep  dev|awk &#39;{print $1}&#39;)
-docker volume rm -f $(docker volume ls -q)</code></pre><pre><code>version: &#39;2&#39;
-
-volumes:
-  orderer0.example.com:
-  orderer1.example.com:
-  orderer2.example.com:
-  peer0.org1.example.com:
-  peer1.org1.example.com:
-  peer0.org2.example.com:
-  peer1.org2.example.com:
-
-networks:
-  byfn:
-
-services:
-
-  orderer0.example.com:
-    environment:
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-    extends:
-      file: base/peer-base.yaml
-      service: orderer-base
-    container_name: orderer0.example.com
-    networks:
-      - byfn
-    volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/ordererOrganizations/example.com/orderers/orderer0.example.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/ordererOrganizations/example.com/orderers/orderer0.example.com/tls/:/var/hyperledger/orderer/tls
-      - orderer0.example.com:/var/hyperledger/production/orderer
-    ports:
-      - 7050:7050
-    extra_hosts:
-      - orderer0.example.com:192.168.9.108
-      - orderer1.example.com:192.168.9.17
-      - orderer2.example.com:192.168.9.117
-      - peer0.org1.example.com:192.168.9.105
-      - peer1.org1.example.com:192.168.9.13
-      - peer0.org2.example.com:192.168.9.55
-      - peer1.org2.example.com:192.168.9.88
-
-  orderer1.example.com:
-    environment:
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-    extends:
-      file: base/peer-base.yaml
-      service: orderer-base
-    container_name: orderer1.example.com
-    networks:
-      - byfn
-    volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/:/var/hyperledger/orderer/tls
-      - orderer1.example.com:/var/hyperledger/production/orderer
-    ports:
-      - 8050:7050
-    extra_hosts:
-      - orderer0.example.com:192.168.9.108
-      - orderer1.example.com:192.168.9.17
-      - orderer2.example.com:192.168.9.117
-      - peer0.org1.example.com:192.168.9.105
-      - peer1.org1.example.com:192.168.9.13
-      - peer0.org2.example.com:192.168.9.55
-      - peer1.org2.example.com:192.168.9.88
-
-  orderer2.example.com:
-    environment:
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-    extends:
-      file: base/peer-base.yaml
-      service: orderer-base
-    container_name: orderer2.example.com
-    networks:
-      - byfn
-    volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/:/var/hyperledger/orderer/tls
-      - orderer2.example.com:/var/hyperledger/production/orderer
-    ports:
-      - 9050:7050
-    extra_hosts:
-      - orderer0.example.com:192.168.9.108
-      - orderer1.example.com:192.168.9.17
-      - orderer2.example.com:192.168.9.117
-      - peer0.org1.example.com:192.168.9.105
-      - peer1.org1.example.com:192.168.9.13
-      - peer0.org2.example.com:192.168.9.55
-      - peer1.org2.example.com:192.168.9.88
-
-  peer0.org1.example.com:
-    container_name: peer0.org1.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer0.org1.example.com
-    networks:
-      - byfn
-    extra_hosts:
-      - orderer0.example.com:192.168.9.108
-      - orderer1.example.com:192.168.9.17
-      - orderer2.example.com:192.168.9.117
-      - peer0.org1.example.com:192.168.9.105
-      - peer1.org1.example.com:192.168.9.13
-      - peer0.org2.example.com:192.168.9.55
-      - peer1.org2.example.com:192.168.9.88
-
-  peer1.org1.example.com:
-    container_name: peer1.org1.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer1.org1.example.com
-    networks:
-      - byfn
-    extra_hosts:
-      - orderer0.example.com:192.168.9.108
-      - orderer1.example.com:192.168.9.17
-      - orderer2.example.com:192.168.9.117
-      - peer0.org1.example.com:192.168.9.105
-      - peer1.org1.example.com:192.168.9.13
-      - peer0.org2.example.com:192.168.9.55
-      - peer1.org2.example.com:192.168.9.88
-
-peer0.org2.example.com:
-    container_name: peer0.org2.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer0.org2.example.com
-    networks:
-      - byfn
-    extra_hosts:
-      - orderer0.example.com:192.168.9.108
-      - orderer1.example.com:192.168.9.17
-      - orderer2.example.com:192.168.9.117
-      - peer0.org1.example.com:192.168.9.105
-      - peer1.org1.example.com:192.168.9.13
-      - peer0.org2.example.com:192.168.9.55
-      - peer1.org2.example.com:192.168.9.88
-
-peer1.org2.example.com:
-    container_name: peer1.org2.example.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer1.org2.example.com
-    networks:
-      - byfn
-    extra_hosts:
-      - orderer0.example.com:192.168.9.108
-      - orderer1.example.com:192.168.9.17
-      - orderer2.example.com:192.168.9.117
-      - peer0.org1.example.com:192.168.9.105
-      - peer1.org1.example.com:192.168.9.13
-      - peer0.org2.example.com:192.168.9.55
-      - peer1.org2.example.com:192.168.9.88
-
-  cli:
-    container_name: cli
-    image: 192.168.9.8:80/fabric1.4performance/hyperledger/fabric-tools:sles12sp3-latest
-    tty: true
-    stdin_open: true
-    environment:
-      - GOPATH=/opt/gopath
-      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      #- FABRIC_LOGGING_SPEC=DEBUG
-      - FABRIC_LOGGING_SPEC=INFO
-      #- CORE_PEER_BCCSP_DEFAULT=GM
-      - CORE_PEER_BCCSP_DEFAULT=SW
-      - CORE_PEER_ID=cli
-      - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-      - CORE_PEER_LOCALMSPID=Org1MSP
-      - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
-      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-    command: /bin/bash
-    volumes:
-      - /var/run/:/host/var/run/
-      - ./../chaincode/:/opt/gopath/src/github.com/chaincode
-      - ./../unionbank/:/opt/gopath/src/unionbank
-      - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
-      - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
-      - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
-    extra_hosts:
-      - orderer0.example.com:192.168.9.108
-      - orderer1.example.com:192.168.9.17
-      - orderer2.example.com:192.168.9.117
-      - peer0.org1.example.com:192.168.9.105
-      - peer1.org1.example.com:192.168.9.13
-      - peer0.org2.example.com:192.168.9.55
-      - peer1.org2.example.com:192.168.9.88
-    networks:
-      - byfn
-</code></pre>
             </div>
             <hr />
 
@@ -1391,9 +1050,9 @@ peer1.org2.example.com:
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《fabric多机部署（raft共识）》
+                    《fabric 1.4 升级到 2.2 的⽅案》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/06/21/fabric-deploy-raft/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/08/08/fabric-upgrade-2-2/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -1434,7 +1093,7 @@ peer1.org2.example.com:
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/06/21/fabric-deploy-raft/',
+        id: '2020/08/08/fabric-upgrade-2-2/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1721,31 +1380,31 @@ peer1.org2.example.com:
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/06/29/plantuml/">
+                <a href="/2020/08/08/fabric-newfeature-2-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="GoLand 类图生成工具 plantuml">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="fabric 2.2 的新特性">
                         
-                        <span class="card-title">GoLand 类图生成工具 plantuml</span>
+                        <span class="card-title">fabric 2.2 的新特性</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文介绍了如何使用 plantuml 工具自动生成Go项目的类图
+                            Fabric 2.2版本与 1.4版本相比，又增加了许多新特性，赶快来尝鲜吧～
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-29
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-08
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
+                            <a href="/categories/fabric/" class="post-category" target="_blank">
+                                    fabric
                                 </a>
                             
                             
@@ -1755,8 +1414,12 @@ peer1.org2.example.com:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
+                    <a href="/tags/fabric/" target="_blank">
+                        <span class="chip bg-color">fabric</span>
+                    </a>
+                    
+                    <a href="/tags/2-2/" target="_blank">
+                        <span class="chip bg-color">2.2</span>
                     </a>
                     
                 </div>
@@ -1767,27 +1430,27 @@ peer1.org2.example.com:
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/21/fabric-deploy-raft/">
+                <a href="/2020/08/02/orderer-data-structure/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="fabric多机部署（raft共识）">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Fabric 1.4源码分析2：Orderer 核心数据结构">
                         
-                        <span class="card-title">fabric多机部署（raft共识）</span>
+                        <span class="card-title">Fabric 1.4源码分析2：Orderer 核心数据结构</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文介绍了如何搭建一个多机多节点的fabric区块链网络的过程，希望能为小伙伴提供帮助。
+                            本文主要梳理了 Orderer 涉及的核心数据结构及其逻辑关系，具有一定的参考价值。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-21
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-02
                             </span>
                         <span class="publish-author">
                             
@@ -1801,12 +1464,15 @@ peer1.org2.example.com:
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric部署/" target="_blank">
-                        <span class="chip bg-color">fabric部署</span>
+                    <a href="/tags/fabric/" target="_blank">
+                        <span class="chip bg-color">fabric</span>
+                    </a>
+                    
+                    <a href="/tags/orderer/" target="_blank">
+                        <span class="chip bg-color">orderer</span>
                     </a>
                     
                 </div>
