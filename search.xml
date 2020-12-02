@@ -13,14 +13,18 @@
       
       <categories>
           
-          <category> leetcode tree </category>
+          <category> leetcode </category>
+          
+          <category> tree </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> leetcode tree </tag>
+            <tag> leetcode </tag>
+            
+            <tag> tree </tag>
             
         </tags>
       
