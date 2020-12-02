@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2020-08-15T10:06:26.020Z</updated>
+  <updated>2020-12-02T14:22:41.017Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【leetcode-226】翻转二叉树</title>
+    <link href="https://vegard-bear.github.io/2020/12/02/leetcode-226/"/>
+    <id>https://vegard-bear.github.io/2020/12/02/leetcode-226/</id>
+    <published>2020-12-02T14:00:18.000Z</published>
+    <updated>2020-12-02T14:22:41.017Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode tree" scheme="https://vegard-bear.github.io/categories/leetcode-tree/"/>
+    
+    
+      <category term="leetcode tree" scheme="https://vegard-bear.github.io/tags/leetcode-tree/"/>
+    
+  </entry>
+  
+  <entry>
     <title>fabric 链上数据防篡改</title>
     <link href="https://vegard-bear.github.io/2020/08/15/tamper-with-data/"/>
     <id>https://vegard-bear.github.io/2020/08/15/tamper-with-data/</id>
     <published>2020-08-15T10:00:11.000Z</published>
-    <updated>2020-08-15T10:06:26.020Z</updated>
+    <updated>2020-08-15T10:07:10.519Z</updated>
     
     <summary type="html">
     
@@ -30,7 +56,7 @@
         
         
           &lt;blockquote&gt;
-&lt;p&gt;近日，因为工作需要，对 fabric 数据防篡改机制进行了研究，这里提供了一种验证链上数据放篡改的场景以供参考&lt;/p&gt;
+&lt;p&gt;近日，因为工作需要，对 fabric 数据防篡改机制进行了研究，这里提供了一种验证链上数据防篡改的场景以供参考&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&quot;基本思路：&quot;&gt;&lt;a href=&quot;#基本思路：&quot;
         

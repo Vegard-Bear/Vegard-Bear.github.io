@@ -4,13 +4,24 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="fabric国密改造全记录, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-226】翻转二叉树, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="背景
-最近应公司项目需求，需要对fabric中的加密相关模块进行改造，主要目的是使fabric底层加密服务支持国密算法sm2、sm3以及sm4等。借这次机会，顺便熟悉一下fabric加密模块的源码实现，故此处简单记录了国密改造的整个过程。
-">
+    <meta name="description" content="题目链接226. 翻转二叉树
+题目描述翻转一棵二叉树。
+示例：
+输入：
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+输出：
+     4
+   /   \
+  7     2
+ / \ ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +29,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>fabric国密改造全记录 | 小熊的作坊</title>
+    <title>【leetcode-226】翻转二叉树 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -331,13 +342,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        fabric国密改造全记录
+                        【leetcode-226】翻转二叉树
                     </div>
                 </div>
             </div>
@@ -448,12 +459,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/fabric/" target="_blank">
-                            <span class="chip bg-color">fabric</span>
-                        </a>
-                        
-                        <a href="/tags/密码/" target="_blank">
-                            <span class="chip bg-color">密码</span>
+                        <a href="/tags/leetcode-tree/" target="_blank">
+                            <span class="chip bg-color">leetcode tree</span>
                         </a>
                         
                     </div>
@@ -464,8 +471,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/fabric/" class="post-category" target="_blank">
-                            fabric
+                        <a href="/categories/leetcode-tree/" class="post-category" target="_blank">
+                            leetcode tree
                         </a>
                         
                     </div>
@@ -476,7 +483,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-29
+                    2020-12-02
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -490,14 +497,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    86
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    1 分
                 </div>
                 
                 
@@ -513,45 +520,43 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><blockquote>
-<p>最近应公司项目需求，需要对fabric中的加密相关模块进行改造，主要目的是使fabric底层加密服务支持国密算法sm2、sm3以及sm4等。借这次机会，顺便熟悉一下fabric加密模块的源码实现，故此处简单记录了国密改造的整个过程。</p>
-</blockquote>
-<p>fabric tag: 1.4.1</p>
-<h1 id="国密改造整体方案"><a href="#国密改造整体方案" class="headerlink" title="国密改造整体方案"></a>国密改造整体方案</h1><p>msp是基于数字证书的成员身份管理，会调用bccsp即证书服务完成签名验签等功能。Fabric提供国密算法服务，需要同时使用基于国密的数字证书服务，以便使用数字证书时，能验证国密的数字签名，辨别用户身份。</p>
-<p>bccsp模块对上层抽象出了区块链密码服务，包含非对称加密、对称加密、数字签名算法、摘要计算，以及各种算法对于的密钥生成和导入。不同的加密算法需要实现bccsp中定义的接口，以向上层提供加密服务。目前，bccsp中支持标准加密的软实现和标准加密的硬实现。提供国密算法服务，就需要国密算法实现，实现bccsp模块中定义的接口。</p>
-<p>设计gm接口实现国密库的可插拔，实现使用不同的国密库的目的，利用gm接口实现bccsp中的国密插件，在底层国密库更换时，国密插件和Fabric上层模块无需修改。</p>
-<p>为每一个国密实现都进行一次封装，形成各自的gm adapter，满足gm接口。国密实现可以是C语言的动态链接库，可以是Go语言模块，甚至可以是基于加密机提供的RPC加密服务接口。</p>
-<p>设计证书接口实现证书库的可插拔，实现使用不同证书库的目的。利用证书接口实现证书操作函数，fabric中所有证书操作，都调用封装的证书函数，在使用不同证书库时，fabric上层模块无需再适配证书库。</p>
-<p>为每一个证书库都进行一次封装，形成各自的x509 cert adapter，为了让Fabric同时支持国密和标准加密，需要封装Go标准库中的证书操作，以及国密证书库，形成2个不同的插件。</p>
-<h2 id="准备工作："><a href="#准备工作：" class="headerlink" title="准备工作："></a>准备工作：</h2><p>确定 base 分支</p>
-<p>熟悉底层加密实现库</p>
-<ol>
-<li>C 语言的动态链接库</li>
-<li>Go 语言实现</li>
-<li>加密机提供的RPC加密服务接口</li>
-</ol>
-<h2 id="模块拆分"><a href="#模块拆分" class="headerlink" title="模块拆分"></a>模块拆分</h2><p>先来总体看一下fabric进行国密改造会涉及到的主要模块</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/3E3D017CD00644C7996D647489EEC663/2789" alt></p>
-<p>如图所示，从上往下，首先是上层调用模块，这一块主要是msp等模块，为fabric提供成员加密服务，它的实现依赖于BCCSP模块和X509模块。</p>
-<p>我们先看右边，BCCSP模块主要是实现四套接口，分别是BCCSP接口、opts接口、key接口以及keystore接口，其中以BCCSP接口为主，它包含了加解密、签名验签等主要方法，其他三套接口为辅，主要包含了用于密钥管理和存储的一些方法。</p>
-<p>接着往下，BCCSP模块有两套实现，一套是标准加密，它直接依赖于Go SDK原生的加密库，另一套是国密实现，需要依赖于第三方的提供的底层加密库，分为硬实现和软实现，其中硬实现就是加密机，软实现现在主要有G语言实现和C语言动态链接库实现两种。</p>
-<p>考虑到fabric定义的BCCSP接口并不直接兼容于第三方提供的加密接口，因此需要做一个国密适配器，主要用于适配上层的BCCSP模块和底层的第三方加密库，这个国密适配器主要包含了SM2、SM3以及SM4三种国密算法的适配。</p>
-<p>然后我们看一下左边，X509模块主要提供的是有关证书的一系列方法。在这里fabric原先默认是使用标准X509的，底层直接调用的是Go SDK 原生的加密库。为了让X509支持国密的同时也兼容标准加密，这里我们就把证书相关的接口抽象出来，定义为X509接口。然后底层采用两套实现，标准加密和非国密实现，标准加密依旧是直接调用原生Go SDK标准加密库，而国密则是调用第三方的国密库。</p>
-<p>需要说明的是，在调用BCCSP模块的加密服务时，如果选择国密算法，需要加载一个国密的插件，而如果是标准加密，则不需要加密国密插件；在调用X509模块的证书服务时，不管是国密X509证书还是标准X509证书均需要加密X509插件。具体选择国密还是标准加密算法可通在orderer、peer和cli的配置文件中的配置项进行指定。</p>
-<h2 id="方法和接口一览"><a href="#方法和接口一览" class="headerlink" title="方法和接口一览"></a>方法和接口一览</h2><p>上面已经把fabirc国密改造整体涉及到的模块简单介绍了一下，下面我通过们一张图来看一下这些模块具体涉及到的接口和方法以及代码的调用逻辑等。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/B8EC91CB622344C489F0A422E3EDA655/2835?ynotemdtimestamp=1595668120966" alt></p>
-<h5 id="高清大图请戳这里"><a href="#高清大图请戳这里" class="headerlink" title="高清大图请戳这里"></a>高清大图请戳<a href="http://www.xmind.net/m/AimcSi" target="_blank" rel="noopener">这里</a></h5><h1 id="fabric-ca-国密改造"><a href="#fabric-ca-国密改造" class="headerlink" title="fabric ca 国密改造"></a>fabric ca 国密改造</h1><p>Fabric-ca国密支持改造，主要是指Fabric-ca端通过改造使其可以用以生成国密公私钥对、签发、吊销、查询国密类型的证书。证书申请和签发的流程如下图所示，所有改造工作都围绕证书申请和签发的流程展开的：</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/E0AD1345011E4AA194EDAB95D1A4DAE3/2719?ynotemdtimestamp=1595668120966" alt></p>
-<p>Fabric-ca主要是调用Fabric的bccsp(blockchain cryptographic service provider,区块链加密服务提供者)模块来完成加解密及签名验签的工作。</p>
-<p>Fabric-ca client端主要负责国密证书的请求签发以及存储国密证书链的工作。对于请求国密证书，client端首先生成国密的公私钥对，并把公钥编码到生成证书的请求中，发送生成国密证书的请求给Fabric-ca的server端。存储国密的证书链则需要使用支持国密适配的x509来解析证书，并写入到client端本地路径中。</p>
-<p>Fabric-ca server端主要负责国密证书的签发、吊销、查询等功能。启动时加载自身的国密证书。在接收到签发请求时，调用国密的签名方法来对证书请求进行签名，并返回国密证书给client端。</p>
-<h2 id="改造要点："><a href="#改造要点：" class="headerlink" title="改造要点："></a>改造要点：</h2><ol>
-<li>Fabric-ca/lib：主要是接口的实现，主要在解析申请证书请求以及签发证书流程要替换为国密算法；</li>
-<li>Fabric-ca/util：该包数据工具类，主要在证书的编解码等操作中扩展国密算法；</li>
-<li>Fabric-ca/vendor：因为CA沿用Fabric中的BCCSP套件，所以需要替换对Fabric的包的引用，提供对国密算法的支持。</li>
-</ol>
-<h2 id="具体接口和方法一览"><a href="#具体接口和方法一览" class="headerlink" title="具体接口和方法一览"></a>具体接口和方法一览</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/CD117F2C191D48BBB9C23028B1CAE41F/2875?ynotemdtimestamp=1595668120966" alt></p>
-<h5 id="高清大图请戳这里-1"><a href="#高清大图请戳这里-1" class="headerlink" title="高清大图请戳这里"></a>高清大图请戳<a href="http://www.xmind.net/m/DpWJni" target="_blank" rel="noopener">这里</a></h5><h1 id="fabric-sdk-国密改造"><a href="#fabric-sdk-国密改造" class="headerlink" title="fabric sdk 国密改造"></a>fabric sdk 国密改造</h1><p>未完待续……</p>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/invert-binary-tree/" target="_blank" rel="noopener">226. 翻转二叉树</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>翻转一棵二叉树。</p>
+<p>示例：</p>
+<p>输入：</p>
+<pre class="line-numbers language-go"><code class="language-go">     <span class="token number">4</span>
+   <span class="token operator">/</span>   \
+  <span class="token number">2</span>     <span class="token number">7</span>
+ <span class="token operator">/</span> \   <span class="token operator">/</span> \
+<span class="token number">1</span>   <span class="token number">3</span> <span class="token number">6</span>   <span class="token number">9</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出：</p>
+<pre class="line-numbers language-go"><code class="language-go">     <span class="token number">4</span>
+   <span class="token operator">/</span>   \
+  <span class="token number">7</span>     <span class="token number">2</span>
+ <span class="token operator">/</span> \   <span class="token operator">/</span> \
+<span class="token number">9</span>   <span class="token number">6</span> <span class="token number">3</span>   <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */</span>
+<span class="token keyword">func</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>root <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token operator">*</span>TreeNode <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">nil</span>
+    <span class="token punctuation">}</span>
+
+    temp <span class="token operator">:=</span> root<span class="token punctuation">.</span>Left
+    root<span class="token punctuation">.</span>Left <span class="token operator">=</span> root<span class="token punctuation">.</span>Right
+    root<span class="token punctuation">.</span>Right <span class="token operator">=</span> temp
+
+    <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
+    <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> root
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -710,9 +715,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《fabric国密改造全记录》
+                    《【leetcode-226】翻转二叉树》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/06/29/fabric-gm/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/02/leetcode-226/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -753,7 +758,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/06/29/fabric-gm/',
+        id: '2020/12/02/leetcode-226/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1036,46 +1041,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/07/14/cicd/">
+                <a href="/2020/12/02/leetcode-226/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="GitLab CICD 自动化部署">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【leetcode-226】翻转二叉树">
                         
-                        <span class="card-title">GitLab CICD 自动化部署</span>
+                        <span class="card-title">【leetcode-226】翻转二叉树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文简单记录了自学使用GitLab CI进行自动化部署的过程
+                            将一棵二叉树进行镜像翻转
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/GitLab/" class="post-category" target="_blank">
-                                    GitLab
+                            <a href="/categories/leetcode-tree/" class="post-category" target="_blank">
+                                    leetcode tree
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/GitLab/" target="_blank">
-                        <span class="chip bg-color">GitLab</span>
+                    <a href="/tags/leetcode-tree/" target="_blank">
+                        <span class="chip bg-color">leetcode tree</span>
                     </a>
                     
                 </div>
@@ -1089,33 +1096,26 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/29/plantuml/">
+                <a href="/2020/08/15/tamper-with-data/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="GoLand 类图生成工具 plantuml">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="fabric 链上数据防篡改">
                         
-                        <span class="card-title">GoLand 类图生成工具 plantuml</span>
+                        <span class="card-title">fabric 链上数据防篡改</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文介绍了如何使用 plantuml 工具自动生成Go项目的类图
+                            fabric 具备数据防篡改机制，这里提供了一种验证链上数据防篡改的场景
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-29
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-15
                             </span>
                         <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
-                                </a>
-                            
                             
                         </span>
                     </div>
@@ -1123,8 +1123,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
+                    <a href="/tags/fabric/" target="_blank">
+                        <span class="chip bg-color">fabric</span>
+                    </a>
+                    
+                    <a href="/tags/test/" target="_blank">
+                        <span class="chip bg-color">test</span>
                     </a>
                     
                 </div>

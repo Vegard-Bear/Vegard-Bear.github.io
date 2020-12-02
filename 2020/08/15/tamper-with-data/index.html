@@ -9,7 +9,7 @@
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="
-近日，因为工作需要，对 fabric 数据防篡改机制进行了研究，这里提供了一种验证链上数据放篡改的场景以供参考
+近日，因为工作需要，对 fabric 数据防篡改机制进行了研究，这里提供了一种验证链上数据防篡改的场景以供参考
 
 基本思路：进入某个peer节点修改本地的 Couch DB 数据，修改完后再调用链码发送一笔交易，发现执行结果是该 peer">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -332,7 +332,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -506,7 +506,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>近日，因为工作需要，对 fabric 数据防篡改机制进行了研究，这里提供了一种验证链上数据放篡改的场景以供参考</p>
+<p>近日，因为工作需要，对 fabric 数据防篡改机制进行了研究，这里提供了一种验证链上数据防篡改的场景以供参考</p>
 </blockquote>
 <h1 id="基本思路："><a href="#基本思路：" class="headerlink" title="基本思路："></a>基本思路：</h1><p>进入某个peer节点修改本地的 Couch DB 数据，修改完后再调用链码发送一笔交易，发现执行结果是该 peer 节点的数据重新变为修改前的数据，说明篡改数据失败，系统具有放篡改能力。</p>
 <p>具体操作如下，为了简化操作，直接借助官方使用 couchdb 样例，链码为 mymarble</p>
@@ -1067,45 +1067,46 @@ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopat
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/08/15/tamper-with-data/">
+                <a href="/2020/12/02/leetcode-226/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="fabric 链上数据防篡改">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【leetcode-226】翻转二叉树">
                         
-                        <span class="card-title">fabric 链上数据防篡改</span>
+                        <span class="card-title">【leetcode-226】翻转二叉树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            fabric 具备数据防篡改机制，这里提供了一种验证链上数据放篡改的场景
+                            将一棵二叉树进行镜像翻转
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-15
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-02
+                        </span>
                         <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/leetcode-tree/" class="post-category" target="_blank">
+                                    leetcode tree
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
-                    </a>
-                    
-                    <a href="/tags/test/" target="_blank">
-                        <span class="chip bg-color">test</span>
+                    <a href="/tags/leetcode-tree/" target="_blank">
+                        <span class="chip bg-color">leetcode tree</span>
                     </a>
                     
                 </div>
@@ -1123,7 +1124,7 @@ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopat
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="fabric 2.2 生命周期链码实战">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="fabric 2.2 生命周期链码实战">
                         
                         <span class="card-title">fabric 2.2 生命周期链码实战</span>
                     </div>
@@ -1336,7 +1337,7 @@ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopat
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">25.7k</span>
+            <span class="white-color">25.8k</span>
             
 
             <br>
