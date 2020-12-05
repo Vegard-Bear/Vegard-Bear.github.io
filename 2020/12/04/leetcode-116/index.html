@@ -4,14 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="GitLab CICD 自动化部署, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-116】填充每个节点的下一个右侧节点指针, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-本文简单记录了自学使用GitLab CI进行自动化部署的过程
-
-什么是 CI/CD 流水线？CI 代表持续集成（Continuous Integration），CD 代表持续交付（Continuous Delivery）和持续部署（Con">
+    <meta name="description" content="题目链接116. 填充每个节点的下一个右侧节点指针
+题目描述给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
+struct Node {
+  int val;
+  Node *left;
+  No">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>GitLab CICD 自动化部署 | 小熊的作坊</title>
+    <title>【leetcode-116】填充每个节点的下一个右侧节点指针 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +334,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        GitLab CICD 自动化部署
+                        【leetcode-116】填充每个节点的下一个右侧节点指针
                     </div>
                 </div>
             </div>
@@ -449,8 +451,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/GitLab/" target="_blank">
-                            <span class="chip bg-color">GitLab</span>
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
+                        </a>
+                        
+                        <a href="/tags/tree/" target="_blank">
+                            <span class="chip bg-color">tree</span>
                         </a>
                         
                     </div>
@@ -461,8 +467,12 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/GitLab/" class="post-category" target="_blank">
-                            GitLab
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
+                        </a>
+                        
+                        <a href="/categories/leetcode/tree/" class="post-category" target="_blank">
+                            tree
                         </a>
                         
                     </div>
@@ -473,7 +483,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-14
+                    2020-12-04
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -487,14 +497,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.9k
+                    805
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    3 分
                 </div>
                 
                 
@@ -510,386 +520,103 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>本文简单记录了自学使用GitLab CI进行自动化部署的过程</p>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="noopener">116. 填充每个节点的下一个右侧节点指针</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">struct</span> Node <span class="token punctuation">{</span>
+  <span class="token builtin">int</span> val<span class="token punctuation">;</span>
+  Node <span class="token operator">*</span>left<span class="token punctuation">;</span>
+  Node <span class="token operator">*</span>right<span class="token punctuation">;</span>
+  Node <span class="token operator">*</span>next<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。</p>
+<p>初始状态下，所有 next 指针都被设置为 NULL。</p>
+<p>进阶：</p>
+<ul>
+<li>你只能使用常量级额外空间。</li>
+<li>使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。</li>
+</ul>
+<p>示例：</p>
+<p><img src="https://assets.leetcode.com/uploads/2019/02/14/116_sample.png" alt></p>
+<pre><code>输入：root = [1,2,3,4,5,6,7]
+输出：[1,#,2,3,#,4,5,6,7,#]
+解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化的输出按层序遍历排列，同一层节点由 next 指针连接，&#39;#&#39; 标志着每一层的结束。</code></pre><p>提示：</p>
+<ul>
+<li>树中节点的数量少于 4096</li>
+<li>-1000 &lt;= node.val &lt;= 1000</li>
+</ul>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>二叉树的解题分三步走：</p>
+<ol>
+<li>一般节点应该做什么</li>
+<li>叶子节点应该做什么</li>
+<li>前序、中序还是后序</li>
+</ol>
+<p>对于这道题一般节点需要将它的左子树根节点的 next 域指向右子树的根节点</p>
+<p>然后对于叶子节点依旧是直接返回自身即可</p>
+<p>至于遍历次序的话可以先都试试看～</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>于是我们很快就能写出如下答案:</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">/**
+ * Definition for a Node.
+ * type Node struct {
+ *     Val int
+ *     Left *Node
+ *     Right *Node
+ *     Next *Node
+ * }
+ */</span>
+
+<span class="token keyword">func</span> <span class="token function">connect</span><span class="token punctuation">(</span>root <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token operator">*</span>Node <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 为了防止下面的操作出现空指针报错</span>
+    <span class="token keyword">if</span> root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token operator">||</span> root<span class="token punctuation">.</span>Left <span class="token operator">==</span> <span class="token boolean">nil</span>  <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> root
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//左子树根节点的 next 域指向右子树的根节点</span>
+    root<span class="token punctuation">.</span>Left<span class="token punctuation">.</span>Next <span class="token operator">=</span> root<span class="token punctuation">.</span>Right
+    <span class="token function">connect</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
+    <span class="token function">connect</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> root
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>需要注意的是，对于叶子节点的判断，由于存在 root.Left.Next 这个逻辑，意味着root.Left不能为空，在一开始需要加上这个判断，否则会报空指针错误</p>
 </blockquote>
-<h1 id="什么是-CI-CD-流水线？"><a href="#什么是-CI-CD-流水线？" class="headerlink" title="什么是 CI/CD 流水线？"></a>什么是 CI/CD 流水线？</h1><p>CI 代表持续集成（Continuous Integration），CD 代表持续交付（Continuous Delivery）和持续部署（Continuous Deployment）。也可以将它们看作是类似于软件开发生命周期的过程。</p>
-<h4 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h4><p>持续集成指在和向远程仓库 push 代码后，在这次提交合并入主分支前进行一系列测试，构建等流程。假设现在有个应用的代码存储在 gitlab 上，每天开发者都 push 很多次提交，针对每次 push，你可以创建一系列脚本进行自动测试，降低往应用里引入错误的概率。这就是持续集成，它可应用在包括开发分支在内的多个分支上。</p>
-<h4 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h4><p>持续部署在持续集成的基础上更进一步，指将推送指仓库默认分支的部署至产品环境。如果这部分需要手动触发，这就是一个持续交付（Continuous Delivery）环节</p>
-<p><img src="https://static.geekbang.org/infoq/5cac03c74862e.png?imageView2/0/w/800" alt></p>
-<p>如上图所示，该流水线展示了一个软件在其最终交付给客户或者投入上线之前，它在其生命周期内各个阶段中的移动过程。</p>
-<p>我们可以看到软件从代码完成到最终交付先后会经历构建(build)、单元测试(unit test)、部署(deploy)、自动测试(auto test)、部署到生产环境(deploy to production)以及度量和验证(measure &amp; validate)等多个阶段。</p>
-<p>具体阶段说明请参考 <a href="https://www.infoq.cn/article/WHt0wFMDRrBU-dtkh1Xp" target="_blank" rel="noopener">如何从零开始搭建 CI/CD 流水线</a></p>
-<h1 id="部署方案"><a href="#部署方案" class="headerlink" title="部署方案"></a>部署方案</h1><p>目前与gitlab持续集成的比较流行的自动化部署解决方案主要有jenkins和GitLab CI/CD两种。</p>
-<h2 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h2><p>Jenkins 是一款比较流行的持续化集成自动化工具，为我们提供了各种接口和工具，用以实现软件开发整个过程的自动化。</p>
-<p>如下图所示：</p>
-<p><img src="https://img-blog.csdnimg.cn/20190110163723744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NkYmRxbjAwMQ==,size_16,color_FFFFFF,t_70" alt></p>
-<p>由客户端将代码push推送到git仓库，gitlab上配置了一个webHook的东西可以触发Jenkins的构建。</p>
-<p>进入到Jenkins虚线范围内，它所做的事情非常多，从mvn构建代码，对代码进行静态分析，做单元测试，测试通过之后就可以build镜像，镜像构建成功后就把镜像push推送到Harbor镜像仓库中。</p>
-<p>镜像push推送到镜像仓库后，我们就可以调用kubernetes集群的restAPI更新服务，而后kubernetes接收到了更新的指令，从Harbor镜像仓库pull拉取镜像，从而完成服务的更新与重启，最后我们从客户端来访问kubernetes集群的服务</p>
-<p><big><strong>优点:</strong> </big> 编译服务和代码仓库分离，而且编译配置文件不需要在工程中配置，如果团队有开发、测试、配置管理员、运维、实施等完整的人员配置，那就采用jenkins，这样职责分明。jenkins依靠它丰富的插件，可以配置很多gitlab-ci不存在的功能，比如说看编译状况统计等。</p>
-<p><big><strong>缺点:</strong> </big> 配置相对复杂，维护成本较高等</p>
-<h2 id="GitLab-CI-CD"><a href="#GitLab-CI-CD" class="headerlink" title="GitLab CI/CD"></a>GitLab CI/CD</h2><p>GitLab CI/CD 是GitLab Continuous Integration（Gitlab持续集成）的简称。GitLab 自GitLab 8.0开始提供了持续集成的功能，且对所有项目默认开启。只要在项目仓库的根目录添加.gitlab-ci.yml文件，并且配置了Runner（运行器），那么每一次push或者合并请求（Merge Request）都会触发CI Pipeline。</p>
-<p>如图所示，可以理解为GitLab CI/CD是Gitlab给开发者提供的一项功能，它在代码提交后自动触发一段开发者自定义的脚本，以此来完成诸如但不限于构建部署的工作。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-a91bb21049a0a797d4092789aa16b808_720w.jpg" alt></p>
-<h3 id="关键概念"><a href="#关键概念" class="headerlink" title="关键概念"></a>关键概念</h3><h4 id="Pipelines"><a href="#Pipelines" class="headerlink" title="Pipelines"></a>Pipelines</h4><p>Pipelines 中文称为流水线，是分阶段执行的构建任务。如：安装依赖、运行测试、打包、部署开发服务器、部署生产服务器等流程。每一次push或者Merge Request都会触发生成一条新的Pipeline</p>
-<h4 id="Stages"><a href="#Stages" class="headerlink" title="Stages"></a>Stages</h4><p>Stages 表示构建阶段，可以理解为上面所说“安装依赖”、“运行测试”等环节的流程。我们可以在一次 Pipeline 中定义多个 Stages，这些 Stages 会有以下特点：</p>
-<ol>
-<li>所有 Stages 会按照顺序运行，即当一个 Stage 完成后，下一个 Stage 才会开始（当然可以在.gitlab-ci.yml文件中配置上一阶段失败时下一阶段也执行）</li>
-<li>只有当所有 Stages 完成后，该构建任务 (Pipeline) 才会成功</li>
-<li>如果任何一个 Stage 失败，那么后面的 Stages 不会执行，该构建任务 (Pipeline) 失败</li>
-</ol>
-<h4 id="Jobs"><a href="#Jobs" class="headerlink" title="Jobs"></a>Jobs</h4><p>Jobs 表示构建的作业（或称之为任务），表示某个 Stage 里面执行的具体任务。我们可以在 Stages 里面定义多个 Jobs，这些 Jobs 会有以下特点：</p>
-<ol>
-<li>相同 Stage 中的 Jobs 无执行顺序要求，会并行执行</li>
-<li>相同 Stage 中的 Jobs 都执行成功时，该 Stage 才会成功</li>
-<li>如果任何一个 Job 失败，那么该 Stage 失败，即该构建任务 (Pipeline) 也失败（可以在.gitlab-ci.yml文件中配置允许某 Job 可以失败，也算该 Stage 成功）</li>
-</ol>
-<p><big> <strong>优点:</strong> </big>完美和gitlab进行集成，gitlab-ci已经集成进gitlab服务器中，在使用的时候只需要安装配置gitlab-runner即可。 gitlab-runner基本上提供了一个可以进行编译的环境，负责从gitlab中拉取代码，根据工程中配置的gitlab-ci.yml，执行相应的命令进行编译。</p>
-<p><big> <strong>缺点:</strong> </big>功能相对少一些，没有web页面查看等</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>由于采用Jenkins进行自动化集成部署较为复杂，GitLab完美和GitLab集成，更为简单和方便，且对于我来说，GitLab CI/CD所提供等功能已足够使用，所以我更偏向于“小而精”的GitLab CI/CD而不是“大而全”的Jenkins。</p>
-<h1 id="GitLab-CI-CD实战"><a href="#GitLab-CI-CD实战" class="headerlink" title="GitLab CI/CD实战"></a>GitLab CI/CD实战</h1><p>说了这么多，相信大家已经迫不及待地跃跃欲试了，下面就介绍一下GitLab CI/CD的使用步骤。</p>
-<p>参考： <a href="http://192.168.9.251/help/ci/quick_start/README" target="_blank" rel="noopener">GitLab CI / CD入门</a></p>
-<p>其实大体来说就两步：</p>
-<ol>
-<li>在项目的根目录下添加一个配置文件 .gitlab-ci.yaml</li>
-<li>配置一个 GitLab Runner</li>
-</ol>
-<h2 id="配置-gitlab-ci-yml"><a href="#配置-gitlab-ci-yml" class="headerlink" title="配置 .gitlab-ci.yml"></a>配置 .gitlab-ci.yml</h2><p>GitLab 中默认开启了 Gitlab CI/CD 的支持，且使用YAML文件.gitlab-ci.yml来管理项目构建配置。该文件需要存放于项目仓库的根目录（默认路径，可在 GitLab 中修改），它定义该项目的 CI/CD 如何配置。所以，我们只需要在.gitlab-ci.yml配置文件中定义流水线的各个阶段，以及各个阶段中的若干作业（任务）即可。</p>
-<p>下面是.gitlab-ci.yml文件的一个简单的Hello World示例：</p>
-<pre><code># 定义 build 和 test 两个 Stages    
-stages:
-  - build
-  - test
+<p>当我们写出如上代码进行提交时，会得到如下结果：</p>
+<pre class="line-numbers language-go"><code class="language-go">输入
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">]</span>
+输出
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>#<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>#<span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span>#<span class="token punctuation">]</span>
+预期结果
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>#<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>#<span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span>#<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>我们会发现5号节点的后面直接是空，而不是7号节点，原来是因为5号和6号并不在同一棵子树中（他们的父节点不是同一个），因此需要考虑这种特殊情况。</p>
+<p>完善后的代码如下：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">/**
+ * Definition for a Node.
+ * type Node struct {
+ *     Val int
+ *     Left *Node
+ *     Right *Node
+ *     Next *Node
+ * }
+ */</span>
 
-# 定义 build 阶段的一个 job
-build_job:
-  stage: build
-  script:
-    - echo &quot;the project is being built&quot;
+<span class="token keyword">func</span> <span class="token function">connect</span><span class="token punctuation">(</span>root <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token operator">*</span>Node <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token operator">||</span> root<span class="token punctuation">.</span>Left <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> root
+    <span class="token punctuation">}</span>
 
-# 定义 test 阶段的一个 job
-test_job:
-  stage: test
-  script:
-    - echo &quot;the project is being built&quot;
-</code></pre><p>以上配置中，用 stages 关键字来定义 Pipeline 中的各个构建阶段，然后用一些非关键字来定义 jobs。每个 job 中可以可以再用 stage 关键字来指定该 job 对应哪个 stage。job 里面的script关键字是每个 job 中必须要包含的，它表示每个 job 要执行的命令。</p>
-<p>关于.gitlab-ci.yml的详细配置规则可参考官方文档 <a href="https://docs.gitlab.com/ce/ci/yaml/README.html" target="_blank" rel="noopener">GitLab CI/CD pipeline configuration reference</a></p>
-<p>配置完就可以直接 commit &amp; push 这个配置文件了<br>一旦提交了这个 .gitlab-ci.yaml文件，那么下次在任何一次push到gitlab的操作，GitLab都会查找该.gitlab-ci.yml<br>文件并根据该文件的内容在 gitlab Runners上执行jobs。</p>
-<p>此时再查看 CI/CD -&gt; popeline 可以发现会有一条pipeline 处于挂起阶段，这是因为我们没有注册gitlab runner的原因</p>
-<p>导致无法运行 .gitlab-ci.yaml中的jobs，那么下面我们就来安装一下 gitlab runner</p>
-<h2 id="安装GitLab-Runner"><a href="#安装GitLab-Runner" class="headerlink" title="安装GitLab Runner"></a>安装GitLab Runner</h2><p>gitlab runner 用于与git服务器进行通信，当有新的任务发布到当前runner时，runner会执行.gitlab-ci.yml所定义的CI指令。</p>
-<p>如果你的操作系统和我一样是macOS，那么可以采用以下方式进行安装：</p>
-<p>方式一：用homebrew进行安装，在命令行中直接执行</p>
-<pre><code>brew install gitlab-runner</code></pre><p>方式二（官方）：Gitlab runner 10以上安装方式，若安装旧版本前往官网查看<br>（1）下载</p>
-<pre><code>sudo curl --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64</code></pre><p>(2)设置权限</p>
-<pre><code>sudo chmod +x /usr/local/bin/gitlab-runner</code></pre><p>其他安装方式可参考 <a href="https://docs.gitlab.com/runner/install/" target="_blank" rel="noopener">Install GitLab Runner</a></p>
-<h2 id="注册-gitlab-runner"><a href="#注册-gitlab-runner" class="headerlink" title="注册 gitlab runner"></a>注册 gitlab runner</h2><p>命令的交互式的过程如下：</p>
-<pre><code>➜  ~ git:(master) ✗ sudo gitlab-runner register
-Runtime platform                                    arch=amd64 os=linux pid=17 revision=6fbc7474 version=13.1.1
-Running in system-mode.
+    root<span class="token punctuation">.</span>Left<span class="token punctuation">.</span>Next <span class="token operator">=</span> root<span class="token punctuation">.</span>Right
 
-# 输入公司的 GitLab 网站地址，可以在 Settings -&gt; CI/CD -&gt; Runner 中找到
-Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):
-http://192.168.9.251/
+    <span class="token comment" spellcheck="true">// 增加了不在同一棵子树的情况，注意防止出现空指针报错</span>
+    <span class="token keyword">if</span> root<span class="token punctuation">.</span>Next <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">&amp;&amp;</span> root<span class="token punctuation">.</span>Right <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        root<span class="token punctuation">.</span>Right<span class="token punctuation">.</span>Next <span class="token operator">=</span> root<span class="token punctuation">.</span>Next<span class="token punctuation">.</span>Left
+    <span class="token punctuation">}</span>
 
-# 你项目仓库的token，token可以在 Settings -&gt; CI/CD -&gt; Runner 中找到
-Please enter the gitlab-ci token for this runner:
-ienceCevg-sdxqQhBaGZ
-
-# 输入描述这个 runner 的名称，这个字段没有特殊的作用，只是为了区分不同的runner，这里可设置为runner-server
-Please enter the gitlab-ci description for this runner:
-[1b6095f8f875]: runner-server
-
-# tags这个属性，job和runner都有，用来匹配任务和执行任务的runner。runner的tag可以有多个，注册时用逗号（comma）分隔即可。当某个job的tag是当前runner tags的一个子集时，这个job就可以被分配到当前runner上执行
-Please enter the gitlab-ci tags for this runner (comma separated):
-test
-
-Registering runner... succeeded                     runner=ienceCev
-
-# executor就是执行job的环境，通常我们都会选择Shell，如果有其他需要的也可以自行查阅文档。
-需要注意的是，runner执行的环境是非常干净的，像类似ANDROID_HOME的变量都需要通过shell指令export xxx=xxx在执行时输入，而不是使用设备上的环境。
-Please enter the executor: docker, shell, ssh, docker+machine, docker-ssh+machine, custom, docker-ssh, parallels, virtualbox, kubernetes:
-shell
-
-Runner registered successfully. Feel free to start it, but if it&#39;s running already the config should be automatically reloaded!</code></pre><p>以上流程注册成功之后，就可以在你的项目仓库中 Settings -&gt; CI/CD -&gt; Runner看到这个 Runner 了。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/EE6BA5A809BA4D5E8DE7A943D7A8EB14/2579?ynotemdtimestamp=1595666133983" alt></p>
-<h2 id="安装共享runner"><a href="#安装共享runner" class="headerlink" title="安装共享runner"></a>安装共享runner</h2><p>安装共享runner与安装专有runner类似，主要区别在于共享runner需要gitlab的管理员权限，进入管理员界面，overview-&gt;runner，将runner的token和URL复制下来，在注册的时候添加进去就可以，此处不再赘述，详细步骤请参考<a href="https://cloud.tencent.com/developer/article/1411267" target="_blank" rel="noopener">此处</a></p>
-<h1 id="GitLab-runner-常用命令"><a href="#GitLab-runner-常用命令" class="headerlink" title="GitLab runner 常用命令"></a>GitLab runner 常用命令</h1><p>下面表格列出了 Gitlab runner 的常用命令：</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>gitlab-runner run</td>
-<td>运行一个runner服务</td>
-</tr>
-<tr>
-<td>gitlab-runner register</td>
-<td>注册一个新的runner</td>
-</tr>
-<tr>
-<td>gitlab-runner start</td>
-<td>启动服务</td>
-</tr>
-<tr>
-<td>gitlab-runner stop</td>
-<td>关闭服务</td>
-</tr>
-<tr>
-<td>gitlab-runner restart</td>
-<td>重启服务</td>
-</tr>
-<tr>
-<td>gitlab-runner status</td>
-<td>查看各个runner的状态</td>
-</tr>
-<tr>
-<td>gitlab-runner unregister</td>
-<td>注销掉某个runner</td>
-</tr>
-<tr>
-<td>gitlab-runner list</td>
-<td>显示所有运行着的runner</td>
-</tr>
-<tr>
-<td>gitlab-runner verify</td>
-<td>检查已注册的运行程序是否可以连接到GitLab，但它不验证GitLab Runner服务是否正在使用运行程序。</td>
-</tr>
-</tbody></table>
-<p>更多命令请参考 <a href="https://docs.gitlab.com/runner/commands/README.html" target="_blank" rel="noopener">GitLab Runner commands</a></p>
-<p>此时，再回 gitlab 仓库查看并重新运行之前刮起的pipeline，等待一会儿会发现运行通过了</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/6E07FADE32774BABB8735C787120F04B/2601?ynotemdtimestamp=1595666133983" alt="pipeline"></p>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
-<li><p>每次向 gitlab 推送完代码后，会自动触发一条 pipeline，可点击 gitlab 左侧边栏的 CI/ID 进行查看 pipeline 的运行情况。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/221CC727BF154DC8B47E53D732299ED3/3030" alt></p>
-</li>
-<li><p>某些 job 运行失败可能是由于网络问题，比如 gcc 安装和更新失败，此时可点击重试。</p>
-</li>
-<li><p>目前跑完一条完整的 pipeline 需要时间较长， 为了保证开发效率，建议每次完成开发，推送代码前先在本地进行以下检查。</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">go</span> build
-golangci<span class="token operator">-</span>lint run
-<span class="token keyword">go</span> test <span class="token punctuation">.</span><span class="token operator">/</span><span class="token operator">...</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>如果存在问题先解决问题，确保没问题之后再向 gitlab 推送代码。</p>
-</li>
-<li><p>目前静态代码检查采用的 golangci-lint 为1.18.0版本，可从<a href="http://192.168.9.251:9000/software" target="_blank" rel="noopener">此处</a>下载。</p>
-</li>
-<li><p>编译镜像成功后会自动将镜像推送到 harbor 镜像仓库，如果有需要可直接从镜像仓库进行<a href="http://192.168.9.8/harbor/projects/17/repositories/crosschain%2Fcrossnet" target="_blank" rel="noopener">拉取</a>。</p>
-</li>
-<li><p>关于 GitLab CI/CD 的更多详细内容请参考<a href="ttps://docs.gitlab.com/ee/ci/" target="_blank" rel="noopener">官方文档</a>。</p>
-</li>
-</ol>
-<h1 id="踩坑指南"><a href="#踩坑指南" class="headerlink" title="踩坑指南"></a>踩坑指南</h1><h2 id="安装-gitlab-runner-失败"><a href="#安装-gitlab-runner-失败" class="headerlink" title="安装 gitlab runner 失败"></a>安装 gitlab runner 失败</h2><p>在实际安装 gitlab runner 的过程中发现采用上面的方式二会特别慢，而采用方式一则在下一步注册 Gitlab Runner的时候会出现如下问题：</p>
-<pre><code>➜  ~ git:(master) ✗ sudo gitlab-runner register
-Password:
-[1]    37431 killed     sudo gitlab-runner register</code></pre><p>在网上搜寻解决方案未果，于是决定采用docker进行安装，步骤如下：</p>
-<p>执行以下命令创建容器并启动</p>
-<pre><code>docker run -d --name gitlab-runner --restart always -v ~/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock  gitlab/gitlab-runner:latest</code></pre><p>执行完成后可以 docker ps 一下进行查看</p>
-<pre><code>➜  ~ git:(master) ✗ docker ps
-CONTAINER ID        IMAGE                         COMMAND                  CREATED             STATUS              PORTS               NAMES
-1b6095f8f875        gitlab/gitlab-runner:latest   &quot;/usr/bin/dumb-init …&quot;   5 seconds ago       Up 3 seconds                            gitlab-runner</code></pre><p>然后注册 gitlab runner，只需执行</p>
-<pre><code>docker exec -it 1b6095f8f875 gitlab-runner register</code></pre><p>其中 1b6095f8f875 是上一步执行的返回的 ID</p>
-<h2 id="安装完-gitlab-runner-显示-pipeline-stuck"><a href="#安装完-gitlab-runner-显示-pipeline-stuck" class="headerlink" title="安装完 gitlab runner 显示 pipeline stuck"></a>安装完 gitlab runner 显示 pipeline stuck</h2><ol>
-<li><p>可能是没有设置为忽略tag的原因, 去设置-&gt; CICD界面下将 tag 那个选项打勾就行</p>
-</li>
-<li><p>可能是 gitlab-runner 容器挂掉了, 可以登录gitlab-runner所在服务器执行</p>
-<pre><code>docker restart gitlab-runner</code></pre></li>
-</ol>
-<h2 id="pipeline-运行时报错【Permission-denied】"><a href="#pipeline-运行时报错【Permission-denied】" class="headerlink" title="pipeline 运行时报错【Permission denied】"></a>pipeline 运行时报错【Permission denied】</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/C512459EDB3A41A7938D5DB227C26E61/2630?ynotemdtimestamp=1595666133983" alt></p>
-<p>在跑 CICD的时候发现以上错误，一开始以为是权限的问题，但是加了dudo依然未能解决，后来通过复盘 gitlab runner安装、注册等全过程，发现在安装gitlab是采用的docker模式，但是注册gitlab时指定的运行环境是shell，于是换成了docker，重新跑了一下，原来的错误消失了</p>
-<p>PS: 指定执行环境是docker后，还需指定 docker image 为 stable, 如下：</p>
-<pre><code>Please enter the executor: virtualbox, docker+machine, docker-ssh, shell, parallels, ssh, docker-ssh+machine, kubernetes, custom, docker:
-docker
-Please enter the default Docker image (e.g. ruby:2.6):
-docker:stable</code></pre><h2 id="运行-docker-命令报错"><a href="#运行-docker-命令报错" class="headerlink" title="运行 docker 命令报错"></a>运行 docker 命令报错</h2><p>运行docker info命令时报错</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/5308331A5FF94826A5BFB66F128CF7CF/2644?ynotemdtimestamp=1595666133983" alt></p>
-<p>查找资料<br><a href="https://gitlab.com/gitlab-org/gitlab-runner/-/issues/4566" target="_blank" rel="noopener">https://gitlab.com/gitlab-org/gitlab-runner/-/issues/4566</a></p>
-<p>修改配置文件</p>
-<pre><code>vim gitlab-runner/config/config.toml</code></pre><p>volumes 配置项</p>
-<pre><code>volumes = [&quot;/cache&quot;, &quot;/var/run/docker.sock:/var/run/docker.sock&quot;]</code></pre><p>重新启动 gitlab runner </p>
-<pre><code>docker restart 99451b349e7f</code></pre><p>其中 99451b349e7f 为容器ID</p>
-<p>再重新跑pipeline，发现原来的错误消失了</p>
-<h2 id="执行shell脚本报错"><a href="#执行shell脚本报错" class="headerlink" title="执行shell脚本报错"></a>执行shell脚本报错</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/3B9F8F27F2A049CD92C6C92BB1A35B19/2664?ynotemdtimestamp=1595666133983" alt></p>
-<p>通过搜寻资料发现</p>
-<p>请注意，docker镜像是基于alpine的，默认不提供bash。<br>所以脚本应该使用sh，以便更加通用。</p>
-<p>改成如下格式后经过测试通过</p>
-<pre><code>sh scripts/fmt.sh</code></pre><h2 id="curl命令未找到-【curl-not-found】"><a href="#curl命令未找到-【curl-not-found】" class="headerlink" title="curl命令未找到 【curl: not found】"></a>curl命令未找到 【curl: not found】</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/24C3D0434AB147BC80AE067140047D01/2671?ynotemdtimestamp=1595666133983" alt></p>
-<p>搜寻资料<a href="https://stackoverflow.com/questions/46031069/curl-command-not-found-on-gitlab-ci-yml" target="_blank" rel="noopener">curl command not found on .gitlab-ci.yml</a></p>
-<p>使用apk命令下载 curl 命令，而不是 apt-get</p>
-<pre><code>services:
-  - name: docker:dind
-
-  before_script:
-    - apk add --update curl &amp;&amp; rm -rf /var/cache/apk/*</code></pre><h2 id="编译报错-not-found"><a href="#编译报错-not-found" class="headerlink" title="编译报错 not found"></a>编译报错 not found</h2><p>参考<br><a href="https://www.dyxmq.cn/uncategorized/installed-go-binary-not-found-in-path-on-alpine-linux-docker.html" target="_blank" rel="noopener">https://www.dyxmq.cn/uncategorized/installed-go-binary-not-found-in-path-on-alpine-linux-docker.html</a></p>
-<p>编译时添加参数CGO_ENABLED=0</p>
-<pre><code>CGO_ENABLED=0 go build</code></pre><h2 id="安装-go-环境失败"><a href="#安装-go-环境失败" class="headerlink" title="安装 go 环境失败"></a>安装 go 环境失败</h2><p>下载了 go 的安装包且配置好了 GOROOT 和 GOPATH 等，但执行 go version 依旧报错</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/F3FF604F026B45F38A44D48691D10B37/2694?ynotemdtimestamp=1595666133983" alt></p>
-<p>查找资料<br><a href="https://stackoverflow.com/questions/34729748/installed-go-binary-not-found-in-path-on-alpine-linux-docker" target="_blank" rel="noopener">https://stackoverflow.com/questions/34729748/installed-go-binary-not-found-in-path-on-alpine-linux-docker</a></p>
-<p>执行以下命令修复丢失的依赖项，解决</p>
-<pre><code>mkdir /lib64 &amp;&amp; ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2</code></pre><h2 id="执行-golangci-lint-run-报错：DecodeRuneInString-not-declared-by-package-utf8-typecheck"><a href="#执行-golangci-lint-run-报错：DecodeRuneInString-not-declared-by-package-utf8-typecheck" class="headerlink" title="执行 golangci-lint run 报错：DecodeRuneInString not declared by package utf8 (typecheck)"></a>执行 golangci-lint run 报错：DecodeRuneInString not declared by package utf8 (typecheck)</h2><p><a href="https://github.com/golangci/golangci-lint/issues/658" target="_blank" rel="noopener">https://github.com/golangci/golangci-lint/issues/658</a></p>
-<p>替换 golangci-lint 版本由 v1.16.0 为 v1.18.0 解决问题</p>
-<h2 id="跑-golangci-lint-报错【could-not-import-C-no-metadata-for-C-typecheck-】"><a href="#跑-golangci-lint-报错【could-not-import-C-no-metadata-for-C-typecheck-】" class="headerlink" title="跑 golangci-lint 报错【could not import C (no metadata for C) (typecheck)】"></a>跑 golangci-lint 报错【could not import C (no metadata for C) (typecheck)】</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/7617F64AB4A84C01813E6514C27128CB/2882?ynotemdtimestamp=1595666133983" alt></p>
-<p>搜索资料</p>
-<p><a href="https://github.com/golangci/golangci-lint/issues/602" target="_blank" rel="noopener">https://github.com/golangci/golangci-lint/issues/602</a></p>
-<p>需要安装 gcc，但由于 alpine-linux 环境不支持 apt-get 命令，只能用 apk 安装 gcc </p>
-<p><a href="https://www.jianshu.com/p/30fa6448bb63" target="_blank" rel="noopener">https://www.jianshu.com/p/30fa6448bb63</a></p>
-<p>alpine默认的安装源慢得要命</p>
-<p>通过修改源加快安装速度</p>
-<pre><code>echo &quot;https://mirror.tuna.tsinghua.edu.cn/alpine/v3.8/main&quot; &gt; /etc/apk/repositories
-echo &quot;https://mirror.tuna.tsinghua.edu.cn/alpine/v3.8/community&quot; &gt;&gt; /etc/apk/repositories</code></pre><p>然后再安装 gcc</p>
-<pre><code>apk add build-base</code></pre><h2 id="跑-golangci-lint-遇到-【no-go-files-to-analyze】问题"><a href="#跑-golangci-lint-遇到-【no-go-files-to-analyze】问题" class="headerlink" title="跑 golangci-lint 遇到 【no go files to analyze】问题"></a>跑 golangci-lint 遇到 【no go files to analyze】问题</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/B8CDA49BABF54CC093121CC9C0E92F51/2897?ynotemdtimestamp=1595666133983" alt></p>
-<p>说明少了对应的包，需要去导入包</p>
-<h1 id="gitlab-ci-yaml-样例"><a href="#gitlab-ci-yaml-样例" class="headerlink" title=".gitlab-ci.yaml 样例"></a>.gitlab-ci.yaml 样例</h1><pre><code>variables:
-  REGISTRY_USER: admin
-  REGISTRY_PASSWORD: yunphant
-  REGISTRY_ADDR: 192.168.9.8:80
-  TARGET_IMAGE: $REGISTRY_ADDR/$ORG_DIR/$PROJECT_DIR:latest
-  GOROOT: /home/centos/go
-  GOPATH: /home/centos/gopath
-  ORG_DIR: crosschain
-  PROJECT_DIR: crossnet
-
-before_script:
-#  - echo &quot;更换源&quot;
-  - echo &quot;https://mirror.tuna.tsinghua.edu.cn/alpine/v3.8/main&quot; &gt; /etc/apk/repositories
-  - echo &quot;https://mirror.tuna.tsinghua.edu.cn/alpine/v3.8/community&quot; &gt;&gt; /etc/apk/repositories
-#  - echo &quot;安装go环境&quot;
-  - mkdir -p $GOROOT
-  - mkdir -p $GOPATH
-  - tar -C /home/centos -zxvf ./util/go1.13.4.linux-amd64.tar.gz
-  - touch .bash_profile
-  - echo &#39;export GOROOT=/home/centos/go&#39;&gt;&gt;.bash_profile
-  - echo &#39;export GOPATH=/home/centos/gopath&#39;&gt;&gt;.bash_profile
-  - echo &#39;export PATH=$PATH:$GOPATH:$GOROOT/bin&#39;&gt;&gt;.bash_profile
-  - source .bash_profile
-#  - echo &quot;修复丢失的依赖项&quot;
-  - mkdir /lib64 &amp;&amp; ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
-  - go version
-#  - echo &quot;go环境安装完成&quot;
-#  - echo &quot;安装beego环境&quot;
-  - mkdir -p $GOPATH/src/github.com
-  - tar -xvf ./util/astaxie.tar.gz -C $GOPATH/src/github.com
-  - tar -xvf ./util/bee_1.10.0_linux_amd64.tar.gz
-#  - echo &quot;beego环境安装完成&quot;
-#  - echo &quot;设置工作目录&quot;
-  - WORK_DIR=&quot;$GOPATH/src/$ORG_DIR&quot;
-  - mkdir -p $WORK_DIR
-#  - echo &quot;将工作目录链接到当前目录&quot;
-  - ln -sfv &quot;$(pwd -P)&quot; &quot;$WORK_DIR&quot;
-#  - echo &quot;进入工作目录&quot;
-  - cd &quot;$WORK_DIR/$PROJECT_DIR&quot;
-
-stages:
-  - build
-  - lint
-  - test
-  - build_image
-  - push_image
-  - deploy
-
-build:
-  stage: build
-  script:
-#    - echo &quot;构建项目&quot;
-    - CGO_ENABLED=0 go build
-#    - echo &quot;构建完成&quot;
-  allow_failure: true
-
-lint:
-  stage: lint
-  script:
-    #安装gcc
-    - apk update &amp;&amp; apk add gcc g++
-#    - echo &quot;安装 goalangci-lint 工具&quot;
-    - tar zxvf ./util/golangci-lint-1.18.0-linux-amd64.tar.gz -C /tmp/ &amp;&amp; cp  /tmp/golangci-lint-1.18.0-linux-amd64/golangci-lint $GOPATH/golangci-lint
-    - rm -rf /tmp/golangci-lint-1.18.0-linux-amd64 &amp;&amp; rm -rf /tmo/golangci-lint-1.18.0-linux-amd64.tar.gz
-#    - echo &quot;执行 golangci-lint 代码检查&quot;
-    - GL_DEBUG=linters_output GOPACKAGESPRINTGOLISTERRORS=1 golangci-lint run
-#    - echo &quot;golangci-lint 代码检查完成&quot;
-  allow_failure: true
-
-test:
-  stage: test
-  script:
-    #安装gcc
-    - apk update &amp;&amp; apk add gcc g++
-#    - echo &quot;运行单元测试&quot;
-    - CGO_LDFLAGS_ALLOW=.* CGO_CFLAGS_ALLOW=.* go test ./... -v
-#    - echo &quot;单元测试通过&quot;
-  allow_failure: true
-
-build_image:
-  stage: build_image
-  script:
-#    - echo &quot;构建镜像&quot;
-    - docker build -t $TARGET_IMAGE .
-#    - echo &quot;镜像构建完成&quot;
-  allow_failure: true
-
-push_image:
-  stage: push_image
-  script:
-#    - echo &quot;推送镜像到镜像仓库&quot;
-    - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY_ADDR
-    - docker push $TARGET_IMAGE
-#    - echo &quot;镜像推送完成&quot;
-  allow_failure: true
-
-deploy:
-  stage: deploy
-  script:
-#    - echo &quot;开始部署&quot;
-#    - echo &quot;删除原有容器&quot;
-    - docker stop $CI_PROJECT_NAME
-    - docker rm $CI_PROJECT_NAME
-#    - echo &quot;启动容器&quot;
-    - docker run --name $CI_PROJECT_NAME -p 8080:8080  -v /home/centos/gopath/src/$ORG_DIR/$CI_PROJECT_NAME:/var/ $TARGET_IMAGE
-#    - echo &quot;部署成功&quot;
-  allow_failure: true
-</code></pre><h1 id="Dockerfile-样例"><a href="#Dockerfile-样例" class="headerlink" title="Dockerfile 样例"></a>Dockerfile 样例</h1><pre><code># 使用Go的官方镜像作为基础镜像
-FROM golang:1.12-alpine
-MAINTAINER xiongweigang xiongwg@yunphant.com
-
-# 设置环境变量
-ENV GOROOT=/usr/local/go
-ENV GOPATH $HOME/go
-ENV PATH $PATH:$GOPATH/bin
-ENV GOPROXY https://goproxy.cn,direct
-
-# 设置工作目录
-RUN mkdir -p /go/src/crosschain/crossnet
-RUN mkdir -p /go/src/github.com
-WORKDIR /go/src/crosschain/crossnet
-
-# 拷贝Dockerfile同级目录的所有文件到docker中的指定位置
-ADD ./ /go/src/crosschain/crossnet
-
-# 拷贝bee可执行命令到docker中的指定位置
-COPY ./bee_1.10.0_linux_amd64/bee /usr/local/go/bin/
-COPY ./bee_1.10.0_linux_amd64/bee $GOPATH/bin/
-
-# 安装beego源码
-RUN tar -xvf ./util/astaxie.tar.gz -C /go/src/github.com
-
-# 通过开放容器的8080端口暴露该应用程序
-EXPOSE 8080
-
-# 使用bee命令开始对应用程序进行实时重载
-CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
-<li><a href="https://www.infoq.cn/article/WHt0wFMDRrBU-dtkh1Xp" target="_blank" rel="noopener">如何从零开始搭建 CI/CD 流水线</a></li>
-<li><a href="https://docs.gitlab.com/ee/ci/" target="_blank" rel="noopener">GitLab CI/CD官方文档</a></li>
-<li><a href="https://developer.aliyun.com/article/754508" target="_blank" rel="noopener">GitLab+Docker搭建CI/CD自动化部署</a></li>
-<li><a href="https://www.cnblogs.com/jingtyu/p/9604317.html" target="_blank" rel="noopener">自动化部署方案CICD</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/51163261" target="_blank" rel="noopener">Gitlab CI&amp;CD 实战经验分享</a></li>
-<li><a href="https://blinkfox.github.io/2018/11/22/ruan-jian-gong-ju/devops/gitlab-ci-jie-shao-he-shi-yong/#alipay" target="_blank" rel="noopener">GitLab CI/CD 介绍和使用</a></li>
-<li><a href="https://blog.csdn.net/qq_33591903/article/details/102460774" target="_blank" rel="noopener">浅谈CICD持续集成、持续部署的流程</a></li>
-<li><a href="https://www.jianshu.com/p/30e3f2940078" target="_blank" rel="noopener">gitlab-ci的简易入门——runners</a></li>
-<li><a href="https://juejin.im/post/5e741a5a518825490e4582b7" target="_blank" rel="noopener">GitLab CI/CD 自动部署构建</a></li>
-<li><a href="https://cloud.tencent.com/developer/article/1411267" target="_blank" rel="noopener">Gitlab的第一个shared Runners配置(shared类型)</a></li>
-</ol>
+    <span class="token function">connect</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
+    <span class="token function">connect</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> root
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>反思：二叉树的题目重在观察，有时候我们可以快速写出题解，但是答案却不对，这个时候或许需要注意考虑一些特殊情况</p>
+</blockquote>
 
             </div>
             <hr />
@@ -1048,9 +775,9 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《GitLab CICD 自动化部署》
+                    《【leetcode-116】填充每个节点的下一个右侧节点指针》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/14/cicd/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/04/leetcode-116/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -1091,7 +818,7 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/07/14/cicd/',
+        id: '2020/12/04/leetcode-116/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1378,31 +1105,35 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/07/14/fabric-contribute/">
+                <a href="/2020/12/04/leetcode-114/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="向 fabric 贡献代码">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="【leetcode-114】二叉树展开为链表">
                         
-                        <span class="card-title">向 fabric 贡献代码</span>
+                        <span class="card-title">【leetcode-114】二叉树展开为链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要记录了向fabric开源社区贡献代码的过程
+                            一看到二叉树的题目就需要思考是前序、中序、还是后序遍历，一旦确定，就可以套模版了，接下来就是一些细节问题……
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-14
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-04
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
+                                </a>
+                            
+                            <a href="/categories/leetcode/tree/" class="post-category" target="_blank">
+                                    tree
                                 </a>
                             
                             
@@ -1412,8 +1143,12 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/tree/" target="_blank">
+                        <span class="chip bg-color">tree</span>
                     </a>
                     
                 </div>
@@ -1427,31 +1162,35 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/29/fabric-gm/">
+                <a href="/2020/12/02/leetcode-226/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="fabric国密改造全记录">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="【leetcode-226】翻转二叉树">
                         
-                        <span class="card-title">fabric国密改造全记录</span>
+                        <span class="card-title">【leetcode-226】翻转二叉树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            最近应公司项目需求，需要对fabric中的加密相关模块进行国密化改造。
+                            二叉树题目的一个难点就是，如何把题目的要求细化成每个节点需要做的事情，像这道题就是相当于交换每个节点的左右子节点。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-29
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
+                                </a>
+                            
+                            <a href="/categories/leetcode/tree/" class="post-category" target="_blank">
+                                    tree
                                 </a>
                             
                             
@@ -1461,12 +1200,12 @@ CMD [&quot;bee&quot;, &quot;run&quot;]</code></pre><h1 id="参考资料"><a href
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/密码/" target="_blank">
-                        <span class="chip bg-color">密码</span>
+                    <a href="/tags/tree/" target="_blank">
+                        <span class="chip bg-color">tree</span>
                     </a>
                     
                 </div>

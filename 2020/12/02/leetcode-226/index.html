@@ -342,7 +342,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -505,7 +505,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    86
+                    311
                 </div>
                 
 
@@ -543,6 +543,13 @@
   <span class="token number">7</span>     <span class="token number">2</span>
  <span class="token operator">/</span> \   <span class="token operator">/</span> \
 <span class="token number">9</span>   <span class="token number">6</span> <span class="token number">3</span>   <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>观察两棵二叉树，我们会发现对于第一棵树，只要把每个节点的左右子节点进行交换就能得到第二棵树，接下来就是套用二叉树的模版了，当然在写代码前我们还需要考虑：</p>
+<ol>
+<li>如何实现两个节点的交换？</li>
+<li>选择前序遍历、中序便利还是后序遍历？</li>
+<li>对于叶子节点应该怎么操作？</li>
+</ol>
+<p>想明白了以上几个问题，就可以写题解了。</p>
 <h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">/**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -556,6 +563,7 @@
         <span class="token keyword">return</span> <span class="token boolean">nil</span>
     <span class="token punctuation">}</span>
 
+    <span class="token comment" spellcheck="true">// 交换左右子树节点</span>
     temp <span class="token operator">:=</span> root<span class="token punctuation">.</span>Left
     root<span class="token punctuation">.</span>Left <span class="token operator">=</span> root<span class="token punctuation">.</span>Right
     root<span class="token punctuation">.</span>Right <span class="token operator">=</span> temp
@@ -564,7 +572,11 @@
     <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
 
     <span class="token keyword">return</span> root
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>值得一提的是，这道题用前序和后序遍历是可以的，而中序遍历则不行（为什么）</p>
+</blockquote>
+<p>二叉树题目的一个难点就是，如何把题目的要求细化成每个节点需要做的事情，像这道题就是相当于交换每个节点的左右子节点。</p>
 
             </div>
             <hr />
@@ -1049,30 +1061,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/12/02/leetcode-226/">
+                <a href="/2020/12/04/leetcode-116/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【leetcode-226】翻转二叉树">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="【leetcode-116】填充每个节点的下一个右侧节点指针">
                         
-                        <span class="card-title">【leetcode-226】翻转二叉树</span>
+                        <span class="card-title">【leetcode-116】填充每个节点的下一个右侧节点指针</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            将一棵二叉树进行镜像翻转
+                            二叉树的题目重在观察，有时候我们可以快速写出题解，但是答案却不对，这个时候或许需要注意考虑一些特殊情况
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-02
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-04
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1089,7 +1100,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1116,7 +1126,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="fabric 链上数据防篡改">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="fabric 链上数据防篡改">
                         
                         <span class="card-title">fabric 链上数据防篡改</span>
                     </div>
@@ -1318,7 +1328,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">25.8k</span>
+            <span class="white-color">27.2k</span>
             
 
             <br>
