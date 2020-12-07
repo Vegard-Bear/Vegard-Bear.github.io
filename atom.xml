@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2020-12-07T12:53:06.148Z</updated>
+  <updated>2020-12-07T12:53:44.912Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>【leetcode-654】二叉树展开为链表</title>
+    <title>【leetcode-654】最大二叉树</title>
     <link href="https://vegard-bear.github.io/2020/12/07/leetcode-654/"/>
     <id>https://vegard-bear.github.io/2020/12/07/leetcode-654/</id>
     <published>2020-12-07T12:34:36.000Z</published>
-    <updated>2020-12-07T12:53:06.148Z</updated>
+    <updated>2020-12-07T12:53:44.912Z</updated>
     
     <summary type="html">
     
