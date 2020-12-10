@@ -4,14 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="fabric 2.2 的新特性, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-752】打开转盘锁, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="2.2 的新特性1. 分权的chaincode⽣命周期的管理详⻅ 2.0 beta版的chaincode⽣命周期管理
-
-多数组织需要同意chaincode的相关参数，⽐⽅说policy等。 
-更慎重的chaincode升级过程（需要组织重新">
+    <meta name="description" content="题目链接752. 打开转盘锁
+题目描述你有一个带有四个圆形拨轮的转盘锁。每个拨轮都有10个数字： ‘0’, ‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’ 。每个拨轮可以自由旋转：例如把 ‘9’ 变为">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>fabric 2.2 的新特性 | 小熊的作坊</title>
+    <title>【leetcode-752】打开转盘锁 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +330,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        fabric 2.2 的新特性
+                        【leetcode-752】打开转盘锁
                     </div>
                 </div>
             </div>
@@ -449,12 +447,16 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/fabric/" target="_blank">
-                            <span class="chip bg-color">fabric</span>
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
                         </a>
                         
-                        <a href="/tags/2-2/" target="_blank">
-                            <span class="chip bg-color">2.2</span>
+                        <a href="/tags/tree/" target="_blank">
+                            <span class="chip bg-color">tree</span>
+                        </a>
+                        
+                        <a href="/tags/BFS/" target="_blank">
+                            <span class="chip bg-color">BFS</span>
                         </a>
                         
                     </div>
@@ -465,8 +467,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/fabric/" class="post-category" target="_blank">
-                            fabric
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
                         </a>
                         
                     </div>
@@ -477,7 +479,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-08
+                    2020-12-10
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -491,14 +493,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    710
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    5 分
                 </div>
                 
                 
@@ -514,55 +516,134 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="2-2-的新特性"><a href="#2-2-的新特性" class="headerlink" title="2.2 的新特性"></a>2.2 的新特性</h1><h2 id="1-分权的chaincode⽣命周期的管理"><a href="#1-分权的chaincode⽣命周期的管理" class="headerlink" title="1. 分权的chaincode⽣命周期的管理"></a>1. 分权的chaincode⽣命周期的管理</h2><p>详⻅ 2.0 beta版的chaincode⽣命周期管理</p>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/open-the-lock/" target="_blank" rel="noopener">752. 打开转盘锁</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>你有一个带有四个圆形拨轮的转盘锁。每个拨轮都有10个数字： ‘0’, ‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’ 。每个拨轮可以自由旋转：例如把 ‘9’ 变为  ‘0’，’0’ 变为 ‘9’ 。每次旋转都只能旋转一个拨轮的一位数字。</p>
+<p>锁的初始数字为 ‘0000’ ，一个代表四个拨轮的数字的字符串。</p>
+<p>列表 deadends 包含了一组死亡数字，一旦拨轮的数字和列表里的任何一个元素相同，这个锁将会被永久锁定，无法再被旋转。</p>
+<p>字符串 target 代表可以解锁的数字，你需要给出最小的旋转次数，如果无论如何不能解锁，返回 -1。</p>
+<p>示例 1:</p>
+<pre class="line-numbers language-go"><code class="language-go">输入：deadends <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"0201"</span><span class="token punctuation">,</span><span class="token string">"0101"</span><span class="token punctuation">,</span><span class="token string">"0102"</span><span class="token punctuation">,</span><span class="token string">"1212"</span><span class="token punctuation">,</span><span class="token string">"2002"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> target <span class="token operator">=</span> <span class="token string">"0202"</span>
+输出：<span class="token number">6</span>
+解释：
+可能的移动序列为 <span class="token string">"0000"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"1000"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"1100"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"1200"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"1201"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"1202"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"0202"</span>。
+注意 <span class="token string">"0000"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"0001"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"0002"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"0102"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"0202"</span> 这样的序列是不能解锁的，
+因为当拨动到 <span class="token string">"0102"</span> 时这个锁就会被锁定。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>示例 2:</p>
+<pre class="line-numbers language-go"><code class="language-go">输入<span class="token punctuation">:</span> deadends <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"8888"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> target <span class="token operator">=</span> <span class="token string">"0009"</span>
+输出：<span class="token number">1</span>
+解释：
+把最后一位反向旋转一次即可 <span class="token string">"0000"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"0009"</span>。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>示例 3:</p>
+<pre class="line-numbers language-go"><code class="language-go">输入<span class="token punctuation">:</span> deadends <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"8887"</span><span class="token punctuation">,</span><span class="token string">"8889"</span><span class="token punctuation">,</span><span class="token string">"8878"</span><span class="token punctuation">,</span><span class="token string">"8898"</span><span class="token punctuation">,</span><span class="token string">"8788"</span><span class="token punctuation">,</span><span class="token string">"8988"</span><span class="token punctuation">,</span><span class="token string">"7888"</span><span class="token punctuation">,</span><span class="token string">"9888"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> target <span class="token operator">=</span> <span class="token string">"8888"</span>
+输出：<span class="token operator">-</span><span class="token number">1</span>
+解释：
+无法旋转到目标数字且不被锁定。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>示例 4:</p>
+<pre class="line-numbers language-go"><code class="language-go">输入<span class="token punctuation">:</span> deadends <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"0000"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> target <span class="token operator">=</span> <span class="token string">"8888"</span>
+输出：<span class="token operator">-</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>提示：</p>
+<ol>
+<li>死亡列表 deadends 的长度范围为 [1, 500]。</li>
+<li>目标数字 target 不会在 deadends 之中。</li>
+<li>每个 deadends 和 target 中的字符串的数字会在 10,000 个可能的情况 ‘0000’ 到 ‘9999’ 中产生。</li>
+</ol>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题乍一看感觉有些复杂，但是我们先别急，仔细思考一下这道题到底是要做什么。</p>
+<p>首先，我们有一把锁，这把锁的其实状态是”0000”，然后我们通过不断拨动这把锁（每拨动一次，步数+1），最终得到我们的目标数字target。由于每次拨动的时候都只能改变一个数字，而且下一次拨动的结果是依赖于上一次的状态（相邻），每次拨动只能向上或向下，一共四个数字，那么就是8种可能，相当于每个节点有8个相邻的节点，其实就是BFS。</p>
+<p>既然是BFS，我们就需要明确这几个问题：</p>
 <ul>
-<li>多数组织需要同意chaincode的相关参数，⽐⽅说policy等。 </li>
-<li>更慎重的chaincode升级过程（需要组织重新同意chaincode的相关参数）。 </li>
-<li>更简便地升级policy或者私密数据配置（不⽤重新安装合约，可以直接从让多家组织同意新的参数开始，也就是升级参数的 话，chaincode的version可以不变） </li>
-<li>可检查的chaincode包（需要先打包chaincode，再安装） </li>
-<li>不同成员的同⼀个chaincode的源码可以不同（可以使⽤不同的语⾔编写，或者同⼀语⾔逻辑不同） </li>
-</ul>
-<h2 id="2-新的chaincode部署形式"><a href="#2-新的chaincode部署形式" class="headerlink" title="2. 新的chaincode部署形式"></a>2. 新的chaincode部署形式</h2><ul>
-<li>删除对docker daemon的依赖。</li>
-<li>增加了除了docker容器外的其他运⾏chaincode的选择。</li>
-<li>提供了外部创建chaincode的接⼝，可以⾃⼰实现其他的chaincode的创建和部署过程。 </li>
-<li>chaincode可以作为⼀个外部服务</li>
-</ul>
-<h2 id="3-私密数据的增强"><a href="#3-私密数据的增强" class="headerlink" title="3. 私密数据的增强"></a>3. 私密数据的增强</h2><p>详⻅2.0beta版私密数据新特性</p>
-<ul>
-<li>分享和验证私密数据。拥有私密数据的⼀⽅可以将私密数据分享给没有权限的⼀⽅，接收⽅可以通过调⽤GetPrivateDataHash<br>来验证私密数据的正确性。</li>
-<li>新增collection级别的背书策略。</li>
-<li>隐形的组织级别的collection。如果是单组织使⽤的私密数据，collection可以不⽤显性地去定义就可以直接使⽤。</li>
-</ul>
-<h2 id="4-CouchDB增加缓存来提升性能"><a href="#4-CouchDB增加缓存来提升性能" class="headerlink" title="4. CouchDB增加缓存来提升性能"></a>4. CouchDB增加缓存来提升性能</h2><h2 id="5-更轻量级的docker镜像"><a href="#5-更轻量级的docker镜像" class="headerlink" title="5. 更轻量级的docker镜像"></a>5. 更轻量级的docker镜像</h2><p>改⽤Apline Linux作为底层的操作系统。镜像⼤⼩变⼩了。</p>
-<h2 id="其他变化"><a href="#其他变化" class="headerlink" title="其他变化"></a>其他变化</h2><ul>
-<li>ccenv镜像不再包含shim</li>
-<li>logger从chaincode shim中移除，chaincode的log⼯作交给chaincode开发者⾃⼰处理 </li>
-<li>不再⽀持⽤户的chaincode调⽤系统chaincode </li>
-<li>GetHistoryForKey排序⽅式更改为从新到旧 </li>
-<li>对于orderer来说，之前⽀持的provisional启动⽅式被移除 </li>
-<li>orderer配置的genesismethod和genesisfile改为bootstrapmethod和bootstrapfile</li>
-<li>系统chaincode插件被移除，不可以通过go插件来添加系统chaincode了</li>
-<li>新镜像⾥不⽀持bash</li>
-<li>go版本升级到了1.13.4<font color="green"></font></li>
-<li>添加了背书失败的背书节点的 metrics</li>
-<li>可以在 core.yaml 中通过配置项对背书节点的并发请求数作出限制</li>
-<li>可以在 core.yaml 中通过配置项覆盖私有数据集合分发策略</li>
-<li>服务发现支持在链码私有数据集合级别指定背书策略</li>
-<li>Discover CLI现在支持SEC 1格式的私钥</li>
-<li>依赖更新<ul>
-<li>docker镜像更新到 3.11</li>
-<li>go 版本更新到 1.14.1</li>
-<li>go grpc 更新到 1.28.0</li>
-</ul>
+<li><p>起点和终点</p>
+<p>起点就是”0000”，终点是target</p>
 </li>
-<li>添加对 TLS 1.3 的支持</li>
-<li>添加查询已批准的链码定义的详细信息的功能
+<li><p>当前节点和相邻节点的关系（如何访问相邻节点）</p>
+<p>向上向下拨动一次，相当于每个数字（一共四个）+1或者-1</p>
+</li>
+<li><p>会不会走回头路</p>
+<p>需要一个数组visited记录每次访问过的数字</p>
+</li>
+</ul>
+<p>此外，这道题还多了一个附加条件，就是不能访问死亡数字，这个很好解决，就是再定义一个数组，每访问一个数字就检查一下是否包含在死亡数字中。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">openLock</span><span class="token punctuation">(</span>deadends <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> target <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 记录需要跳过的死亡密码</span>
+    deads <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> k<span class="token punctuation">,</span> dead <span class="token operator">:=</span> <span class="token keyword">range</span> deadends <span class="token punctuation">{</span>
+        deads<span class="token punctuation">[</span>dead<span class="token punctuation">]</span> <span class="token operator">=</span> k
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 记录已经访问过的密码，主要是为了避免走回头路，陷入死循环</span>
+    visited <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+    q <span class="token operator">:=</span> list<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    step <span class="token operator">:=</span> <span class="token number">0</span>
+    <span class="token comment" spellcheck="true">// 从起点 0000 开始 遍历</span>
+    q<span class="token punctuation">.</span><span class="token function">PushBack</span><span class="token punctuation">(</span><span class="token string">"0000"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">;</span> q<span class="token punctuation">.</span><span class="token function">Len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">;</span>  <span class="token punctuation">{</span>
+        size <span class="token operator">:=</span> q<span class="token punctuation">.</span><span class="token function">Len</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size <span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+            element <span class="token operator">:=</span> q<span class="token punctuation">.</span><span class="token function">Front</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            q<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span>
+            cur<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> element<span class="token punctuation">.</span>Value<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true">// 如果可能遇到死亡密码，直接跳过，不作处理</span>
+            <span class="token keyword">if</span> <span class="token boolean">_</span><span class="token punctuation">,</span> ok <span class="token operator">:=</span> deads<span class="token punctuation">[</span>cur<span class="token punctuation">]</span><span class="token punctuation">;</span> ok <span class="token punctuation">{</span>
+                <span class="token keyword">continue</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">// 到达终点，直接返回步数</span>
+            <span class="token keyword">if</span> cur <span class="token operator">==</span> target <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> step
+            <span class="token punctuation">}</span>
 
-</li>
-</ul>
-<p><strong>注：标记为绿色的部分为 2.1.0 和 2.2.0 新增的特性，2.0.1 和 2.1.1 版本都是一些 bugfix，没有新的特性。</strong></p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://hyperledger-fabric.readthedocs.io/en/release-2.2/whatsnew.html" target="_blank" rel="noopener">What’s new in Hyperledger Fabric v2.x</a></p>
+            <span class="token comment" spellcheck="true">// 将相邻未遍历节点加入队列</span>
+            <span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">4</span> <span class="token punctuation">;</span> j<span class="token operator">++</span>  <span class="token punctuation">{</span>
+
+                <span class="token comment" spellcheck="true">// 向上拨动，如果没有拨到过，就入队</span>
+                up <span class="token operator">:=</span> <span class="token function">addOne</span><span class="token punctuation">(</span>cur<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
+                <span class="token keyword">if</span>  <span class="token boolean">_</span><span class="token punctuation">,</span> ok <span class="token operator">:=</span> visited<span class="token punctuation">[</span>up<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token operator">!</span>ok <span class="token punctuation">{</span>
+                    q<span class="token punctuation">.</span><span class="token function">PushBack</span><span class="token punctuation">(</span>up<span class="token punctuation">)</span>
+                    visited<span class="token punctuation">[</span>up<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+                <span class="token punctuation">}</span>
+
+                <span class="token comment" spellcheck="true">// 向下拨动，如果没有拨到过，就入队</span>
+                down <span class="token operator">:=</span> <span class="token function">subOne</span><span class="token punctuation">(</span>cur<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
+                <span class="token keyword">if</span>  <span class="token boolean">_</span><span class="token punctuation">,</span> ok <span class="token operator">:=</span> visited<span class="token punctuation">[</span>down<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token operator">!</span>ok <span class="token punctuation">{</span>
+                    q<span class="token punctuation">.</span><span class="token function">PushBack</span><span class="token punctuation">(</span>down<span class="token punctuation">)</span>
+                    visited<span class="token punctuation">[</span>down<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 拨动了一次，步数+1</span>
+        step<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 走到这里说明尝试了所有可能的次数，也没有拨到</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 向上拨动一次</span>
+<span class="token keyword">func</span> <span class="token function">addOne</span><span class="token punctuation">(</span>s <span class="token builtin">string</span><span class="token punctuation">,</span> j <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    b <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 9 再拨动一次是 0（特殊情况）</span>
+    <span class="token keyword">if</span> b<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'9'</span> <span class="token punctuation">{</span>
+        b<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'0'</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 其他直接+1就行</span>
+        b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 向下拨动一次</span>
+<span class="token keyword">func</span> <span class="token function">subOne</span><span class="token punctuation">(</span>s <span class="token builtin">string</span><span class="token punctuation">,</span> j <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    b <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 0 再拨动一次是 9（特殊情况）</span>
+    <span class="token keyword">if</span> b<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'0'</span> <span class="token punctuation">{</span>
+        b<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'9'</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 其他直接-1</span>
+        b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">--</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N-2-A-N-D"><a href="#时间复杂度：O-N-2-A-N-D" class="headerlink" title="时间复杂度：O(N^2 * A^N + D)"></a>时间复杂度：O(N^2 * A^N + D)</h3><p>我们用 A 表示数字的个数，N 表示状态的位数，D 表示数组 deadends 的大小。在最坏情况下，我们需要搜索完所有状态，状态的总数为 O(A^N)。对于每个状态，我们要枚举修改的位置，需要 O(N) 的时间，枚举后得到新的状态同样需要 O(N) 的时间。</p>
+<h3 id="空间复杂度：O-A-N-D"><a href="#空间复杂度：O-A-N-D" class="headerlink" title="空间复杂度：O(A^N + D)"></a>空间复杂度：O(A^N + D)</h3><p>用来存储队列以及 deadends 的集合。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><blockquote>
+<p>分析出问题的模型后，可以先写出代码框架（套模版），然后再根据实际情况进行进一步处理细节问题，不要一开始就陷入细节。</p>
+</blockquote>
 
             </div>
             <hr />
@@ -721,9 +802,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《fabric 2.2 的新特性》
+                    《【leetcode-752】打开转盘锁》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/08/08/fabric-newfeature-2-2/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/10/leetcode-752/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -764,7 +845,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/08/08/fabric-newfeature-2-2/',
+        id: '2020/12/10/leetcode-752/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1047,54 +1128,56 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/08/fabric-chaincode-2-2/">
+                <a href="/2020/12/10/leetcode-752/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="fabric 2.2 生命周期链码实战">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="【leetcode-752】打开转盘锁">
                         
-                        <span class="card-title">fabric 2.2 生命周期链码实战</span>
+                        <span class="card-title">【leetcode-752】打开转盘锁</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命周期管理
+                            对于一些考察点不明显的问题，要想办法抽象为我们熟悉的数据结构，然后再套用对应的模版去解题
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/chaincode/" target="_blank">
-                        <span class="chip bg-color">chaincode</span>
+                    <a href="/tags/tree/" target="_blank">
+                        <span class="chip bg-color">tree</span>
                     </a>
                     
-                    <a href="/tags/2-2/" target="_blank">
-                        <span class="chip bg-color">2.2</span>
+                    <a href="/tags/BFS/" target="_blank">
+                        <span class="chip bg-color">BFS</span>
                     </a>
                     
                 </div>
@@ -1108,31 +1191,31 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/08/fabric-upgrade-2-2/">
+                <a href="/2020/12/09/leetcode-111/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="fabric 1.4 升级到 2.2 的⽅案">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【leetcode-111】二叉树的最小深度">
                         
-                        <span class="card-title">fabric 1.4 升级到 2.2 的⽅案</span>
+                        <span class="card-title">【leetcode-111】二叉树的最小深度</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            最近Fabric新发布了2.2版本，也是继1.4以来又一个LTS版本
+                            对于求树的高度一类的问题基本就是深度优先或者广度优先，然后直接套用模版就可以了
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-08
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
@@ -1142,16 +1225,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/2-2/" target="_blank">
-                        <span class="chip bg-color">2.2</span>
+                    <a href="/tags/tree/" target="_blank">
+                        <span class="chip bg-color">tree</span>
                     </a>
                     
-                    <a href="/tags/upgrade/" target="_blank">
-                        <span class="chip bg-color">upgrade</span>
+                    <a href="/tags/BFS/" target="_blank">
+                        <span class="chip bg-color">BFS</span>
                     </a>
                     
                 </div>
