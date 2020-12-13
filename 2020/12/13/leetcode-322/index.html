@@ -4,24 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-226】翻转二叉树, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-322】零钱兑换, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接226. 翻转二叉树
-题目描述翻转一棵二叉树。
-示例：
-输入：
-     4
-   /   \
-  2     7
- / \   / \
-1   3 6   9
-输出：
-     4
-   /   \
-  7     2
- / \ ">
+    <meta name="description" content="题目链接322. 零钱兑换
+题目描述给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
+你可以认为每种硬币的数量是无限的。
+示">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -29,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-226】翻转二叉树 | 小熊的作坊</title>
+    <title>【leetcode-322】零钱兑换 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -342,13 +332,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-226】翻转二叉树
+                        【leetcode-322】零钱兑换
                     </div>
                 </div>
             </div>
@@ -463,8 +453,8 @@
                             <span class="chip bg-color">leetcode</span>
                         </a>
                         
-                        <a href="/tags/tree/" target="_blank">
-                            <span class="chip bg-color">tree</span>
+                        <a href="/tags/动态规划/" target="_blank">
+                            <span class="chip bg-color">动态规划</span>
                         </a>
                         
                     </div>
@@ -487,7 +477,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-02
+                    2020-12-13
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -501,14 +491,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    311
+                    788
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
                 
@@ -524,55 +514,95 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/invert-binary-tree/" target="_blank" rel="noopener">226. 翻转二叉树</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>翻转一棵二叉树。</p>
-<p>示例：</p>
-<p>输入：</p>
-<pre class="line-numbers language-go"><code class="language-go">     <span class="token number">4</span>
-   <span class="token operator">/</span>   \
-  <span class="token number">2</span>     <span class="token number">7</span>
- <span class="token operator">/</span> \   <span class="token operator">/</span> \
-<span class="token number">1</span>   <span class="token number">3</span> <span class="token number">6</span>   <span class="token number">9</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输出：</p>
-<pre class="line-numbers language-go"><code class="language-go">     <span class="token number">4</span>
-   <span class="token operator">/</span>   \
-  <span class="token number">7</span>     <span class="token number">2</span>
- <span class="token operator">/</span> \   <span class="token operator">/</span> \
-<span class="token number">9</span>   <span class="token number">6</span> <span class="token number">3</span>   <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>观察两棵二叉树，我们会发现对于第一棵树，只要把每个节点的左右子节点进行交换就能得到第二棵树，接下来就是套用二叉树的模版了，当然在写代码前我们还需要考虑：</p>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="noopener">322. 零钱兑换</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。</p>
+<p>你可以认为每种硬币的数量是无限的。</p>
+<p>示例 1：</p>
+<pre><code>输入：coins = [1, 2, 5], amount = 11
+输出：3 
+解释：11 = 5 + 5 + 1</code></pre><p>示例 2：</p>
+<pre><code>输入：coins = [2], amount = 3
+输出：-1</code></pre><p>示例 3：</p>
+<pre><code>输入：coins = [1], amount = 0
+输出：0</code></pre><p>示例 4：</p>
+<pre><code>输入：coins = [1], amount = 1
+输出：1</code></pre><p>示例 5：</p>
+<pre><code>输入：coins = [1], amount = 2
+输出：2</code></pre><p>提示：</p>
+<ul>
+<li>1 &lt;= coins.length &lt;= 12</li>
+<li>1 &lt;= coins[i] &lt;= 231 - 1</li>
+<li>0 &lt;= amount &lt;= 104</li>
+</ul>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这题可以考虑用动态规划求解，将大问题逐渐分解为小问题，对于动态规划需要考虑以下几步：</p>
 <ol>
-<li>如何实现两个节点的交换？</li>
-<li>选择前序遍历、中序便利还是后序遍历？</li>
-<li>对于叶子节点应该怎么操作？</li>
+<li>定义 DP table</li>
+<li>确定 base case（最简单情况）</li>
+<li>列出状态转移方程</li>
 </ol>
-<p>想明白了以上几个问题，就可以写题解了。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */</span>
-<span class="token keyword">func</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>root <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token operator">*</span>TreeNode <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token boolean">nil</span>
+<p>对于这个问题，dp 数组可以这样定义：</p>
+<ul>
+<li>当目标金额为 i 时，至少需要 dp [ i ] 个硬币可以凑出</li>
+</ul>
+<p>base case 也就是：</p>
+<ul>
+<li>当目标金额为 0 时，需要 0 个硬币可以凑出</li>
+</ul>
+<p>状态转移方程：</p>
+<pre><code>          0,                     amount = 0
+dp[n] =  
+          dp[amount-coin] + 1,   amount &gt; 0</code></pre><p>明确了以上几点，就可以套动态规划的框架了</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">coinChange</span><span class="token punctuation">(</span>coins <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> amount <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">// 定义dp数组, 下标为目标金额，值为对应最少硬币数</span>
+    dp <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> amount<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 初始状态设置为最大值 amount+1，因为 n 个硬币最多需要 n 个一元硬币，</span>
+    <span class="token comment" spellcheck="true">// 但这里没有直接设置为下标是为了排除找不到（-1）这种情况</span>
+    <span class="token keyword">for</span> k <span class="token operator">:=</span> <span class="token keyword">range</span> dp <span class="token punctuation">{</span>
+        dp<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> amount <span class="token operator">+</span> <span class="token number">1</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">// 交换左右子树节点</span>
-    temp <span class="token operator">:=</span> root<span class="token punctuation">.</span>Left
-    root<span class="token punctuation">.</span>Left <span class="token operator">=</span> root<span class="token punctuation">.</span>Right
-    root<span class="token punctuation">.</span>Right <span class="token operator">=</span> temp
+    <span class="token comment" spellcheck="true">// 确定 base case</span>
+    dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
 
-    <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
-    <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 外层循环遍历dp数组（所有状态）</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token keyword">range</span> dp <span class="token punctuation">{</span>
 
-    <span class="token keyword">return</span> root
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>值得一提的是，这道题用前序和后序遍历是可以的，而中序遍历则不行（为什么）</p>
-</blockquote>
-<p>二叉树题目的一个难点就是，如何把题目的要求细化成每个节点需要做的事情，像这道题就是相当于交换每个节点的左右子节点。</p>
+        <span class="token comment" spellcheck="true">// 内层循环遍历硬币种类（求每个状态对应最少硬币数）</span>
+        <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> coin <span class="token operator">:=</span> <span class="token keyword">range</span> coins <span class="token punctuation">{</span>
+
+            <span class="token comment" spellcheck="true">// 排除单个硬币面值大于总额的情况（保证状态转移方程不会发生数组越界）</span>
+            <span class="token keyword">if</span> coin <span class="token operator">&lt;=</span> i <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 状态转移方程</span>
+                dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i <span class="token operator">-</span> coin<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">,</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 计算完整个dp数组（1 ～ amount的最小值），最后返回需要的最小值</span>
+    <span class="token comment" spellcheck="true">// 说明没找到，返回-1</span>
+    <span class="token keyword">if</span> dp<span class="token punctuation">[</span>amount<span class="token punctuation">]</span> <span class="token operator">==</span> amount <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> dp<span class="token punctuation">[</span>amount<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 求较小值函数</span>
+<span class="token keyword">func</span> <span class="token function">min</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> a <span class="token operator">&lt;</span> b <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> a
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> b
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-Sn"><a href="#时间复杂度：O-Sn" class="headerlink" title="时间复杂度：O(Sn)"></a>时间复杂度：O(Sn)</h3><p>其中 S 是金额，n 是面额数。我们一共需要计算 O(S) 个状态，S 为题目所给的总金额。对于每个状态，每次需要枚举 n 个面额来转移状态，所以一共需要 O(Sn) 的时间复杂度。</p>
+<h3 id="空间复杂度：O-S"><a href="#空间复杂度：O-S" class="headerlink" title="空间复杂度：O(S)"></a>空间复杂度：O(S)</h3><p>DP 数组需要开长度为总金额 S 的空间。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>对于动态规划问题最重要的是列出状态转移方程，需要弄清楚</p>
+<ol>
+<li>这个问题的 base case（最简单情况）是什么？</li>
+<li>有哪些状态？</li>
+<li>对于每个状态可以作出什么选择使得状态发生改变？</li>
+<li>如果定义 dp 数组来表示这种状态？</li>
+</ol>
 
             </div>
             <hr />
@@ -731,9 +761,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-226】翻转二叉树》
+                    《【leetcode-322】零钱兑换》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/02/leetcode-226/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/13/leetcode-322/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -774,7 +804,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/02/leetcode-226/',
+        id: '2020/12/13/leetcode-322/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1057,29 +1087,84 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/04/leetcode-116/">
+                <a href="/2020/12/13/leetcode-322/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="【leetcode-116】填充每个节点的下一个右侧节点指针">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【leetcode-322】零钱兑换">
                         
-                        <span class="card-title">【leetcode-116】填充每个节点的下一个右侧节点指针</span>
+                        <span class="card-title">【leetcode-322】零钱兑换</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            二叉树的题目重在观察，有时候我们可以快速写出题解，但是答案却不对，这个时候或许需要注意考虑一些特殊情况
+                            对于动态规划问题最重要的是确定 base case、状态和选择，然后定义 dp 数组，列出状态转移方程
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-04
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/10/leetcode-752/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="【leetcode-752】打开转盘锁">
+                        
+                        <span class="card-title">【leetcode-752】打开转盘锁</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            对于一些考察点不明显的问题，要想办法抽象为我们熟悉的数据结构，然后再套用对应的模版去解题
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1103,50 +1188,8 @@
                         <span class="chip bg-color">tree</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/08/15/tamper-with-data/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="fabric 链上数据防篡改">
-                        
-                        <span class="card-title">fabric 链上数据防篡改</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            fabric 具备数据防篡改机制，这里提供了一种验证链上数据防篡改的场景
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-15
-                            </span>
-                        <span class="publish-author">
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
-                    </a>
-                    
-                    <a href="/tags/test/" target="_blank">
-                        <span class="chip bg-color">test</span>
+                    <a href="/tags/BFS/" target="_blank">
+                        <span class="chip bg-color">BFS</span>
                     </a>
                     
                 </div>
