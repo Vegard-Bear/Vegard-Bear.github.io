@@ -639,8 +639,8 @@
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N-2-A-N-D"><a href="#时间复杂度：O-N-2-A-N-D" class="headerlink" title="时间复杂度：O(N^2 * A^N + D)"></a>时间复杂度：O(N^2 * A^N + D)</h3><p>我们用 A 表示数字的个数，N 表示状态的位数，D 表示数组 deadends 的大小。在最坏情况下，我们需要搜索完所有状态，状态的总数为 O(A^N)。对于每个状态，我们要枚举修改的位置，需要 O(N) 的时间，枚举后得到新的状态同样需要 O(N) 的时间。</p>
-<h3 id="空间复杂度：O-A-N-D"><a href="#空间复杂度：O-A-N-D" class="headerlink" title="空间复杂度：O(A^N + D)"></a>空间复杂度：O(A^N + D)</h3><p>用来存储队列以及 deadends 的集合。</p>
+<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N-2-A-N-D"><a href="#时间复杂度：O-N-2-A-N-D" class="headerlink" title="时间复杂度：O((N^2 * A^N + D))"></a>时间复杂度：O((N^2 * A^N + D))</h3><p>我们用 A 表示数字的个数，N 表示状态的位数，D 表示数组 deadends 的大小。在最坏情况下，我们需要搜索完所有状态，状态的总数为 O((A^N))。对于每个状态，我们要枚举修改的位置，需要 O((N)) 的时间，枚举后得到新的状态同样需要 O((N)) 的时间。</p>
+<h3 id="空间复杂度：O-A-N-D"><a href="#空间复杂度：O-A-N-D" class="headerlink" title="空间复杂度：O((A^N + D))"></a>空间复杂度：O((A^N + D))</h3><p>用来存储队列以及 deadends 的集合。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><ol>
 <li><p>分析出问题的模型后，可以先写出代码框架（套模版），然后再根据实际情况进行进一步处理细节问题，不要一开始就陷入细节。</p>
 </li>
@@ -1148,7 +1148,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">30.8k</span>
+            <span class="white-color">31.8k</span>
             
 
             <br>

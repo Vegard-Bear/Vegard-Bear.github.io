@@ -613,10 +613,10 @@
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> depth
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="DFS-1"><a href="#DFS-1" class="headerlink" title="DFS"></a>DFS</h3><p>时间复杂度：O(N)，其中 N 是树的节点数。对每个节点访问一次。</p>
-<p>空间复杂度：O(H)，其中 H 是树的高度。空间复杂度主要取决于递归时栈空间的开销，最坏情况下，树呈现链状，空间复杂度为 O(N)。平均情况下树的高度与节点数的对数正相关，空间复杂度为 O(logN)。</p>
-<h3 id="BFS-1"><a href="#BFS-1" class="headerlink" title="BFS"></a>BFS</h3><p>时间复杂度：O(N)，其中 N 是树的节点数。对每个节点访问一次。</p>
-<p>空间复杂度：O(N)，其中 N 是树的节点数。空间复杂度主要取决于队列的开销，队列中的元素个数不会超过树的节点数。</p>
+<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="DFS-1"><a href="#DFS-1" class="headerlink" title="DFS"></a>DFS</h3><p>时间复杂度：O((N))，其中 N 是树的节点数。对每个节点访问一次。</p>
+<p>空间复杂度：O((H))，其中 H 是树的高度。空间复杂度主要取决于递归时栈空间的开销，最坏情况下，树呈现链状，空间复杂度为 O((N))。平均情况下树的高度与节点数的对数正相关，空间复杂度为 O((logN))。</p>
+<h3 id="BFS-1"><a href="#BFS-1" class="headerlink" title="BFS"></a>BFS</h3><p>时间复杂度：O((N))，其中 N 是树的节点数。对每个节点访问一次。</p>
+<p>空间复杂度：O((N))，其中 N 是树的节点数。空间复杂度主要取决于队列的开销，队列中的元素个数不会超过树的节点数。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这里用到了go的一个库来模拟队列，可以参考</p>
 <p><a href="https://blog.wolfogre.com/posts/slice-queue-vs-list-queue/" target="_blank" rel="noopener">https://blog.wolfogre.com/posts/slice-queue-vs-list-queue/</a></p>
 <blockquote>
@@ -1118,7 +1118,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">30.8k</span>
+            <span class="white-color">31.8k</span>
             
 
             <br>

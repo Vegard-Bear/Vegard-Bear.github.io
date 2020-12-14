@@ -594,8 +594,8 @@ dp[n] =
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> b
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-Sn"><a href="#时间复杂度：O-Sn" class="headerlink" title="时间复杂度：O(Sn)"></a>时间复杂度：O(Sn)</h3><p>其中 S 是金额，n 是面额数。我们一共需要计算 O(S) 个状态，S 为题目所给的总金额。对于每个状态，每次需要枚举 n 个面额来转移状态，所以一共需要 O(Sn) 的时间复杂度。</p>
-<h3 id="空间复杂度：O-S"><a href="#空间复杂度：O-S" class="headerlink" title="空间复杂度：O(S)"></a>空间复杂度：O(S)</h3><p>DP 数组需要开长度为总金额 S 的空间。</p>
+<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-Sn"><a href="#时间复杂度：O-Sn" class="headerlink" title="时间复杂度：O((Sn))"></a>时间复杂度：O((Sn))</h3><p>其中 S 是金额，n 是面额数。我们一共需要计算 O((S)) 个状态，S 为题目所给的总金额。对于每个状态，每次需要枚举 n 个面额来转移状态，所以一共需要 O((Sn)) 的时间复杂度。</p>
+<h3 id="空间复杂度：O-S"><a href="#空间复杂度：O-S" class="headerlink" title="空间复杂度：O((S))"></a>空间复杂度：O((S))</h3><p>DP 数组需要开长度为总金额 S 的空间。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>对于动态规划问题最重要的是列出状态转移方程，需要弄清楚</p>
 <ol>
 <li>这个问题的 base case（最简单情况）是什么？</li>
@@ -825,30 +825,29 @@ dp[n] =
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/12/13/leetcode-322/">
+                <a href="/2020/12/14/leetcode-46/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="【leetcode-322】零钱兑换">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【leetcode-46】全排列">
                         
-                        <span class="card-title">【leetcode-322】零钱兑换</span>
+                        <span class="card-title">【leetcode-46】全排列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            对于动态规划问题最重要的是确定 base case、状态和选择，然后定义 dp 数组，列出状态转移方程
+                            回溯剪枝问题比动态规划问题更简单，因为它不需要找转移方程，而是暴力穷举，想清楚路径、选择、结束条件，然后直接套框架就行了
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-13
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-14
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -861,7 +860,6 @@ dp[n] =
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -869,8 +867,12 @@ dp[n] =
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/动态规划/" target="_blank">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/DFS/" target="_blank">
+                        <span class="chip bg-color">DFS</span>
+                    </a>
+                    
+                    <a href="/tags/回溯剪枝/" target="_blank">
+                        <span class="chip bg-color">回溯剪枝</span>
                     </a>
                     
                 </div>
@@ -1101,7 +1103,7 @@ dp[n] =
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">30.8k</span>
+            <span class="white-color">31.8k</span>
             
 
             <br>
