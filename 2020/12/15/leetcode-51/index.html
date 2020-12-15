@@ -4,14 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Fabric 1.4源码分析2：Orderer 核心数据结构, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-51】N皇后, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-回顾上一节中我们讲述了一笔交易在 orderer 中的处理流程，进入引出了 orderer 源码分析的知识图谱。这次我们就从知识图谱的第一块内容说起，也就是 orderer 核心数据结构。
+    <meta name="description" content="题目链接46. N皇后
+题目描述n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。
 
-友情提示：在Fabric中，通道和链在概念上都">
+上图为 8 皇后问题的一种解法。
+给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。
+每一种解法包含">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Fabric 1.4源码分析2：Orderer 核心数据结构 | 小熊的作坊</title>
+    <title>【leetcode-51】N皇后 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +334,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Fabric 1.4源码分析2：Orderer 核心数据结构
+                        【leetcode-51】N皇后
                     </div>
                 </div>
             </div>
@@ -449,12 +451,16 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/fabric/" target="_blank">
-                            <span class="chip bg-color">fabric</span>
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
                         </a>
                         
-                        <a href="/tags/orderer/" target="_blank">
-                            <span class="chip bg-color">orderer</span>
+                        <a href="/tags/DFS/" target="_blank">
+                            <span class="chip bg-color">DFS</span>
+                        </a>
+                        
+                        <a href="/tags/回溯剪枝/" target="_blank">
+                            <span class="chip bg-color">回溯剪枝</span>
                         </a>
                         
                     </div>
@@ -465,8 +471,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/fabric/" class="post-category" target="_blank">
-                            fabric
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
                         </a>
                         
                     </div>
@@ -477,7 +483,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-02
+                    2020-12-15
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -491,14 +497,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    4 分
                 </div>
                 
                 
@@ -514,188 +520,151 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>回顾上一节中我们讲述了一笔交易在 orderer 中的处理流程，进入引出了 orderer 源码分析的知识图谱。这次我们就从知识图谱的第一块内容说起，也就是 orderer 核心数据结构。</p>
-</blockquote>
-<p><strong>友情提示：在Fabric中，通道和链在概念上都是一条区块链，所以本文中也可能会混用链和通道的说法，请读者不要过于纠结于这两个概念。</strong></p>
-<h1 id="Registrar"><a href="#Registrar" class="headerlink" title="Registrar"></a>Registrar</h1><p>Registrar 对象是一个多通道注册管理器，负责管理系统通道与所有应用通道，封装了所有通道的 ChainSupport 的 map、共识组件 map、ledgerFactory 对象等组件，维护所有通道上的通道配置、区块账本对象、共识组件等核心资源，创建通道上的共识组件链对象提供Orderer共识排序服务，负责对交易消息排序，切割打包构造新区块并提交账本，同时负责创建新的应用通道与更新通道配置。</p>
-<p>一言蔽之，<br>Registrar 就相当于 Orderer节点上的 “资源管理器”，包含了所有通道 资源的访问和控制点，也就是说，我们如果需要对 orderer 节点的任何一个通道进行操作，都得先从这里入手。</p>
-<blockquote>
-<p>Registrar 对象定义在<br>fabric/orderer/common/multichannel/registrar.go 文件中，具体如下：</p>
-</blockquote>
-<pre><code>// Registrar serves as a point of access and control for the individual channel resources.
-type Registrar struct {
-    lock               sync.RWMutex
-    chains             map[string]*ChainSupport
-    config             localconfig.TopLevel
-    consenters         map[string]consensus.Consenter
-    ledgerFactory      blockledger.Factory
-    signer             crypto.LocalSigner
-    blockcutterMetrics *blockcutter.Metrics
-    systemChannelID    string
-    systemChannel      *ChainSupport
-    templator          msgprocessor.ChannelConfigTemplator
-    callbacks          []channelconfig.BundleActor
-}</code></pre><ul>
-<li>lock 是一把锁，当需要对于通道资源进行读和写操作时，会对通道加锁，操作完再解锁。</li>
-<li>chains 保存了所有的链，每一条链在 Orderer 中都以 一个 Key - Value 键值对表述，其中键就是 channelID，值就是一条链，这里用 ChainSupport表示，具体下文还会介绍。</li>
-<li>config 保存了从 orderer.yaml 中读取的配置</li>
-<li>consenters 保存了所有的共识插件，每个共识插件都是一个 Consenter，Fabric 1.4 中共识插件有 Solo、Kafka、EtcdRaft 三种。</li>
-<li>ledgerFactory 用来读取和创建链的账本。</li>
-<li>signer用来对Orderer中的数据进行签名，以及创建 <a href="https://lessisbetter.site/2019/11/10/how-fabric-verify-signatures/#%E8%A7%A3%E5%AF%86SignatureHeader" target="_blank" rel="noopener">SignatureHeader</a>。</li>
-<li>blockcutterMetrics 是用于对切块进行一些指标的监测</li>
-<li>systemChannelID 和 systemChannel分别是系统通道ID、系通道实例。</li>
-<li>systemChannel </li>
-<li>templator 用于生成一个通道配置模版</li>
-<li>callbacks 用于对通道配置执行一些回调的操作</li>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/n-queens/" target="_blank" rel="noopener">46. N皇后</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<p><img src="https://i.niupic.com/images/2020/12/15/97fx.png" alt></p>
+<p>上图为 8 皇后问题的一种解法。</p>
+<p>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。</p>
+<p>每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 ‘Q’ 和 ‘.’ 分别代表了皇后和空位。</p>
+<p>示例：</p>
+<pre><code>输入：4
+输出：[
+ [&quot;.Q..&quot;,  // 解法 1
+  &quot;...Q&quot;,
+  &quot;Q...&quot;,
+  &quot;..Q.&quot;],
+
+ [&quot;..Q.&quot;,  // 解法 2
+  &quot;Q...&quot;,
+  &quot;...Q&quot;,
+  &quot;.Q..&quot;]
+]
+解释: 4 皇后问题存在两个不同的解法。
+</code></pre><p>提示：</p>
+<p>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。</p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>N 皇后是非常经典的题，这题的解题思路也非常清晰，就是通过回溯剪枝进行穷举就行了。这里我们套用框架：</p>
+<pre><code>result = []
+func backtrack(路径，选择列表) {
+    if 满足结束条件 {
+        result.add(路径)
+    }
+    return
+
+    for 选择 in 选择列表 {
+        做选择
+        backtrack(路径，选择列表)
+        撤销选择
+    }
+}</code></pre><p>想清楚几个问题</p>
+<ol>
+<li>起点是什么？<ul>
+<li>从第一行开始遍历</li>
 </ul>
-<h1 id="ChainSupport"><a href="#ChainSupport" class="headerlink" title="ChainSupport"></a>ChainSupport</h1><p>ChainSupport 封装了关联通道上的账本资源对象、消息处理器、区 块写组件、共识组件链对象等核心组件与模块，用于过滤验证消息、切割打包消息出块、 提交区块写入账本、创建通道与更新通道配置等流程。</p>
-<p>一言蔽之，ChainSupport 汇集了一条通道所需要的所有资源，一个 ChainSupport 就代表了一条链。</p>
-<blockquote>
-<p>ChainSupport 对象定义在<br>fabric/orderer/common/multichannel/chainsupport.go 文件中，具体如下：</p>
-</blockquote>
-<pre><code>// ChainSupport holds the resources for a particular channel.
-type ChainSupport struct {
-    *ledgerResources
-    msgprocessor.Processor
-    *BlockWriter
-    consensus.Chain
-    cutter blockcutter.Receiver
-    crypto.LocalSigner
-}</code></pre><p>ChainSupport 是一堆接口的集合，这些接口构成一条链所有的操作，接口可以分为4类：</p>
-<ul>
-<li>账本：ledgerResources、BlockWriter分别是账本读写和把区块写入到账本。</li>
-<li>消息：msgprocessor.Processor、cutter分别是处理交易和把交易切块。</li>
-<li>共识：consensus.Chain是Orderer的共识实例，比如每条链都有自己的Raft共识实例，它们互不干扰。</li>
-<li>签名：crypto.LocalSigner，同Registrar中的介绍。</li>
+</li>
+<li>结束条件是什么？<ul>
+<li>遍历到最后一行</li>
 </ul>
-<h1 id="Chain"><a href="#Chain" class="headerlink" title="Chain"></a>Chain</h1><p>Chain 接口的实现是一个共识插件的实例，它利用不同的共识算法（Solo、Kafka 和 Etcdraft）对交易排序并 添加到本地的缓存交易消息列表中，按出块规则切割成批量交易集合，再打包出块提交到账本，同时负责创建新通道与更新通道配置。</p>
-<p>一言蔽之，Chain 接口包含了一个共识插件所要实现的基本方法，它主要负责对交易/消息进行排序并调用 HandleChain 方法进行切块和写入账本，体现了共识算法的可插拔性。</p>
-<blockquote>
-<p>Chain 接口定义在<br>fabric/orderer/consensus/consensus.go 文件中，具体如下：</p>
-</blockquote>
-<pre><code>// Chain defines a way to inject messages for ordering.
-// Note, that in order to allow flexibility in the implementation, it is the responsibility of the implementer
-// to take the ordered messages, send them through the blockcutter.Receiver supplied via HandleChain to cut blocks,
-// and ultimately write the ledger also supplied via HandleChain.  This design allows for two primary flows
-// 1. Messages are ordered into a stream, the stream is cut into blocks, the blocks are committed (solo, kafka)
-// 2. Messages are cut into blocks, the blocks are ordered, then the blocks are committed (sbft)
-Chain定义了一种注入消息的方式来进行排序。
-// 注意，为了在实现中实现灵活性，实现者负责获取有序消息，并通过 blockcutter 发送它们。接收器通过 HandleChain 来切割块，并写入账本也通过 HandleChain方法。
-// 这种设计允许两个主要流程：
-// 1. 消息被排序到一个流中，流被切成块，块被提交(solo, kafka)
-// 2. 消息被切成块，对块进行排序，然后提交块(sbft)
-type Chain interface {
-    // 普通消息/交易排序
-    // Order accepts a message which has been processed at a given configSeq.
-    // If the configSeq advances, it is the responsibility of the consenter
-    // to revalidate and potentially discard the message
-    // The consenter may return an error, indicating the message was not accepted
-    Order(env *cb.Envelope, configSeq uint64) error
+</li>
+<li>怎么定义走过的路径？<ul>
+<li>这里一条路就是一个棋盘的排列方式</li>
+</ul>
+</li>
+<li>如何做选择？<ul>
+<li>在当前行依次遍历所有的列，要保证选中列、行和斜对角都没有冲突</li>
+</ul>
+</li>
+</ol>
+<p>想清楚这几个问题就可以开始写代码了，剩下的就是细节问题了（比如选用什么数据结构）</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 最终符合要求的若干个棋盘</span>
+<span class="token keyword">var</span> results <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
 
-    // 配置消息/交易排序
-    // Configure accepts a message which reconfigures the channel and will
-    // trigger an update to the configSeq if committed.  The configuration must have
-    // been triggered by a ConfigUpdate message. If the config sequence advances,
-    // it is the responsibility of the consenter to recompute the resulting config,
-    // discarding the message if the reconfiguration is no longer valid.
-    // The consenter may return an error, indicating the message was not accepted
-    Configure(config *cb.Envelope, configSeq uint64) error
+<span class="token keyword">func</span> <span class="token function">solveNQueens</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 全局变量需要重置</span>
+    results <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
 
-    // 等待排序集群可用
-    // WaitReady blocks waiting for consenter to be ready for accepting new messages.
-    // This is useful when consenter needs to temporarily block ingress messages so
-    // that in-flight messages can be consumed. It could return error if consenter is
-    // in erroneous states. If this blocking behavior is not desired, consenter could
-    // simply return nil.
-    WaitReady() error
+    <span class="token comment" spellcheck="true">// 定义一个 n * n 的空棋盘</span>
+    <span class="token keyword">var</span> board <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span> <span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        row <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n <span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">{</span>
+            row <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>row<span class="token punctuation">,</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        board <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>board<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
 
-    // 当排序集群发送错误时，会关闭返回的通道
-    // Errored returns a channel which will close when an error has occurred.
-    // This is especially useful for the Deliver client, who must terminate waiting
-    // clients when the consenter is not up to date.
-    Errored() &lt;-chan struct{}
+    <span class="token comment" spellcheck="true">// 从第 0 行开始遍历</span>
+    <span class="token function">backTrack</span><span class="token punctuation">(</span>board<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
 
-    // 启动当前链
-    // Start should allocate whatever resources are needed for staying up to date with the chain.
-    // Typically, this involves creating a thread which reads from the ordering source, passes those
-    // messages to a block cutter, and writes the resulting blocks to the ledger.
-    Start()
+    <span class="token keyword">return</span> results
+<span class="token punctuation">}</span>
 
-    // 停止当前链，并释放资源
-    // Halt frees the resources which were allocated for this Chain.
-    Halt()
-}</code></pre><h1 id="Consenter"><a href="#Consenter" class="headerlink" title="Consenter"></a>Consenter</h1><p>Consenter 也是接口，它只有1个功能用来创建 Chain。每种共识插件，都有自己单独的consenter实现，分别用来创建solo实例、kafka实例或etcdraft实例。</p>
-<pre><code>// Consenter defines the backing ordering mechanism.
-type Consenter interface {
-    // HandleChain should create and return a reference to a Chain for the given set of resources.
-    // It will only be invoked for a given chain once per process.  In general, errors will be treated
-    // as irrecoverable and cause system shutdown.  See the description of Chain for more details
-    // The second argument to HandleChain is a pointer to the metadata stored on the `ORDERER` slot of
-    // the last block committed to the ledger of this Chain. For a new chain, or one which is migrated,
-    // this metadata will be nil (or contain a zero-length Value), as there is no prior metadata to report.
-    HandleChain(support ConsenterSupport, metadata *cb.Metadata) (Chain, error)
-}</code></pre><h1 id="ConsenterSupport"><a href="#ConsenterSupport" class="headerlink" title="ConsenterSupport"></a>ConsenterSupport</h1><p>ConsenterSupport 为 consenter 实现提供所需的资源，其实就是共识用来访问外部数据的接口。</p>
-<pre><code>// ConsenterSupport provides the resources available to a Consenter implementation.
-type ConsenterSupport interface {
-    crypto.LocalSigner
-    msgprocessor.Processor
+<span class="token keyword">func</span> <span class="token function">backTrack</span><span class="token punctuation">(</span>board <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> row <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 结束条件, 最后一行也放好了</span>
+    <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>board<span class="token punctuation">)</span> <span class="token operator">==</span> row <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 注意这里用于拷贝的临时变量一定要用 make 开辟空间，分配地址，</span>
+        <span class="token comment" spellcheck="true">// 不能用 var tmp []string{} 进行声明，否则无法拷贝成功</span>
+        tmp <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>board<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token function">copy</span><span class="token punctuation">(</span>tmp<span class="token punctuation">,</span> board<span class="token punctuation">)</span>
+        results <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>results<span class="token punctuation">,</span> tmp<span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
 
-    // 验证区块签名是否合法
-    // VerifyBlockSignature verifies a signature of a block with a given optional
-    // configuration (can be nil).
-    VerifyBlockSignature([]*cb.SignedData, *cb.ConfigEnvelope) error
+    <span class="token comment" spellcheck="true">// 选定当前行，从第一列开始遍历</span>
+    <span class="token keyword">for</span> col <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> col <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>board<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> col<span class="token operator">++</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 如果会冲突，跳过这个点</span>
+        <span class="token keyword">if</span> <span class="token operator">!</span><span class="token function">isValid</span><span class="token punctuation">(</span>board<span class="token punctuation">,</span> row<span class="token punctuation">,</span> col<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">continue</span>
+        <span class="token punctuation">}</span>
 
-    // 提供把消息切成块的接口
-    // BlockCutter returns the block cutting helper for this channel.
-    BlockCutter() blockcutter.Receiver
+        <span class="token comment" spellcheck="true">// 如果不冲突，将该节点加入选择（放个皇后）</span>
+        <span class="token comment" spellcheck="true">// 注意这里的字符赋值方式，需要通过[]byte这种切片形式进行转化，</span>
+        <span class="token comment" spellcheck="true">// 不能直接给string中的某个字符进行赋值</span>
+        b <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>board<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        b<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">'Q'</span><span class="token punctuation">)</span>
+        board<span class="token punctuation">[</span>row<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
 
-    // 当前链的orderer配置
-    // SharedConfig provides the shared config from the channel&#39;s current config block.
-    SharedConfig() channelconfig.Orderer
+        <span class="token comment" spellcheck="true">// 进入下一行</span>
+        <span class="token function">backTrack</span><span class="token punctuation">(</span>board<span class="token punctuation">,</span> row <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
 
-    // 当前链的通道配置
-    // ChannelConfig provides the channel config from the channel&#39;s current config block.
-    ChannelConfig() channelconfig.Channel
+        <span class="token comment" spellcheck="true">// 撤销选择，回退一行（把皇后拿掉）</span>
+        b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>board<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        b<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span>
+        board<span class="token punctuation">[</span>row<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-    // 生成区块
-    // CreateNextBlock takes a list of messages and creates the next block based on the block with highest block number committed to the ledger
-    // Note that either WriteBlock or WriteConfigBlock must be called before invoking this method a second time.
-    CreateNextBlock(messages []*cb.Envelope) *cb.Block
+<span class="token comment" spellcheck="true">// 判断当前位置是否合法，这里需要专门写个函数进行处理</span>
+<span class="token keyword">func</span> <span class="token function">isValid</span><span class="token punctuation">(</span>board <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> row<span class="token punctuation">,</span> col <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">bool</span>  <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 从上往下，检查当前列是否存在冲突（列不变，行--）</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> row <span class="token operator">-</span> <span class="token number">1</span> <span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token punctuation">;</span> i<span class="token operator">--</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> board<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'Q'</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    // 读区块
-    // Block returns a block with the given number,
-    // or nil if such a block doesn&#39;t exist.
-    Block(number uint64) *cb.Block
+    <span class="token comment" spellcheck="true">// 左下角是否存在冲突（行--，列--）</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> j <span class="token operator">:=</span> row <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> col <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> j <span class="token operator">>=</span> <span class="token number">0</span> <span class="token punctuation">;</span> i<span class="token punctuation">,</span> j <span class="token operator">=</span> i<span class="token number">-1</span><span class="token punctuation">,</span> j<span class="token number">-1</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> board<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'Q'</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    // 写区块
-    // WriteBlock commits a block to the ledger.
-    WriteBlock(block *cb.Block, encodedMetadataValue []byte)
+    <span class="token comment" spellcheck="true">// 右下角是否存在冲突（行--，列++）</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> j <span class="token operator">:=</span> row <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> col <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>board<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token punctuation">,</span> j <span class="token operator">=</span> i<span class="token number">-1</span><span class="token punctuation">,</span> j<span class="token operator">+</span><span class="token number">1</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> board<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'Q'</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    // 写配置区块并更新配置
-    // WriteConfigBlock commits a block to the ledger, and applies the config update inside.
-    WriteConfigBlock(block *cb.Block, encodedMetadataValue []byte)
-
-    // 返回当前配置序列号
-    // Sequence returns the current config squence.
-    Sequence() uint64
-
-    // 返回 channel ID
-    // ChainID returns the channel ID this support is associated with.
-    ChainID() string
-
-    // 返回区块高度
-    // Height returns the number of blocks in the chain this channel is associated with.
-    Height() uint64
-
-    //以原始数据的格式追加区块，不像WriteBlock那样会修改元数据
-    // Append appends a new block to the ledger in its raw form,
-    // unlike WriteBlock that also mutates its metadata.
-    Append(block *cb.Block) error
-}</code></pre><h1 id="一图看懂-Orderer-核心数据结构"><a href="#一图看懂-Orderer-核心数据结构" class="headerlink" title="一图看懂 Orderer 核心数据结构"></a>一图看懂 Orderer 核心数据结构</h1><blockquote>
-<p>建议点击图片查看大图</p>
-</blockquote>
-<p><img src="http://note.youdao.com/yws/res/296/WEBRESOURCE4045838a95b90333c47c17cc7a9bc01b" alt="orderer 核心数据结构"></p>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N"><a href="#时间复杂度：O-N" class="headerlink" title="时间复杂度：O((N!))"></a>时间复杂度：O((N!))</h3><p>其中 N 是皇后数量。</p>
+<h3 id="空间复杂度：O-N"><a href="#空间复杂度：O-N" class="headerlink" title="空间复杂度：O((N))"></a>空间复杂度：O((N))</h3><p>其中 N 是皇后数量。空间复杂度主要取决于递归调用层数、记录每行放置的皇后的列下标的数组以及三个集合，递归调用层数不会超过 N，数组的长度为 N，每个集合的元素个数都不会超过 N。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题有两个需要着重注意的点，特别容易错，我自己做的时候在这里踩了坑：</p>
+<ol>
+<li>对字符串重的某个字符进行赋值时，需要通过[]byte这种切片形式进行转化，不能直接给string中的某个字符进行赋值。</li>
+<li>用于拷贝其一条路径的临时变量一定要用 make 开辟空间，分配地址，不能用 var tmp []string{} 进行声明，否则无法拷贝成功。</li>
+</ol>
 
             </div>
             <hr />
@@ -854,9 +823,9 @@ type ConsenterSupport interface {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Fabric 1.4源码分析2：Orderer 核心数据结构》
+                    《【leetcode-51】N皇后》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/08/02/orderer-data-structure/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/15/leetcode-51/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -897,7 +866,7 @@ type ConsenterSupport interface {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/08/02/orderer-data-structure/',
+        id: '2020/12/15/leetcode-51/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -918,54 +887,56 @@ type ConsenterSupport interface {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/08/fabric-upgrade-2-2/">
+                <a href="/2020/12/15/leetcode-51/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="fabric 1.4 升级到 2.2 的⽅案">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="【leetcode-51】N皇后">
                         
-                        <span class="card-title">fabric 1.4 升级到 2.2 的⽅案</span>
+                        <span class="card-title">【leetcode-51】N皇后</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            最近Fabric新发布了2.2版本，也是继1.4以来又一个LTS版本
+                            N 皇后问题是一个经典问题，本题的答案可以作为回溯剪枝的模版进行练习
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/2-2/" target="_blank">
-                        <span class="chip bg-color">2.2</span>
+                    <a href="/tags/DFS/" target="_blank">
+                        <span class="chip bg-color">DFS</span>
                     </a>
                     
-                    <a href="/tags/upgrade/" target="_blank">
-                        <span class="chip bg-color">upgrade</span>
+                    <a href="/tags/回溯剪枝/" target="_blank">
+                        <span class="chip bg-color">回溯剪枝</span>
                     </a>
                     
                 </div>
@@ -979,31 +950,31 @@ type ConsenterSupport interface {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/25/orderer-functions-overview/">
+                <a href="/2020/12/14/leetcode-46/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Fabric 1.4源码分析1：Orderer功能概述">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="【leetcode-46】全排列">
                         
-                        <span class="card-title">Fabric 1.4源码分析1：Orderer功能概述</span>
+                        <span class="card-title">【leetcode-46】全排列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要梳理了orderer的整体功能架构和主要模块，为进一步分析源码作准备。
+                            回溯剪枝问题比动态规划问题更简单，因为它不需要找转移方程，而是暴力穷举，想清楚路径、选择、结束条件，然后直接套框架就行了
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-25
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
@@ -1013,12 +984,16 @@ type ConsenterSupport interface {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/orderer/" target="_blank">
-                        <span class="chip bg-color">orderer</span>
+                    <a href="/tags/DFS/" target="_blank">
+                        <span class="chip bg-color">DFS</span>
+                    </a>
+                    
+                    <a href="/tags/回溯剪枝/" target="_blank">
+                        <span class="chip bg-color">回溯剪枝</span>
                     </a>
                     
                 </div>
