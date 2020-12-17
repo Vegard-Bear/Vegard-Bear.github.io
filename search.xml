@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>【Go特性1】并发编程技术</title>
+      <link href="/2020/12/17/go-feature-concurrent/"/>
+      <url>/2020/12/17/go-feature-concurrent/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Go最突出的特性之一就在于其对并发编程的支持很好，本文是作为Go并发特性介绍的预备知识</p></blockquote><h1 id="并行和并发"><a href="#并行和并发" class="headerlink" title="并行和并发"></a>并行和并发</h1><h3 id="并行-parallel"><a href="#并行-parallel" class="headerlink" title="并行 ((parallel))"></a>并行 ((parallel))</h3><p>指在同一时刻，有<font color="red">多条指令在多个处理器上同时执行</font>。</p><h3 id="并发-concurrency"><a href="#并发-concurrency" class="headerlink" title="并发 ((concurrency))"></a>并发 ((concurrency))</h3><p>指在<font color="red">同一时刻只能有一条指令执行</font>，但多个进程指令被快速的轮换执行，使得在宏观上具有多个进程同时执行的效果，但在微观上并不是同时执行的，只是把时间分成若干段，<font color="red">通过cpu时间片轮转使多个进程快速交替的执行</font>。</p><h1 id="程序和进程"><a href="#程序和进程" class="headerlink" title="程序和进程"></a>程序和进程</h1><ul><li><p>程序，是指编译好的二进制文件，在磁盘上，不占用系统资源(cpu、内存、打开的文件、设备、锁….)</p></li><li><p>进程，是一个抽象的概念，与操作系统原理联系紧密。进程是活跃的程序，占用系统资源。在内存中执行。(程序运行起来，产生一个进程)</p></li></ul><h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h3 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h3><p>进程基本的状态有5种，分别为初始态，就绪态，运行态，挂起态与终止态。</p><h3 id="进程并发"><a href="#进程并发" class="headerlink" title="进程并发"></a>进程并发</h3><p>存在问题：</p><ol><li>系统开销比较大，占用资源比较多，开启进程数量比较少。</li><li>在unix/linux系统下，还会产生“孤儿进程”和“僵尸进程”。</li></ol><ul><li>孤儿进程</li><li>僵尸进程</li></ul><p>在操作系统中，可以产生很多的进程。在unix/linux系统中，正常情况下，<font color="red">子进程是通过父进程fork创建的，子进程再创建新的进程</font>。并且父进程永远无法预测子进程 到底什么时候结束。 当一个 进程完成它的工作终止之后，它的父进程需要调用系统调用取得子进程的终止状态。</p><h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h3 id="线程并发"><a href="#线程并发" class="headerlink" title="线程并发"></a>线程并发</h3><p>什么是线程？</p><p>LWP：light weight process 轻量级的进程，本质仍是进程 (Linux下)。</p><ul><li><p>进程：独立地址空间，拥有PCB </p></li><li><p>线程：有独立的PCB，但没有独立的地址空间(共享)</p></li></ul><p>区别：在于是否共享地址空间。独居(进程)；合租(线程)。<br><big></big></p><ul><li>线程：最小的执行单位</li><li>进程：最小分配资源单位，可看成是只有一个线程的进程。</li></ul><h4 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h4><p>线程同步，指一个线程发出某一功能调用时，在没有得到结果之前，该调用不返回。同时其它线程为保证数据一致性，不能调用该功能。</p><p>“同步”的目的，是为了避免数据混乱，解决与时间有关的错误。实际上，不仅线程间需要同步，进程间、信号间等等都需要同步机制。</p><blockquote><p>所有“多个控制流，共同操作一个共享资源”的情况，都需要同步。</p></blockquote><h1 id="锁的应用"><a href="#锁的应用" class="headerlink" title="锁的应用"></a>锁的应用</h1><h3 id="互斥锁-mutex"><a href="#互斥锁-mutex" class="headerlink" title="互斥锁 mutex"></a>互斥锁 mutex</h3><p>Linux中提供一把互斥锁mutex（也称之为互斥量）。<br>每个线程在对资源操作前都尝试先加锁，成功加锁才能操作，操作结束解锁。同一时刻，只能有一个线程持有该锁。</p><p>互斥锁实质上是操作系统提供的一把“建议锁”（又称“协同锁”），建议程序中有多线程访问共享资源的时候使用该机制。但，并没有强制限定。因此，<font color="red">即使有了mutex，如果有线程不按规则来访问数据，依然会造成数据混乱。</font></p><h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>与互斥量类似，但读写锁允许更高的并行性。其特性为：写独占，读共享。</p><h5 id="读写锁特性："><a href="#读写锁特性：" class="headerlink" title="读写锁特性："></a>读写锁特性：</h5><ol><li>读写锁是“写模式加锁”时， 解锁前，所有对该锁加锁的线程都会被阻塞。</li><li>读写锁是“读模式加锁”时， 如果线程以读模式对其加锁会成功；如果线程以写模式加锁会阻塞。</li><li>读写锁是“读模式加锁”时， 既有试图以写模式加锁的线程，也有试图以读模式加锁的线程。那么读写锁会阻塞随后的读模式锁请求。优先满足写模式锁。<font color="red">读锁、写锁并行阻塞，写锁优先级高</font>。</li></ol><p>读写锁也叫共享-独占锁。当读写锁以读模式锁住时，它是以共享模式锁住的；当它以写模式锁住时，它是以独占模式锁住的。写独占、读共享。</p><p>读写锁非常适合于对数据结构读的次数远大于写的情况。</p><h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>协程((coroutine)), 也叫轻量级线程。</p><ul><li><p>与传统的系统级线程和进程相比，协程最大的优势在于“轻量级”。可以轻松创建上万个而不会导致系统资源衰竭。而线程和进程通常很难超过1万个。这也是协程别称“轻量级线程”的原因。</p></li><li><p>一个线程中可以有任意多个协程，但某一时刻只能有一个协程在运行，多个协程分享该线程分配到的计算机资源。</p></li><li><p>除了Python、Lua、Ruset,go等，多数语言在语法层面并不直接支持协程。</p></li><li><p>在协程中，调用一个任务就像调用一个函数一样，消耗的系统资源最少！但能达到进程、线程并发相同的效果。<br>从系统资源消耗的角度出发来看，进程相当多，线程次之，协程最少。</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Go 基础】</title>
       <link href="/2020/12/16/go-basic/"/>
       <url>/2020/12/16/go-basic/</url>

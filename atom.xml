@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2020-12-16T08:53:24.262Z</updated>
+  <updated>2020-12-17T12:08:51.746Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Go特性1】并发编程技术</title>
+    <link href="https://vegard-bear.github.io/2020/12/17/go-feature-concurrent/"/>
+    <id>https://vegard-bear.github.io/2020/12/17/go-feature-concurrent/</id>
+    <published>2020-12-17T12:02:41.000Z</published>
+    <updated>2020-12-17T12:08:51.746Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;Go最突出的特性之一就在于其对并发编程的支持很好，本文是作为Go并发特性介绍的预备知识&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;并行和并发&quot;&gt;&lt;a href=&quot;#并行和并发&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
+    
+    
+      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
+    
+  </entry>
   
   <entry>
     <title>【Go 基础】</title>
@@ -567,35 +596,6 @@
     
     
       <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GitLab CICD 自动化部署</title>
-    <link href="https://vegard-bear.github.io/2020/07/14/cicd/"/>
-    <id>https://vegard-bear.github.io/2020/07/14/cicd/</id>
-    <published>2020-07-14T07:54:16.000Z</published>
-    <updated>2020-07-25T08:42:48.107Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;本文简单记录了自学使用GitLab CI进行自动化部署的过程&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;什么是-CI-CD-流水线？&quot;&gt;&lt;a href=&quot;#什么是-CI-CD-流水线？&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="GitLab" scheme="https://vegard-bear.github.io/categories/GitLab/"/>
-    
-    
-      <category term="GitLab" scheme="https://vegard-bear.github.io/tags/GitLab/"/>
     
   </entry>
   

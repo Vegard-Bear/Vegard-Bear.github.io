@@ -4,24 +4,15 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-226】翻转二叉树, 小熊的作坊">
+    <meta name="keywords" content="【Go特性1】并发编程技术, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接226. 翻转二叉树
-题目描述翻转一棵二叉树。
-示例：
-输入：
-     4
-   /   \
-  2     7
- / \   / \
-1   3 6   9
-输出：
-     4
-   /   \
-  7     2
- / \ ">
+    <meta name="description" content="
+Go最突出的特性之一就在于其对并发编程的支持很好，本文是作为Go并发特性介绍的预备知识
+
+并行和并发并行 ((parallel))指在同一时刻，有多条指令在多个处理器上同时执行。
+并发 ((concurrency))指在同一时刻只能有一条">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -29,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-226】翻转二叉树 | 小熊的作坊</title>
+    <title>【Go特性1】并发编程技术 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -342,13 +333,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-226】翻转二叉树
+                        【Go特性1】并发编程技术
                     </div>
                 </div>
             </div>
@@ -459,12 +450,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/leetcode/" target="_blank">
-                            <span class="chip bg-color">leetcode</span>
-                        </a>
-                        
-                        <a href="/tags/tree/" target="_blank">
-                            <span class="chip bg-color">tree</span>
+                        <a href="/tags/go/" target="_blank">
+                            <span class="chip bg-color">go</span>
                         </a>
                         
                     </div>
@@ -475,8 +462,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/leetcode/" class="post-category" target="_blank">
-                            leetcode
+                        <a href="/categories/go/" class="post-category" target="_blank">
+                            go
                         </a>
                         
                     </div>
@@ -487,7 +474,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-02
+                    2020-12-17
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -501,14 +488,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    311
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
                 
@@ -524,55 +511,69 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/invert-binary-tree/" target="_blank" rel="noopener">226. 翻转二叉树</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>翻转一棵二叉树。</p>
-<p>示例：</p>
-<p>输入：</p>
-<pre class="line-numbers language-go"><code class="language-go">     <span class="token number">4</span>
-   <span class="token operator">/</span>   \
-  <span class="token number">2</span>     <span class="token number">7</span>
- <span class="token operator">/</span> \   <span class="token operator">/</span> \
-<span class="token number">1</span>   <span class="token number">3</span> <span class="token number">6</span>   <span class="token number">9</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输出：</p>
-<pre class="line-numbers language-go"><code class="language-go">     <span class="token number">4</span>
-   <span class="token operator">/</span>   \
-  <span class="token number">7</span>     <span class="token number">2</span>
- <span class="token operator">/</span> \   <span class="token operator">/</span> \
-<span class="token number">9</span>   <span class="token number">6</span> <span class="token number">3</span>   <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>观察两棵二叉树，我们会发现对于第一棵树，只要把每个节点的左右子节点进行交换就能得到第二棵树，接下来就是套用二叉树的模版了，当然在写代码前我们还需要考虑：</p>
-<ol>
-<li>如何实现两个节点的交换？</li>
-<li>选择前序遍历、中序便利还是后序遍历？</li>
-<li>对于叶子节点应该怎么操作？</li>
-</ol>
-<p>想明白了以上几个问题，就可以写题解了。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */</span>
-<span class="token keyword">func</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>root <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token operator">*</span>TreeNode <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token boolean">nil</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// 交换左右子树节点</span>
-    temp <span class="token operator">:=</span> root<span class="token punctuation">.</span>Left
-    root<span class="token punctuation">.</span>Left <span class="token operator">=</span> root<span class="token punctuation">.</span>Right
-    root<span class="token punctuation">.</span>Right <span class="token operator">=</span> temp
-
-    <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
-    <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
-
-    <span class="token keyword">return</span> root
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>值得一提的是，这道题用前序和后序遍历是可以的，而中序遍历则不行（为什么）</p>
+                <blockquote>
+<p>Go最突出的特性之一就在于其对并发编程的支持很好，本文是作为Go并发特性介绍的预备知识</p>
 </blockquote>
-<p>二叉树题目的一个难点就是，如何把题目的要求细化成每个节点需要做的事情，像这道题就是相当于交换每个节点的左右子节点。</p>
+<h1 id="并行和并发"><a href="#并行和并发" class="headerlink" title="并行和并发"></a>并行和并发</h1><h3 id="并行-parallel"><a href="#并行-parallel" class="headerlink" title="并行 ((parallel))"></a>并行 ((parallel))</h3><p>指在同一时刻，有<font color="red">多条指令在多个处理器上同时执行</font>。</p>
+<h3 id="并发-concurrency"><a href="#并发-concurrency" class="headerlink" title="并发 ((concurrency))"></a>并发 ((concurrency))</h3><p>指在<font color="red">同一时刻只能有一条指令执行</font>，但多个进程指令被快速的轮换执行，使得在宏观上具有多个进程同时执行的效果，但在微观上并不是同时执行的，只是把时间分成若干段，<font color="red">通过cpu时间片轮转使多个进程快速交替的执行</font>。</p>
+<h1 id="程序和进程"><a href="#程序和进程" class="headerlink" title="程序和进程"></a>程序和进程</h1><ul>
+<li><p>程序，是指编译好的二进制文件，在磁盘上，不占用系统资源(cpu、内存、打开的文件、设备、锁….)</p>
+</li>
+<li><p>进程，是一个抽象的概念，与操作系统原理联系紧密。进程是活跃的程序，占用系统资源。在内存中执行。(程序运行起来，产生一个进程)</p>
+</li>
+</ul>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h3 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h3><p>进程基本的状态有5种，分别为初始态，就绪态，运行态，挂起态与终止态。</p>
+<h3 id="进程并发"><a href="#进程并发" class="headerlink" title="进程并发"></a>进程并发</h3><p>存在问题：</p>
+<ol>
+<li>系统开销比较大，占用资源比较多，开启进程数量比较少。</li>
+<li>在unix/linux系统下，还会产生“孤儿进程”和“僵尸进程”。</li>
+</ol>
+<ul>
+<li>孤儿进程</li>
+<li>僵尸进程</li>
+</ul>
+<p>在操作系统中，可以产生很多的进程。在unix/linux系统中，正常情况下，<font color="red">子进程是通过父进程fork创建的，子进程再创建新的进程</font>。并且父进程永远无法预测子进程 到底什么时候结束。 当一个 进程完成它的工作终止之后，它的父进程需要调用系统调用取得子进程的终止状态。</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h3 id="线程并发"><a href="#线程并发" class="headerlink" title="线程并发"></a>线程并发</h3><p>什么是线程？</p>
+<p>LWP：light weight process 轻量级的进程，本质仍是进程 (Linux下)。</p>
+<ul>
+<li><p>进程：独立地址空间，拥有PCB </p>
+</li>
+<li><p>线程：有独立的PCB，但没有独立的地址空间(共享)</p>
+</li>
+</ul>
+<p>区别：在于是否共享地址空间。独居(进程)；合租(线程)。<br><big></big></p>
+<ul>
+<li>线程：最小的执行单位</li>
+<li>进程：最小分配资源单位，可看成是只有一个线程的进程。
+
+</li>
+</ul>
+<h4 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h4><p>线程同步，指一个线程发出某一功能调用时，在没有得到结果之前，该调用不返回。同时其它线程为保证数据一致性，不能调用该功能。</p>
+<p>“同步”的目的，是为了避免数据混乱，解决与时间有关的错误。实际上，不仅线程间需要同步，进程间、信号间等等都需要同步机制。</p>
+<blockquote>
+<p>所有“多个控制流，共同操作一个共享资源”的情况，都需要同步。</p>
+</blockquote>
+<h1 id="锁的应用"><a href="#锁的应用" class="headerlink" title="锁的应用"></a>锁的应用</h1><h3 id="互斥锁-mutex"><a href="#互斥锁-mutex" class="headerlink" title="互斥锁 mutex"></a>互斥锁 mutex</h3><p>Linux中提供一把互斥锁mutex（也称之为互斥量）。<br>每个线程在对资源操作前都尝试先加锁，成功加锁才能操作，操作结束解锁。同一时刻，只能有一个线程持有该锁。</p>
+<p>互斥锁实质上是操作系统提供的一把“建议锁”（又称“协同锁”），建议程序中有多线程访问共享资源的时候使用该机制。但，并没有强制限定。因此，<font color="red">即使有了mutex，如果有线程不按规则来访问数据，依然会造成数据混乱。</font></p>
+<h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>与互斥量类似，但读写锁允许更高的并行性。其特性为：写独占，读共享。</p>
+<h5 id="读写锁特性："><a href="#读写锁特性：" class="headerlink" title="读写锁特性："></a>读写锁特性：</h5><ol>
+<li>读写锁是“写模式加锁”时， 解锁前，所有对该锁加锁的线程都会被阻塞。</li>
+<li>读写锁是“读模式加锁”时， 如果线程以读模式对其加锁会成功；如果线程以写模式加锁会阻塞。</li>
+<li>读写锁是“读模式加锁”时， 既有试图以写模式加锁的线程，也有试图以读模式加锁的线程。那么读写锁会阻塞随后的读模式锁请求。优先满足写模式锁。<font color="red">读锁、写锁并行阻塞，写锁优先级高</font>。</li>
+</ol>
+<p>读写锁也叫共享-独占锁。当读写锁以读模式锁住时，它是以共享模式锁住的；当它以写模式锁住时，它是以独占模式锁住的。写独占、读共享。</p>
+<p>读写锁非常适合于对数据结构读的次数远大于写的情况。</p>
+<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>协程((coroutine)), 也叫轻量级线程。</p>
+<ul>
+<li><p>与传统的系统级线程和进程相比，协程最大的优势在于“轻量级”。可以轻松创建上万个而不会导致系统资源衰竭。而线程和进程通常很难超过1万个。这也是协程别称“轻量级线程”的原因。</p>
+</li>
+<li><p>一个线程中可以有任意多个协程，但某一时刻只能有一个协程在运行，多个协程分享该线程分配到的计算机资源。</p>
+</li>
+<li><p>除了Python、Lua、Ruset,go等，多数语言在语法层面并不直接支持协程。</p>
+</li>
+<li><p>在协程中，调用一个任务就像调用一个函数一样，消耗的系统资源最少！但能达到进程、线程并发相同的效果。<br>从系统资源消耗的角度出发来看，进程相当多，线程次之，协程最少。</p>
+</li>
+</ul>
 
             </div>
             <hr />
@@ -731,9 +732,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-226】翻转二叉树》
+                    《【Go特性1】并发编程技术》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/02/leetcode-226/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/17/go-feature-concurrent/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -774,7 +775,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/02/leetcode-226/',
+        id: '2020/12/17/go-feature-concurrent/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -795,50 +796,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/04/leetcode-116/">
+                <a href="/2020/12/17/go-feature-concurrent/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="【leetcode-116】填充每个节点的下一个右侧节点指针">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="【Go特性1】并发编程技术">
                         
-                        <span class="card-title">【leetcode-116】填充每个节点的下一个右侧节点指针</span>
+                        <span class="card-title">【Go特性1】并发编程技术</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            二叉树的题目重在观察，有时候我们可以快速写出题解，但是答案却不对，这个时候或许需要注意考虑一些特殊情况
+                            Go最突出的特性之一就在于其对并发编程的支持很好，本文是作为Go并发特性介绍的预备知识
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/leetcode/" class="post-category" target="_blank">
-                                    leetcode
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
-                    </a>
-                    
-                    <a href="/tags/tree/" target="_blank">
-                        <span class="chip bg-color">tree</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
                     </a>
                     
                 </div>
@@ -852,26 +851,33 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/15/tamper-with-data/">
+                <a href="/2020/12/16/go-basic/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="fabric 链上数据防篡改">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="【Go 基础】">
                         
-                        <span class="card-title">fabric 链上数据防篡改</span>
+                        <span class="card-title">【Go 基础】</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            fabric 具备数据防篡改机制，这里提供了一种验证链上数据防篡改的场景
+                            主要是自我梳理一下go语言的一些基础语法，指针、切片、map、字符串等，查漏补缺
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-15
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-16
                             </span>
                         <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -879,12 +885,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
-                    </a>
-                    
-                    <a href="/tags/test/" target="_blank">
-                        <span class="chip bg-color">test</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
                     </a>
                     
                 </div>
