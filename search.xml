@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【剑指offer-22】链表中倒数第k个节点</title>
+      <link href="/2020/12/19/offer-22/"/>
+      <url>/2020/12/19/offer-22/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/" target="_blank" rel="noopener">22. 链表中倒数第k个节点</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。</p><p>示例：</p><pre><code>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 k = 2.返回链表 4-&gt;5.</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>第一时间想到的解法：</p><ul><li>先遍历统计链表长度，记为 n ；</li><li>设置一个指针走 ((n-k)) 步，即可找到链表倒数第 k 个节点。</li></ul><p>当然实际上这题如果用快慢指针做, 不需要知道链表长度，只要指针1先走k-1步，然后指针2和指针1同时前进，当指针1指向链表最后一个元素时，指针2即为所求。</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func getKthFromEnd(head *ListNode, k int) *ListNode {    p1, p2 := head, head    // 指针p1先走k-1步    for ; k-1 &gt; 0 ; k-- {        p1 = p1.Next    }    for p2.Next != nil {        p1 = p1.Next        p2 = p2.Next    }    return p2}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度-O-N"><a href="#时间复杂度-O-N" class="headerlink" title="时间复杂度 O((N))"></a>时间复杂度 O((N))</h3><p>N 为链表长度；总体看， p1 走了 N 步， p2 走了 ((N-k)) 步。</p><h3 id="空间复杂度-O-1"><a href="#空间复杂度-O-1" class="headerlink" title="空间复杂度 O((1))"></a>空间复杂度 O((1))</h3><p>双指针 p1 , p2 使用常数大小的额外空间。</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><blockquote><p> 在链表相关的题目中，双指针的用法非常广泛，很多时候可以降低算法的时间复杂度或空间复杂度，我们在解决链表类的题目时，应该多多考虑尝试这种方法。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 剑指offer </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 链表 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-141】环形链表</title>
       <link href="/2020/12/19/leetcode-141/"/>
       <url>/2020/12/19/leetcode-141/</url>
