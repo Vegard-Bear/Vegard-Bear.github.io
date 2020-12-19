@@ -4,14 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Fabric交易处理流程, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-141】环形链表, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的模块和概念很多，本文以交易作为一个切入点，通过分析一笔交易从发送到最终上链所经历的各个环节，将fabric的核心模块串联起来，为接下来更为深入的各个模块的源码分析奠定基础。
-
-">
+    <meta name="description" content="题目链接141. 环形链表
+题目描述给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +18,7 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Fabric交易处理流程 | 小熊的作坊</title>
+    <title>【leetcode-141】环形链表 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +331,13 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Fabric交易处理流程
+                        【leetcode-141】环形链表
                     </div>
                 </div>
             </div>
@@ -449,8 +448,12 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/fabric/" target="_blank">
-                            <span class="chip bg-color">fabric</span>
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
+                        </a>
+                        
+                        <a href="/tags/链表/" target="_blank">
+                            <span class="chip bg-color">链表</span>
                         </a>
                         
                     </div>
@@ -461,8 +464,8 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/fabric/" class="post-category" target="_blank">
-                            fabric
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
                         </a>
                         
                     </div>
@@ -473,7 +476,7 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-25
+                    2020-12-19
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -487,14 +490,14 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    4 分
                 </div>
                 
                 
@@ -510,41 +513,63 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的模块和概念很多，本文以交易作为一个切入点，通过分析一笔交易从发送到最终上链所经历的各个环节，将fabric的核心模块串联起来，为接下来更为深入的各个模块的源码分析奠定基础。</p>
-</blockquote>
-<p><img src="http://note.youdao.com/yws/res/57/WEBRESOURCE9b612bf71f717be93422441ce1cd1afb" alt="交易流程"></p>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">141. 环形链表</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</p>
+<p>为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意，pos 仅仅是用于标识环的情况，并不会作为参数传递到函数中。</p>
+<p>说明：不允许修改给定的链表。</p>
+<p>进阶：</p>
+<p>你是否可以使用 O((1)) 空间解决此题？</p>
+<p>示例 1：</p>
+<pre><code>输入：head = [3,2,0,-4], pos = 1
+输出：返回索引为 1 的链表节点
+解释：链表中有一个环，其尾部连接到第二个节点。</code></pre><p>示例 2：</p>
+<pre><code>输入：head = [1,2], pos = 0
+输出：返回索引为 0 的链表节点
+解释：链表中有一个环，其尾部连接到第一个节点。</code></pre><p>示例 3：</p>
+<pre><code>输入：head = [1], pos = -1
+输出：返回 null
+解释：链表中没有环。</code></pre><p>提示：</p>
+<ul>
+<li>链表中节点的数目范围在范围 [0, 104] 内</li>
+<li>-105 &lt;= Node.val &lt;= 105</li>
+<li>pos 的值为 -1 或者链表中的一个有效索引</li>
+</ul>
+<h1 id="解法一：哈希表"><a href="#解法一：哈希表" class="headerlink" title="解法一：哈希表"></a>解法一：哈希表</h1><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>最容易想到的方法是遍历所有节点，每次遍历到一个节点时，判断该节点此前是否被访问过。</p>
+<p>具体地，我们可以使用哈希表来存储所有已经访问过的节点。每次我们到达一个节点，如果该节点已经存在于哈希表中，则说明该链表是环形链表，否则就将该节点加入哈希表中。重复这一过程，直到我们遍历完整个链表即可。</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code>func hasCycle(head *ListNode) bool {
+    visited := make(map[*ListNode]bool)
+    for p := head; p != nil ; p = p.Next {
+        if visited[p] {
+            return true
+        }
+        visited[p] = true
+    }
+    return false
+}</code></pre><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><h5 id="时间复杂度：O-N"><a href="#时间复杂度：O-N" class="headerlink" title="时间复杂度：O((N))"></a>时间复杂度：O((N))</h5><p>其中 N 为链表中节点的数目。最坏情况下我们需要遍历每个节点一次。</p>
+<h5 id="空间复杂度：O-N"><a href="#空间复杂度：O-N" class="headerlink" title="空间复杂度：O((N))"></a>空间复杂度：O((N))</h5><p>其中 N 是链表中的节点数。主要为哈希表的开销，最坏情况下我们需要将每个节点插入到哈希表中一次。</p>
+<h1 id="解法二：快慢指针"><a href="#解法二：快慢指针" class="headerlink" title="解法二：快慢指针"></a>解法二：快慢指针</h1><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>本方法需要读者对「Floyd 判圈算法」（又称龟兔赛跑算法）有所了解。</p>
+<p>假想「乌龟」和「兔子」在链表上移动，「兔子」跑得快，「乌龟」跑得慢。当「乌龟」和「兔子」从链表上的同一个节点开始移动时，如果该链表中没有环，那么「兔子」将一直处于「乌龟」的前方；如果该链表中有环，那么「兔子」会先于「乌龟」进入环，并且一直在环内移动。等到「乌龟」进入环时，由于「兔子」的速度快，它一定会在某个时刻与乌龟相遇，即套了「乌龟」若干圈。</p>
+<p>我们可以根据上述思路来解决本题。具体地，我们定义两个指针，一快一满。慢指针每次只移动一步，而快指针每次移动两步。初始时，慢指针在位置 head，而快指针在位置 head.next。这样一来，如果在移动的过程中，快指针反过来追上慢指针，就说明该链表为环形链表。否则快指针将到达链表尾部，该链表不为环形链表。</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><pre><code>func hasCycle(head *ListNode) bool {
+    slow, fast := head, head
+    // 避免空指针的情况
+    for fast != nil &amp;&amp; fast.Next != nil {
+         slow = slow.Next
+         fast = fast.Next.Next
+        // 只要快慢指针相遇，就说明有环
+        if slow == fast {
+            return true
+        }
+    }
+    // 其他情况均返回false
+    return false
+}</code></pre><h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><h5 id="时间复杂度：O-N-1"><a href="#时间复杂度：O-N-1" class="headerlink" title="时间复杂度：O((N))"></a>时间复杂度：O((N))</h5><p>其中 N 是链表中的节点数。</p>
+<p>当链表中不存在环时，快指针将先于慢指针到达链表尾部，链表中每个节点至多被访问两次。</p>
+<p>当链表中存在环时，每一轮移动后，快慢指针的距离将减小一。而初始距离为环的长度，因此至多移动 N 轮。</p>
+<h5 id="空间复杂度：O-1-。"><a href="#空间复杂度：O-1-。" class="headerlink" title="空间复杂度：O((1))。"></a>空间复杂度：O((1))。</h5><p>我们只使用了两个指针的额外空间。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题有两种解法，第一种哈希表是常规思路，第二种快慢指针法则有较强的技巧型。相比较而言，第一种方法更为通用，在做题时，我们首先想到的应该是第一种思路。而第二种思路重在理解，当然，其空间复杂度只有O((1))，会更优。</p>
 <blockquote>
-<p>此图来自《Hyperledger Fabric技术内幕 架构设计与实现原理》</p>
-</blockquote>
-<h3 id="1-发送签名提案消息到Endorser背书节点请求处理"><a href="#1-发送签名提案消息到Endorser背书节点请求处理" class="headerlink" title="1. 发送签名提案消息到Endorser背书节点请求处理"></a>1. 发送签名提案消息到Endorser背书节点请求处理</h3><p>Client节点构造签名提案消息<font color="blue">(SignedProposal类型)</font>，通过调用Endorser背书服务客户端的<font color="blue">ProcessProposal()接口</font>，提交该消息到Endorser背书节点，请求模拟执行交易提案并签名背书。</p>
-<h3 id="2-Endorser背书节点模拟执行交易提案并签名背书Endorser背书"><a href="#2-Endorser背书节点模拟执行交易提案并签名背书Endorser背书" class="headerlink" title="2. Endorser背书节点模拟执行交易提案并签名背书Endorser背书"></a>2. Endorser背书节点模拟执行交易提案并签名背书Endorser背书</h3><p>节点收到签名提案消息之后，进行如下处理。</p>
-<ol>
-<li>检查签名提案消息的格式合法性与签名有效性，包括通道头部、签名头部、签名 域、交易ID、消息扩展域的Chaincodeld属性与PayloadVisibility可见性模式等；</li>
-<li>检查提案消息的创建者是否满足指定通道上的通道访问权限，即/Channel/ Application/Writers 写权限；</li>
-<li>检查并启动链码容器以模拟执行交易提案，并将模拟执行结果暂时保存在交易模拟器中，等待排序共识与交易验证，而不是直接更新到账本中。其中，<font color="blue">交易模拟执行结果釆用状态数据读写集（读数据的键和版本、写数据的键值）记录交易造成的状态变更结果；</font></li>
-<li><font color="blue">调用ESCC系统链码对该提案消息的模拟结果读写集等进行签名背书</font>。</li>
-</ol>
-<h3 id="3-Endorser背书节点向客户端返回提案响应消息，并分发隐私数据明文"><a href="#3-Endorser背书节点向客户端返回提案响应消息，并分发隐私数据明文" class="headerlink" title="3. Endorser背书节点向客户端返回提案响应消息，并分发隐私数据明文"></a>3. Endorser背书节点向客户端返回提案响应消息，并分发隐私数据明文</h3><p>Endorser背书节点基于背书信息、模拟执行结果等构造提案响应消息（ProposalResponse 类型），并回复给请求客户端。</p>
-<p>目前，模拟执行结果读写集包含公有数据（包括公共数据与隐私数据哈希值）与私有数据（或隐私数据）。</p>
-<p>其中，公有数据交由0rderer节点进行排序出块，再提交到账本区块 数据文件，并广播到该通道上的所有节点。</p>
-<p>如果模拟执行结果中还存在有效的隐私数据明文，则<font color="blue">Endorser背书节点通过Gossip消息协议将隐私数据发送给通道内授权的其他节点（由隐私数据集合配置的签名策略决定），交由transient隐私数据存储对象暂时保存到本地的transient隐私数据库（LevelDB）,并在提交账本时存储到隐私数据库（LevelDB）,同时清理transient隐私数据库中的过期数据</font>。</p>
-<h3 id="4-处理提案响应消息"><a href="#4-处理提案响应消息" class="headerlink" title="4. 处理提案响应消息"></a>4. 处理提案响应消息</h3><p>Client节点解析Endorser背书节点回复的提案响应消息，获取背书结果并检查提案响应消息状态的合法性，以判断是否收集到了<font color="blue">足够多的符合要求的背书签名信息</font>。</p>
-<h3 id="5-发送交易数据给Orderer服务节点请求排序"><a href="#5-发送交易数据给Orderer服务节点请求排序" class="headerlink" title="5. 发送交易数据给Orderer服务节点请求排序"></a>5. 发送交易数据给Orderer服务节点请求排序</h3><p>当收集到足够多数量的符合要求的Endorser背书签名之后（由背书策略决定），<font color="blue">Client节点基于模拟执行结果、背书签名等构造合法的签名交易消息（Envelope类型），通过Broadcast（）服务接口将该消息提交给Orderer节点</font>，请求交易排序处理。其中，配置交易消 息不需要经过Endorser节点处理。</p>
-<h3 id="6-Orderer服务节点对交易进行排序并构造新区块"><a href="#6-Orderer服务节点对交易进行排序并构造新区块" class="headerlink" title="6. Orderer服务节点对交易进行排序并构造新区块"></a>6. Orderer服务节点对交易进行排序并构造新区块</h3><p>Orderer排序节点<font color="blue">提供Solo类型（用于单节点测试）、Kafka类型（支持CFT容错）等共识组件</font>，对符合通道处理要求的合法交易消息（普通交易消息、配置交易消息等）进行排序并达成一致观点，并对一段时间内接收的一批交易消息按照打包交易的岀块规则（出块周期 时间、区块字节数限制、配置交易单独出块等）构造新区块，创建应用通道或更新通道配置同时提交账本。</p>
-<h3 id="7-Leader主节点请求Orderer服务节点发送通道账本区块"><a href="#7-Leader主节点请求Orderer服务节点发送通道账本区块" class="headerlink" title="7. Leader主节点请求Orderer服务节点发送通道账本区块"></a>7. Leader主节点请求Orderer服务节点发送通道账本区块</h3><p><font color="blue">Leader主节点通过Deliver()服务接口代表组织从Orderer节点请求通道账本上所有的区块数据，并通过Gossip消息协议分发到组织内的其他Peer节点</font>。如果请求的区块数据不 存在，则Orderer节点默认阻塞等待，直到指定区块创建完成并提交账本，再将该区块发送 给Leader主节点。</p>
-<h3 id="8-Committer记账节点验证交易并提交账本"><a href="#8-Committer记账节点验证交易并提交账本" class="headerlink" title="8. Committer记账节点验证交易并提交账本"></a>8. Committer记账节点验证交易并提交账本</h3><p>Committer记账节点对区块与隐私数据（明文）执行如下检查，并提交至本地账本。如果不存在隐私数据明文，则跳过隐私数据的相关检查与提交账本的步骤。</p>
-<ol>
-<li>检查交易消息格式的正确性、签名合法性、交易内容是否篡改、消息头部的合法性等。</li>
-<li><font color="blue">调用VSCC系统链码</font>，验证收集的签名背书结果是否符合指定的背书策略。</li>
-<li>对模拟结果中公有数据（即区块数据，含有公共数据与隐私数据哈希值）的<font color="blue">读写集执行MVCC检查</font>，针对单个键查询、键范围查询、隐私数据哈希值三种情况，检查读数据版本与交易时的账本是否一致，即是否存在读写冲突，并将存在冲突的交易标记为无效交易。</li>
-<li>验证模拟结果中隐私数据的正确性，遍历区块中有效交易的隐私数据读写集哈希值，取岀对应交易的原始隐私数据读写集明文，重新计算其哈希值并对两者进行比较。如果两者完全相同，则说明该交易的隐私数据是真实有效的。</li>
-<li>保存所有的区块数据（即公有数据）到<font color="blue">区块数据文件</font>中，保存所有的私有数据（即隐私数据）读写集到<font color="blue">隐私数据库（LevelDB）</font>中，建立区块索引信息到<font color="blue">区块索引数据库</font>，将最新的有效交易数据（包含公共数据读写集、隐私数据读写集、隐私数据读写集哈希值）更新到<font color="blue">状态数据库</font>，最后将区块数据中经过Endorser背书的有效交易数据同步到<font color="blue">历史数据库</font>。同时，清理<font color="blue">transient隐私数据库中</font>的过期数据。</li>
-</ol>
-<h3 id="9-Leader主节点分发数据与状态同步"><a href="#9-Leader主节点分发数据与状态同步" class="headerlink" title="9. Leader主节点分发数据与状态同步"></a>9. Leader主节点分发数据与状态同步</h3><p>Leader主节点基于<font color="blue">Gossip消息协议</font>将区块数据分发到组织内的其他节点上。同时，<font color="blue">节点之间通过反嫡算法等机制主动拉取缺失的数据</font>（区块数据与隐私数据）、节点身份信息等,以确保组织内所有节点上的账本数据等信息保持同步。</p>
-<h3 id="10-Committer记账节点验证交易并提交账本（同步骤8）"><a href="#10-Committer记账节点验证交易并提交账本（同步骤8）" class="headerlink" title="10. Committer记账节点验证交易并提交账本（同步骤8）"></a>10. Committer记账节点验证交易并提交账本（同步骤8）</h3><p>至此，Hyperledger Fabric系统上的一次完整交易处理流程即告结束。</p>
-<h2 id="预告"><a href="#预告" class="headerlink" title="预告"></a>预告</h2><blockquote>
-<p>从下一篇开始，我们就要正式开启fabric源码分析的专题了，本篇文章其实是一个知识准备。这里多说一句，就是我为什么要开启这个fabric源码分析的专题，其实这件事一直在我心中酝酿，但是由于前一段时间较忙，而且内心总是有一些否定的声音让我陷入自我怀疑，到底要不要做，因为现在网上已经有很多关于fabric源码分析的资料，而且质量也很高，为什么不直接抄“学霸”的作业呢，一定要自己搞一遍，不累吗？其实我是这样想的，“一千个读者就有一千个哈姆雷特”。那么我可不可以这么理解，“一千个开发者就有一千个fabric”。别人关于源码解读的文章都是基于其本人的知识架构下的，而如果我们一定要去灌输到自己的大脑中，可能会有些消化不良。而且我们也不能一味的迷信“权威”，学霸的作业也可能有疏漏的地方，别人的分析都是经过二次加工的产物，带有强烈的主观主义色彩，我们还是应该忠于源码，探索“属于我自己的fabric”。好了，废话有点多，接下来就进入正题吧。</p>
+<p> 在链表相关的题目中，快慢指针的用法非常广泛，很多时候可以降低算法的时间复杂度或空间复杂度，我们在解决链表类的题目时，应该多多考虑尝试这种方法。</p>
 </blockquote>
 
             </div>
@@ -704,9 +729,9 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Fabric交易处理流程》
+                    《【leetcode-141】环形链表》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/25/tx-flow/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/19/leetcode-141/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -747,7 +772,7 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/07/25/tx-flow/',
+        id: '2020/12/19/leetcode-141/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -768,50 +793,52 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/07/25/orderer-functions-overview/">
+                <a href="/2020/12/19/leetcode-141/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Fabric 1.4源码分析1：Orderer功能概述">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【leetcode-141】环形链表">
                         
-                        <span class="card-title">Fabric 1.4源码分析1：Orderer功能概述</span>
+                        <span class="card-title">【leetcode-141】环形链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要梳理了orderer的整体功能架构和主要模块，为进一步分析源码作准备。
+                            在链表相关的题目中，快慢指针的用法非常广泛，很多时候可以降低算法的时间复杂度或空间复杂度，我们在解决链表类的题目时，应该多多考虑尝试这种方法。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/orderer/" target="_blank">
-                        <span class="chip bg-color">orderer</span>
+                    <a href="/tags/链表/" target="_blank">
+                        <span class="chip bg-color">链表</span>
                     </a>
                     
                 </div>
@@ -825,31 +852,31 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/18/govendor/">
+                <a href="/2020/12/18/leetcode-142/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="go vendor 使用">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="【leetcode-142】环形链表2">
                         
-                        <span class="card-title">go vendor 使用</span>
+                        <span class="card-title">【leetcode-142】环形链表2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            由于最近遇到个项目需要使用 go vendor 进行依赖管理，所以就简单学习了一下
+                            这道题是【leetcode-142】环形链表的变体，可以有两种方法解决
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-18
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-18
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
@@ -859,8 +886,12 @@ fabric 作为目前世界上最为知名的联盟链开源项目，所涉及的�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/链表/" target="_blank">
+                        <span class="chip bg-color">链表</span>
                     </a>
                     
                 </div>
