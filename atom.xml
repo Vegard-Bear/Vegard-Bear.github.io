@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2020-12-19T07:29:58.471Z</updated>
+  <updated>2020-12-20T04:07:39.034Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【剑指offer-57】和为s的两个数字</title>
+    <link href="https://vegard-bear.github.io/2020/12/20/offer-57/"/>
+    <id>https://vegard-bear.github.io/2020/12/20/offer-57/</id>
+    <published>2020-12-20T03:32:12.000Z</published>
+    <updated>2020-12-20T04:07:39.034Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="剑指offer" scheme="https://vegard-bear.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="剑指offer" scheme="https://vegard-bear.github.io/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+      <category term="数组" scheme="https://vegard-bear.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="二分" scheme="https://vegard-bear.github.io/tags/%E4%BA%8C%E5%88%86/"/>
+    
+  </entry>
   
   <entry>
     <title>【剑指offer-22】链表中倒数第k个节点</title>
@@ -554,35 +584,6 @@
         
           &lt;blockquote&gt;
 &lt;p&gt;回顾上一节中我们讲述了一笔交易在 orderer 中的处理流程，进入引出了 orderer 源码分析的知识图谱。这次我们就从知识图谱的第一块内容说起，也就是 orderer
-        
-      
-    
-    </summary>
-    
-      <category term="fabric" scheme="https://vegard-bear.github.io/categories/fabric/"/>
-    
-    
-      <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
-    
-      <category term="orderer" scheme="https://vegard-bear.github.io/tags/orderer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fabric 1.4源码分析1：Orderer功能概述</title>
-    <link href="https://vegard-bear.github.io/2020/07/25/orderer-functions-overview/"/>
-    <id>https://vegard-bear.github.io/2020/07/25/orderer-functions-overview/</id>
-    <published>2020-07-25T13:08:05.000Z</published>
-    <updated>2020-08-01T08:21:36.693Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;从今天开始，正式启动Fabric 1.4 源码分析系列专题，本文是源码分析系列的第一篇，决定先从 Orderer 入手。由于Fabric源码涉及的模块、知识点的深度和广度非同一般，为了避免从一开始就落入细节，因此决定先采用模块分解 + 架构梳理
         
       
     

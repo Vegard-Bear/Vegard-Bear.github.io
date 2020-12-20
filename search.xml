@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>【剑指offer-57】和为s的两个数字</title>
+      <link href="/2020/12/20/offer-57/"/>
+      <url>/2020/12/20/offer-57/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/" target="_blank" rel="noopener">57. 和为s的两个数字</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>输入一个递增排序的数组和一个数字s，在数组中查找两个数，使得它们的和正好是s。如果有多对数字的和等于s，则输出任意一对即可。</p><p>示例 1：</p><pre><code>输入：nums = [2,7,11,15], target = 9输出：[2,7] 或者 [7,2]</code></pre><p>示例 2：</p><pre><code>输入：nums = [10,26,30,31,47,60], target = 40输出：[10,30] 或者 [30,10]</code></pre><p>限制：</p><ul><li>1 &lt;= nums.length &lt;= 10^5</li><li>1 &lt;= nums[i] &lt;= 10^6</li></ul><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>考虑到数组有序，可以用双指针技巧，这题的解法有点类似于二分查找，通过sum的大小来调节左右指针的移动。</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func twoSum(nums []int, target int) []int {    // 让左右指针在两端初始化    left, right := 0, len(nums) - 1    for left &lt; right  {        // 将当前和的大小和目标数字进行比较        sum := nums[left] + nums[right]        if sum == target {            return []int{nums[left], nums[right]}        } else if sum &gt; target {            // 右指针左移            right--        } else {            // 左指针右移            left++        }    }    return []int{}}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度-O-N"><a href="#时间复杂度-O-N" class="headerlink" title="时间复杂度 O(()N))"></a>时间复杂度 O(()N))</h3><p>N 为数组 nums 的长度；双指针共同线性遍历整个数组。</p><h3 id="空间复杂度-O-1"><a href="#空间复杂度-O-1" class="headerlink" title="空间复杂度 O((1))"></a>空间复杂度 O((1))</h3><p>双指针 left , right 使用常数大小的额外空间。</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><ol><li>这题还可以用哈希表法和二分查找法解决，但是时间复杂度和空间复杂度会有所增加，不是最优解法，具体可以参考 <a href="https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/solution/hasher-fen-shuang-zhi-zhen-jie-jue-liang-shu-zhi-h/" target="_blank" rel="noopener">hash\二分\双指针 解决两数之和</a></li><li>只要数组有序，就应该想到双指针技巧，但是，如果数组无序的话，情况就不一样了，比如leetcode第一题<a href="https://leetcode-cn.com/problems/two-sum/" target="_blank" rel="noopener"> 两数之和</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 剑指offer </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 剑指offer </tag>
+            
+            <tag> 数组 </tag>
+            
+            <tag> 二分 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【剑指offer-22】链表中倒数第k个节点</title>
       <link href="/2020/12/19/offer-22/"/>
       <url>/2020/12/19/offer-22/</url>
