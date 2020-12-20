@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2020-12-20T04:07:39.034Z</updated>
+  <updated>2020-12-20T07:10:52.051Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【leetcode-704】二分查找</title>
+    <link href="https://vegard-bear.github.io/2020/12/20/leetcode-704/"/>
+    <id>https://vegard-bear.github.io/2020/12/20/leetcode-704/</id>
+    <published>2020-12-20T07:07:55.000Z</published>
+    <updated>2020-12-20T07:10:52.051Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/binary-search/&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
+    
+      <category term="二分查找" scheme="https://vegard-bear.github.io/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>【剑指offer-57】和为s的两个数字</title>
@@ -566,35 +594,6 @@
       <category term="2.2" scheme="https://vegard-bear.github.io/tags/2-2/"/>
     
       <category term="upgrade" scheme="https://vegard-bear.github.io/tags/upgrade/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fabric 1.4源码分析2：Orderer 核心数据结构</title>
-    <link href="https://vegard-bear.github.io/2020/08/02/orderer-data-structure/"/>
-    <id>https://vegard-bear.github.io/2020/08/02/orderer-data-structure/</id>
-    <published>2020-08-02T03:57:05.000Z</published>
-    <updated>2020-08-02T04:02:54.982Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;回顾上一节中我们讲述了一笔交易在 orderer 中的处理流程，进入引出了 orderer 源码分析的知识图谱。这次我们就从知识图谱的第一块内容说起，也就是 orderer
-        
-      
-    
-    </summary>
-    
-      <category term="fabric" scheme="https://vegard-bear.github.io/categories/fabric/"/>
-    
-    
-      <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
-    
-      <category term="orderer" scheme="https://vegard-bear.github.io/tags/orderer/"/>
     
   </entry>
   
