@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://vegard-bear.github.io/2020/06/29/fabric-gm/</loc>
+    
+    <lastmod>2020-12-21T02:06:16.335Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://vegard-bear.github.io/contact/index.html</loc>
     
     <lastmod>2020-12-20T13:35:14.305Z</lastmod>
@@ -170,13 +177,6 @@
   </url>
   
   <url>
-    <loc>https://vegard-bear.github.io/2020/06/29/fabric-gm/</loc>
-    
-    <lastmod>2020-07-25T09:11:14.324Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://vegard-bear.github.io/2020/07/14/cicd/</loc>
     
     <lastmod>2020-07-25T08:42:48.107Z</lastmod>
@@ -233,14 +233,14 @@
   </url>
   
   <url>
-    <loc>https://vegard-bear.github.io/archives/index.html</loc>
+    <loc>https://vegard-bear.github.io/categories/index.html</loc>
     
     <lastmod>2020-06-21T09:59:02.526Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://vegard-bear.github.io/categories/index.html</loc>
+    <loc>https://vegard-bear.github.io/archives/index.html</loc>
     
     <lastmod>2020-06-21T09:59:02.526Z</lastmod>
     

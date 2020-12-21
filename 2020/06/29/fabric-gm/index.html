@@ -331,7 +331,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -490,14 +490,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
                 
@@ -531,7 +531,7 @@
 <li>加密机提供的RPC加密服务接口</li>
 </ol>
 <h2 id="模块拆分"><a href="#模块拆分" class="headerlink" title="模块拆分"></a>模块拆分</h2><p>先来总体看一下fabric进行国密改造会涉及到的主要模块</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/3E3D017CD00644C7996D647489EEC663/2789" alt></p>
+<p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/%E5%9B%BD%E5%AF%86%E6%94%B9%E9%80%A0.png" alt></p>
 <p>如图所示，从上往下，首先是上层调用模块，这一块主要是msp等模块，为fabric提供成员加密服务，它的实现依赖于BCCSP模块和X509模块。</p>
 <p>我们先看右边，BCCSP模块主要是实现四套接口，分别是BCCSP接口、opts接口、key接口以及keystore接口，其中以BCCSP接口为主，它包含了加解密、签名验签等主要方法，其他三套接口为辅，主要包含了用于密钥管理和存储的一些方法。</p>
 <p>接着往下，BCCSP模块有两套实现，一套是标准加密，它直接依赖于Go SDK原生的加密库，另一套是国密实现，需要依赖于第三方的提供的底层加密库，分为硬实现和软实现，其中硬实现就是加密机，软实现现在主要有G语言实现和C语言动态链接库实现两种。</p>
@@ -539,7 +539,7 @@
 <p>然后我们看一下左边，X509模块主要提供的是有关证书的一系列方法。在这里fabric原先默认是使用标准X509的，底层直接调用的是Go SDK 原生的加密库。为了让X509支持国密的同时也兼容标准加密，这里我们就把证书相关的接口抽象出来，定义为X509接口。然后底层采用两套实现，标准加密和非国密实现，标准加密依旧是直接调用原生Go SDK标准加密库，而国密则是调用第三方的国密库。</p>
 <p>需要说明的是，在调用BCCSP模块的加密服务时，如果选择国密算法，需要加载一个国密的插件，而如果是标准加密，则不需要加密国密插件；在调用X509模块的证书服务时，不管是国密X509证书还是标准X509证书均需要加密X509插件。具体选择国密还是标准加密算法可通在orderer、peer和cli的配置文件中的配置项进行指定。</p>
 <h2 id="方法和接口一览"><a href="#方法和接口一览" class="headerlink" title="方法和接口一览"></a>方法和接口一览</h2><p>上面已经把fabirc国密改造整体涉及到的模块简单介绍了一下，下面我通过们一张图来看一下这些模块具体涉及到的接口和方法以及代码的调用逻辑等。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/B8EC91CB622344C489F0A422E3EDA655/2835?ynotemdtimestamp=1595668120966" alt></p>
+<p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/fabric%20%E5%9B%BD%E5%AF%86%E6%94%B9%E9%80%A0.png" alt></p>
 <h5 id="高清大图请戳这里"><a href="#高清大图请戳这里" class="headerlink" title="高清大图请戳这里"></a>高清大图请戳<a href="http://www.xmind.net/m/AimcSi" target="_blank" rel="noopener">这里</a></h5><h1 id="fabric-ca-国密改造"><a href="#fabric-ca-国密改造" class="headerlink" title="fabric ca 国密改造"></a>fabric ca 国密改造</h1><p>Fabric-ca国密支持改造，主要是指Fabric-ca端通过改造使其可以用以生成国密公私钥对、签发、吊销、查询国密类型的证书。证书申请和签发的流程如下图所示，所有改造工作都围绕证书申请和签发的流程展开的：</p>
 <p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/E0AD1345011E4AA194EDAB95D1A4DAE3/2719?ynotemdtimestamp=1595668120966" alt></p>
 <p>Fabric-ca主要是调用Fabric的bccsp(blockchain cryptographic service provider,区块链加密服务提供者)模块来完成加解密及签名验签的工作。</p>
@@ -550,8 +550,51 @@
 <li>Fabric-ca/util：该包数据工具类，主要在证书的编解码等操作中扩展国密算法；</li>
 <li>Fabric-ca/vendor：因为CA沿用Fabric中的BCCSP套件，所以需要替换对Fabric的包的引用，提供对国密算法的支持。</li>
 </ol>
-<h2 id="具体接口和方法一览"><a href="#具体接口和方法一览" class="headerlink" title="具体接口和方法一览"></a>具体接口和方法一览</h2><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/CD117F2C191D48BBB9C23028B1CAE41F/2875?ynotemdtimestamp=1595668120966" alt></p>
-<h5 id="高清大图请戳这里-1"><a href="#高清大图请戳这里-1" class="headerlink" title="高清大图请戳这里"></a>高清大图请戳<a href="http://www.xmind.net/m/DpWJni" target="_blank" rel="noopener">这里</a></h5><h1 id="fabric-sdk-国密改造"><a href="#fabric-sdk-国密改造" class="headerlink" title="fabric sdk 国密改造"></a>fabric sdk 国密改造</h1><p>未完待续……</p>
+<h2 id="具体接口和方法一览"><a href="#具体接口和方法一览" class="headerlink" title="具体接口和方法一览"></a>具体接口和方法一览</h2><p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/fabric%20ca%20%E5%9B%BD%E5%AF%86%E6%94%B9%E9%80%A0.png" alt></p>
+<h5 id="高清大图请戳这里-1"><a href="#高清大图请戳这里-1" class="headerlink" title="高清大图请戳这里"></a>高清大图请戳<a href="http://www.xmind.net/m/DpWJni" target="_blank" rel="noopener">这里</a></h5><h1 id="fabric-sdk-国密改造"><a href="#fabric-sdk-国密改造" class="headerlink" title="fabric sdk 国密改造"></a>fabric sdk 国密改造</h1><p>关于README可以参考<a href="https://github.com/hyperledger/fabric-sdk-go/blob/master/README.md" target="_blank" rel="noopener">此处</a></p>
+<p>不过我觉得意义不大，无非是怎么下载下来这个项目，然后跑一下测试</p>
+<p>因此我又自己写了个使用说明文档，可以参考<a href="http://note.youdao.com/s/Fu554jj4" target="_blank" rel="noopener">此处</a></p>
+<p>在改造 SDK 之前，我们先来看一下SDK的目录结构</p>
+<h2 id="2-SDK项目介绍"><a href="#2-SDK项目介绍" class="headerlink" title="2. SDK项目介绍"></a>2. SDK项目介绍</h2><p>首先介绍一下sdk项目的架构。</p>
+<pre><code>├── internal
+├── pkg
+├── scripts
+├── test
+└── third_party</code></pre><p>其中internal和third_party包含fabric相关核心代码。pkg为sdk核心代码，对外提供接口进行服务。</p>
+<p>internal文件夹</p>
+<pre><code>└── github.com
+└── github.com
+    └── hyperledger
+        ├── fabric
+        │   ├── bccsp
+        │   ├── common
+        │   ├── core
+        │   ├── discovery
+        │   ├── gossip
+        │   ├── msp
+        │   ├── protoutil
+        │   ├── sdkinternal
+        │   └── sdkpatch
+        └── fabric-ca
+            ├── api
+            ├── lib
+            ├── sdkpatch
+            └── util</code></pre><p>third_party文件夹：</p>
+<pre><code>└── github.com
+└── github.com
+    └── hyperledger
+        └── fabric
+            ├── common
+            ├── core
+            └── internal</code></pre><p>大概就是这样，废话不多说，直接开始改吧</p>
+<p>添加国密底层实现库 mod</p>
+<p>添加国密插件和X509插件</p>
+<p>添加gmfactory及相关接口</p>
+<p>定义公私钥基础类型并替换原有的公私钥</p>
+<p>将原生的 X509 库替换为自定义的 x509 库</p>
+<p>2.x 不再支持RSA、去掉了插件plugin实现方式</p>
+<p>添加一个orderer字段，用于指定orderer配置</p>
+<p>未完待续……</p>
 
             </div>
             <hr />
@@ -782,7 +825,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="GitLab CICD 自动化部署">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="GitLab CICD 自动化部署">
                         
                         <span class="card-title">GitLab CICD 自动化部署</span>
                     </div>
@@ -831,7 +874,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="GoLand 类图生成工具 plantuml">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="GoLand 类图生成工具 plantuml">
                         
                         <span class="card-title">GoLand 类图生成工具 plantuml</span>
                     </div>
@@ -1036,7 +1079,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">40.2k</span>
+            <span class="white-color">40.4k</span>
             
 
             <br>
