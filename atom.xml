@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2020-12-20T07:10:52.051Z</updated>
+  <updated>2020-12-22T13:50:26.470Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Go特性2】Goroutine</title>
+    <link href="https://vegard-bear.github.io/2020/12/22/go-feature-goroutine/"/>
+    <id>https://vegard-bear.github.io/2020/12/22/go-feature-goroutine/</id>
+    <published>2020-12-22T13:47:50.000Z</published>
+    <updated>2020-12-22T13:50:26.470Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Go-并发&quot;&gt;&lt;a href=&quot;#Go-并发&quot; class=&quot;headerlink&quot; title=&quot;Go 并发&quot;&gt;&lt;/a&gt;Go 并发&lt;/h1&gt;&lt;p&gt;Go 在语言级别支持协程，叫goroutine。Go
+        
+      
+    
+    </summary>
+    
+      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
+    
+    
+      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
+    
+  </entry>
   
   <entry>
     <title>【leetcode-704】二分查找</title>
@@ -563,37 +589,6 @@
       <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
     
       <category term="2.2" scheme="https://vegard-bear.github.io/tags/2-2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>fabric 1.4 升级到 2.2 的⽅案</title>
-    <link href="https://vegard-bear.github.io/2020/08/08/fabric-upgrade-2-2/"/>
-    <id>https://vegard-bear.github.io/2020/08/08/fabric-upgrade-2-2/</id>
-    <published>2020-08-08T12:32:23.000Z</published>
-    <updated>2020-08-08T12:36:52.969Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;v2.2是Fabric
-        
-      
-    
-    </summary>
-    
-      <category term="fabric" scheme="https://vegard-bear.github.io/categories/fabric/"/>
-    
-    
-      <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
-    
-      <category term="2.2" scheme="https://vegard-bear.github.io/tags/2-2/"/>
-    
-      <category term="upgrade" scheme="https://vegard-bear.github.io/tags/upgrade/"/>
     
   </entry>
   

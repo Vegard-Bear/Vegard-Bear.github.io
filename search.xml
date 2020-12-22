@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>【Go特性2】Goroutine</title>
+      <link href="/2020/12/22/go-feature-goroutine/"/>
+      <url>/2020/12/22/go-feature-goroutine/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Go-并发"><a href="#Go-并发" class="headerlink" title="Go 并发"></a>Go 并发</h1><p>Go 在语言级别支持协程，叫goroutine。Go 语言标准库提供的所有系统调用操作（包括所有同步IO操作），都会出让CPU给其他goroutine。这让轻量级线程的切换管理不依赖于系统的线程和进程，也不需要依赖于CPU的核心数量。</p><p><font color="red">Go从语言层面就支持并行</font>。同时，并发程序的内存管理有时候是非常复杂的，而<font color="red">Go语言提供了自动垃圾回收机制</font>。</p><p>Go语言为并发编程而内置的上层API基于顺序通信进程模型CSP(communicating sequential processes)。这就意味着显式锁都是可以避免的，因为Go通过相对安全的通道发送和接受数据以实现同步，这大大地简化了并发程序的编写。</p><p><font color="red">Go语言中的并发程序主要使用两种手段来实现。goroutine和channel。</font></p><h1 id="Goroutine"><a href="#Goroutine" class="headerlink" title="Goroutine"></a>Goroutine</h1><h3 id="什么是Goroutine？"><a href="#什么是Goroutine？" class="headerlink" title="什么是Goroutine？"></a>什么是Goroutine？</h3><p>goroutine是Go并行设计的核心。<font color="red">goroutine说到底其实就是协程</font>，它比线程更小，十几个goroutine可能体现在底层就是五六个线程，Go语言内部帮你实现了这些goroutine之间的内存共享。执行goroutine只需极少的栈内存(大概是4~5KB)，当然会根据相应的数据伸缩。也正因为如此，可同时运行成千上万个并发任务。goroutine比thread更易用、更高效、更轻便。</p><p>一般情况下，一个普通计算机跑几十个线程就有点负载过大了，但是同样的机器却可以轻松地让成百上千个goroutine进行资源竞争。</p><h3 id="Goroutine的创建"><a href="#Goroutine的创建" class="headerlink" title="Goroutine的创建"></a>Goroutine的创建</h3><p>只需在函数调⽤语句前添加 go 关键字，就可创建并发执⾏单元。</p><p>在并发编程中，我们通常想将一个过程切分成几块，然后让每个goroutine各自负责一块工作，当一个程序启动时，主函数在一个单独的goroutine中运行，我们叫它main goroutine。新的goroutine会用go语句来创建。</p><p>代码示例：</p><pre><code>package mainimport (    &quot;fmt&quot;    &quot;time&quot;)func newTask() {    i := 0    for {        i++        fmt.Printf(&quot;new goroutine: i = %d\n&quot;, i)        time.Sleep(1 * time.Second) //延时1s    }}func main() {    //创建一个 goroutine，启动另外一个任务    go newTask()    i := 0    //main goroutine 循环打印    for {        i++        fmt.Printf(&quot;main goroutine: i = %d\n&quot;, i)        time.Sleep(1 * time.Second) //延时1s    }}</code></pre><h3 id="Goroutine特性"><a href="#Goroutine特性" class="headerlink" title="Goroutine特性"></a>Goroutine特性</h3><p>主goroutine退出后（相当于进程结束），其它的工作goroutine也会自动退出。</p><h4 id="runtime包"><a href="#runtime包" class="headerlink" title="runtime包"></a>runtime包</h4><ul><li>runtime.Gosched() </li></ul><p>用于让出CPU时间片，让出当前goroutine的执行权限，调度器安排其他等待的任务运行，并在下次再获得cpu时间轮片的时候，从该出让cpu的位置恢复执行。</p><p>有点像跑接力赛，A跑了一会碰到代码runtime.Gosched() 就把接力棒交给B了，A歇着了，B继续跑。<br>示例代码：</p><pre><code>package mainimport (&quot;fmt&quot;&quot;runtime&quot;)func main() {    //创建一个goroutine    go func(s string) {        for i := 0; i &lt; 2; i++ {            fmt.Println(s)        }    }(&quot;world&quot;)    for i := 0; i &lt; 2; i++ {        runtime.Gosched()  //import &quot;runtime&quot; 包        /*            屏蔽runtime.Gosched()运行结果如下：                hello                hello            没有runtime.Gosched()运行结果如下：                world                world                hello                hello        */        fmt.Println(&quot;hello&quot;)    }}</code></pre><p>以上程序的执行过程如下：</p><p>主协程进入main()函数，进行代码的执行。当执行到go func()匿名函数时，创建一个新的协程，开始执行匿名函数中的代码，主协程继续向下执行，执行到runtime.Gosched( )时会暂停向下执行，直到其它协程执行完后，再回到该位置，主协程继续向下执行。</p><h4 id="Goexit"><a href="#Goexit" class="headerlink" title="Goexit"></a>Goexit</h4><p>调用 runtime.Goexit() 将立即终止当前 goroutine 执⾏，调度器确保所有已注册 defer延迟调用被执行。</p><p>示例代码：</p><pre><code>package mainimport (&quot;fmt&quot;&quot;runtime&quot;)func main() {    go func() {        defer fmt.Println(&quot;A.defer&quot;)        func() {            defer fmt.Println(&quot;B.defer&quot;)            runtime.Goexit() // 终止当前 goroutine, import &quot;runtime&quot;            fmt.Println(&quot;B&quot;) // 不会执行        }()        fmt.Println(&quot;A&quot;) // 不会执行    }()     //不要忘记()    //死循环，目的不让主goroutine结束    for {    }}</code></pre><p>程序运行结果：</p><h4 id="GOMAXPROCS"><a href="#GOMAXPROCS" class="headerlink" title="GOMAXPROCS"></a>GOMAXPROCS</h4><ul><li>runtime.GOMAXPROCS()</li></ul><p>用来设置可以并行计算的CPU核数的最大值，并返回之前的值。</p><p>示例代码：</p><pre><code>package mainimport (    &quot;fmt&quot;)func main() {//n := runtime.GOMAXPROCS(1)     // 第一次 测试//打印结果：111111111111111111110000000000000000000011111...n := runtime.GOMAXPROCS(2)         // 第二次 测试//打印结果：010101010101010101011001100101011010010100110...    fmt.Printf(&quot;n = %d\n&quot;, n)    for {        go fmt.Print(0)        fmt.Print(1)    }}</code></pre><p>在第一次执行runtime.GOMAXPROCS(1) 时，最多同时只能有一个goroutine被执行。所以会打印很多1。过了一段时间后，GO调度器会将其置为休眠，并唤醒另一个goroutine，这时候就开始打印很多0了，在打印的时候，goroutine是被调度到操作系统线程上的。</p><p>在第二次执行runtime.GOMAXPROCS(2) 时， 我们使用了两个CPU，所以两个goroutine可以一起被执行，以同样的频率交替打印0和1。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-704】二分查找</title>
       <link href="/2020/12/20/leetcode-704/"/>
       <url>/2020/12/20/leetcode-704/</url>

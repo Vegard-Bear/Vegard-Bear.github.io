@@ -4,21 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-46】全排列, 小熊的作坊">
+    <meta name="keywords" content="【Go特性2】Goroutine, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接46. 全排列
-题目描述给定一个 没有重复 数字的序列，返回其所有可能的全排列。
-示例:
-输入: [1,2,3]
-输出:
-[
-  [1,2,3],
-  [1,3,2],
-  [2,1,3],
-  [2,3,1],
-  [3,1,2]">
+    <meta name="description" content="Go 并发Go 在语言级别支持协程，叫goroutine。Go 语言标准库提供的所有系统调用操作（包括所有同步IO操作），都会出让CPU给其他goroutine。这让轻量级线程的切换管理不依赖于系统的线程和进程，也不需要依赖于CPU的核心数">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -26,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-46】全排列 | 小熊的作坊</title>
+    <title>【Go特性2】Goroutine | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -339,13 +329,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-46】全排列
+                        【Go特性2】Goroutine
                     </div>
                 </div>
             </div>
@@ -456,16 +446,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/leetcode/" target="_blank">
-                            <span class="chip bg-color">leetcode</span>
-                        </a>
-                        
-                        <a href="/tags/DFS/" target="_blank">
-                            <span class="chip bg-color">DFS</span>
-                        </a>
-                        
-                        <a href="/tags/回溯剪枝/" target="_blank">
-                            <span class="chip bg-color">回溯剪枝</span>
+                        <a href="/tags/go/" target="_blank">
+                            <span class="chip bg-color">go</span>
                         </a>
                         
                     </div>
@@ -476,8 +458,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/leetcode/" class="post-category" target="_blank">
-                            leetcode
+                        <a href="/categories/go/" class="post-category" target="_blank">
+                            go
                         </a>
                         
                     </div>
@@ -488,7 +470,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-14
+                    2020-12-22
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -502,14 +484,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
                 
@@ -525,101 +507,130 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/permutations/" target="_blank" rel="noopener">46. 全排列</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个 没有重复 数字的序列，返回其所有可能的全排列。</p>
-<p>示例:</p>
-<pre><code>输入: [1,2,3]
-输出:
-[
-  [1,2,3],
-  [1,3,2],
-  [2,1,3],
-  [2,3,1],
-  [3,1,2],
-  [3,2,1]
-]</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这是一个高中的排列组合问题，我们可以先想一想当时的我们是怎么做的，很明显就是穷举。</p>
-<p>1，2，3，4</p>
-<p>1，2，4，3</p>
-<p>1，3，2，4</p>
-<p>……</p>
-<p>如此下去，其实就是用回溯法剪枝的方法遍历一棵二叉树，或者说深度优先遍历，是一个意思。</p>
-<p>确定用回溯剪枝的方法后，就可以套用回溯剪枝的框架了</p>
-<pre><code>result = []
-func backtrack(路径，选择列表) {
-    if 满足结束条件 {
-        result.add(路径)
+                <h1 id="Go-并发"><a href="#Go-并发" class="headerlink" title="Go 并发"></a>Go 并发</h1><p>Go 在语言级别支持协程，叫goroutine。Go 语言标准库提供的所有系统调用操作（包括所有同步IO操作），都会出让CPU给其他goroutine。这让轻量级线程的切换管理不依赖于系统的线程和进程，也不需要依赖于CPU的核心数量。</p>
+<p><font color="red">Go从语言层面就支持并行</font>。同时，并发程序的内存管理有时候是非常复杂的，而<font color="red">Go语言提供了自动垃圾回收机制</font>。</p>
+<p>Go语言为并发编程而内置的上层API基于顺序通信进程模型CSP(communicating sequential processes)。这就意味着显式锁都是可以避免的，因为Go通过相对安全的通道发送和接受数据以实现同步，这大大地简化了并发程序的编写。</p>
+<p><font color="red">Go语言中的并发程序主要使用两种手段来实现。goroutine和channel。</font></p>
+<h1 id="Goroutine"><a href="#Goroutine" class="headerlink" title="Goroutine"></a>Goroutine</h1><h3 id="什么是Goroutine？"><a href="#什么是Goroutine？" class="headerlink" title="什么是Goroutine？"></a>什么是Goroutine？</h3><p>goroutine是Go并行设计的核心。<font color="red">goroutine说到底其实就是协程</font>，它比线程更小，十几个goroutine可能体现在底层就是五六个线程，Go语言内部帮你实现了这些goroutine之间的内存共享。执行goroutine只需极少的栈内存(大概是4~5KB)，当然会根据相应的数据伸缩。也正因为如此，可同时运行成千上万个并发任务。goroutine比thread更易用、更高效、更轻便。</p>
+<p>一般情况下，一个普通计算机跑几十个线程就有点负载过大了，但是同样的机器却可以轻松地让成百上千个goroutine进行资源竞争。</p>
+<h3 id="Goroutine的创建"><a href="#Goroutine的创建" class="headerlink" title="Goroutine的创建"></a>Goroutine的创建</h3><p>只需在函数调⽤语句前添加 go 关键字，就可创建并发执⾏单元。</p>
+<p>在并发编程中，我们通常想将一个过程切分成几块，然后让每个goroutine各自负责一块工作，当一个程序启动时，主函数在一个单独的goroutine中运行，我们叫它main goroutine。新的goroutine会用go语句来创建。</p>
+<p>代码示例：</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func newTask() {
+    i := 0
+    for {
+        i++
+        fmt.Printf(&quot;new goroutine: i = %d\n&quot;, i)
+        time.Sleep(1 * time.Second) //延时1s
     }
-    return
+}
 
-    for 选择 in 选择列表 {
-        做选择
-        backtrack(路径，选择列表)
-        撤销选择
+func main() {
+    //创建一个 goroutine，启动另外一个任务
+    go newTask()
+    i := 0
+    //main goroutine 循环打印
+    for {
+        i++
+        fmt.Printf(&quot;main goroutine: i = %d\n&quot;, i)
+        time.Sleep(1 * time.Second) //延时1s
     }
-}</code></pre><p>想清楚几个问题</p>
-<ol>
-<li>结束条件是什么？（所有数字都用了一遍）</li>
-<li>怎么定义走过的路径？（用一个数组保存一种排列方式）</li>
-<li>如何做选择？（在给出的数字列表里面依次选）</li>
-</ol>
-<p>想清楚这几个问题就可以开始写代码了。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 返回的全排列结果</span>
-<span class="token keyword">var</span> res <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span>
+}</code></pre><h3 id="Goroutine特性"><a href="#Goroutine特性" class="headerlink" title="Goroutine特性"></a>Goroutine特性</h3><p>主goroutine退出后（相当于进程结束），其它的工作goroutine也会自动退出。</p>
+<h4 id="runtime包"><a href="#runtime包" class="headerlink" title="runtime包"></a>runtime包</h4><ul>
+<li>runtime.Gosched() </li>
+</ul>
+<p>用于让出CPU时间片，让出当前goroutine的执行权限，调度器安排其他等待的任务运行，并在下次再获得cpu时间轮片的时候，从该出让cpu的位置恢复执行。</p>
+<p>有点像跑接力赛，A跑了一会碰到代码runtime.Gosched() 就把接力棒交给B了，A歇着了，B继续跑。<br>示例代码：</p>
+<pre><code>package main
 
-<span class="token keyword">func</span> <span class="token function">permute</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 注意：这里要重置一下全局数组（leetcode多次执行全局变量不会消失），防止多个测试用例的结果都放到一起</span>
-    res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 用一个数组维护走过的路径</span>
-    visited <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token builtin">bool</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// 用 path 保存当前路径</span>
-    <span class="token keyword">var</span> path <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span>
-    <span class="token comment" spellcheck="true">// 回溯剪枝</span>
-    <span class="token function">backTrack</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> path<span class="token punctuation">,</span> visited<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> res
-<span class="token punctuation">}</span>
+import (
+&quot;fmt&quot;
+&quot;runtime&quot;
+)
 
-<span class="token keyword">func</span> <span class="token function">backTrack</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> path <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> visited  <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token builtin">bool</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 先判断结束条件, 走过的路径包含了所有的选择，说明已经得到一种排列方式</span>
-    <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">len</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 注意：这里不能直接append，因为切片底层共用数据，</span>
-        <span class="token comment" spellcheck="true">// 这意味着下面切片path一旦改变了，res也会随之改变，而这不是我们希望看到的</span>
-        <span class="token comment" spellcheck="true">// 所以只能重新开辟一个新的切片将内容拷贝过去</span>
-        tmp <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token function">copy</span><span class="token punctuation">(</span>tmp<span class="token punctuation">,</span> path<span class="token punctuation">)</span>
-        res <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> tmp<span class="token punctuation">)</span>
-        <span class="token keyword">return</span>
-    <span class="token punctuation">}</span>
+func main() {
+    //创建一个goroutine
+    go func(s string) {
+        for i := 0; i &lt; 2; i++ {
+            fmt.Println(s)
+        }
+    }(&quot;world&quot;)
 
-    <span class="token comment" spellcheck="true">// 遍历选择列表，做选择</span>
-    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> num <span class="token operator">:=</span> <span class="token keyword">range</span> nums <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 走过的分支直接跳过，直接走下一个分支，避免进入死循环</span>
-        <span class="token keyword">if</span> visited<span class="token punctuation">[</span>num<span class="token punctuation">]</span> <span class="token punctuation">{</span>
-            <span class="token keyword">continue</span>
-        <span class="token punctuation">}</span>
+    for i := 0; i &lt; 2; i++ {
+        runtime.Gosched()  //import &quot;runtime&quot; 包
+        /*
+            屏蔽runtime.Gosched()运行结果如下：
+                hello
+                hello
 
-        <span class="token comment" spellcheck="true">// 将这个选择加入当前路径</span>
-        path <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> num<span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true">// 将这个选择置为已访问</span>
-        visited<span class="token punctuation">[</span>num<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span>
+            没有runtime.Gosched()运行结果如下：
+                world
+                world
+                hello
+                hello
+        */
+        fmt.Println(&quot;hello&quot;)
+    }
+}</code></pre><p>以上程序的执行过程如下：</p>
+<p>主协程进入main()函数，进行代码的执行。当执行到go func()匿名函数时，创建一个新的协程，开始执行匿名函数中的代码，主协程继续向下执行，执行到runtime.Gosched( )时会暂停向下执行，直到其它协程执行完后，再回到该位置，主协程继续向下执行。</p>
+<h4 id="Goexit"><a href="#Goexit" class="headerlink" title="Goexit"></a>Goexit</h4><p>调用 runtime.Goexit() 将立即终止当前 goroutine 执⾏，调度器确保所有已注册 defer延迟调用被执行。</p>
+<p>示例代码：</p>
+<pre><code>package main
 
-        <span class="token comment" spellcheck="true">// 进入下一层决策树</span>
-        <span class="token function">backTrack</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> path<span class="token punctuation">,</span> visited<span class="token punctuation">)</span>
+import (
+&quot;fmt&quot;
+&quot;runtime&quot;
+)
 
-        <span class="token comment" spellcheck="true">// 退出决策树，回退，把这个选择从路径中移除</span>
-        path <span class="token operator">=</span> path<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token function">len</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-        <span class="token comment" spellcheck="true">// 将这个选择重新置为未访问</span>
-        visited<span class="token punctuation">[</span>num<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">false</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n-n"><a href="#时间复杂度：O-n-n" class="headerlink" title="时间复杂度：O((n * n!))"></a>时间复杂度：O((n * n!))</h3><p>其中 n 为序列的长度。<br>算法的复杂度首先受 backtrack 的调用次数制约, 这说明 backtrack 的调用次数是 O((n!)) 的。</p>
-<p>而对于 backtrack 调用的每个叶结点（共 n! 个），我们需要将当前答案使用 O((n)) 的时间复制到答案数组中，相乘得时间复杂度为 O((n * n!))。</p>
-<h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>其中 n 为序列的长度。除答案数组以外，递归函数在递归过程中需要为每一层递归函数分配栈空间，所以这里需要额外的空间且该空间取决于递归的深度，这里可知递归调用深度为 O((n))</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题有两个需要着重注意的点，特别容易错，我自己做的时候在这里卡了很久：</p>
-<ol>
-<li>如果定义了全局变量，需要注意要重置一下全局变量，否则多个测试用例的结果会被放到一起，因为leetcode多次执行全局变量不会消失</li>
-<li>当获得一个排列时时，不能直接append，因为切片底层共用数据，这意味着下面如果切片path一旦改变了，我们的res也会随之改变，而这不是我们希望看到的，所以只能重新开辟一个新的切片将内容拷贝过去，这样就保证了path变的时候res不会跟着变</li>
-</ol>
+func main() {
+    go func() {
+        defer fmt.Println(&quot;A.defer&quot;)
+
+        func() {
+            defer fmt.Println(&quot;B.defer&quot;)
+            runtime.Goexit() // 终止当前 goroutine, import &quot;runtime&quot;
+            fmt.Println(&quot;B&quot;) // 不会执行
+        }()
+
+        fmt.Println(&quot;A&quot;) // 不会执行
+    }()     //不要忘记()
+
+    //死循环，目的不让主goroutine结束
+    for {
+    }
+}</code></pre><p>程序运行结果：</p>
+<h4 id="GOMAXPROCS"><a href="#GOMAXPROCS" class="headerlink" title="GOMAXPROCS"></a>GOMAXPROCS</h4><ul>
+<li>runtime.GOMAXPROCS()</li>
+</ul>
+<p>用来设置可以并行计算的CPU核数的最大值，并返回之前的值。</p>
+<p>示例代码：</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+)
+
+func main() {
+//n := runtime.GOMAXPROCS(1)     // 第一次 测试
+//打印结果：111111111111111111110000000000000000000011111...
+
+n := runtime.GOMAXPROCS(2)         // 第二次 测试
+//打印结果：010101010101010101011001100101011010010100110...
+    fmt.Printf(&quot;n = %d\n&quot;, n)
+
+    for {
+        go fmt.Print(0)
+        fmt.Print(1)
+    }
+}</code></pre><p>在第一次执行runtime.GOMAXPROCS(1) 时，最多同时只能有一个goroutine被执行。所以会打印很多1。过了一段时间后，GO调度器会将其置为休眠，并唤醒另一个goroutine，这时候就开始打印很多0了，在打印的时候，goroutine是被调度到操作系统线程上的。</p>
+<p>在第二次执行runtime.GOMAXPROCS(2) 时， 我们使用了两个CPU，所以两个goroutine可以一起被执行，以同样的频率交替打印0和1。</p>
 
             </div>
             <hr />
@@ -778,9 +789,9 @@ func backtrack(路径，选择列表) {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-46】全排列》
+                    《【Go特性2】Goroutine》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/14/leetcode-46/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/22/go-feature-goroutine/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -821,7 +832,7 @@ func backtrack(路径，选择列表) {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/14/leetcode-46/',
+        id: '2020/12/22/go-feature-goroutine/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -842,54 +853,48 @@ func backtrack(路径，选择列表) {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/15/leetcode-51/">
+                <a href="/2020/12/22/go-feature-goroutine/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="【leetcode-51】N皇后">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="【Go特性2】Goroutine">
                         
-                        <span class="card-title">【leetcode-51】N皇后</span>
+                        <span class="card-title">【Go特性2】Goroutine</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            N 皇后问题是一个经典问题，本题的答案可以作为回溯剪枝的模版进行练习
+                            goroutine是Go并行设计的核心, 也是Go语言中的之所以支持并发编程的重要原因之一。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/leetcode/" class="post-category" target="_blank">
-                                    leetcode
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
-                    </a>
-                    
-                    <a href="/tags/DFS/" target="_blank">
-                        <span class="chip bg-color">DFS</span>
-                    </a>
-                    
-                    <a href="/tags/回溯剪枝/" target="_blank">
-                        <span class="chip bg-color">回溯剪枝</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
                     </a>
                     
                 </div>
@@ -903,24 +908,24 @@ func backtrack(路径，选择列表) {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/13/leetcode-322/">
+                <a href="/2020/12/20/leetcode-704/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【leetcode-322】零钱兑换">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【leetcode-704】二分查找">
                         
-                        <span class="card-title">【leetcode-322】零钱兑换</span>
+                        <span class="card-title">【leetcode-704】二分查找</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            对于动态规划问题最重要的是确定 base case、状态和选择，然后定义 dp 数组，列出状态转移方程
+                            二分查找不难，可以直接套用模版，但需要重点注意细节问题，比如边界值（等号取不取得到）等。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-13
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-20
                             </span>
                         <span class="publish-author">
                             
@@ -941,8 +946,8 @@ func backtrack(路径，选择列表) {
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/动态规划/" target="_blank">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/二分查找/" target="_blank">
+                        <span class="chip bg-color">二分查找</span>
                     </a>
                     
                 </div>
