@@ -4,14 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Fabric 1.4源码分析2：Orderer 核心数据结构, 小熊的作坊">
+    <meta name="keywords" content="【Go特性3】channel, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-回顾上一节中我们讲述了一笔交易在 orderer 中的处理流程，进入引出了 orderer 源码分析的知识图谱。这次我们就从知识图谱的第一块内容说起，也就是 orderer 核心数据结构。
-
-友情提示：在Fabric中，通道和链在概念上都">
+    <meta name="description" content="channelchannel是Go语言中的一个核心类型，可以把它看成管道。并发核心单元通过它就可以发送或者接收数据进行通讯，这在一定程度上又进一步降低了编程的难度。
+channel是一个数据类型，主要用来解决协程的同步问题以及协程之间数据共">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Fabric 1.4源码分析2：Orderer 核心数据结构 | 小熊的作坊</title>
+    <title>【Go特性3】channel | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +330,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Fabric 1.4源码分析2：Orderer 核心数据结构
+                        【Go特性3】channel
                     </div>
                 </div>
             </div>
@@ -449,12 +447,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/fabric/" target="_blank">
-                            <span class="chip bg-color">fabric</span>
-                        </a>
-                        
-                        <a href="/tags/orderer/" target="_blank">
-                            <span class="chip bg-color">orderer</span>
+                        <a href="/tags/go/" target="_blank">
+                            <span class="chip bg-color">go</span>
                         </a>
                         
                     </div>
@@ -465,8 +459,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/fabric/" class="post-category" target="_blank">
-                            fabric
+                        <a href="/categories/go/" class="post-category" target="_blank">
+                            go
                         </a>
                         
                     </div>
@@ -477,7 +471,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-02
+                    2020-12-23
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -491,7 +485,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    2.5k
                 </div>
                 
 
@@ -514,189 +508,195 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>回顾上一节中我们讲述了一笔交易在 orderer 中的处理流程，进入引出了 orderer 源码分析的知识图谱。这次我们就从知识图谱的第一块内容说起，也就是 orderer 核心数据结构。</p>
+                <h1 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h1><p>channel是Go语言中的一个核心类型，可以把它看成管道。并发核心单元通过它就可以发送或者接收数据进行通讯，这在一定程度上又进一步降低了编程的难度。</p>
+<p>channel是一个数据类型，<font color="red">主要用来解决协程的同步问题以及协程之间数据共享（数据传递）的问题</font>。</p>
+<p>goroutine运行在相同的地址空间，因此访问共享内存必须做好同步。<font color="red">goroutine 奉行通过通信来共享内存，而不是共享内存来通信</font>。<br>引⽤类型 channel可用于多个 goroutine 通讯。其内部实现了同步，确保并发安全。</p>
+<h3 id="channel的定义"><a href="#channel的定义" class="headerlink" title="channel的定义"></a>channel的定义</h3><p>和map类似，channel也一个对应make创建的底层数据结构的引用。</p>
+<p>channel或用于函数参数传递时，传的是引用。</p>
+<pre><code>make(chan Type)  //等价于make(chan Type, 0)
+make(chan Type, capacity)</code></pre><p>chan是创建channel所需使用的关键字。Type 代表指定channel收发数据的类型。</p>
+<p><font color="red">当 参数capacity= 0 时，channel 是无缓冲阻塞读写的；当capacity &gt; 0 时，channel 有缓冲、是非阻塞的，直到写满 capacity个元素才阻塞写入。<br></font></p>
+<h3 id="无缓冲的channel（读写必须同步，相当于打电话）"><a href="#无缓冲的channel（读写必须同步，相当于打电话）" class="headerlink" title="无缓冲的channel（读写必须同步，相当于打电话）"></a>无缓冲的channel（读写必须同步，相当于打电话）</h3><p>无缓冲的通道（unbuffered channel）是指在接收前没有能力保存任何值的通道。</p>
+<p>这种类型的通道要求发送goroutine和接收goroutine同时准备好，才能完成发送和接收操作。否则，<font color="red">通道会导致先执行发送或接收操作的 goroutine 阻塞等待<big>,如果只有或写的操作，会导致死锁</big></font>。</p>
+<p>无缓冲的channel创建格式：</p>
+<pre><code>make(chan Type)   //等价于make(chan Type, 0)</code></pre><p>如果没有指定缓冲区容量，那么该通道就是同步的，因此会阻塞到发送者准备好发送和接收者准备好接收。</p>
+<p>示例代码：</p>
+<pre><code>func main() {
+    c := make(chan int, 0) //创建无缓冲的通道 c 
+
+    //内置函数 len 返回未被读取的缓冲元素数量，cap 返回缓冲区大小
+    fmt.Printf(&quot;len(c)=%d, cap(c)=%d\n&quot;, len(c), cap(c))
+
+    go func() {
+        defer fmt.Println(&quot;子协程结束&quot;)
+
+        for i := 0; i &lt; 3; i++ {
+            c &lt;- i
+            fmt.Printf(&quot;子协程正在运行[%d]: len(c)=%d, cap(c)=%d\n&quot;, i, len(c), cap(c))
+        }
+    }()
+
+    time.Sleep(2 * time.Second) //延时2s
+
+    for i := 0; i &lt; 3; i++ {
+        num := &lt;-c //从c中接收数据，并赋值给num
+        fmt.Println(&quot;num = &quot;, num)
+    }
+
+    fmt.Println(&quot;main协程结束&quot;)
+}</code></pre><blockquote>
+<p>IO操作会比较慢，导致显示出来的结果和实际结果可能不一致</p>
 </blockquote>
-<p><strong>友情提示：在Fabric中，通道和链在概念上都是一条区块链，所以本文中也可能会混用链和通道的说法，请读者不要过于纠结于这两个概念。</strong></p>
-<h1 id="Registrar"><a href="#Registrar" class="headerlink" title="Registrar"></a>Registrar</h1><p>Registrar 对象是一个多通道注册管理器，负责管理系统通道与所有应用通道，封装了所有通道的 ChainSupport 的 map、共识组件 map、ledgerFactory 对象等组件，维护所有通道上的通道配置、区块账本对象、共识组件等核心资源，创建通道上的共识组件链对象提供Orderer共识排序服务，负责对交易消息排序，切割打包构造新区块并提交账本，同时负责创建新的应用通道与更新通道配置。</p>
-<p>一言蔽之，<br>Registrar 就相当于 Orderer节点上的 “资源管理器”，包含了所有通道 资源的访问和控制点，也就是说，我们如果需要对 orderer 节点的任何一个通道进行操作，都得先从这里入手。</p>
-<blockquote>
-<p>Registrar 对象定义在<br>fabric/orderer/common/multichannel/registrar.go 文件中，具体如下：</p>
-</blockquote>
-<pre><code>// Registrar serves as a point of access and control for the individual channel resources.
-type Registrar struct {
-    lock               sync.RWMutex
-    chains             map[string]*ChainSupport
-    config             localconfig.TopLevel
-    consenters         map[string]consensus.Consenter
-    ledgerFactory      blockledger.Factory
-    signer             crypto.LocalSigner
-    blockcutterMetrics *blockcutter.Metrics
-    systemChannelID    string
-    systemChannel      *ChainSupport
-    templator          msgprocessor.ChannelConfigTemplator
-    callbacks          []channelconfig.BundleActor
-}</code></pre><ul>
-<li>lock 是一把锁，当需要对于通道资源进行读和写操作时，会对通道加锁，操作完再解锁。</li>
-<li>chains 保存了所有的链，每一条链在 Orderer 中都以 一个 Key - Value 键值对表述，其中键就是 channelID，值就是一条链，这里用 ChainSupport表示，具体下文还会介绍。</li>
-<li>config 保存了从 orderer.yaml 中读取的配置</li>
-<li>consenters 保存了所有的共识插件，每个共识插件都是一个 Consenter，Fabric 1.4 中共识插件有 Solo、Kafka、EtcdRaft 三种。</li>
-<li>ledgerFactory 用来读取和创建链的账本。</li>
-<li>signer用来对Orderer中的数据进行签名，以及创建 <a href="https://lessisbetter.site/2019/11/10/how-fabric-verify-signatures/#%E8%A7%A3%E5%AF%86SignatureHeader" target="_blank" rel="noopener">SignatureHeader</a>。</li>
-<li>blockcutterMetrics 是用于对切块进行一些指标的监测</li>
-<li>systemChannelID 和 systemChannel分别是系统通道ID、系通道实例。</li>
-<li>systemChannel </li>
-<li>templator 用于生成一个通道配置模版</li>
-<li>callbacks 用于对通道配置执行一些回调的操作</li>
-</ul>
-<h1 id="ChainSupport"><a href="#ChainSupport" class="headerlink" title="ChainSupport"></a>ChainSupport</h1><p>ChainSupport 封装了关联通道上的账本资源对象、消息处理器、区 块写组件、共识组件链对象等核心组件与模块，用于过滤验证消息、切割打包消息出块、 提交区块写入账本、创建通道与更新通道配置等流程。</p>
-<p>一言蔽之，ChainSupport 汇集了一条通道所需要的所有资源，一个 ChainSupport 就代表了一条链。</p>
-<blockquote>
-<p>ChainSupport 对象定义在<br>fabric/orderer/common/multichannel/chainsupport.go 文件中，具体如下：</p>
-</blockquote>
-<pre><code>// ChainSupport holds the resources for a particular channel.
-type ChainSupport struct {
-    *ledgerResources
-    msgprocessor.Processor
-    *BlockWriter
-    consensus.Chain
-    cutter blockcutter.Receiver
-    crypto.LocalSigner
-}</code></pre><p>ChainSupport 是一堆接口的集合，这些接口构成一条链所有的操作，接口可以分为4类：</p>
+<h3 id="有缓冲的channel（读写可以异步，相当于发微信）"><a href="#有缓冲的channel（读写可以异步，相当于发微信）" class="headerlink" title="有缓冲的channel（读写可以异步，相当于发微信）"></a>有缓冲的channel（读写可以异步，相当于发微信）</h3><p>有缓冲的通道（buffered channel）是一种在被接收前能存储一个或者多个数据值的通道。</p>
+<p>这种类型的通道并不强制要求 goroutine 之间必须同时完成发送和接收。通道会阻塞发送和接收动作的条件也不同。</p>
 <ul>
-<li>账本：ledgerResources、BlockWriter分别是账本读写和把区块写入到账本。</li>
-<li>消息：msgprocessor.Processor、cutter分别是处理交易和把交易切块。</li>
-<li>共识：consensus.Chain是Orderer的共识实例，比如每条链都有自己的Raft共识实例，它们互不干扰。</li>
-<li>签名：crypto.LocalSigner，同Registrar中的介绍。</li>
+<li><p>只有通道中没有要接收的值时，接收动作才会阻塞。</p>
+</li>
+<li><p>只有通道没有可用缓冲区容纳被发送的值时，发送动作才会阻塞。</p>
+</li>
 </ul>
-<h1 id="Chain"><a href="#Chain" class="headerlink" title="Chain"></a>Chain</h1><p>Chain 接口的实现是一个共识插件的实例，它利用不同的共识算法（Solo、Kafka 和 Etcdraft）对交易排序并 添加到本地的缓存交易消息列表中，按出块规则切割成批量交易集合，再打包出块提交到账本，同时负责创建新通道与更新通道配置。</p>
-<p>一言蔽之，Chain 接口包含了一个共识插件所要实现的基本方法，它主要负责对交易/消息进行排序并调用 HandleChain 方法进行切块和写入账本，体现了共识算法的可插拔性。</p>
+<p>这导致有缓冲的通道和无缓冲的通道之间的一个很大的不同：无缓冲的通道保证进行发送和接收的 goroutine 会在同一时间进行数据交换；有缓冲的通道没有这种保证。</p>
+<p>有缓冲的channel创建格式：</p>
+<pre><code>    make(chan Type, capacity)</code></pre><p>如果给定了一个缓冲区容量，通道就是异步的。只要缓冲区有未使用空间用于发送数据，或还包含可以接收的数据，那么其通信就会无阻塞地进行。</p>
+<p>示例代码：</p>
+<pre><code>func main() {
+    c := make(chan int, 3) //带缓冲的通道
+
+    //内置函数 len 返回未被读取的缓冲元素数量， cap 返回缓冲区大小
+    fmt.Printf(&quot;len(c)=%d, cap(c)=%d\n&quot;, len(c), cap(c))
+
+    go func() {
+        defer fmt.Println(&quot;子协程结束&quot;)
+
+        for i := 0; i &lt; 3; i++ {
+            c &lt;- i
+            fmt.Printf(&quot;子协程正在运行[%d]: len(c)=%d, cap(c)=%d\n&quot;, i, len(c), cap(c))
+        }
+    }()
+
+    time.Sleep(2 * time.Second) //延时2s
+    for i := 0; i &lt; 3; i++ {
+        num := &lt;-c //从c中接收数据，并赋值给num
+        fmt.Println(&quot;num = &quot;, num)
+    }
+    fmt.Println(&quot;main协程结束&quot;)
+}</code></pre><blockquote>
+<p>内置函数 len 返回未被读取的缓冲元素数量， cap 返回缓冲区大小</p>
+</blockquote>
+<h4 id="关闭channel"><a href="#关闭channel" class="headerlink" title="关闭channel"></a>关闭channel</h4><p>如果发送者知道，没有更多的值需要发送到channel的话，那么让接收者也能及时知道没有多余的值可接收将是有用的，因为接收者可以停止不必要的接收等待。这可以通过内置的close函数来关闭channel实现。</p>
+<p>确定不再相对端发送、接收数据。关闭channel。 使用 close(ch) 关闭channel</p>
+<p>对端可以判断 channel 是否关闭：</p>
+<pre><code>if num， ok := &lt;-ch ;  ok == true {</code></pre><ul>
+<li><p>如果对端已经关闭， ok –&gt; false . num无数据。</p>
+</li>
+<li><p>如果对端没有关闭， ok –&gt; true . num保存读到的数据。</p>
+</li>
+</ul>
+<p>可以使用 range 替代 ok：</p>
+<pre><code>for num := range ch {        // ch 不能替换为 &lt;-ch
+}</code></pre><p>总结：    </p>
+<ol>
+<li><p>数据不发送完，不应该关闭。</p>
+</li>
+<li><p>已经关闭的channel， 不能再向其写数据。 报错：panic: send on closed channel</p>
+</li>
+<li><p>写端已经关闭channel， 可以从中读取数据。</p>
+</li>
+</ol>
+<p>读无缓冲channel： 读到0 。 —— 说明：写端关闭。</p>
+<p>读有缓冲channel： 如果缓冲区内有数据，先读数据。读完数据后，可以继续读。 读到 0</p>
+<h4 id="单向channel"><a href="#单向channel" class="headerlink" title="单向channel"></a>单向channel</h4><p>默认情况下，通道channel是双向的，也就是，既可以往里面发送数据也可以同里面接收数据。</p>
+<p>但是，我们经常见一个<font color="red">通道作为参数进行传递而值希望对方是单向使用的，要么只让它发送数据，要么只让它接收数据，这时候我们可以指定通道的方向</font>。</p>
+<p>默认的channel 是双向的。 </p>
+<p>var ch chan int<br>ch = make(chan int)</p>
+<p>单向写channel:    </p>
+<pre><code>var  sendCh chan &lt;-     int    
+sendCh = make(chan &lt;- int)    不能读操作</code></pre><p>单向读channel:    </p>
+<pre><code>var  recvCh  &lt;- chan int    recvCh = make(&lt;-chan int)</code></pre><p>转换：</p>
+<ol>
+<li>双向channel 可以 隐式转换为 任意一种单向channel <pre><code>sendCh  = ch</code></pre></li>
+<li>单向 channel 不能转换为 双向 channel<pre><code>ch = sendCh/recvCh   error！！！</code></pre></li>
+</ol>
 <blockquote>
-<p>Chain 接口定义在<br>fabric/orderer/consensus/consensus.go 文件中，具体如下：</p>
+<p>传参： 传【引用】</p>
 </blockquote>
-<pre><code>// Chain defines a way to inject messages for ordering.
-// Note, that in order to allow flexibility in the implementation, it is the responsibility of the implementer
-// to take the ordered messages, send them through the blockcutter.Receiver supplied via HandleChain to cut blocks,
-// and ultimately write the ledger also supplied via HandleChain.  This design allows for two primary flows
-// 1. Messages are ordered into a stream, the stream is cut into blocks, the blocks are committed (solo, kafka)
-// 2. Messages are cut into blocks, the blocks are ordered, then the blocks are committed (sbft)
-Chain定义了一种注入消息的方式来进行排序。
-// 注意，为了在实现中实现灵活性，实现者负责获取有序消息，并通过 blockcutter 发送它们。接收器通过 HandleChain 来切割块，并写入账本也通过 HandleChain方法。
-// 这种设计允许两个主要流程：
-// 1. 消息被排序到一个流中，流被切成块，块被提交(solo, kafka)
-// 2. 消息被切成块，对块进行排序，然后提交块(sbft)
-type Chain interface {
-    // 普通消息/交易排序
-    // Order accepts a message which has been processed at a given configSeq.
-    // If the configSeq advances, it is the responsibility of the consenter
-    // to revalidate and potentially discard the message
-    // The consenter may return an error, indicating the message was not accepted
-    Order(env *cb.Envelope, configSeq uint64) error
-
-    // 配置消息/交易排序
-    // Configure accepts a message which reconfigures the channel and will
-    // trigger an update to the configSeq if committed.  The configuration must have
-    // been triggered by a ConfigUpdate message. If the config sequence advances,
-    // it is the responsibility of the consenter to recompute the resulting config,
-    // discarding the message if the reconfiguration is no longer valid.
-    // The consenter may return an error, indicating the message was not accepted
-    Configure(config *cb.Envelope, configSeq uint64) error
-
-    // 等待排序集群可用
-    // WaitReady blocks waiting for consenter to be ready for accepting new messages.
-    // This is useful when consenter needs to temporarily block ingress messages so
-    // that in-flight messages can be consumed. It could return error if consenter is
-    // in erroneous states. If this blocking behavior is not desired, consenter could
-    // simply return nil.
-    WaitReady() error
-
-    // 当排序集群发送错误时，会关闭返回的通道
-    // Errored returns a channel which will close when an error has occurred.
-    // This is especially useful for the Deliver client, who must terminate waiting
-    // clients when the consenter is not up to date.
-    Errored() &lt;-chan struct{}
-
-    // 启动当前链
-    // Start should allocate whatever resources are needed for staying up to date with the chain.
-    // Typically, this involves creating a thread which reads from the ordering source, passes those
-    // messages to a block cutter, and writes the resulting blocks to the ledger.
-    Start()
-
-    // 停止当前链，并释放资源
-    // Halt frees the resources which were allocated for this Chain.
-    Halt()
-}</code></pre><h1 id="Consenter"><a href="#Consenter" class="headerlink" title="Consenter"></a>Consenter</h1><p>Consenter 也是接口，它只有1个功能用来创建 Chain。每种共识插件，都有自己单独的consenter实现，分别用来创建solo实例、kafka实例或etcdraft实例。</p>
-<pre><code>// Consenter defines the backing ordering mechanism.
-type Consenter interface {
-    // HandleChain should create and return a reference to a Chain for the given set of resources.
-    // It will only be invoked for a given chain once per process.  In general, errors will be treated
-    // as irrecoverable and cause system shutdown.  See the description of Chain for more details
-    // The second argument to HandleChain is a pointer to the metadata stored on the `ORDERER` slot of
-    // the last block committed to the ledger of this Chain. For a new chain, or one which is migrated,
-    // this metadata will be nil (or contain a zero-length Value), as there is no prior metadata to report.
-    HandleChain(support ConsenterSupport, metadata *cb.Metadata) (Chain, error)
-}</code></pre><h1 id="ConsenterSupport"><a href="#ConsenterSupport" class="headerlink" title="ConsenterSupport"></a>ConsenterSupport</h1><p>ConsenterSupport 为 consenter 实现提供所需的资源，其实就是共识用来访问外部数据的接口。</p>
-<pre><code>// ConsenterSupport provides the resources available to a Consenter implementation.
-type ConsenterSupport interface {
-    crypto.LocalSigner
-    msgprocessor.Processor
-
-    // 验证区块签名是否合法
-    // VerifyBlockSignature verifies a signature of a block with a given optional
-    // configuration (can be nil).
-    VerifyBlockSignature([]*cb.SignedData, *cb.ConfigEnvelope) error
-
-    // 提供把消息切成块的接口
-    // BlockCutter returns the block cutting helper for this channel.
-    BlockCutter() blockcutter.Receiver
-
-    // 当前链的orderer配置
-    // SharedConfig provides the shared config from the channel&#39;s current config block.
-    SharedConfig() channelconfig.Orderer
-
-    // 当前链的通道配置
-    // ChannelConfig provides the channel config from the channel&#39;s current config block.
-    ChannelConfig() channelconfig.Channel
-
-    // 生成区块
-    // CreateNextBlock takes a list of messages and creates the next block based on the block with highest block number committed to the ledger
-    // Note that either WriteBlock or WriteConfigBlock must be called before invoking this method a second time.
-    CreateNextBlock(messages []*cb.Envelope) *cb.Block
-
-    // 读区块
-    // Block returns a block with the given number,
-    // or nil if such a block doesn&#39;t exist.
-    Block(number uint64) *cb.Block
-
-    // 写区块
-    // WriteBlock commits a block to the ledger.
-    WriteBlock(block *cb.Block, encodedMetadataValue []byte)
-
-    // 写配置区块并更新配置
-    // WriteConfigBlock commits a block to the ledger, and applies the config update inside.
-    WriteConfigBlock(block *cb.Block, encodedMetadataValue []byte)
-
-    // 返回当前配置序列号
-    // Sequence returns the current config squence.
-    Sequence() uint64
-
-    // 返回 channel ID
-    // ChainID returns the channel ID this support is associated with.
-    ChainID() string
-
-    // 返回区块高度
-    // Height returns the number of blocks in the chain this channel is associated with.
-    Height() uint64
-
-    //以原始数据的格式追加区块，不像WriteBlock那样会修改元数据
-    // Append appends a new block to the ledger in its raw form,
-    // unlike WriteBlock that also mutates its metadata.
-    Append(block *cb.Block) error
-}</code></pre><h1 id="一图看懂-Orderer-核心数据结构"><a href="#一图看懂-Orderer-核心数据结构" class="headerlink" title="一图看懂 Orderer 核心数据结构"></a>一图看懂 Orderer 核心数据结构</h1><blockquote>
-<p>建议点击图片查看大图</p>
+<h2 id="生产者消费者模型"><a href="#生产者消费者模型" class="headerlink" title="生产者消费者模型"></a>生产者消费者模型</h2><p>单向channel最典型的应用是“生产者消费者模型”</p>
+<p>所谓“生产者消费者模型”: 某个模块（函数等）负责产生数据，这些数据由另一个模块来负责处理（此处的模块是广义的，可以是类、函数、协程、线程、进程等）。产生数据的模块，就形象地称为生产者；而处理数据的模块，就称为消费者。</p>
+<h3 id="缓冲区的好处："><a href="#缓冲区的好处：" class="headerlink" title="缓冲区的好处："></a>缓冲区的好处：</h3><ul>
+<li>解耦</li>
+</ul>
+<p>假设生产者和消费者分别是两个类。如果让生产者直接调用消费者的某个方法，那么生产者对于消费者就会产生依赖（也就是耦合）。将来如果消费者的代码发生变化，可能会直接影响到生产者。而如果两者都依赖于某个缓冲区，两者之间不直接依赖，耦合度也就相应降低了。</p>
+<ul>
+<li>处理并发</li>
+</ul>
+<p>生产者直接调用消费者的某个方法，还有另一个弊端。由于函数调用是同步的（或者叫阻塞的），在消费者的方法没有返回之前，生产者只好一直等在那边。万一消费者处理数据很慢，生产者只能无端浪费时间。</p>
+<ul>
+<li>缓存</li>
+</ul>
+<p>如果生产者制造数据的速度时快时慢，缓冲区的好处就体现出来了。当数据制造快的时候，消费者来不及处理，未处理的数据可以暂时存在缓冲区中。等生产者的制造速度慢下来，消费者再慢慢处理掉。</p>
+<blockquote>
+<p>使用有缓冲的channel和有缓冲的channel能实现生产者消费者模型，无缓冲的channel是同步通信，使用有缓冲的channel是异步通信</p>
 </blockquote>
-<p><img src="http://note.youdao.com/yws/res/296/WEBRESOURCE4045838a95b90333c47c17cc7a9bc01b" alt="orderer 核心数据结构"></p>
+<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><h2 id="time-Timer"><a href="#time-Timer" class="headerlink" title="time.Timer"></a>time.Timer</h2><p>Timer是一个定时器。代表未来的一个单一事件，你可以告诉timer你要等待多长时间。</p>
+<pre><code>type Timer struct {    C &lt;-chan Time    r runtimeTimer }</code></pre><p>它提供一个channel，在定时时间到达之前，没有数据写入timer.C会一直阻塞。直到定时时间到，向channel写入值，阻塞解除，可以从中读取数据。</p>
+<h3 id="定时器的常用操作："><a href="#定时器的常用操作：" class="headerlink" title="定时器的常用操作："></a>定时器的常用操作：</h3><h4 id="实现延迟功能"><a href="#实现延迟功能" class="headerlink" title="实现延迟功能"></a>实现延迟功能</h4><ul>
+<li><p>&lt;-time.After(2 * time.Second) //定时2s，阻塞2s,2s后产生一个事件，往channel写内容<br>fmt.Println(“时间到”)</p>
+</li>
+<li><p>time.Sleep(2 * time.Second)<br>fmt.Println(“时间到”)</p>
+</li>
+<li><p>延时2s后打印一句话<br>timer := time.NewTimer(2 * time.Second)<br>&lt;- timer.C<br>fmt.Println(“时间到”)</p>
+</li>
+</ul>
+<h4 id="定时器停止"><a href="#定时器停止" class="headerlink" title="定时器停止"></a>定时器停止</h4><p>time.stop</p>
+<pre><code>timer := time.NewTimer(3 * time.Second)
+    go func() {
+        &lt;-timer.C
+        fmt.Println(&quot;子协程可以打印了，因为定时器的时间到&quot;)
+    }()
+    timer.Stop() //停止定时器
 
+    for {
+    }
+</code></pre><h4 id="定时器重置"><a href="#定时器重置" class="headerlink" title="定时器重置"></a>定时器重置</h4><p>time.reset</p>
+<pre><code>timer := time.NewTimer(3 * time.Second)
+    go func() {
+        &lt;-timer.C
+        fmt.Println(&quot;子协程可以打印了，因为定时器的时间到&quot;)
+    }()
+    timer.Stop() //停止定时器
+
+    for {
+    }
+</code></pre><h4 id="周期定时"><a href="#周期定时" class="headerlink" title="周期定时"></a>周期定时</h4><p>Ticker是一个周期触发定时的计时器，它会按照一个时间间隔往channel发送系统当前时间，而channel的接收者可以以固定的时间间隔从channel中读取事件。</p>
+<pre><code>type Ticker struct {    C &lt;-chan Time     // The channel on which the ticks are delivered.    r runtimeTimer }</code></pre><p>示例代码：</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func main() {
+    //创建定时器，每隔1秒后，定时器就会给channel发送一个事件(当前时间)
+    ticker := time.NewTicker(time.Second * 1)
+
+    i := 0
+    go func() {
+        for { //循环
+            &lt;-ticker.C
+            i++
+            fmt.Println(&quot;i = &quot;, i)
+
+            if i == 5 {
+                ticker.Stop() //停止定时器
+            }
+        }
+    }() //别忘了()
+
+    //死循环，特地不让main goroutine结束
+    for {
+    }
+}</code></pre>
             </div>
             <hr />
 
@@ -854,9 +854,9 @@ type ConsenterSupport interface {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Fabric 1.4源码分析2：Orderer 核心数据结构》
+                    《【Go特性3】channel》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/08/02/orderer-data-structure/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/23/go-feature-channel/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -897,7 +897,7 @@ type ConsenterSupport interface {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/08/02/orderer-data-structure/',
+        id: '2020/12/23/go-feature-channel/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -918,54 +918,48 @@ type ConsenterSupport interface {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/08/fabric-upgrade-2-2/">
+                <a href="/2020/12/23/go-feature-channel/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="fabric 1.4 升级到 2.2 的⽅案">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【Go特性3】channel">
                         
-                        <span class="card-title">fabric 1.4 升级到 2.2 的⽅案</span>
+                        <span class="card-title">【Go特性3】channel</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            最近Fabric新发布了2.2版本，也是继1.4以来又一个LTS版本
+                            channel是Go语言特有的数据结构，主要用来解决协程的同步问题以及协程之间数据共享（数据传递）的问题，常常与goroutine共同使用，实现go的并发特性
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
-                    </a>
-                    
-                    <a href="/tags/2-2/" target="_blank">
-                        <span class="chip bg-color">2.2</span>
-                    </a>
-                    
-                    <a href="/tags/upgrade/" target="_blank">
-                        <span class="chip bg-color">upgrade</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
                     </a>
                     
                 </div>
@@ -979,31 +973,31 @@ type ConsenterSupport interface {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/25/orderer-functions-overview/">
+                <a href="/2020/12/22/go-feature-goroutine/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Fabric 1.4源码分析1：Orderer功能概述">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="【Go特性2】Goroutine">
                         
-                        <span class="card-title">Fabric 1.4源码分析1：Orderer功能概述</span>
+                        <span class="card-title">【Go特性2】Goroutine</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要梳理了orderer的整体功能架构和主要模块，为进一步分析源码作准备。
+                            goroutine是Go并行设计的核心, 也是Go语言中的之所以支持并发编程的重要原因之一。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-25
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-22
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
                                 </a>
                             
                             
@@ -1013,12 +1007,8 @@ type ConsenterSupport interface {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
-                    </a>
-                    
-                    <a href="/tags/orderer/" target="_blank">
-                        <span class="chip bg-color">orderer</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
                     </a>
                     
                 </div>
