@@ -4,16 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-51】N皇后, 小熊的作坊">
+    <meta name="keywords" content="【Go特性4】select, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接46. N皇后
-题目描述n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。
+    <meta name="description" content="selectselect作用Go里面提供了一个关键字select，通过select可以监听channel上的数据流动。
+select的用法与switch语言非常类似，由select开始一个新的选择块，每个选择条件由case语句来描述。
 
-上图为 8 皇后问题的一种解法。
-给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。
-每一种解法包含">
+与">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-51】N皇后 | 小熊的作坊</title>
+    <title>【Go特性4】select | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -334,13 +332,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-51】N皇后
+                        【Go特性4】select
                     </div>
                 </div>
             </div>
@@ -451,16 +449,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/leetcode/" target="_blank">
-                            <span class="chip bg-color">leetcode</span>
-                        </a>
-                        
-                        <a href="/tags/DFS/" target="_blank">
-                            <span class="chip bg-color">DFS</span>
-                        </a>
-                        
-                        <a href="/tags/回溯剪枝/" target="_blank">
-                            <span class="chip bg-color">回溯剪枝</span>
+                        <a href="/tags/go/" target="_blank">
+                            <span class="chip bg-color">go</span>
                         </a>
                         
                     </div>
@@ -471,8 +461,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/leetcode/" class="post-category" target="_blank">
-                            leetcode
+                        <a href="/categories/go/" class="post-category" target="_blank">
+                            go
                         </a>
                         
                     </div>
@@ -483,7 +473,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-15
+                    2020-12-24
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -497,14 +487,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    686
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    2 分
                 </div>
                 
                 
@@ -520,150 +510,100 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/n-queens/" target="_blank" rel="noopener">46. N皇后</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
-<p><img src="https://i.niupic.com/images/2020/12/15/97fx.png" alt></p>
-<p>上图为 8 皇后问题的一种解法。</p>
-<p>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。</p>
-<p>每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 ‘Q’ 和 ‘.’ 分别代表了皇后和空位。</p>
-<p>示例：</p>
-<pre><code>输入：4
-输出：[
- [&quot;.Q..&quot;,  // 解法 1
-  &quot;...Q&quot;,
-  &quot;Q...&quot;,
-  &quot;..Q.&quot;],
-
- [&quot;..Q.&quot;,  // 解法 2
-  &quot;Q...&quot;,
-  &quot;...Q&quot;,
-  &quot;.Q..&quot;]
-]
-解释: 4 皇后问题存在两个不同的解法。
-</code></pre><p>提示：</p>
-<p>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。</p>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>N 皇后是非常经典的题，这题的解题思路也非常清晰，就是通过回溯剪枝进行穷举就行了。这里我们套用框架：</p>
-<pre><code>result = []
-func backtrack(路径，选择列表) {
-    if 满足结束条件 {
-        result.add(路径)
-    }
-    return
-
-    for 选择 in 选择列表 {
-        做选择
-        backtrack(路径，选择列表)
-        撤销选择
-    }
-}</code></pre><p>想清楚几个问题</p>
+                <h1 id="select"><a href="#select" class="headerlink" title="select"></a>select</h1><h2 id="select作用"><a href="#select作用" class="headerlink" title="select作用"></a>select作用</h2><p>Go里面提供了一个关键字select，通过select可以监听channel上的数据流动。</p>
+<p>select的用法与switch语言非常类似，由select开始一个新的选择块，每个选择条件由case语句来描述。</p>
+<blockquote>
+<p><font color="red">与switch语句相比， select有比较多的限制，其中最大的一条限制就是每个case语句里必须是一个IO操作</font></p>
+</blockquote>
+<p>大致的结构如下：</p>
+<pre><code>    select {
+    case &lt;-chan1:
+        // 如果chan1成功读到数据，则进行该case处理语句
+    case chan2 &lt;- 1:
+        // 如果成功向chan2写入数据，则进行该case处理语句
+    default:
+        // 如果上面都没有成功，则进入default处理流程
+    }</code></pre><p>在一个select语句中，Go语言会按顺序从头至尾评估每一个发送和接收的语句。</p>
+<ul>
+<li><p>如果其中的任意一语句可以继续执行(即没有被阻塞)，那么就从那些可以执行的语句中任意选择一条来使用。</p>
+</li>
+<li><p>如果没有任意一条语句可以执行(即所有的通道都被阻塞)，那么有两种可能的情况：</p>
 <ol>
-<li>起点是什么？<ul>
-<li>从第一行开始遍历</li>
-</ul>
-</li>
-<li>结束条件是什么？<ul>
-<li>遍历到最后一行</li>
-</ul>
-</li>
-<li>怎么定义走过的路径？<ul>
-<li>这里一条路就是一个棋盘的排列方式</li>
-</ul>
-</li>
-<li>如何做选择？<ul>
-<li>在当前行依次遍历所有的列，要保证选中列、行和斜对角都没有冲突</li>
-</ul>
-</li>
+<li>如果给出了default语句，那么就会执行default语句，同时程序的执行会从select语句后的语句中恢复。</li>
+<li>如果没有default语句，那么select语句将被阻塞，直到至少有一个通信可以进行下去。</li>
 </ol>
-<p>想清楚这几个问题就可以开始写代码了，剩下的就是细节问题了（比如选用什么数据结构）</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 最终符合要求的若干个棋盘</span>
-<span class="token keyword">var</span> results <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+</li>
+</ul>
+<p>示例代码：</p>
+<pre><code>package main
 
-<span class="token keyword">func</span> <span class="token function">solveNQueens</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 全局变量需要重置</span>
-    results <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+import (
+    &quot;fmt&quot;
+)
 
-    <span class="token comment" spellcheck="true">// 定义一个 n * n 的空棋盘</span>
-    <span class="token keyword">var</span> board <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
-    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span> <span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
-        row <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n <span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">{</span>
-            row <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>row<span class="token punctuation">,</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
-        board <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>board<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
+func fibonacci(c, quit chan int) {
+    x, y := 1, 1
+    for {
+        select {
+        case c &lt;- x:
+            x, y = y, x+y
+        case &lt;-quit:
+            fmt.Println(&quot;quit&quot;)
+            return
+        }
+    }
+}
 
-    <span class="token comment" spellcheck="true">// 从第 0 行开始遍历</span>
-    <span class="token function">backTrack</span><span class="token punctuation">(</span>board<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+func main() {
+    c := make(chan int)
+    quit := make(chan int)
 
-    <span class="token keyword">return</span> results
-<span class="token punctuation">}</span>
+    go func() {
+        for i := 0; i &lt; 6; i++ {
+            fmt.Println(&lt;-c)
+        }
+        quit &lt;- 0
+    }()
 
-<span class="token keyword">func</span> <span class="token function">backTrack</span><span class="token punctuation">(</span>board <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> row <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 结束条件, 最后一行也放好了</span>
-    <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>board<span class="token punctuation">)</span> <span class="token operator">==</span> row <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 注意这里用于拷贝的临时变量一定要用 make 开辟空间，分配地址，</span>
-        <span class="token comment" spellcheck="true">// 不能用 var tmp []string{} 进行声明，否则无法拷贝成功</span>
-        tmp <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>board<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token function">copy</span><span class="token punctuation">(</span>tmp<span class="token punctuation">,</span> board<span class="token punctuation">)</span>
-        results <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>results<span class="token punctuation">,</span> tmp<span class="token punctuation">)</span>
-        <span class="token keyword">return</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// 选定当前行，从第一列开始遍历</span>
-    <span class="token keyword">for</span> col <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> col <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>board<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> col<span class="token operator">++</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 如果会冲突，跳过这个点</span>
-        <span class="token keyword">if</span> <span class="token operator">!</span><span class="token function">isValid</span><span class="token punctuation">(</span>board<span class="token punctuation">,</span> row<span class="token punctuation">,</span> col<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">continue</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token comment" spellcheck="true">// 如果不冲突，将该节点加入选择（放个皇后）</span>
-        <span class="token comment" spellcheck="true">// 注意这里的字符赋值方式，需要通过[]byte这种切片形式进行转化，</span>
-        <span class="token comment" spellcheck="true">// 不能直接给string中的某个字符进行赋值</span>
-        b <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>board<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">)</span>
-        b<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">'Q'</span><span class="token punctuation">)</span>
-        board<span class="token punctuation">[</span>row<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
-
-        <span class="token comment" spellcheck="true">// 进入下一行</span>
-        <span class="token function">backTrack</span><span class="token punctuation">(</span>board<span class="token punctuation">,</span> row <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
-
-        <span class="token comment" spellcheck="true">// 撤销选择，回退一行（把皇后拿掉）</span>
-        b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>board<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">)</span>
-        b<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span>
-        board<span class="token punctuation">[</span>row<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">// 判断当前位置是否合法，这里需要专门写个函数进行处理</span>
-<span class="token keyword">func</span> <span class="token function">isValid</span><span class="token punctuation">(</span>board <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> row<span class="token punctuation">,</span> col <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">bool</span>  <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 从上往下，检查当前列是否存在冲突（列不变，行--）</span>
-    <span class="token keyword">for</span> i <span class="token operator">:=</span> row <span class="token operator">-</span> <span class="token number">1</span> <span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token punctuation">;</span> i<span class="token operator">--</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> board<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'Q'</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token boolean">false</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// 左下角是否存在冲突（行--，列--）</span>
-    <span class="token keyword">for</span> i<span class="token punctuation">,</span> j <span class="token operator">:=</span> row <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> col <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> j <span class="token operator">>=</span> <span class="token number">0</span> <span class="token punctuation">;</span> i<span class="token punctuation">,</span> j <span class="token operator">=</span> i<span class="token number">-1</span><span class="token punctuation">,</span> j<span class="token number">-1</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> board<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'Q'</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token boolean">false</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// 右下角是否存在冲突（行--，列++）</span>
-    <span class="token keyword">for</span> i<span class="token punctuation">,</span> j <span class="token operator">:=</span> row <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> col <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>board<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token punctuation">,</span> j <span class="token operator">=</span> i<span class="token number">-1</span><span class="token punctuation">,</span> j<span class="token operator">+</span><span class="token number">1</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> board<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'Q'</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token boolean">false</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token boolean">true</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N"><a href="#时间复杂度：O-N" class="headerlink" title="时间复杂度：O((N!))"></a>时间复杂度：O((N!))</h3><p>其中 N 是皇后数量。</p>
-<h3 id="空间复杂度：O-N"><a href="#空间复杂度：O-N" class="headerlink" title="空间复杂度：O((N))"></a>空间复杂度：O((N))</h3><p>其中 N 是皇后数量。空间复杂度主要取决于递归调用层数、记录每行放置的皇后的列下标的数组以及三个集合，递归调用层数不会超过 N，数组的长度为 N，每个集合的元素个数都不会超过 N。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题有两个需要着重注意的点，特别容易错，我自己做的时候在这里踩了坑：</p>
-<ol>
-<li>对字符串重的某个字符进行赋值时，需要通过[]byte这种切片形式进行转化，不能直接给string中的某个字符进行赋值。</li>
-<li>用于拷贝其一条路径的临时变量一定要用 make 开辟空间，分配地址，不能用 var tmp []string{} 进行声明，否则无法拷贝成功。</li>
+    fibonacci(c, quit)
+}</code></pre><p>运行结果如下：</p>
+<pre><code>1
+1
+2
+3
+4
+8
+quit</code></pre><h2 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h2><p>有时候会出现goroutine阻塞的情况，那么我们如何避免整个程序进入阻塞的情况呢？我们可以利用select来设置超时，通过如下的方式实现：</p>
+<pre><code>func main() {
+    c := make(chan int)
+    o := make(chan bool)
+    go func() {
+        for {
+            select {
+            case v := &lt;-c:
+                fmt.Println(v)
+            case &lt;-time.After(5 * time.Second):
+                fmt.Println(&quot;timeout&quot;)
+                o &lt;- true
+                break
+            }
+        }
+    }()
+    //c &lt;- 666 // 注释掉，引发 timeout
+    &lt;-o
+}</code></pre><h2 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h2><ol>
+<li><p>监听的case中，没有满足监听条件，阻塞。</p>
+</li>
+<li><p>监听的case中，有多个满足监听条件，任选一个执行。</p>
+</li>
+<li><p>可以使用default来处理所有case都不满足监听条件的状况。 通常不用（会产生忙轮询）</p>
+</li>
+<li><p>select 自身不带有循环机制，需借助外层 for 来循环监听</p>
+</li>
+<li><p>break 跳出 select中的一个case选项 。类似于switch中的用法。</p>
+</li>
+<li><p>case 后面的语句在监听数据的同时需要拿出数据，如果分两步做，会丢失数据，因为相当于拿了两次，但只用了第二次</p>
+</li>
 </ol>
 
             </div>
@@ -823,9 +763,9 @@ func backtrack(路径，选择列表) {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-51】N皇后》
+                    《【Go特性4】select》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/15/leetcode-51/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/24/go-feature-select/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -866,7 +806,7 @@ func backtrack(路径，选择列表) {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/15/leetcode-51/',
+        id: '2020/12/24/go-feature-select/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -887,29 +827,30 @@ func backtrack(路径，选择列表) {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/16/go-basic/">
+                <a href="/2020/12/24/go-feature-select/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="【Go 基础】">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【Go特性4】select">
                         
-                        <span class="card-title">【Go 基础】</span>
+                        <span class="card-title">【Go特性4】select</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            主要是自我梳理一下go语言的一些基础语法，指针、切片、map、字符串等，查漏补缺
+                            Go里面提供了一个关键字select，通过select可以监听channel上的数据流动。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -922,6 +863,7 @@ func backtrack(路径，选择列表) {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -940,31 +882,31 @@ func backtrack(路径，选择列表) {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/14/leetcode-46/">
+                <a href="/2020/12/23/go-feature-channel/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="【leetcode-46】全排列">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="【Go特性3】channel">
                         
-                        <span class="card-title">【leetcode-46】全排列</span>
+                        <span class="card-title">【Go特性3】channel</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            回溯剪枝问题比动态规划问题更简单，因为它不需要找转移方程，而是暴力穷举，想清楚路径、选择、结束条件，然后直接套框架就行了
+                            channel是Go语言特有的数据结构，主要用来解决协程的同步问题以及协程之间数据共享（数据传递）的问题，常常与goroutine共同使用，实现go的并发特性
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/leetcode/" class="post-category" target="_blank">
-                                    leetcode
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
                                 </a>
                             
                             
@@ -974,16 +916,8 @@ func backtrack(路径，选择列表) {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
-                    </a>
-                    
-                    <a href="/tags/DFS/" target="_blank">
-                        <span class="chip bg-color">DFS</span>
-                    </a>
-                    
-                    <a href="/tags/回溯剪枝/" target="_blank">
-                        <span class="chip bg-color">回溯剪枝</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
                     </a>
                     
                 </div>

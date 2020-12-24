@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>【Go特性4】select</title>
+      <link href="/2020/12/24/go-feature-select/"/>
+      <url>/2020/12/24/go-feature-select/</url>
+      
+        <content type="html"><![CDATA[<h1 id="select"><a href="#select" class="headerlink" title="select"></a>select</h1><h2 id="select作用"><a href="#select作用" class="headerlink" title="select作用"></a>select作用</h2><p>Go里面提供了一个关键字select，通过select可以监听channel上的数据流动。</p><p>select的用法与switch语言非常类似，由select开始一个新的选择块，每个选择条件由case语句来描述。</p><blockquote><p><font color="red">与switch语句相比， select有比较多的限制，其中最大的一条限制就是每个case语句里必须是一个IO操作</font></p></blockquote><p>大致的结构如下：</p><pre><code>    select {    case &lt;-chan1:        // 如果chan1成功读到数据，则进行该case处理语句    case chan2 &lt;- 1:        // 如果成功向chan2写入数据，则进行该case处理语句    default:        // 如果上面都没有成功，则进入default处理流程    }</code></pre><p>在一个select语句中，Go语言会按顺序从头至尾评估每一个发送和接收的语句。</p><ul><li><p>如果其中的任意一语句可以继续执行(即没有被阻塞)，那么就从那些可以执行的语句中任意选择一条来使用。</p></li><li><p>如果没有任意一条语句可以执行(即所有的通道都被阻塞)，那么有两种可能的情况：</p><ol><li>如果给出了default语句，那么就会执行default语句，同时程序的执行会从select语句后的语句中恢复。</li><li>如果没有default语句，那么select语句将被阻塞，直到至少有一个通信可以进行下去。</li></ol></li></ul><p>示例代码：</p><pre><code>package mainimport (    &quot;fmt&quot;)func fibonacci(c, quit chan int) {    x, y := 1, 1    for {        select {        case c &lt;- x:            x, y = y, x+y        case &lt;-quit:            fmt.Println(&quot;quit&quot;)            return        }    }}func main() {    c := make(chan int)    quit := make(chan int)    go func() {        for i := 0; i &lt; 6; i++ {            fmt.Println(&lt;-c)        }        quit &lt;- 0    }()    fibonacci(c, quit)}</code></pre><p>运行结果如下：</p><pre><code>112348quit</code></pre><h2 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h2><p>有时候会出现goroutine阻塞的情况，那么我们如何避免整个程序进入阻塞的情况呢？我们可以利用select来设置超时，通过如下的方式实现：</p><pre><code>func main() {    c := make(chan int)    o := make(chan bool)    go func() {        for {            select {            case v := &lt;-c:                fmt.Println(v)            case &lt;-time.After(5 * time.Second):                fmt.Println(&quot;timeout&quot;)                o &lt;- true                break            }        }    }()    //c &lt;- 666 // 注释掉，引发 timeout    &lt;-o}</code></pre><h2 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h2><ol><li><p>监听的case中，没有满足监听条件，阻塞。</p></li><li><p>监听的case中，有多个满足监听条件，任选一个执行。</p></li><li><p>可以使用default来处理所有case都不满足监听条件的状况。 通常不用（会产生忙轮询）</p></li><li><p>select 自身不带有循环机制，需借助外层 for 来循环监听</p></li><li><p>break 跳出 select中的一个case选项 。类似于switch中的用法。</p></li><li><p>case 后面的语句在监听数据的同时需要拿出数据，如果分两步做，会丢失数据，因为相当于拿了两次，但只用了第二次</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Go特性3】channel</title>
       <link href="/2020/12/23/go-feature-channel/"/>
       <url>/2020/12/23/go-feature-channel/</url>
