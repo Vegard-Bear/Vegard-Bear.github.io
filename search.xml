@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>【Go特性6】Socket编程初探</title>
+      <link href="/2020/12/29/go-feature-socket/"/>
+      <url>/2020/12/29/go-feature-socket/</url>
+      
+        <content type="html"><![CDATA[<h1 id="什么是Socket"><a href="#什么是Socket" class="headerlink" title="什么是Socket?"></a>什么是Socket?</h1><p>Socket，英文含义是【插座、插孔】，一般称之为套接字，用于描述IP地址和端口。可以实现不同程序间的数据通信。</p><p>Socket起源于Unix，而Unix基本哲学之一就是“一切皆文件”，都可以用“打开open –&gt; 读写write/read –&gt; 关闭close”模式来操作。Socket就是该模式的一个实现，网络的Socket数据传输是一种特殊的I/O，Socket也是一种文件描述符。Socket也具有一个类似于打开文件的函数调用：Socket()，该函数返回一个整型的Socket描述符，随后的连接建立、数据传输等操作都是通过该Socket实现的。</p><p>套接字的内核实现较为复杂，不宜在学习初期深入学习，了解到如下结构足矣。</p><p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/%E5%A5%97%E6%8E%A5%E5%AD%97.png" alt></p><p>在TCP/IP协议中，“IP地址+TCP或UDP端口号”唯一标识网络通讯中的一个进程。“IP地址+端口号”就对应一个socket。欲建立连接的两个进程各自有一个socket来标识，那么这两个socket组成的socket pair就唯一标识一个连接。因此可以用Socket来描述网络连接的一对一关系。</p><p>常用的Socket类型有两种：流式Socket（SOCK_STREAM）和数据报式Socket（SOCK_DGRAM）。流式是一种面向连接的Socket，针对于面向连接的TCP服务应用；数据报式Socket是一种无连接的Socket，对应于无连接的UDP服务应用。</p><h1 id="网络应用程序设计模式"><a href="#网络应用程序设计模式" class="headerlink" title="网络应用程序设计模式"></a>网络应用程序设计模式</h1><h3 id="C-S模式"><a href="#C-S模式" class="headerlink" title="C/S模式"></a>C/S模式</h3><p>传统的网络应用设计模式，客户机(client)/服务器(server)模式。需要在通讯两端各自部署客户机和服务器来完成数据通信。</p><ul><li>优点</li></ul><p>客户端位于目标主机上可以<font color="blue">保证性能，将数据缓存至客户端本地，从而提高数据传输效率</font>。且，一般来说客户端和服务器程序由一个开发团队创作，所以他们之间所采用的协议相对灵活。可以在标准协议的基础上根据需求裁剪及定制。例如，腾讯所采用的通信协议，即为ftp协议的修改剪裁版。</p><p>因此，<font color="blue">传统的网络应用程序及较大型的网络应用程序都首选C/S模式进行开发。</font>如，知名的网络游戏魔兽世界。3D画面，数据量庞大，<font color="blue">使用C/S模式可以提前在本地进行大量数据的缓存处理，从而提高观感。</font></p><ul><li>缺点</li></ul><p>由于客户端和服务器都需要有一个开发团队来完成开发。<font color="blue">工作量将成倍提升，开发周期较长</font>。另外，从用户角度出发，<font color="blue">需要将客户端安插至用户主机上，对用户主机的安全性构成威胁</font>。这也是很多用户不愿使用C/S模式应用程序的重要原因。</p><h3 id="B-S模式"><a href="#B-S模式" class="headerlink" title="B/S模式"></a>B/S模式</h3><p>浏览器(Browser)/服务器(Server)模式。只需在一端部署服务器，而另外一端使用每台PC都默认配置的浏览器即可完成数据的传输。</p><ul><li>优点</li></ul><p>B/S模式相比C/S模式而言，由于它没有独立的客户端，使用标准浏览器作为客户端，其工作开发量较小。只需开发服务器端即可。另外由于其采用浏览器显示数据，因此<font color="blue">移植性非常好，不受平台限制</font>。如早期的偷菜游戏，在各个平台上都可以完美运行。</p><ul><li>缺点</li></ul><p>由于使用第三方浏览器，因此网络应用支持受限。另外，没有客户端放到对方主机上，<font color="blue">缓存数据不尽如人意，从而传输数据量受到限制。应用的观感大打折扣。第三，必须与浏览器一样，采用标准http协议进行通信，协议选择不灵活</font>。</p><p>因此在开发过程中，模式的选择由上述各自的特点决定。根据实际需求选择应用程序设计模式。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-76】最小覆盖子串</title>
       <link href="/2020/12/27/leetcode-76/"/>
       <url>/2020/12/27/leetcode-76/</url>

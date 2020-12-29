@@ -4,14 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="fabric 2.2 生命周期链码实战, 小熊的作坊">
+    <meta name="keywords" content="【Go特性6】Socket编程初探, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命周期管理
-
-打包（package）必须先打包链码，然后才能将其安装在peer节点上。可以使用 peer lifecycle chaincode package 命令打包">
+    <meta name="description" content="什么是Socket?Socket，英文含义是【插座、插孔】，一般称之为套接字，用于描述IP地址和端口。可以实现不同程序间的数据通信。
+Socket起源于Unix，而Unix基本哲学之一就是“一切皆文件”，都可以用“打开open –&amp;gt; ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +17,7 @@ fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命�
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>fabric 2.2 生命周期链码实战 | 小熊的作坊</title>
+    <title>【Go特性6】Socket编程初探 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +330,13 @@ fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        fabric 2.2 生命周期链码实战
+                        【Go特性6】Socket编程初探
                     </div>
                 </div>
             </div>
@@ -449,16 +447,8 @@ fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命�
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/fabric/" target="_blank">
-                            <span class="chip bg-color">fabric</span>
-                        </a>
-                        
-                        <a href="/tags/chaincode/" target="_blank">
-                            <span class="chip bg-color">chaincode</span>
-                        </a>
-                        
-                        <a href="/tags/2-2/" target="_blank">
-                            <span class="chip bg-color">2.2</span>
+                        <a href="/tags/go/" target="_blank">
+                            <span class="chip bg-color">go</span>
                         </a>
                         
                     </div>
@@ -469,8 +459,8 @@ fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命�
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/fabric/" class="post-category" target="_blank">
-                            fabric
+                        <a href="/categories/go/" class="post-category" target="_blank">
+                            go
                         </a>
                         
                     </div>
@@ -481,7 +471,7 @@ fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命�
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-08
+                    2020-12-29
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -495,14 +485,14 @@ fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命�
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    3 分
                 </div>
                 
                 
@@ -518,134 +508,32 @@ fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命周期管理</p>
-</blockquote>
-<h1 id="打包（package）"><a href="#打包（package）" class="headerlink" title="打包（package）"></a>打包（package）</h1><p>必须先打包链码，然后才能将其安装在peer节点上。可以使用 peer lifecycle chaincode package 命令打包Go链码。</p>
+                <h1 id="什么是Socket"><a href="#什么是Socket" class="headerlink" title="什么是Socket?"></a>什么是Socket?</h1><p>Socket，英文含义是【插座、插孔】，一般称之为套接字，用于描述IP地址和端口。可以实现不同程序间的数据通信。</p>
+<p>Socket起源于Unix，而Unix基本哲学之一就是“一切皆文件”，都可以用“打开open –&gt; 读写write/read –&gt; 关闭close”模式来操作。Socket就是该模式的一个实现，网络的Socket数据传输是一种特殊的I/O，Socket也是一种文件描述符。Socket也具有一个类似于打开文件的函数调用：Socket()，该函数返回一个整型的Socket描述符，随后的连接建立、数据传输等操作都是通过该Socket实现的。</p>
+<p>套接字的内核实现较为复杂，不宜在学习初期深入学习，了解到如下结构足矣。</p>
+<p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/%E5%A5%97%E6%8E%A5%E5%AD%97.png" alt></p>
+<p>在TCP/IP协议中，“IP地址+TCP或UDP端口号”唯一标识网络通讯中的一个进程。“IP地址+端口号”就对应一个socket。欲建立连接的两个进程各自有一个socket来标识，那么这两个socket组成的socket pair就唯一标识一个连接。因此可以用Socket来描述网络连接的一对一关系。</p>
+<p>常用的Socket类型有两种：流式Socket（SOCK_STREAM）和数据报式Socket（SOCK_DGRAM）。流式是一种面向连接的Socket，针对于面向连接的TCP服务应用；数据报式Socket是一种无连接的Socket，对应于无连接的UDP服务应用。</p>
+<h1 id="网络应用程序设计模式"><a href="#网络应用程序设计模式" class="headerlink" title="网络应用程序设计模式"></a>网络应用程序设计模式</h1><h3 id="C-S模式"><a href="#C-S模式" class="headerlink" title="C/S模式"></a>C/S模式</h3><p>传统的网络应用设计模式，客户机(client)/服务器(server)模式。需要在通讯两端各自部署客户机和服务器来完成数据通信。</p>
 <ul>
-<li><p>使用 –path 标志指示链码的位置。该路径必须是标准路径或相对于您当前工作目录的路径。</p>
-</li>
-<li><p>使用 –label 标志指定 stupid 作为组织用于标识的被打包的链码的标签。</p>
-</li>
+<li>优点</li>
 </ul>
-<pre><code>peer lifecycle chaincode package stupid.tar.gz --path github.com/chaincode/stupid --lang golang --label stupid</code></pre><h1 id="安装（install）"><a href="#安装（install）" class="headerlink" title="安装（install）"></a>安装（install）</h1><p>打包链码后，可以使用 peer chaincode install 命令在 peer 节点上安装链码。</p>
+<p>客户端位于目标主机上可以<font color="blue">保证性能，将数据缓存至客户端本地，从而提高数据传输效率</font>。且，一般来说客户端和服务器程序由一个开发团队创作，所以他们之间所采用的协议相对灵活。可以在标准协议的基础上根据需求裁剪及定制。例如，腾讯所采用的通信协议，即为ftp协议的修改剪裁版。</p>
+<p>因此，<font color="blue">传统的网络应用程序及较大型的网络应用程序都首选C/S模式进行开发。</font>如，知名的网络游戏魔兽世界。3D画面，数据量庞大，<font color="blue">使用C/S模式可以提前在本地进行大量数据的缓存处理，从而提高观感。</font></p>
 <ul>
-<li>将stupid.tar.gz软件包安装在 peer0.org1.example.com 上。</li>
+<li>缺点</li>
 </ul>
-<pre><code>peer lifecycle chaincode install stupid.tar.gz
-2020-08-07 03:29:49.473 UTC [cli.lifecycle.chaincode] submitInstallProposal -&gt; INFO 001 Installed remotely: response:&lt;status:200 payload:&quot;\nGstupid:27a22f86b653f2fd487a41af58404de8cdac47b4c09dddecc16fef2f7f60e2c2\022\006stupid&quot; &gt;
-2020-08-07 03:29:49.477 UTC [cli.lifecycle.chaincode] submitInstallProposal -&gt; INFO 002 Chaincode code package identifier: stupid:27a22f86b653f2fd487a41af58404de8cdac47b4c09dddecc16fef2f7f60e2c2</code></pre><ul>
-<li>切换为 peer1.org1，并安装链码</li>
-</ul>
-<pre><code>export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-export CORE_PEER_ADDRESS=peer1.org1.example.com:8051
-export CORE_PEER_LOCALMSPID=&quot;Org1MSP&quot;
-export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
-peer lifecycle chaincode install stupid.tar.gz</code></pre><ul>
-<li>切换为 peer0.org2，并安装链码</li>
-</ul>
-<pre><code>export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
-export CORE_PEER_ADDRESS=peer0.org2.example.com:9051
-export CORE_PEER_LOCALMSPID=&quot;Org2MSP&quot;
-export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
-peer lifecycle chaincode install stupid.tar.gz</code></pre><ul>
-<li>切换为 peer1.org2，并安装链码</li>
-</ul>
-<pre><code>export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
-export CORE_PEER_ADDRESS=peer1.org2.example.com:10051
-export CORE_PEER_LOCALMSPID=&quot;Org2MSP&quot;
-export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt
-peer lifecycle chaincode install stupid.tar.gz</code></pre><ul>
-<li>检查是否安装成功</li>
-</ul>
-<pre><code>export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-export CORE_PEER_ADDRESS=peer1.org1.example.com:8051
-export CORE_PEER_LOCALMSPID=&quot;Org1MSP&quot;
-export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
-peer lifecycle chaincode queryinstalled --peerAddresses peer0.org1.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
-Installed chaincodes on peer:
-Package ID: stupid:27a22f86b653f2fd487a41af58404de8cdac47b4c09dddecc16fef2f7f60e2c2, Label: stupid</code></pre><p>安装链码成功后会返回一个标识符，这个标识符与在下一步会用到。<br>链码标签和哈希值构成了标识符。</p>
-<h1 id="批准（approve）"><a href="#批准（approve）" class="headerlink" title="批准（approve）"></a>批准（approve）</h1><p>在peer节点上安装了chaincode程序包后，可以批准组织的链码定义。链码定义包括链码管理的重要参数，包括链码名称，版本和认可策略等。</p>
-<p>这是命令的示例，该命令批准在channel 版本上命名的链码的定义。</p>
+<p>由于客户端和服务器都需要有一个开发团队来完成开发。<font color="blue">工作量将成倍提升，开发周期较长</font>。另外，从用户角度出发，<font color="blue">需要将客户端安插至用户主机上，对用户主机的安全性构成威胁</font>。这也是很多用户不愿使用C/S模式应用程序的重要原因。</p>
+<h3 id="B-S模式"><a href="#B-S模式" class="headerlink" title="B/S模式"></a>B/S模式</h3><p>浏览器(Browser)/服务器(Server)模式。只需在一端部署服务器，而另外一端使用每台PC都默认配置的浏览器即可完成数据的传输。</p>
 <ul>
-<li>使用 –package-id 标志传递链码包标识符。</li>
-<li>使用 –signature-policy标志定义链码的背书策略。</li>
-<li>使用 –init-required标志请求执行 Init 函数初始化链码。</li>
+<li>优点</li>
 </ul>
-<p>需要注意的是，每个组织都需要进行一次approveformyorg操作，具体需要由组织内的任意一个具有管理员权限的节点来进行即可：</p>
-<p>切换 peer0.org1.example.com，进行approveformyorg 操作，批准链码定义：</p>
-<pre><code>export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-export CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-export CORE_PEER_LOCALMSPID=&quot;Org1MSP&quot;
-export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
-peer lifecycle chaincode approveformyorg  -o orderer.example.com:7050 --tls true --cafile $ORDERER_CA --channelID mychannel --name stupid --version 1.0 --init-required --package-id stupid:27a22f86b653f2fd487a41af58404de8cdac47b4c09dddecc16fef2f7f60e2c2 --sequence 1 --signature-policy &quot;AND (&#39;Org1MSP.peer&#39;,&#39;Org2MSP.peer&#39;)&quot; --waitForEvent</code></pre><p>结果输出以下内容：</p>
-<pre><code>2020-08-07 03:47:33.708 UTC [chaincodeCmd] ClientWait -&gt; INFO 001 txid [5f92b2c3b14ddc80829c9c89bc602069a3fd868ec358c4d5d329ccb8dee0b530] committed with status (VALID) at</code></pre><p>然后我们再切换到 peer0.org2.example.com 进行一次 approveformyorg 操作</p>
-<p>切换 peer0.org2.example.com，并批准链码定义</p>
-<pre><code>export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
-export CORE_PEER_ADDRESS=peer0.org2.example.com:9051
-export CORE_PEER_LOCALMSPID=&quot;Org2MSP&quot;
-export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
-export ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
-peer lifecycle chaincode approveformyorg  -o orderer.example.com:7050 --tls --cafile $ORDERER_CA --channelID mychannel --name stupid --version 1.0 --init-required --package-id stupid:27a22f86b653f2fd487a41af58404de8cdac47b4c09dddecc16fef2f7f60e2c2 --sequence 1 --signature-policy &quot;AND (&#39;Org1MSP.peer&#39;,&#39;Org2MSP.peer&#39;)&quot; --waitForEvent</code></pre><ul>
-<li><p>检查是否批准成功</p>
-<pre><code>peer lifecycle chaincode checkcommitreadiness -o orderer.example.com:7050 --channelID mychannel --tls --cafile $ORDERER_CA --name stupid --version 1.0 --init-required --sequence 1 --output json</code></pre></li>
-<li><p>输出结果如下：</p>
-<pre><code>{
-  &quot;approvals&quot;: {
-      &quot;Org1MSP&quot;: false,
-      &quot;Org2MSP&quot;: false
-  }
-}</code></pre></li>
+<p>B/S模式相比C/S模式而言，由于它没有独立的客户端，使用标准浏览器作为客户端，其工作开发量较小。只需开发服务器端即可。另外由于其采用浏览器显示数据，因此<font color="blue">移植性非常好，不受平台限制</font>。如早期的偷菜游戏，在各个平台上都可以完美运行。</p>
+<ul>
+<li>缺点</li>
 </ul>
-<p>这里显示都是 false，说明批准并未成功，此时可以再尝试进行一次approformyorg 操作，结果如下：</p>
-<pre><code>Error: proposal failed with status: 500 - failed to invoke backing implementation of &#39;ApproveChaincodeDefinitionForMyOrg&#39;: attempted to redefine uncommitted sequence (1) for namespace stupid with unchanged content</code></pre><p>出现这种情况说明存在当前最新的合约没有commit，无法进行新的approve，换句话说就是对同一个链码在同一家组织进行了两次approve操作，而这是不被允许的，说明之前的 approve 操作是成功的，这就与“批准并未成功”的结论矛盾了，到底有没有成功呢？</p>
-<p>请注意，这里是一个比较坑的地方，因为这可能是一个bug，实际上已经approve成功了，但是checkcommitreadiness却显示为false，此时，我们可以先往下走，直接进入commit阶段，如果没问题的话，就接着往下走。</p>
-<p>目前尚不清楚这个是我操作的原因还是fabric 2.x 的一个bug，因为网上有其他人也跟我遇到了同样的问题。</p>
-<h1 id="提交（commit）"><a href="#提交（commit）" class="headerlink" title="提交（commit）"></a>提交（commit）</h1><p>一旦足够多的组织批准了其组织的链代码定义（默认情况下为大多数），则一个组织可以使用 peer lifecycle chaincode commit 命令将该定义提交给渠道。</p>
-<p>该命令需要针对通道上其他组织的peer节点，以收集其组织对定义的认可。</p>
-<pre><code>export ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
-
-peer lifecycle chaincode commit -o orderer.example.com:7050 --channelID mychannel --name stupid --version 1.0 --sequence 1 --init-required --tls true --cafile $ORDERER_CA --peerAddresses peer0.org1.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0.org2.example.com:9051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt --signature-policy &quot;AND (&#39;Org1MSP.peer&#39;,&#39;Org2MSP.peer&#39;)&quot;</code></pre><p>此处是不是可以不指定 peerAddresses，还有待验证…</p>
-<p>输出结果如下：</p>
-<pre><code>2020-08-08 08:56:13.430 UTC [chaincodeCmd] ClientWait -&gt; INFO 001 txid [837c1b5e18ca5e8e2f2a0ec9f98bbdfcf74585e8c2c2e77047e3d11b44ad9344] committed with status (VALID) at peer0.org1.example.com:7051
-2020-08-08 08:56:13.782 UTC [chaincodeCmd] ClientWait -&gt; INFO 002 txid [837c1b5e18ca5e8e2f2a0ec9f98bbdfcf74585e8c2c2e77047e3d11b44ad9344] committed with status (VALID) at peer0.org2.example.com:9051</code></pre><p>查询是否提交成功：</p>
-<pre><code>peer lifecycle chaincode querycommitted -o orderer.example.com:7050 --channelID mychannel --name stupid --tls --cafile $ORDERER_CA</code></pre><p>结果如下，说明提交成功。</p>
-<pre><code>Committed chaincode definition for chaincode &#39;stupid&#39; on channel &#39;mychannel&#39;:
-Version: 1.0, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]</code></pre><p>也可以只指定通道名称，不指定链码名称，那样查询的就是该通道上所有链码的定义。</p>
-<p> 注意commit需要指定签名背书策略，并且需要和链码 approveformyorg 阶段的背书策略一致。</p>
-<pre><code> --signature-policy &quot;AND (&#39;Org1MSP.peer&#39;,&#39;Org2MSP.peer&#39;)&quot;</code></pre><p> 如果少了这个会报如下错误：</p>
-<pre><code> Error: proposal failed with status: 500 - failed to invoke backing implementation of &#39;CommitChaincodeDefinition&#39;: chaincode definition not agreed to by this org (Org1MSP)</code></pre><p>查询链码和调用链码与 1.4 版本相同。</p>
-<h1 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h1><pre><code>peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile $ORDERER_CA -C mychannel -n stupid  -c &#39;{&quot;Args&quot;:[&quot;put&quot;,&quot;a&quot;,&quot;10&quot;]}&#39;</code></pre><p>结果如下：</p>
-<pre><code>Error: endorsement failure during invoke. response: status:500 message:&quot;error in simulation: failed to execute transaction a1465e679dcd1559a7077ec13c45c4db72f8bd73b6aaa4af9fc1127797e96bb1: invalid invocation: chaincode &#39;stupid&#39; has not been initialized for this version, must call as init first&quot;</code></pre><p>说明这里需要执行的第一个函数是init，然后才能执行其他调用链码的操作，这里我们试图执行以下操作进行init：</p>
-<pre><code>peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile $ORDERER_CA -C mychannel -n stupid -v 1.0 -c &#39;{&quot;Args&quot;:[&quot;init&quot;]}&#39;</code></pre><p>结果如下：</p>
-<pre><code>2020-08-08 09:42:42.029 UTC [chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 001 Using default escc
-2020-08-08 09:42:42.031 UTC [chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 002 Using default vscc
-Error: could not assemble transaction, err proposal response was not successful, error code 500, msg Channel &#39;mychannel&#39; has been migrated to the new lifecycle, LSCC is now read-only</code></pre><p>失败了，当前通道已经迁移到 lifecycle 了， 不能执行实例化操作。</p>
-<p>此处需要增加 –isInit 参数，表面此处是初始化链码：</p>
-<pre><code>peer chaincode invoke --isInit -o orderer.example.com:7050 --tls true --cafile $ORDERER_CA -C mychannel -n stupid  -c &#39;{&quot;Args&quot;:[&quot;put&quot;,&quot;a&quot;,&quot;10&quot;]}&#39;</code></pre><p>调用成功：</p>
-<pre><code>2020-08-08 09:58:20.911 UTC [chaincodeCmd] chaincodeInvokeOrQuery -&gt; INFO 001 Chaincode invoke successful. result: status:200</code></pre><h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><pre><code>peer chaincode invoke -o orderer.example.com:7050 --tls ture --cafile $ORDERER_CA -C mychannel -n stupid  -c &#39;{&quot;Args&quot;:[&quot;get&quot;,&quot;a&quot;]}&#39;</code></pre><p>结果如下：</p>
-<pre><code>2020-08-08 10:00:22.583 UTC [chaincodeCmd] chaincodeInvokeOrQuery -&gt; INFO 001 Chaincode invoke successful. result: status:200</code></pre><h1 id="踩坑指南"><a href="#踩坑指南" class="headerlink" title="踩坑指南"></a>踩坑指南</h1><p>在打包链码的时候遇到问题</p>
-<pre><code>Error: error getting chaincode deployment spec for stupid: error getting chaincode package bytes: failed to calculate dependencies: incomplete package: github.com/hyperledger/fabric/core/chaincode/shim</code></pre><p>解决办法参考<br><a href="https://www.bcskill.com/index.php/archives/925.html" target="_blank" rel="noopener">https://www.bcskill.com/index.php/archives/925.html</a></p>
-<ol>
-<li><p>先下载依赖</p>
-<pre><code> git clone github.com/hyperledger/fabric-chaincode-go/shim
- git clone github.com/hyperledger/fabric-protos-go/peer</code></pre></li>
-<li><p>修改import包，将</p>
-<pre><code> &quot;github.com/hyperledger/fabric/core/chaincode/shim&quot;
- pb &quot;github.com/hyperledger/fabric/protos/peer&quot;</code></pre><p> 改成</p>
-<pre><code> &quot;github.com/hyperledger/fabric-chaincode-go/shim&quot;
- pb &quot;github.com/hyperledger/fabric-protos-go/peer&quot;</code></pre></li>
-<li><p>并在链码文件的同级目录新建go.mod</p>
-</li>
-<li><p>更新依赖</p>
-<pre><code> go mod vendor</code></pre></li>
-<li><p>重启节点，执行打包链码的命令</p>
-</li>
-</ol>
-<p>参考资料</p>
-<p><a href="https://hyperledger-fabric.readthedocs.io/en/release-2.2/commands/peerlifecycle.html#example-usage" target="_blank" rel="noopener">Example Usage</a></p>
-<p><a href="https://juejin.im/post/6844904070390480910" target="_blank" rel="noopener">Fabric2.0智能合约实践-设置背书策略</a></p>
-<p><a href="https://hyperledger-fabric.readthedocs.io/en/release-2.2/chaincode_lifecycle.html#fabric-chaincode-lifecycle" target="_blank" rel="noopener">Fabric chaincode lifecycle</a></p>
+<p>由于使用第三方浏览器，因此网络应用支持受限。另外，没有客户端放到对方主机上，<font color="blue">缓存数据不尽如人意，从而传输数据量受到限制。应用的观感大打折扣。第三，必须与浏览器一样，采用标准http协议进行通信，协议选择不灵活</font>。</p>
+<p>因此在开发过程中，模式的选择由上述各自的特点决定。根据实际需求选择应用程序设计模式。</p>
 
             </div>
             <hr />
@@ -804,9 +692,9 @@ Error: could not assemble transaction, err proposal response was not successful,
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《fabric 2.2 生命周期链码实战》
+                    《【Go特性6】Socket编程初探》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/08/08/fabric-chaincode-2-2/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/29/go-feature-socket/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -847,7 +735,7 @@ Error: could not assemble transaction, err proposal response was not successful,
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/08/08/fabric-chaincode-2-2/',
+        id: '2020/12/29/go-feature-socket/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -868,43 +756,48 @@ Error: could not assemble transaction, err proposal response was not successful,
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/15/tamper-with-data/">
+                <a href="/2020/12/29/go-feature-socket/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="fabric 链上数据防篡改">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【Go特性6】Socket编程初探">
                         
-                        <span class="card-title">fabric 链上数据防篡改</span>
+                        <span class="card-title">【Go特性6】Socket编程初探</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            fabric 具备数据防篡改机制，这里提供了一种验证链上数据防篡改的场景
+                            Socket，英文含义是【插座、插孔】，一般称之为套接字，用于描述IP地址和端口。可以实现不同程序间的数据通信。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-29
+                            </span>
                         <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
-                    </a>
-                    
-                    <a href="/tags/test/" target="_blank">
-                        <span class="chip bg-color">test</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
                     </a>
                     
                 </div>
@@ -918,31 +811,31 @@ Error: could not assemble transaction, err proposal response was not successful,
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/08/fabric-newfeature-2-2/">
+                <a href="/2020/12/27/leetcode-76/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="fabric 2.2 的新特性">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【leetcode-76】最小覆盖子串">
                         
-                        <span class="card-title">fabric 2.2 的新特性</span>
+                        <span class="card-title">【leetcode-76】最小覆盖子串</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Fabric 2.2版本与 1.4版本相比，又增加了许多新特性，赶快来尝鲜吧～
+                            滑动窗口最重要的是处理好细节问题，比如说如何向窗口中添加新元素，如何缩小窗口，在窗口滑动的哪个阶段更新结果。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-08
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-27
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
@@ -952,12 +845,12 @@ Error: could not assemble transaction, err proposal response was not successful,
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/2-2/" target="_blank">
-                        <span class="chip bg-color">2.2</span>
+                    <a href="/tags/滑动窗口/" target="_blank">
+                        <span class="chip bg-color">滑动窗口</span>
                     </a>
                     
                 </div>
