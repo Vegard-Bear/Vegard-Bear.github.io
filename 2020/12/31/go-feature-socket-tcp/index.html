@@ -4,14 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【Go特性4】select, 小熊的作坊">
+    <meta name="keywords" content="【Go特性7】Socket编程之TCP, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="selectselect作用Go里面提供了一个关键字select，通过select可以监听channel上的数据流动。
-select的用法与switch语言非常类似，由select开始一个新的选择块，每个选择条件由case语句来描述。
-
-与">
+    <meta name="description" content="TCP
+简单C/S模型通信Server端Listen函数：
+func Listen(network, address string) (Listener, error)
+    network：选用的协议：TCP、UDP，     如：“t">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@ select的用法与switch语言非常类似，由select开始一个新的选择�
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【Go特性4】select | 小熊的作坊</title>
+    <title>【Go特性7】Socket编程之TCP | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +332,13 @@ select的用法与switch语言非常类似，由select开始一个新的选择�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【Go特性4】select
+                        【Go特性7】Socket编程之TCP
                     </div>
                 </div>
             </div>
@@ -453,6 +453,10 @@ select的用法与switch语言非常类似，由select开始一个新的选择�
                             <span class="chip bg-color">go</span>
                         </a>
                         
+                        <a href="/tags/tcp/" target="_blank">
+                            <span class="chip bg-color">tcp</span>
+                        </a>
+                        
                     </div>
                     
                 </div>
@@ -473,7 +477,7 @@ select的用法与switch语言非常类似，由select开始一个新的选择�
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-24
+                    2020-12-31
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -487,14 +491,14 @@ select的用法与switch语言非常类似，由select开始一个新的选择�
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    686
+                    3.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    14 分
                 </div>
                 
                 
@@ -510,101 +514,164 @@ select的用法与switch语言非常类似，由select开始一个新的选择�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="select"><a href="#select" class="headerlink" title="select"></a>select</h1><h2 id="select作用"><a href="#select作用" class="headerlink" title="select作用"></a>select作用</h2><p>Go里面提供了一个关键字select，通过select可以监听channel上的数据流动。</p>
-<p>select的用法与switch语言非常类似，由select开始一个新的选择块，每个选择条件由case语句来描述。</p>
-<blockquote>
-<p><font color="red">与switch语句相比， select有比较多的限制，其中最大的一条限制就是每个case语句里必须是一个IO操作</font></p>
-</blockquote>
-<p>大致的结构如下：</p>
-<pre><code>    select {
-    case &lt;-chan1:
-        // 如果chan1成功读到数据，则进行该case处理语句
-    case chan2 &lt;- 1:
-        // 如果成功向chan2写入数据，则进行该case处理语句
-    default:
-        // 如果上面都没有成功，则进入default处理流程
-    }</code></pre><p>在一个select语句中，Go语言会按顺序从头至尾评估每一个发送和接收的语句。</p>
-<ul>
-<li><p>如果其中的任意一语句可以继续执行(即没有被阻塞)，那么就从那些可以执行的语句中任意选择一条来使用。</p>
-</li>
-<li><p>如果没有任意一条语句可以执行(即所有的通道都被阻塞)，那么有两种可能的情况：</p>
-<ol>
-<li>如果给出了default语句，那么就会执行default语句，同时程序的执行会从select语句后的语句中恢复。</li>
-<li>如果没有default语句，那么select语句将被阻塞，直到至少有一个通信可以进行下去。</li>
-</ol>
-</li>
-</ul>
-<p>示例代码：</p>
-<pre><code>package main
-
-import (
-    &quot;fmt&quot;
-)
-
-func fibonacci(c, quit chan int) {
-    x, y := 1, 1
+                <h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/TCP%E7%9A%84C%3AS%E6%9E%B6%E6%9E%84.png" alt></p>
+<h2 id="简单C-S模型通信"><a href="#简单C-S模型通信" class="headerlink" title="简单C/S模型通信"></a>简单C/S模型通信</h2><h3 id="Server端"><a href="#Server端" class="headerlink" title="Server端"></a>Server端</h3><p>Listen函数：</p>
+<pre><code>func Listen(network, address string) (Listener, error)
+    network：选用的协议：TCP、UDP，     如：“tcp”或 “udp”
+    address：IP地址+端口号,             如：“127.0.0.1:8000”或 “:8000”</code></pre><p>Listener 接口：</p>
+<pre><code>type Listener interface {
+        Accept() (Conn, error)
+        Close() error
+        Addr() Addr
+}</code></pre><p>Conn 接口：</p>
+<pre><code>type Conn interface {
+    Read(b []byte) (n int, err error)
+    Write(b []byte) (n int, err error)
+    Close() error
+    LocalAddr() Addr
+    RemoteAddr() Addr
+    SetDeadline(t time.Time) error
+    SetReadDeadline(t time.Time) error
+    SetWriteDeadline(t time.Time) error
+}</code></pre><p>示例代码：</p>
+<pre><code>//TCP服务器.go
+package main  import (    &quot;net&quot;    &quot;fmt&quot; )  func main()  {    // 创建一个用于监听的socket套接字    listener, err:= net.Listen(&quot;tcp&quot;, &quot;:8000&quot;)    if err != nil {       fmt.Println(&quot;listen err:&quot;, err)       return    }    defer listener.Close()          // 主协程结束时，关闭listener     fmt.Println(&quot;服务器等待客户端建立连接...&quot;)    // 等待客户端连接请求    conn, err := listener.Accept()    if err != nil {       fmt.Println(&quot;accept err:&quot;, err)       return    }
+   defer conn.Close()             // 使用结束，断开与客户端链接    fmt.Println(&quot;客户端与服务器连接建立成功...&quot;)     // 接收客户端数据    buf := make([]byte, 1024)        // 创建1024大小的缓冲区，用于read    n, err := conn.Read(buf)    if err != nil {       fmt.Println(&quot;read err:&quot;, err)       return    }    fmt.Println(&quot;服务器读到:&quot;, string(buf[:n])) // 读多少，打印多少。 }</code></pre><p>如图，在整个通信过程中，<font color="red">服务器端有两个socket参与进来，但用于通信的只有 conn 这个socket</font>。它是由 listener创建的。隶属于服务器端。</p>
+<p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/%E5%9B%BE%E7%89%87%201.png" alt></p>
+<h3 id="Client端"><a href="#Client端" class="headerlink" title="Client端"></a>Client端</h3><p>Dial函数：</p>
+<pre><code>func Dial(network, address string) (Conn, error)
+    network：选用的协议：TCP、UD`P，如：“tcp”或 “udp”
+    address：服务器IP地址+端口号, 如：“121.36.108.11:8000”或 “www.itcast.cn:8000”</code></pre><p>Conn 接口：</p>
+<pre><code>type Conn interface {
+    Read(b []byte) (n int, err error)
+    Write(b []byte) (n int, err error)
+    Close() error
+    LocalAddr() Addr
+    RemoteAddr() Addr
+    SetDeadline(t time.Time) error
+    SetReadDeadline(t time.Time) error
+    SetWriteDeadline(t time.Time) error
+}</code></pre><p>示例代码：</p>
+<pre><code>package main  import (    &quot;net&quot;    &quot;fmt&quot; )  func main() {    // 主动发起连接请求    conn, err := net.Dial(&quot;tcp&quot;, &quot;127.0.0.1:8000&quot;)    if err != nil {       fmt.Println(&quot;Dial err:&quot;, err)       return    }    defer conn.Close()         // 结束时，关闭连接     // 发送数据    _, err = conn.Write([]byte(&quot;Are u ready?&quot;))    if err != nil {       fmt.Println(&quot;Write err:&quot;, err)       return    } }</code></pre><h2 id="并发的C-S模型通信"><a href="#并发的C-S模型通信" class="headerlink" title="并发的C/S模型通信"></a>并发的C/S模型通信</h2><h3 id="并发Server"><a href="#并发Server" class="headerlink" title="并发Server"></a>并发Server</h3><p>现在已经完成了客户端与服务端的通信，但是服务端只能接收一个用户发送过来的数据，怎样接收多个客户端发送过来的数据，实现一个高效的并发服务器呢？</p>
+<p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/%E5%B9%B6%E5%8F%91%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1.png" alt></p>
+<p>Accept(())函数的作用是等待客户端的链接，如果客户端没有链接，该方法会阻塞。如果有客户端链接，那么该方法返回一个Socket负责与客户端进行通信。所以，每来一个客户端，该方法就应该返回一个Socket与其通信，因此，可以使用一个死循环，将Accept(())调用过程包裹起来。</p>
+<p><font color="red">需要注意的是，实现并发处理多个客户端数据的服务器，就需要针对每一个客户端连接，单独产生一个Socket，并创建一个单独的goroutine与之完成通信。</font></p>
+<pre><code>//监听
+    listener, err := net.Listen(&quot;tcp&quot;, &quot;127.0.0.1:8001&quot;)
+    if err != nil {
+            fmt.Println(&quot;err = &quot;, err)
+            return
+    }
+    defer listener.Close()
+    //接收多个用户
     for {
-        select {
-        case c &lt;- x:
-            x, y = y, x+y
-        case &lt;-quit:
-            fmt.Println(&quot;quit&quot;)
+            conn, err := listener.Accept()
+            if err != nil {
+                  fmt.Println(&quot;err = &quot;, err)
+                    return
+            }
+            //处理用户请求, 新建一个协程
+            go HandleConn(conn)
+}</code></pre><p>将客户端的数据处理工作封装到HandleConn方法中，需将Accept()返回的Socket传递给该方法，变量conn的类型为：net.Conn。可以使用conn.RemoteAddr()来获取成功与服务器建立连接的客户端IP地址和端口号：</p>
+<p>Conn 接口：</p>
+<pre><code>type Conn interface {
+    Read(b []byte) (n int, err error)
+    Write(b []byte) (n int, err error)
+    Close() error
+    LocalAddr() Addr
+    RemoteAddr() Addr
+    SetDeadline(t time.Time) error
+    SetReadDeadline(t time.Time) error
+    SetWriteDeadline(t time.Time) error
+}</code></pre><pre><code>//获取客户端的网络地址信息
+addr := conn.RemoteAddr().String()
+fmt.Println(addr, &quot; conncet sucessful&quot;)</code></pre><p><font color="red">客户端可能持续不断的发送数据，因此接收数据的过程可以放在for循环中</font>，服务端也持续不断的向客户端返回处理后的数据。</p>
+<p>添加一个限定，如果客户端发送一个“exit”字符串，表示客户端通知服务器不再向服务端发送数据，此时应该结束HandleConn方法，同时关闭与该客户端关联的Socket。</p>
+<pre><code>buf := make([]byte, 2048)    //创建一个切片，存储客户端发送的数据
+
+for {
+        //读取用户数据 
+        n, err := conn.Read(buf)
+        if err != nil {
+            fmt.Println(&quot;err = &quot;, err)
             return
         }
-    }
-}
-
-func main() {
-    c := make(chan int)
-    quit := make(chan int)
-
-    go func() {
-        for i := 0; i &lt; 6; i++ {
-            fmt.Println(&lt;-c)
+        fmt.Printf(&quot;[%s]: %s\n&quot;, addr, string(buf[:n]))
+        if  &quot;exit&quot; == string(buf[:n-2]) {         //自己写的客户端测试, 发送时，多了2个字符, &quot;\r\n&quot;
+            fmt.Println(addr, &quot; exit&quot;)
+            return
         }
-        quit &lt;- 0
-    }()
+        //服务器处理数据：把客户端数据转大写，再写回给client
+        conn.Write([]byte(strings.ToUpper(string(buf[:n]))))
+ }
+</code></pre><p>在上面的代码中，Read(())方法获取客户端发送过来的数据，填充到切片buf中，返回的是实际填充的数据的长度，所以将客户端发送过来的数据进行打印，打印的是实际接收到的数据。</p>
+<pre><code>fmt.Printf(&quot;[%s]: %s\n&quot;, addr, string(buf[:n])).</code></pre><p>同时也可以将客户端的网络地址信息打印出来。<br>在判断客户端数据是否为“exit”字符串时，要注意，客户端会自动的多发送2个字符：“\r\n”（这在windows系统下代表回车、换行）</p>
+<p>Server使用Write方法将数据写回给客户端，参数类型是 []byte，需使用strings包下的ToUpper函数来完成大小写转换。转换的对象即为string((buf[:n]))</p>
+<p>综上，HandleConn方法完整定义如下：</p>
+<pre><code>//处理用户请求
+func HandleConn(conn net.Conn) {
+//函数调用完毕，自动关闭conn
+defer conn.Close()
 
-    fibonacci(c, quit)
-}</code></pre><p>运行结果如下：</p>
-<pre><code>1
-1
-2
-3
-4
-8
-quit</code></pre><h2 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h2><p>有时候会出现goroutine阻塞的情况，那么我们如何避免整个程序进入阻塞的情况呢？我们可以利用select来设置超时，通过如下的方式实现：</p>
-<pre><code>func main() {
-    c := make(chan int)
-    o := make(chan bool)
-    go func() {
-        for {
-            select {
-            case v := &lt;-c:
-                fmt.Println(v)
-            case &lt;-time.After(5 * time.Second):
-                fmt.Println(&quot;timeout&quot;)
-                o &lt;- true
-                break
-            }
-        }
-    }()
-    //c &lt;- 666 // 注释掉，引发 timeout
-    &lt;-o
-}</code></pre><h2 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h2><ol>
-<li><p>监听的case中，没有满足监听条件，阻塞。</p>
-</li>
-<li><p>监听的case中，有多个满足监听条件，任选一个执行。</p>
-</li>
-<li><p>可以使用default来处理所有case都不满足监听条件的状况。 通常不用（会产生忙轮询）</p>
-</li>
-<li><p>select 自身不带有循环机制，需借助外层 for 来循环监听</p>
-</li>
-<li><p>break 跳出 select中的一个case选项 。类似于switch中的用法。</p>
-</li>
-<li><p>case 后面的语句在监听数据的同时需要拿出数据，如果分两步做，会丢失数据，因为相当于拿了两次，但只用了第二次</p>
-</li>
+          //获取客户端的网络地址信息
+          addr := conn.RemoteAddr().String()
+          fmt.Println(addr, &quot; conncet sucessful&quot;)
+
+          buf := make([]byte, 2048)
+
+          for {
+                  //读取用户数据
+                 n, err := conn.Read(buf)
+                 if err != nil {
+                         fmt.Println(&quot;err = &quot;, err)
+                         return
+                    }
+                    fmt.Printf(&quot;[%s]: %s\n&quot;,  addr,  string(buf[:n]))
+                fmt.Println(&quot;len = &quot;, len(string(buf[:n])))    
+
+                    //if &quot;exit&quot; == string(buf[:n-1]) {     // nc测试，发送时，只有 \n
+                 if  &quot;exit&quot; == string(buf[:n-2]) {    // 自己写的客户端测试, 发送时，多了2个字符, &quot;\r\n&quot;
+                        fmt.Println(addr, &quot; exit&quot;)
+                        return
+                 }
+
+                 //把数据转换为大写，再给用户发送
+                 conn.Write([]byte(strings.ToUpper(string(buf[:n]))))
+          }
+}</code></pre><h3 id="并发Client"><a href="#并发Client" class="headerlink" title="并发Client"></a>并发Client</h3><p>客户端不仅需要持续的向服务端发送数据，同时也要接收从服务端返回的数据。因此可将发送和接收放到不同的协程中。</p>
+<p>主协程循环接收服务器回发的数据（该数据应已转换为大写），并打印至屏幕；子协程循环从键盘读取用户输入数据，写给服务器。读取键盘输入可使用 os.Stdin.Read((str))。定义切片str，将读到的数据保存至str中。</p>
+<p>这样，客户端也实现了多任务。</p>
+<p>客户端代码实现：</p>
+<pre><code>package main  import (    &quot;net&quot;    &quot;fmt&quot;    &quot;os&quot; )  func main() {    // 主动发起连接请求    conn, err := net.Dial(&quot;tcp&quot;, &quot;127.0.0.1:8001&quot;)    if err != nil {       fmt.Println(&quot;Dial err:&quot;, err)       return    }    defer conn.Close()                       // 客户端终止时，关闭与服务器通信的 socket      // 启动子协程，接收用户键盘输入    go func() {
+        str := make([]byte, 1024)           // 创建用于存储用户键盘输入数据的切片缓冲区。       for {                                // 反复读取          n, err :=os.Stdin.Read(str)        // 获取用户键盘输入          if err != nil {             fmt.Println(&quot;os.Stdin.Read err:&quot;, err)             return          }          // 将从键盘读到的数据，发送给服务器          _, err = conn.Write(str[:n])       // 读多少，写多少          if err != nil {             fmt.Println(&quot;conn.Write err:&quot;, err)             return          }       }    }()     // 主协程，接收服务器回发数据，打印至屏幕    buf := make([]byte, 1024)                // 定义用于存储服务器回发数据的切片缓冲区    for {       n, err := conn.Read(buf)              // 从通信 socket 中读数据，存入切片缓冲区       if err != nil {          fmt.Println(&quot;conn.Read err:&quot;, err)          return       }       fmt.Printf(&quot;服务器回发：%s\n&quot;, string(buf[:n]))    } }</code></pre><h2 id="TCP通信"><a href="#TCP通信" class="headerlink" title="TCP通信"></a>TCP通信</h2><p>下图是一次TCP通讯的时序图。TCP连接建立断开。包含大家熟知的三次握手和四次握手。</p>
+<p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/TCP%E9%80%9A%E4%BF%A1.png" alt></p>
+<p>在这个例子中，首先客户端主动发起连接、发送请求，然后服务器端响应请求，然后客户端主动关闭连接。两条竖线表示通讯的两端，从上到下表示时间的先后顺序。注意，数据从一端传到网络的另一端也需要时间，所以图中的箭头都是斜的。</p>
+<h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。好比两个人在打电话：<br>Client:“喂，你听得到吗？”<br>Server:“我听得到，你听得到我吗？”<br>Client:“我能听到你，今天balabala…”</p>
+<p>建立连接（三次握手）的过程：</p>
+<ol>
+<li>客户端发送一个带SYN标志的TCP报文到服务器。这是上图中三次握手过程中的段1。客户端发出SYN位表示连接请求。序号是1000，这个序号在网络通讯中用作临时的地址，每发一个数据字节，这个序号要加1，这样在接收端可以根据序号排出数据包的正确顺序，也可以发现丢包的情况。<br>另外，规定SYN位和FIN位也要占一个序号，这次虽然没发数据，但是由于发了SYN位，因此下次再发送应该用序号1001。<br>mss表示最大段尺寸，如果一个段太大，封装成帧后超过了链路层的最大长度，就必须在IP层分片，为了避免这种情况，客户端声明自己的最大段尺寸，建议服务器端发来的段不要超过这个长度。</li>
+<li>服务器端回应客户端，是三次握手中的第2个报文段，同时带ACK标志和SYN标志。表示对刚才客户端SYN的回应；同时又发送SYN给客户端，询问客户端是否准备好进行数据通讯。<br>服务器发出段2，也带有SYN位，同时置ACK位表示确认，确认序号是1001，表示“我接收到序号1000及其以前所有的段，请你下次发送序号为1001的段”，也就是应答了客户端的连接请求，同时也给客户端发出一个连接请求，同时声明最大尺寸为1024。</li>
+<li>客户必须再次回应服务器端一个ACK报文，这是报文段3。<br>客户端发出段3，对服务器的连接请求进行应答，确认序号是8001。</li>
 </ol>
+<p>在这个过程中，客户端和服务器分别给对方发了连接请求，也应答了对方的连接请求，其中服务器的请求和应答在一个段中发出。<br>因此一共有三个段用于建立连接，称为“三方握手”。在建立连接的同时，双方协商了一些信息，例如，双方发送序号的初始值、最大段尺寸等。</p>
+<h3 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h3><ol>
+<li>客户端发出段4，包含从序号1001开始的20个字节数据。</li>
+<li>服务器发出段5，确认序号为1021，对序号为1001-1020的数据表示确认收到，同时请求发送序号1021开始的数据，服务器在应答的同时也向客户端发送从序号8001开始的10个字节数据。</li>
+<li>客户端发出段6，对服务器发来的序号为8001-8010的数据表示确认收到，请求发送序号8011开始的数据。</li>
+</ol>
+<p>在数据传输过程中，ACK和确认序号是非常重要的，应用程序交给TCP协议发送的数据会暂存在TCP层的发送缓冲区中，发出数据包给对方之后，只有收到对方应答的ACK段才知道该数据包确实发到了对方，可以从发送缓冲区中释放掉了，如果因为网络故障丢失了数据包或者丢失了对方发回的ACK段，经过等待超时后TCP协议自动将发送缓冲区中的数据包重发。</p>
+<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><p>所谓四次挥手（Four-Way-Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务器任一方执行close来触发。好比两个人打完电话要挂断：<br>Client:“我要说的事情都说完了，我没事了。挂啦？”<br>Server:“等下，我还有一个事儿。Balabala…”<br>Server:“好了，我没事儿了。挂了啊。”<br>Client:“ok！拜拜”</p>
+<p>关闭连接（四次握手）的过程：</p>
+<p>由于TCP连接是全双工的，因此每个方向都必须单独进行关闭。这原则是当一方完成它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个 FIN只意味着这一方向上没有数据流动，一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。</p>
+<ol>
+<li>客户端发出段7，FIN位表示关闭连接的请求。</li>
+<li>服务器发出段8，应答客户端的关闭连接请求。</li>
+<li>服务器发出段9，其中也包含FIN位，向客户端发送关闭连接请求。</li>
+<li>客户端发出段10，应答服务器的关闭连接请求。</li>
+</ol>
+<p>建立连接的过程是三次握手，而关闭连接通常需要4个段，服务器的应答和关闭连接请求通常不合并在一个段中，因为有连接半关闭的情况，这种情况下客户端关闭连接之后就不能再发送数据给服务器了，但是服务器还可以发送数据给客户端，直到服务器也关闭连接为止。</p>
+<p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E3%80%814%E6%AC%A1%E6%8C%A5%E6%89%8B.png" alt></p>
+<h3 id="TCP状态转换图"><a href="#TCP状态转换图" class="headerlink" title="TCP状态转换图"></a>TCP状态转换图</h3><p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/TCP%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE.png" alt></p>
 
             </div>
             <hr />
@@ -763,9 +830,9 @@ quit</code></pre><h2 id="超时"><a href="#超时" class="headerlink" title="超
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【Go特性4】select》
+                    《【Go特性7】Socket编程之TCP》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/24/go-feature-select/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/31/go-feature-socket-tcp/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -806,7 +873,7 @@ quit</code></pre><h2 id="超时"><a href="#超时" class="headerlink" title="超
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/24/go-feature-select/',
+        id: '2020/12/31/go-feature-socket-tcp/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -827,77 +894,29 @@ quit</code></pre><h2 id="超时"><a href="#超时" class="headerlink" title="超
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/25/go-feature-lock/">
+                <a href="/2020/12/31/go-feature-socket-tcp/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="【Go特性5】锁和条件变量">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="【Go特性7】Socket编程之TCP">
                         
-                        <span class="card-title">【Go特性5】锁和条件变量</span>
+                        <span class="card-title">【Go特性7】Socket编程之TCP</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            锁是某个协程（线程）在访问某个资源时先锁住，防止其它协程的访问，等访问完毕解锁后其他协程再来加锁进行访问。
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-25
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/12/23/go-feature-channel/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="【Go特性3】channel">
-                        
-                        <span class="card-title">【Go特性3】channel</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            channel是Go语言特有的数据结构，主要用来解决协程的同步问题以及协程之间数据共享（数据传递）的问题，常常与goroutine共同使用，实现go的并发特性
+                            本文主要是接着【Go特性6】Socket编程初探来进一步介绍一下在Go语言中是如何具体实现TCP通信的，这里我们采用的是C/S架构。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-23
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-31
                             </span>
                         <span class="publish-author">
                             
@@ -911,11 +930,69 @@ quit</code></pre><h2 id="超时"><a href="#超时" class="headerlink" title="超
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/go/" target="_blank">
                         <span class="chip bg-color">go</span>
+                    </a>
+                    
+                    <a href="/tags/tcp/" target="_blank">
+                        <span class="chip bg-color">tcp</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/30/leetcode-567/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【leetcode-567】字符串的排列">
+                        
+                        <span class="card-title">【leetcode-567】字符串的排列</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            写出滑动窗口算法的框架不难，难的是处理好细节问题，而这个细节问题则需要具体问题具体分析
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/滑动窗口/" target="_blank">
+                        <span class="chip bg-color">滑动窗口</span>
                     </a>
                     
                 </div>
