@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2020-12-31T02:29:20.713Z</updated>
+  <updated>2021-01-02T06:56:05.171Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【Go特性8】Socket编程之UDP</title>
+    <link href="https://vegard-bear.github.io/2021/01/02/go-feature-socket-udp/"/>
+    <id>https://vegard-bear.github.io/2021/01/02/go-feature-socket-udp/</id>
+    <published>2021-01-02T06:52:27.000Z</published>
+    <updated>2021-01-02T06:56:05.171Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;UDP&quot;&gt;&lt;a href=&quot;#UDP&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
+    
+    
+      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
+    
+      <category term="udp" scheme="https://vegard-bear.github.io/tags/udp/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【Go特性7】Socket编程之TCP</title>
     <link href="https://vegard-bear.github.io/2020/12/31/go-feature-socket-tcp/"/>
     <id>https://vegard-bear.github.io/2020/12/31/go-feature-socket-tcp/</id>
     <published>2020-12-31T02:19:03.000Z</published>
-    <updated>2020-12-31T02:29:20.713Z</updated>
+    <updated>2021-01-02T06:54:18.952Z</updated>
     
     <summary type="html">
     
@@ -546,36 +574,6 @@
       <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
     
       <category term="动态规划" scheme="https://vegard-bear.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【leetcode-752】打开转盘锁</title>
-    <link href="https://vegard-bear.github.io/2020/12/10/leetcode-752/"/>
-    <id>https://vegard-bear.github.io/2020/12/10/leetcode-752/</id>
-    <published>2020-12-10T02:23:39.000Z</published>
-    <updated>2020-12-14T05:53:23.869Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/open-the-lock/&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
-    
-      <category term="tree" scheme="https://vegard-bear.github.io/tags/tree/"/>
-    
-      <category term="BFS" scheme="https://vegard-bear.github.io/tags/BFS/"/>
     
   </entry>
   

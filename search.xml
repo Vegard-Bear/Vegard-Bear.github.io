@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【Go特性8】Socket编程之UDP</title>
+      <link href="/2021/01/02/go-feature-socket-udp/"/>
+      <url>/2021/01/02/go-feature-socket-udp/</url>
+      
+        <content type="html"><![CDATA[<h1 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h1><p>在之前的案例中，我们一直使用的是TCP协议来编写Socket的客户端与服务端。其实也可以使用UDP协议来编写Socket的客户端与服务端。</p><h3 id="UDP服务器"><a href="#UDP服务器" class="headerlink" title="UDP服务器"></a>UDP服务器</h3><p><font color="red">由于UDP是“无连接”的，所以，服务器端不需要额外创建监听套接字</font>，只需要指定好IP和port，然后监听该地址，等待客户端与之建立连接，即可通信。</p><p>创建监听地址：</p><pre><code>func ResolveUDPAddr(network, address string) (*UDPAddr, error) </code></pre><p>创建监听连接：</p><pre><code>func ListenUDP(network string, laddr *UDPAddr) (*UDPConn, error) </code></pre><p>接收udp数据：</p><pre><code>func (c *UDPConn) ReadFromUDP(b []byte) (int, *UDPAddr, error)</code></pre><p>写出数据到udp：</p><pre><code>func (c *UDPConn) WriteToUDP(b []byte, addr *UDPAddr) (int, error)</code></pre><p>服务端完整代码实现如下：</p><pre><code>package main  import (    &quot;fmt&quot;    &quot;net&quot; )  func main() {    //创建监听的地址，并且指定udp协议    udp_addr, err := net.ResolveUDPAddr(&quot;udp&quot;, &quot;127.0.0.1:8002&quot;)    if err != nil {       fmt.Println(&quot;ResolveUDPAddr err:&quot;, err)       return    }    conn, err := net.ListenUDP(&quot;udp&quot;, udp_addr)    //创建监听链接    if err != nil {       fmt.Println(&quot;ListenUDP err:&quot;, err)       return    }    defer conn.Close()     buf := make([]byte, 1024)    n, raddr, err := conn.ReadFromUDP(buf)        //接收客户端发送过来的数据，填充到切片buf中。    if err != nil {       return    }    fmt.Println(&quot;客户端发送：&quot;, string(buf[:n]))     _, err = conn.WriteToUDP([]byte(&quot;nice to see u in udp&quot;), raddr) //向客户端发送数据    if err != nil {       fmt.Println(&quot;WriteToUDP err:&quot;, err)       return    } }</code></pre><h3 id="UDP客户端"><a href="#UDP客户端" class="headerlink" title="UDP客户端"></a>UDP客户端</h3><p>udp客户端的编写与TCP客户端的编写，基本上是一样的，只是将协议换成udp.代码如下：</p><pre><code>package main  import (    &quot;net&quot;    &quot;fmt&quot; )  func main() {    conn, err := net.Dial(&quot;udp&quot;, &quot;127.0.0.1:8002&quot;)     if err != nil {       fmt.Println(&quot;net.Dial err:&quot;, err)       return    }    defer conn.Close()     conn.Write([]byte(&quot;Hello! I&#39;m client in UDP!&quot;))     buf := make([]byte, 1024)    n, err1 := conn.Read(buf)    if err1 != nil {       return    }    fmt.Println(&quot;服务器发来：&quot;, string(buf[:n])) }</code></pre><h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><p>其实对于UDP而言，服务器不需要并发，只要循环处理客户端数据即可。客户端也等同于TCP通信并发的客户端。</p><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><pre><code>package main  import (    &quot;net&quot;    &quot;fmt&quot; )  func main() {    // 创建 服务器 UDP 地址结构。指定 IP + port    laddr, err := net.ResolveUDPAddr(&quot;udp&quot;, &quot;127.0.0.1:8003&quot;)    if err != nil {       fmt.Println(&quot;ResolveUDPAddr err:&quot;, err)       return    }    // 监听 客户端连接    conn, err := net.ListenUDP(&quot;udp&quot;, laddr)    if err != nil {       fmt.Println(&quot;net.ListenUDP err:&quot;, err)       return    }    defer conn.Close()     for {       buf := make([]byte, 1024)       n, raddr, err := conn.ReadFromUDP(buf)       if err != nil {          fmt.Println(&quot;conn.ReadFromUDP err:&quot;, err)          return       }       fmt.Printf(&quot;接收到客户端[%s]：%s&quot;, raddr, string(buf[:n]))        conn.WriteToUDP([]byte(&quot;I-AM-SERVER&quot;), raddr) // 简单回写数据给客户端    } }</code></pre><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><pre><code>package main  import (    &quot;net&quot;    &quot;os&quot;    &quot;fmt&quot; )  func main() {    conn, err := net.Dial(&quot;udp&quot;, &quot;127.0.0.1:8003&quot;)    if err != nil {       fmt.Println(&quot;net.Dial err:&quot;, err)       return    }    defer conn.Close()    go func() {       str := make([]byte, 1024)       for {          n, err := os.Stdin.Read(str) //从键盘读取内容， 放在str          if err != nil {             fmt.Println(&quot;os.Stdin. err1 = &quot;, err)             return          }          conn.Write(str[:n])       // 给服务器发送       }    }()    buf := make([]byte, 1024)    for {       n, err := conn.Read(buf)       if err != nil {          fmt.Println(&quot;conn.Read err:&quot;, err)          return       }       fmt.Println(&quot;服务器写来：&quot;, string(buf[:n]))    } }</code></pre><h2 id="UDP与TCP的差异"><a href="#UDP与TCP的差异" class="headerlink" title="UDP与TCP的差异"></a>UDP与TCP的差异</h2><table><thead><tr><th>TCP</th><th>UDP</th></tr></thead><tbody><tr><td>面向连接</td><td>面向无连接</td></tr><tr><td>要求系统资源较多</td><td>要求系统资源较少</td></tr><tr><td>TCP程序结构较复杂</td><td>UDP程序结构较简单</td></tr><tr><td>使用流式</td><td>使用数据包式</td></tr><tr><td>保证数据准确性</td><td>不保证数据准确性</td></tr><tr><td>保证数据顺序</td><td>不保证数据顺序</td></tr><tr><td>通讯速度较慢</td><td>通讯速度较快</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+            <tag> udp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Go特性7】Socket编程之TCP</title>
       <link href="/2020/12/31/go-feature-socket-tcp/"/>
       <url>/2020/12/31/go-feature-socket-tcp/</url>
