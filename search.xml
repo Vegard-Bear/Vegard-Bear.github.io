@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【Go源码解析0】预备知识</title>
+      <link href="/2021/01/03/go-sourcecode-prepare/"/>
+      <url>/2021/01/03/go-sourcecode-prepare/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>学习Go语言的内部实现，主要依靠对源代码的分析，所以阅读源代码是很好的方式。大名鼎鼎的Linux之父linus谈到如何学习Linux内核时也说过”Read the F**ing Source code”。所以现在就开启我们的Go语言源码阅读之旅行吧～</p></blockquote><p>本节主要介绍Go源码解析的预备知识。</p><h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h3 id="抽象语法树"><a href="#抽象语法树" class="headerlink" title="抽象语法树"></a>抽象语法树</h3><p>抽象语法树（Abstract Syntax Tree、AST），是源代码语法的结构的一种抽象表示，它用树状的方式表示编程语言的语法结构1。抽象语法树中的每一个节点都表示源代码中的一个元素，每一棵子树都表示一个语法元素，以表达式 2 * 3 + 7 为例，编译器的语法分析阶段会生成如下图所示的抽象语法树。</p><p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91.png" alt></p><blockquote><p>图片来源于<a href="https://draveness.me/golang/docs/part1-prerequisite/ch02-compile/golang-compile-intro/" target="_blank" rel="noopener">draveness</a></p></blockquote><p>作为编译器常用的数据结构，抽象语法树抹去了源代码中不重要的一些字符 - 空格、分号或者括号等等。编译器在执行完语法分析之后会输出一个抽象语法树，这个抽象语法树会辅助编译器进行语义分析，我们可以用它来确定语法正确的程序是否存在一些类型不匹配的问题。</p><h3 id="静态单赋值"><a href="#静态单赋值" class="headerlink" title="静态单赋值"></a>静态单赋值</h3><p>静态单赋值（Static Single Assignment、SSA）是中间代码的特性，如果中间代码具有静态单赋值的特性，那么每个变量就只会被赋值一次。在实践中，我们通常会用下标实现静态单赋值，这里以下面的代码举个例子：</p><pre><code>x := 1x := 2y := x</code></pre><p>经过简单的分析，我们就能够发现上述的代码第一行的赋值语句 x := 1 不会起到任何作用。下面是具有 SSA 特性的中间代码，我们可以清晰地发现变量 y_1 和 x_1 是没有任何关系的，所以在机器码生成时就可以省去 x := 1 的复制，通过减少需要执行的指令优化这段代码。</p><pre><code>x_1 := 1x_2 := 2y_1 := x_2</code></pre><p>因为 SSA 的主要作用是对代码进行优化，所以它是编译器后端3的一部分；当然代码编译领域除了 SSA 还有很多中间代码的优化方法，编译器生成代码的优化也是一个古老并且复杂的领域，这里就不会展开介绍了。</p><h3 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h3><p>最后要介绍的一个预备知识就是指令集4了，很多开发者在都会遇到在本地开发环境编译和运行正常的代码，在生产环境却无法正常工作，这种问题背后会有多种原因，而不同机器使用的不同指令集可能是原因之一。</p><p>我们大多数开发者都会使用 x86_64 的 Macbook 作为工作上主要使用的设备，在命令行中输入 uname -m 就能获得当前机器的硬件信息：</p><pre><code>$ uname -mx86_64</code></pre><p>x86 是目前比较常见的指令集，除了 x86 之外，还有 arm 等指令集，苹果最新 Macbook 的自研芯片就使用了 arm 指令集，不同的处理器使用了不同的架构和机器语言，所以很多编程语言为了在不同的机器上运行需要将源代码根据架构翻译成不同的机器代码。</p><p>复杂指令集计算机（CISC）和精简指令集计算机（RISC）是两种遵循不同设计理念的指令集，从名字我们就可以推测出这两种指令集的区别：</p><ul><li>复杂指令集：通过增加指令的类型减少需要执行的指令数；</li><li>精简指令集：使用更少的指令类型完成目标的计算任务；</li></ul><p>早期的 CPU 为了减少机器语言指令的数量一般使用复杂指令集完成计算任务，这两者并没有绝对的优劣，它们只是在一些设计上的选择不同以达到不同的目的，我们会在后面的机器码生成一节中详细介绍指令集架构，不过各位读者也可以主动了解相关的内容。</p><h1 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h1><p>Go 语言编译器的源代码在 src/cmd/compile 目录中，目录下的文件共同组成了 Go 语言的编译器</p><p>Go语言的具体编译过程如下：</p><p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/Go%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86.png" alt></p><p>至此，我们就简单了解了Go源码编译的过程。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+            <tag> 源码解析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Go特性8】Socket编程之UDP</title>
       <link href="/2021/01/02/go-feature-socket-udp/"/>
       <url>/2021/01/02/go-feature-socket-udp/</url>
