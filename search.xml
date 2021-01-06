@@ -8,7 +8,7 @@
       <link href="/2021/01/06/go-sourcecode-slice/"/>
       <url>/2021/01/06/go-sourcecode-slice/</url>
       
-        <content type="html"><![CDATA[<p>上一节介绍的数组在 Go 语言中没那么常用，更常用的数据结构是切片，即动态数组，其长度并不固定，我们可以向切片中追加元素，它会在容量不足时自动扩容。</p><p>这一节我们就来看看Go语言中切片的底层实现逻辑。</p><p><img src="http://qlkvpxmsx.hd-bkt.clouddn.com/%E5%88%87%E7%89%87%E5%AE%9E%E7%8E%B0.png" alt></p><blockquote><p>点击图片查看高清大图</p></blockquote>]]></content>
+        <content type="html"><![CDATA[<p>上一节介绍的数组在 Go 语言中没那么常用，更常用的数据结构是切片，即动态数组，其长度并不固定，我们可以向切片中追加元素，它会在容量不足时自动扩容。</p><p>这一节我们就来看看Go语言中切片的底层实现逻辑。</p><p><img src="https://vegard-bear.github.io/images/%E5%88%87%E7%89%87%E5%AE%9E%E7%8E%B0.png" alt></p><blockquote><p>点击图片查看高清大图</p></blockquote>]]></content>
       
       
       <categories>
