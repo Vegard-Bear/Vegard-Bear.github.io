@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-01-06T07:27:49.701Z</updated>
+  <updated>2021-01-07T03:23:03.161Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Go源码解3】哈希表</title>
+    <link href="https://vegard-bear.github.io/2021/01/07/go-sourcecode-map/"/>
+    <id>https://vegard-bear.github.io/2021/01/07/go-sourcecode-map/</id>
+    <published>2021-01-07T03:21:37.000Z</published>
+    <updated>2021-01-07T03:23:03.161Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;本节会介绍 Go
+        
+      
+    
+    </summary>
+    
+      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
+    
+    
+      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
+    
+      <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    
+      <category term="map" scheme="https://vegard-bear.github.io/tags/map/"/>
+    
+  </entry>
   
   <entry>
     <title>【Go源码解析2】切片</title>
@@ -539,35 +570,6 @@
 &lt;p&gt;Go最突出的特性之一就在于其对并发编程的支持很好，本文是作为Go并发特性介绍的预备知识&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&quot;并行和并发&quot;&gt;&lt;a href=&quot;#并行和并发&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
-    
-    
-      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Go 基础】</title>
-    <link href="https://vegard-bear.github.io/2020/12/16/go-basic/"/>
-    <id>https://vegard-bear.github.io/2020/12/16/go-basic/</id>
-    <published>2020-12-16T08:30:06.000Z</published>
-    <updated>2020-12-16T08:53:24.262Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;指针&quot;&gt;&lt;a href=&quot;#指针&quot; class=&quot;headerlink&quot; title=&quot;指针&quot;&gt;&lt;/a&gt;指针&lt;/h1&gt;&lt;p&gt;Go语言保留了指针，但与C语言指针有所不同。主要体现在：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;默认值 nil&lt;/li&gt;
-&lt;li&gt;操作符
         
       
     

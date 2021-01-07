@@ -4,12 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Fabric 1.4源码分析1：Orderer功能概述, 小熊的作坊">
+    <meta name="keywords" content="【Go源码解3】哈希表, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="
-从今天开始，正式启动Fabric 1.4 源码分析系列专题，本文是源码分析系列的第一篇，决定先从 Orderer 入手。由于Fabric源码涉及的模块、知识点的深度和广度非同一般，为了避免从一开始就落入细节，因此决定先采用模块分解 + 架">
+本节会介绍 Go 语言的哈希的实现原理，哈希是除了数组之外，最常见的数据结构。几乎所有的语言都会有数组和哈希表两种集合元素，有的语言将数组实现成列表，而有的语言将哈希称作字典或者映射。无论如何命名或者如何实现，数组和哈希是两种设计集合元素">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Fabric 1.4源码分析1：Orderer功能概述 | 小熊的作坊</title>
+    <title>【Go源码解3】哈希表 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -330,13 +330,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Fabric 1.4源码分析1：Orderer功能概述
+                        【Go源码解3】哈希表
                     </div>
                 </div>
             </div>
@@ -447,16 +447,16 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/fabric/" target="_blank">
-                            <span class="chip bg-color">fabric</span>
+                        <a href="/tags/go/" target="_blank">
+                            <span class="chip bg-color">go</span>
                         </a>
                         
                         <a href="/tags/源码解析/" target="_blank">
                             <span class="chip bg-color">源码解析</span>
                         </a>
                         
-                        <a href="/tags/orderer/" target="_blank">
-                            <span class="chip bg-color">orderer</span>
+                        <a href="/tags/map/" target="_blank">
+                            <span class="chip bg-color">map</span>
                         </a>
                         
                     </div>
@@ -467,8 +467,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/fabric/" class="post-category" target="_blank">
-                            fabric
+                        <a href="/categories/go/" class="post-category" target="_blank">
+                            go
                         </a>
                         
                     </div>
@@ -479,7 +479,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-25
+                    2021-01-07
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -493,14 +493,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    139
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
                 
@@ -517,68 +517,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>从今天开始，正式启动Fabric 1.4 源码分析系列专题，本文是源码分析系列的第一篇，决定先从 Orderer 入手。由于Fabric源码涉及的模块、知识点的深度和广度非同一般，为了避免从一开始就落入细节，因此决定先采用模块分解 + 架构梳理 + 知识点细化的三步走战略进行。希望通过这样自顶向下，逐步细化的方式从整体上把握fabric的实现原理，涉及到具体开发工作时又能快速上手。</p>
+<p>本节会介绍 Go 语言的哈希的实现原理，哈希是除了数组之外，最常见的数据结构。几乎所有的语言都会有数组和哈希表两种集合元素，有的语言将数组实现成列表，而有的语言将哈希称作字典或者映射。无论如何命名或者如何实现，数组和哈希是两种设计集合元素的思路，数组用于表示元素的序列，而哈希表示的是键值对之间映射关系。</p>
 </blockquote>
-<h1 id="代码目录"><a href="#代码目录" class="headerlink" title="代码目录"></a>代码目录</h1><p>源码分析的宗旨是一切始于源码，终于源码。所以我们首先来看看orderer这块的代码目录。orderer相关的代码主要在 fabric/orderer文件夹中：</p>
-<pre><code>➜  fabric git:(readCode) ✗ tree -L 2 orderer
-orderer
-├── README.md
-├── common
-│   ├── blockcutter 缓存待打包的交易，切块
-│   ├── bootstrap 启动时替换通道创世块
-│   ├── broadcast orderer的Broadcast接口
-│   ├── cluster （Raft）集群服务
-│   ├── localconfig 解析orderer配置文件orderer.yaml
-│   ├── metadata 区块元数据填写
-│   ├── msgprocessor 交易检查
-│   ├── multichannel 多通道支持：Registrar、chainSupport、写区块
-│   └── server Orderer节点的服务端程序
-├── consensus 共识插件
-│   ├── consensus.go 共识插件需要实现的接口等定义
-│   ├── etcdraft raft共识插件
-│   ├── inactive 未激活时的raft
-│   ├── kafka kafka共识插件
-│   ├── mocks 测试用的共识插件
-│   └── solo solo共识插件
-├── main.go orderer程序入口
-├── mocks
-│   ├── common
-│   └── util
-└── sample_clients orderer的客户端程序样例
-    ├── broadcast_config
-    ├── broadcast_msg
-    └── deliver_stdout
-
-23 directories, 3 files</code></pre><p>相信大家这样过了一遍心里有个大致印象，但还是一脸懵逼，不过没关系，我们接着往下看：</p>
-<h1 id="功能概述"><a href="#功能概述" class="headerlink" title="功能概述"></a>功能概述</h1><p>Orderer排序节点管理着系统通道与所有应用通道，负责通道创建、通道配置更新等操作，并处理客户端提交的交易消息请求，对交易进行排序并按规则打包成新区块，提交账本并维护通道账本数据，为全网节点提供Broadcast交易广播服务、Orderer共识排序服务、Deliver区块分发服务等。</p>
-<p><img src="http://note.youdao.com/yws/res/63/WEBRESOURCE0d039e7a4924db2b6d979c334fd14e9d" alt="orderer功能概述"></p>
-<blockquote>
-<p>图片源自《Hyperledger Fabric技术内幕 架构设计与实现原理》</p>
-</blockquote>
-<h2 id="一笔交易在Orderer中经历的过程"><a href="#一笔交易在Orderer中经历的过程" class="headerlink" title="一笔交易在Orderer中经历的过程"></a>一笔交易在Orderer中经历的过程</h2><p>还记得在上一篇中我们介绍了一笔交易在fabric中所经历的过程，那么这一节我们依旧以交易为切入点，聚焦于交易在orderer这部分到底经历了什么。</p>
-<p><img src="http://note.youdao.com/yws/res/84/WEBRESOURCEb122473b5b7acef549a64630e6570d63" alt="一笔交易在 orderer 中的处理流程"></p>
-<p>如图所示，orderer节点首先通过<strong>Broadcast广播交易服务</strong>从客户端获取经过背书的交易消息，然后将交易进行排序并打包成区块，最后通过<strong>Deliver区块分发服务</strong>向peer节点分发打包好的区块。</p>
-<p>其中将交易进行排序和打包成区块的步骤又可以进一步分解为:</p>
-<ol>
-<li>对交易进行多项检查（<strong>MsgProcessor</strong>）</li>
-<li>通过solo、kafka、raft等共识算法对交易进行排序（<strong>consensus共识插件</strong>）</li>
-<li>根据切块策略进行切块（<strong>BlockCutter</strong>）</li>
-<li>保存区块文件（<strong>BlockWriter</strong>）</li>
-</ol>
-<p>通过以上对一笔交易在orderer中所经历的过程进行分析，我们会发现其实orderer这块的源码可以拆分成以下几个主要模块：</p>
-<ol>
-<li>广播交易服务：Brodcast </li>
-<li>交易检查：Msgprocessor</li>
-<li>交易排序：Solo、Kafka、Etcdraft</li>
-<li>切块：Blockcutter</li>
-<li>写区块：BlockWriter</li>
-<li>区块分发服务：Deliver 区块分发服务</li>
-</ol>
-<p>除此之外，在分析源码之前我们还需要了解 Ordrer 的核心数据结构以及 Orderer节点的启动流程。</p>
-<p>综上所述，orderer源码解析的知识图谱就呼之欲出了。</p>
-<p><img src="http://note.youdao.com/yws/res/70/WEBRESOURCE94ead357ff1974f130ca9b572e879016" alt="Orderer 知识图谱"></p>
-<p>这张图描绘了 orderer 这块源码我们需要掌握的主要知识点，现在肯定还有很多地方看不懂，不过没关系，有个大致印象就好，等我们把所有的知识点都理一遍再回过头来看这张图，相信会有一种“一览众山小”的感觉。</p>
-<p>接下来，我们就将以这种图为线索，正式开始我们的orderer源码分析之旅。</p>
+<p><img src="https://vegard-bear.github.io/images/%E5%93%88%E5%B8%8C%E8%A1%A8.png" alt></p>
 
             </div>
             <hr />
@@ -737,9 +678,9 @@ orderer
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Fabric 1.4源码分析1：Orderer功能概述》
+                    《【Go源码解3】哈希表》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/25/orderer-functions-overview/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/07/go-sourcecode-map/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -780,7 +721,7 @@ orderer
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/07/25/orderer-functions-overview/',
+        id: '2021/01/07/go-sourcecode-map/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -801,54 +742,56 @@ orderer
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/02/orderer-data-structure/">
+                <a href="/2021/01/07/go-sourcecode-map/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Fabric 1.4源码分析2：Orderer 核心数据结构">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="【Go源码解3】哈希表">
                         
-                        <span class="card-title">Fabric 1.4源码分析2：Orderer 核心数据结构</span>
+                        <span class="card-title">【Go源码解3】哈希表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要梳理了 Orderer 涉及的核心数据结构及其逻辑关系，具有一定的参考价值。
+                            本节会介绍 Go 语言的哈希的实现原理，哈希是除了数组之外，最常见的数据结构。几乎所有的语言都会有数组和哈希表两种集合元素，有的语言将数组实现成列表，而有的语言将哈希称作字典或者映射。无论如何命名或者如何实现，数组和哈希是两种设计集合元素的思路，数组用于表示元素的序列，而哈希表示的是键值对之间映射关系。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
                     </a>
                     
                     <a href="/tags/源码解析/" target="_blank">
                         <span class="chip bg-color">源码解析</span>
                     </a>
                     
-                    <a href="/tags/orderer/" target="_blank">
-                        <span class="chip bg-color">orderer</span>
+                    <a href="/tags/map/" target="_blank">
+                        <span class="chip bg-color">map</span>
                     </a>
                     
                 </div>
@@ -862,31 +805,31 @@ orderer
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/25/tx-flow/">
+                <a href="/2021/01/06/go-sourcecode-slice/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Fabric交易处理流程">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【Go源码解析2】切片">
                         
-                        <span class="card-title">Fabric交易处理流程</span>
+                        <span class="card-title">【Go源码解析2】切片</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文描述了一笔交易从发送到最终上链所经历的过程
+                            上一节介绍的数组在 Go 语言中没那么常用，更常用的数据结构是切片，即动态数组，其长度并不固定，我们可以向切片中追加元素，它会在容量不足时自动扩容。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-25
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
                                 </a>
                             
                             
@@ -896,8 +839,16 @@ orderer
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
+                    </a>
+                    
+                    <a href="/tags/源码解析/" target="_blank">
+                        <span class="chip bg-color">源码解析</span>
+                    </a>
+                    
+                    <a href="/tags/切片/" target="_blank">
+                        <span class="chip bg-color">切片</span>
                     </a>
                     
                 </div>
