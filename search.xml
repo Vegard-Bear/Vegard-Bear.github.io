@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【leetcode-300】最长递增子序列</title>
+      <link href="/2021/01/08/leetcode-300/"/>
+      <url>/2021/01/08/leetcode-300/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p>给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。</p><p>子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。</p><p>示例 1：</p><pre><code>输入：nums = [10,9,2,5,3,7,101,18]输出：4解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。</code></pre><p>示例 2：</p><pre><code>输入：nums = [0,1,0,3,2,3]输出：4</code></pre><p>示例 3：</p><pre><code>输入：nums = [7,7,7,7,7,7,7]输出：1</code></pre><p>提示：</p><ul><li>1 &lt;= nums.length &lt;= 2500</li><li>-104 &lt;= nums[i] &lt;= 104</li></ul><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题是一道非常经典的动态规划算法题，而对于动态规划算法，最重要的就是列出状态转移方程。这里我们先要定义一个dp数组，这个dp数组的含义非常重要。</p><h5 id="dp-i-表示以-nums-i-结尾的最长递增子序列的长度"><a href="#dp-i-表示以-nums-i-结尾的最长递增子序列的长度" class="headerlink" title="dp[i] 表示以 nums[i] 结尾的最长递增子序列的长度"></a><center><font color="blue">dp[i] 表示以 nums[i] 结尾的最长递增子序列的长度</font></center></h5><p>那么根据这个定义。我们可以先确定 base case，就是</p><h5 id="dp-i-1"><a href="#dp-i-1" class="headerlink" title="dp[i] = 1"></a><center><font color="blue">dp[i] = 1</font></center></h5><p>因为在初始状态下，以nums[i]结尾的最长递增子序列至少存在一个包含自身的子序列。<br>然后就可以列我们的状态转移方程了。</p><blockquote><p>注意：“子序列”和“子串”这两个名词的区别，子串一定是连续的，而子序列不一定是连续的。</p></blockquote><p>现在假设我们要求dp[5]，也就是以第6个数字结尾的字符串的最长递增子序列。那么我们只需要遍历以它前面数字结尾的所有最长子序列，找到那个结尾数字小于当前数字的子序列，然后长度+1即可。即遍历 dp[0] 到 dp[4]，如果nums[j] &lt; nums[5]，那么就可以更新 dp[5] = dp[j] + 1，当然，最后需要保留大的那个数字作为dp[5]的最终值。</p><h4 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h4><h4 id="dp-i-max-dp-i-dp-j-1-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-当-j-lt-i-时"><a href="#dp-i-max-dp-i-dp-j-1-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-当-j-lt-i-时" class="headerlink" title=" dp[i] = max ( dp[i] , dp[j] + 1 )  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  当 j &lt; i 时 "></a><center><font color="blue"> dp[i] = max ( dp[i] , dp[j] + 1 )  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  当 j &lt; i 时 </font></center></h4><p>代码如下：</p><pre><code>for j := 0; j &lt; i ; j++ {    // 核心代码，状态转移方程    // 以当前数字结尾的最长子序列长度等于【之前比他小的数字的结尾的最长子序列长度+1】    if nums[j] &lt; nums[i] {        dp[i] = max(dp[i], dp[j] + 1)    }}</code></pre><p>既然得到了dp[5]，那么dp[i]都能求出来，只需要依次遍历一遍即可，最终代码如下。</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func lengthOfLIS(nums []int) int {    // 定义一个dp数组    // dp[i]表示以第i+1个元素结尾的字符串最长子递增子序列    dp := make([]int, len(nums))    // 初始化数组，初始最长递增子序列为1    for k := range dp {        dp[k] = 1    }    // 遍历数组，依次计算以每个数为结尾的最长子序列    for i := 0; i &lt; len(nums) ; i++ {        // 遍历之前已经计算完成的子序列        for j := 0; j &lt; i ; j++ {            // 核心代码，状态转移方程            // 以当前数字结尾的最长子序列长度等于【之前比他小的数字的结尾的最长子序列长度+1】            if nums[j] &lt; nums[i] {                dp[i] = max(dp[i], dp[j] + 1)            }        }    }    // 最后遍历一遍dp数组，留下最大值    maxLen := 0    for k := range dp {        if maxLen &lt; dp[k] {            maxLen = dp[k]        }    }    return maxLen}func max(a, b int) int {    if a &gt; b {        return a    }    return b}</code></pre><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>其中 n 为数组 nums 的长度。动态规划的状态数为 n，计算状态 dp[i] 时，需要 O(n) 的时间遍历 dp[0…i−1] 的所有状态，所以总时间复杂度为 O(n^2)</p><h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>需要额外使用长度为 n 的 dp 数组。</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>动态规划的题最重要的是如何定义dp数组，确定base case以及状态转移方程。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Go源码解析4】字符串</title>
       <link href="/2021/01/07/go-sourcecode-string/"/>
       <url>/2021/01/07/go-sourcecode-string/</url>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-01-07T06:42:33.455Z</updated>
+  <updated>2021-01-08T02:59:25.214Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【leetcode-300】最长递增子序列</title>
+    <link href="https://vegard-bear.github.io/2021/01/08/leetcode-300/"/>
+    <id>https://vegard-bear.github.io/2021/01/08/leetcode-300/</id>
+    <published>2021-01-08T02:55:53.000Z</published>
+    <updated>2021-01-08T02:59:25.214Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;给你一个整数数组 nums
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
+    
+      <category term="动态规划" scheme="https://vegard-bear.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+  </entry>
   
   <entry>
     <title>【Go源码解析4】字符串</title>
@@ -542,34 +570,6 @@
         
         
           &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/linked-list-cycle/&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
-    
-      <category term="链表" scheme="https://vegard-bear.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【leetcode-142】环形链表2</title>
-    <link href="https://vegard-bear.github.io/2020/12/18/leetcode-142/"/>
-    <id>https://vegard-bear.github.io/2020/12/18/leetcode-142/</id>
-    <published>2020-12-18T14:02:26.000Z</published>
-    <updated>2020-12-19T07:01:15.640Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a
         
       
     
