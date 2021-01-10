@@ -4,14 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="fabric 链上数据防篡改, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-354】俄罗斯套娃信封问题, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-近日，因为工作需要，对 fabric 数据防篡改机制进行了研究，这里提供了一种验证链上数据防篡改的场景以供参考
-
-基本思路：进入某个peer节点修改本地的 Couch DB 数据，修改完后再调用链码发送一笔交易，发现执行结果是该 peer">
+    <meta name="description" content="题目链接给定一些标记了宽度和高度的信封，宽度和高度以整数对形式 ((w, h)) 出现。当另一个信封的宽度和高度都比这个信封大的时候，这个信封就可以放进另一个信封里，如同俄罗斯套娃一样。
+请计算最多能有多少个信封能组成一组“俄罗斯套娃”信封">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>fabric 链上数据防篡改 | 小熊的作坊</title>
+    <title>【leetcode-354】俄罗斯套娃信封问题 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +330,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        fabric 链上数据防篡改
+                        【leetcode-354】俄罗斯套娃信封问题
                     </div>
                 </div>
             </div>
@@ -449,12 +447,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/fabric/" target="_blank">
-                            <span class="chip bg-color">fabric</span>
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
                         </a>
                         
-                        <a href="/tags/test/" target="_blank">
-                            <span class="chip bg-color">test</span>
+                        <a href="/tags/动态规划/" target="_blank">
+                            <span class="chip bg-color">动态规划</span>
                         </a>
                         
                     </div>
@@ -462,13 +460,22 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
+                        </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-15
+                    2021-01-10
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -482,14 +489,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    4 分
                 </div>
                 
                 
@@ -505,84 +512,86 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>近日，因为工作需要，对 fabric 数据防篡改机制进行了研究，这里提供了一种验证链上数据防篡改的场景以供参考</p>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p>给定一些标记了宽度和高度的信封，宽度和高度以整数对形式 ((w, h)) 出现。当另一个信封的宽度和高度都比这个信封大的时候，这个信封就可以放进另一个信封里，如同俄罗斯套娃一样。</p>
+<p>请计算最多能有多少个信封能组成一组“俄罗斯套娃”信封（即可以把一个信封放到另一个信封里面）。</p>
+<p>说明:<br>不允许旋转信封。</p>
+<p>示例:</p>
+<pre><code>输入: envelopes = [[5,4],[6,4],[6,7],[2,3]]
+输出: 3 
+解释: 最多信封的个数为 3, 组合为: [2,3] =&gt; [5,4] =&gt; [6,7]。</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题是一道非常经典的动态规划算法题，而对于动态规划算法，最重要的就是列出状态转移方程。这里我们先要定义一个dp数组，这个dp数组的含义非常重要。</p>
+<h5 id="dp-i-表示以-nums-i-结尾的最长递增子序列的长度"><a href="#dp-i-表示以-nums-i-结尾的最长递增子序列的长度" class="headerlink" title="dp[i] 表示以 nums[i] 结尾的最长递增子序列的长度"></a><center><font color="blue">dp[i] 表示以 nums[i] 结尾的最长递增子序列的长度</font></center></h5><p>那么根据这个定义。我们可以先确定 base case，就是</p>
+<h5 id="dp-i-1"><a href="#dp-i-1" class="headerlink" title="dp[i] = 1"></a><center><font color="blue">dp[i] = 1</font></center></h5><p>因为在初始状态下，以nums[i]结尾的最长递增子序列至少存在一个包含自身的子序列。<br>然后就可以列我们的状态转移方程了。</p>
+<blockquote>
+<p>注意：“子序列”和“子串”这两个名词的区别，子串一定是连续的，而子序列不一定是连续的。</p>
 </blockquote>
-<h1 id="基本思路："><a href="#基本思路：" class="headerlink" title="基本思路："></a>基本思路：</h1><p>进入某个peer节点修改本地的 Couch DB 数据，修改完后再调用链码发送一笔交易，发现执行结果是该 peer 节点的数据重新变为修改前的数据，说明篡改数据失败，系统具有放篡改能力。</p>
-<p>具体操作如下，为了简化操作，直接借助官方使用 couchdb 样例，链码为 mymarble</p>
-<p>先进入 firstnetwork 目录，执行以下命令起一个使用 couchdb 的byfn网络</p>
-<pre><code>./byfn.sh up -c mychannel -s couchdb</code></pre><p>然后进入客户端</p>
-<pre><code>docker exec -it cli bash
-export CHANNEL_NAME=mychannel</code></pre><p>执行以下命令</p>
-<pre><code># peer0.org1 安装链码
+<p>现在假设我们要求dp[5]，也就是以第6个数字结尾的字符串的最长递增子序列。那么我们只需要遍历以它前面数字结尾的所有最长子序列，找到那个结尾数字小于当前数字的子序列，然后长度+1即可。即遍历 dp[0] 到 dp[4]，如果nums[j] &lt; nums[5]，那么就可以更新 dp[5] = dp[j] + 1，当然，最后需要保留大的那个数字作为dp[5]的最终值。</p>
+<h4 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h4><h4 id="dp-i-max-dp-i-dp-j-1-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-当-j-lt-i-时"><a href="#dp-i-max-dp-i-dp-j-1-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-当-j-lt-i-时" class="headerlink" title=" dp[i] = max (( dp[i] , dp[j] + 1 ))  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  当 j &lt; i 时 "></a><center><font color="blue"> dp[i] = max (( dp[i] , dp[j] + 1 ))  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  当 j &lt; i 时 </font></center></h4><p>代码如下：</p>
+<pre><code>for j := 0; j &lt; i ; j++ {
+    // 核心代码，状态转移方程
+    // 以当前数字结尾的最长子序列长度等于【之前比他小的数字的结尾的最长子序列长度+1】
+    if nums[j] &lt; nums[i] {
+        dp[i] = max(dp[i], dp[j] + 1)
+    }
+}</code></pre><p>既然得到了dp[5]，那么dp[i]都能求出来，只需要依次遍历一遍即可，最终代码如下。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func maxEnvelopes(envelopes [][]int) int {
+    n := len(envelopes)
 
-CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-CORE_PEER_LOCALMSPID=&quot;Org1MSP&quot;
-CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
-peer chaincode install -n  mymarble  -v 1.0.0  -p github.com/chaincode/marbles02/go
+    sort.Slice(envelopes, func(i, j int) bool {
+        // 按宽短升序排列，如果宽度一样，则按高度降序排列
+        if envelopes[i][0] == envelopes[j][0] {
+            return envelopes[i][1] &gt; envelopes[j][1]
+        } else {
+            return envelopes[i][0] &lt; envelopes[j][0]
+        }
+    })
 
-# peer1.org1 安装链码
+    // 对排好序的数组取其中高度组成的数组调用最长递增子序列
+    height := make([]int, n)
+    for i := 0 ; i &lt; n ; i++ {
+        height[i] = envelopes[i][1]
+    }
+    return lengthOfLIS(height)
+}
 
-CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-CORE_PEER_ADDRESS=peer1.org1.example.com:8051
-CORE_PEER_LOCALMSPID=&quot;Org1MSP&quot;
-CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
-peer chaincode install -n  mymarble  -v 1.0.0  -p github.com/chaincode/marbles02/go
+func lengthOfLIS(nums []int) int {
+    // 定义一个dp数组
+    // dp[i]表示以第i+1个元素结尾的字符串最长子递增子序列
+    dp := make([]int, len(nums))
+    // 初始化数组，初始最长递增子序列为1
+    for k := range dp {
+        dp[k] = 1
+    }
 
-# peer0.org2 安装链码
+    // 遍历数组，依次计算以每个数为结尾的最长子序列
+    for i := 0; i &lt; len(nums) ; i++ {
+        // 遍历之前已经计算完成的子序列
+        for j := 0; j &lt; i ; j++ {
+            // 核心代码，状态转移方程
+            // 以当前数字结尾的最长子序列长度等于【之前比他小的数字的结尾的最长子序列长度+1】
+            if nums[j] &lt; nums[i] {
+                dp[i] = max(dp[i], dp[j] + 1)
+            }
+        }
+    }
 
-CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
-CORE_PEER_ADDRESS=peer0.org2.example.com:9051
-CORE_PEER_LOCALMSPID=&quot;Org2MSP&quot;
-CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
-peer chaincode install -n  mymarble  -v 1.0.0  -p github.com/chaincode/marbles02/go
+    // 最后遍历一遍dp数组，留下最大值
+    maxLen := 0
+    for k := range dp {
+        if maxLen &lt; dp[k] {
+            maxLen = dp[k]
+        }
+    }
+    return maxLen
+}
 
-# peer1.org2 安装链码
-
-CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
-CORE_PEER_ADDRESS=peer1.org2.example.com:10051
-CORE_PEER_LOCALMSPID=&quot;Org2MSP&quot;
-CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt
-peer chaincode install -n  mymarble  -v 1.0.0  -p github.com/chaincode/marbles02/go
-
-
-# 实例化链链码
-
-peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n mymarble -v 1.0.0 -c &#39;{&quot;Args&quot;:[&quot;init&quot;]}&#39; -P &quot;AND (&#39;Org1MSP.peer&#39;,&#39;Org2MSP.peer&#39;)&quot;
-
-peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mymarble --peerAddresses peer0.org1.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0.org2.example.com:9051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c &#39;{&quot;Args&quot;:[&quot;initMarble&quot;,&quot;marble1&quot;,&quot;blue&quot;,&quot;35&quot;,&quot;tom&quot;]}&#39;
-</code></pre><p>此时打开浏览器 <a href="http://localhost:5984/_utils/" target="_blank" rel="noopener">http://localhost:5984/_utils/</a></p>
-<p>进入 peer0.org1 （对外暴露端口为5984）的 couchdb，查看 marble1 变量：</p>
-<pre><code>{
-  &quot;_id&quot;: &quot;marble1&quot;,
-  &quot;_rev&quot;: &quot;1-1d12a3e8f79f5c0e40cc73c43701a6ba&quot;,
-  &quot;color&quot;: &quot;blue&quot;,
-  &quot;docType&quot;: &quot;marble&quot;,
-  &quot;name&quot;: &quot;marble1&quot;,
-  &quot;owner&quot;: &quot;tom&quot;,
-  &quot;size&quot;: 35,
-  &quot;~version&quot;: &quot;\u0000CgMBBgA=&quot;
-}</code></pre><p>我们可以看到在 couchdb 中保存了 marble1 的各个字段的属性。</p>
-<p>然后手动将其中的 35 改为25，并保存（试图通过修改peer本地的couchdb中的数据实现篡改数据的操作）。</p>
-<p>此时在终端调用以下链码，即将 marble1 给 jerry</p>
-<pre><code>peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mymarble --peerAddresses peer0.org1.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0.org2.example.com:9051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c &#39;{&quot;Args&quot;:[&quot;transferMarble&quot;,&quot;marble1&quot;,&quot;jerry&quot;]}&#39;</code></pre><h5 id="注意此时指定的背书节点为-peer0-org1-和-peer0-org2"><a href="#注意此时指定的背书节点为-peer0-org1-和-peer0-org2" class="headerlink" title="注意此时指定的背书节点为 peer0.org1 和 peer0.org2"></a>注意此时指定的背书节点为 peer0.org1 和 peer0.org2</h5><p><img src="https://note.youdao.com/yws/public/resource/bc554143fcca768f52bf1354ffef92eb/xmlnote/619D267654E5418CA1199D1E0060BEA7/3390" alt></p>
-<p>发现调用失败，返回背书不满足<br>这主要是因为 peer0.org1 的 couchdb 的数据已经改变，和 peer0.org1 的数据不同，导致模拟执行失败</p>
-<p>此时，将其中一个背书节点背书节点 peer0.org1 替换成 peer1.org1，此时再次调用链码</p>
-<pre><code>peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C $CHANNEL_NAME -n mymarble --peerAddresses peer1.org1.example.com:8051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt --peerAddresses peer0.org2.example.com:9051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c &#39;{&quot;Args&quot;:[&quot;transferMarble&quot;,&quot;marble1&quot;,&quot;jerry&quot;]}&#39;</code></pre><p>链码调用成功</p>
-<p>再次进入peer0.org1的couchdb，对外暴露端口为5984</p>
-<p><a href="http://localhost:5984/_utils/" target="_blank" rel="noopener">http://localhost:5984/_utils/</a></p>
-<p>发现此时 marble1  的owner 已经变为jerry，并且仍然是35</p>
-<pre><code>{
-  &quot;_id&quot;: &quot;marble1&quot;,
-  &quot;_rev&quot;: &quot;3-c2280ec7b75f7f5536b490acf10515a0&quot;,
-  &quot;color&quot;: &quot;blue&quot;,
-  &quot;docType&quot;: &quot;marble&quot;,
-  &quot;name&quot;: &quot;marble1&quot;,
-  &quot;owner&quot;: &quot;jerry&quot;,
-  &quot;size&quot;: 35,
-  &quot;~version&quot;: &quot;\u0000CgMBBwA=&quot;
-}</code></pre><p>说明试图篡改数据的操作失败，系统具有防篡改能力</p>
+func max(a, b int) int {
+    if a &gt; b {
+        return a
+    }
+    return b
+}</code></pre><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>其中 n 为数组 nums 的长度。排序和 LIS 算法都是 O((NlogN))</p>
+<h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>需要额外使用长度为 n 的 dp 数组。另外，我们使用的排序算法也可能需要额外的空间。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>动态规划的题最重要的是如何定义dp数组，确定base case以及状态转移方程。</p>
 
             </div>
             <hr />
@@ -741,9 +750,9 @@ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopat
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《fabric 链上数据防篡改》
+                    《【leetcode-354】俄罗斯套娃信封问题》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/08/15/tamper-with-data/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/10/leetcode-354/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -784,7 +793,7 @@ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopat
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/08/15/tamper-with-data/',
+        id: '2021/01/10/leetcode-354/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -805,29 +814,84 @@ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopat
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/02/leetcode-226/">
+                <a href="/2021/01/10/leetcode-354/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【leetcode-226】翻转二叉树">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="【leetcode-354】俄罗斯套娃信封问题">
                         
-                        <span class="card-title">【leetcode-226】翻转二叉树</span>
+                        <span class="card-title">【leetcode-354】俄罗斯套娃信封问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            二叉树题目的一个难点就是，如何把题目的要求细化成每个节点需要做的事情，像这道题就是相当于交换每个节点的左右子节点。
+                            动态规划的题最重要的是如何定义dp数组，确定base case以及状态转移方程
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-02
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/01/08/leetcode-300/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【leetcode-300】最长递增子序列">
+                        
+                        <span class="card-title">【leetcode-300】最长递增子序列</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            动态规划的题最重要的是如何定义dp数组，确定base case以及状态转移方程。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -847,65 +911,8 @@ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopat
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/tree/" target="_blank">
-                        <span class="chip bg-color">tree</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/08/08/fabric-chaincode-2-2/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="fabric 2.2 生命周期链码实战">
-                        
-                        <span class="card-title">fabric 2.2 生命周期链码实战</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命周期管理
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-08
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
-                    </a>
-                    
-                    <a href="/tags/chaincode/" target="_blank">
-                        <span class="chip bg-color">chaincode</span>
-                    </a>
-                    
-                    <a href="/tags/2-2/" target="_blank">
-                        <span class="chip bg-color">2.2</span>
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
                     </a>
                     
                 </div>
