@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【leetcode-53】最大子序和</title>
+      <link href="/2021/01/11/leetcode-53/"/>
+      <url>/2021/01/11/leetcode-53/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p><p>示例:</p><pre><code>输入: [-2,1,-3,4,-1,2,1,-5,4]输出: 6解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</code></pre><ul><li>进阶:</li></ul><p>如果你已经实现复杂度为 O((n)) 的解法，尝试使用更为精妙的分治法求解。</p><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题与 <a href="https://vegard-bear.github.io/2021/01/08/leetcode-300/">最长递增子序列</a> 非常相似，这里我们依旧是采用动态规划算法解决。</p><h4 id="定义dp数组"><a href="#定义dp数组" class="headerlink" title="定义dp数组"></a>定义dp数组</h4><h5 id="dp-i-表示以-nums-i-结尾的最大子数组和"><a href="#dp-i-表示以-nums-i-结尾的最大子数组和" class="headerlink" title="dp[i] 表示以 nums[i] 结尾的最大子数组和"></a><center><font color="blue">dp[i] 表示以 nums[i] 结尾的最大子数组和</font></center></h5><h4 id="确定-base-case"><a href="#确定-base-case" class="headerlink" title="确定 base case"></a>确定 base case</h4><p>那么根据这个定义。我们就可以确定 base case，就是</p><h5 id="dp-i-0"><a href="#dp-i-0" class="headerlink" title="dp[i] = 0"></a><center><font color="blue">dp[i] = 0</font></center></h5><p>因为在初始状态下，以nums[i]结尾的最大子数组和就是其自身。<br>然后就可以列我们的状态转移方程了。</p><h4 id="推导状态转移方程"><a href="#推导状态转移方程" class="headerlink" title="推导状态转移方程"></a>推导状态转移方程</h4><p>依旧是采用数学归纳法来寻找状态转移关系：假设我们已经计算出了dp[i-1]，如何推导出dp[i]呢？</p><p>dp[i]其实只有两种选择，要么就是与前面的相邻子数组连接，形成一个更大的子数组，要么不与前面的子数组比较，自成一派，自己作为一个子数组。</p><p>而对于这两种情况，我们只需要其中和最大的那一个，也就是：</p><h4 id="dp-i-max-dp-i-dp-i-1-nums-i"><a href="#dp-i-max-dp-i-dp-i-1-nums-i" class="headerlink" title=" dp[i] = max (( dp[i] , dp[i-1] + nums[i] ))  "></a><center><font color="blue"> dp[i] = max (( dp[i] , dp[i-1] + nums[i] ))  </font></center></h4><p>至此，我们列出状态转移方程，就可以直接写代码了。</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func maxSubArray(nums []int) int {    // 定义dp动态数组, dp表示以nums[i]结尾的最大子数组和    dp := make([]int, len(nums))    // 定义base case, 第一个数前面没有数，所以    // 以第一个数结尾的最大子数组和就是其本身    dp[0] = nums[0]    // 开始计算dp数组    for i := 1; i &lt; len(nums); i++{        // 列出状态转移方程        // 以nums[i]结尾的最大数组和 要么是其自身nums[i]，        // 要么是自身nums[i]加上以前一个数nums[i-1]结尾的最大子数组拼上当前数而成的数组和        dp[i] = max(nums[i], dp[i-1] + nums[i])    }     // res用于返回最后结果    res := math.MinInt32    // 遍历dp数组，找到最大的那一个就是答案    for i := 0; i &lt; len(dp); i++ {        res = max(res, dp[i])    }    return res}func max(a, b int) int {    if a &gt; b {        return a    }    return b}</code></pre><p>不难发现，以上解法的时间复杂度和空间复杂度都是O((n)), 考虑到 <font color="red">dp[i]仅仅和dp[i-1]有关，那么就可以进行状态压缩，进一步降低空间复杂度</font></p><pre><code>func maxSubArray(nums []int) int {    // 定义base case，注意这里只定义了dp_0，而不是整个dp数组    dp_0 := nums[0]    res := dp_0    // 开始计算dp数组    for i := 1; i &lt; len(nums); i++ {        // 列出状态转移方程        dp_1 := max(nums[i], dp_0 + nums[i])        // 注意这里需要更新前一个状态        dp_0 = dp_1        // 直接计算当前最大和        res = max(res, dp_1)    }    return res}func max(a, b int) int {    if a &gt; b {        return a    }    return b}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>其中 n 为数组 nums 的长度。</p><h3 id="空间复杂度：O-C"><a href="#空间复杂度：O-C" class="headerlink" title="空间复杂度：O((C))"></a>空间复杂度：O((C))</h3><p>不再需要额外定义一个dp数组了，只需要dp_0和dp_1两个变量，所以此算法的空间复杂度为常数。</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>动态规划算法可通过状态压缩进一步降低空间复杂度。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-354】俄罗斯套娃信封问题</title>
       <link href="/2021/01/10/leetcode-354/"/>
       <url>/2021/01/10/leetcode-354/</url>
