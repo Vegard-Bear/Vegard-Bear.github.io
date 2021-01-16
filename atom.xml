@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-01-14T07:41:45.768Z</updated>
+  <updated>2021-01-16T08:26:40.857Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【leetcode-1143】最长公共子序列</title>
+    <link href="https://vegard-bear.github.io/2021/01/16/leetcode-1143/"/>
+    <id>https://vegard-bear.github.io/2021/01/16/leetcode-1143/</id>
+    <published>2021-01-16T08:20:55.000Z</published>
+    <updated>2021-01-16T08:26:40.857Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
+    
+      <category term="动态规划" scheme="https://vegard-bear.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+  </entry>
   
   <entry>
     <title>【leetcode-53】最大子序和</title>
@@ -551,36 +579,6 @@
       <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
     
       <category term="二分查找" scheme="https://vegard-bear.github.io/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【剑指offer-57】和为s的两个数字</title>
-    <link href="https://vegard-bear.github.io/2020/12/20/offer-57/"/>
-    <id>https://vegard-bear.github.io/2020/12/20/offer-57/</id>
-    <published>2020-12-20T03:32:12.000Z</published>
-    <updated>2020-12-20T04:07:39.034Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="剑指offer" scheme="https://vegard-bear.github.io/categories/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="数组" scheme="https://vegard-bear.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
-      <category term="剑指offer" scheme="https://vegard-bear.github.io/tags/%E5%89%91%E6%8C%87offer/"/>
-    
-      <category term="二分" scheme="https://vegard-bear.github.io/tags/%E4%BA%8C%E5%88%86/"/>
     
   </entry>
   
