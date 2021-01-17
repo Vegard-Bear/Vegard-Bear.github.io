@@ -4,16 +4,20 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-116】填充每个节点的下一个右侧节点指针, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-72】编辑距离, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接116. 填充每个节点的下一个右侧节点指针
-题目描述给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
-struct Node {
-  int val;
-  Node *left;
-  No">
+    <meta name="description" content="题目链接72. 编辑距离
+题目描述给你两个单词 word1 和 word2，请你计算出将 word1 转换成 word2 所使用的最少操作数 。
+你可以对一个单词进行如下三种操作：
+
+插入一个字符
+删除一个字符
+替换一个字符
+
+示例 1：
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +25,7 @@ struct Node {
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-116】填充每个节点的下一个右侧节点指针 | 小熊的作坊</title>
+    <title>【leetcode-72】编辑距离 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -334,13 +338,13 @@ struct Node {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/27.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-116】填充每个节点的下一个右侧节点指针
+                        【leetcode-72】编辑距离
                     </div>
                 </div>
             </div>
@@ -455,8 +459,8 @@ struct Node {
                             <span class="chip bg-color">leetcode</span>
                         </a>
                         
-                        <a href="/tags/tree/" target="_blank">
-                            <span class="chip bg-color">tree</span>
+                        <a href="/tags/动态规划/" target="_blank">
+                            <span class="chip bg-color">动态规划</span>
                         </a>
                         
                     </div>
@@ -479,7 +483,7 @@ struct Node {
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-04
+                    2021-01-17
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -493,14 +497,14 @@ struct Node {
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    805
+                    950
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
                 
@@ -516,103 +520,85 @@ struct Node {
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="noopener">116. 填充每个节点的下一个右侧节点指针</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">struct</span> Node <span class="token punctuation">{</span>
-  <span class="token builtin">int</span> val<span class="token punctuation">;</span>
-  Node <span class="token operator">*</span>left<span class="token punctuation">;</span>
-  Node <span class="token operator">*</span>right<span class="token punctuation">;</span>
-  Node <span class="token operator">*</span>next<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。</p>
-<p>初始状态下，所有 next 指针都被设置为 NULL。</p>
-<p>进阶：</p>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/edit-distance/" target="_blank" rel="noopener">72. 编辑距离</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你两个单词 word1 和 word2，请你计算出将 word1 转换成 word2 所使用的最少操作数 。</p>
+<p>你可以对一个单词进行如下三种操作：</p>
 <ul>
-<li>你只能使用常量级额外空间。</li>
-<li>使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。</li>
+<li>插入一个字符</li>
+<li>删除一个字符</li>
+<li>替换一个字符</li>
 </ul>
-<p>示例：</p>
-<p><img src="https://assets.leetcode.com/uploads/2019/02/14/116_sample.png" alt></p>
-<pre><code>输入：root = [1,2,3,4,5,6,7]
-输出：[1,#,2,3,#,4,5,6,7,#]
-解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化的输出按层序遍历排列，同一层节点由 next 指针连接，&#39;#&#39; 标志着每一层的结束。</code></pre><p>提示：</p>
+<p>示例 1：</p>
+<pre><code>输入：word1 = &quot;horse&quot;, word2 = &quot;ros&quot;
+输出：3
+解释：
+horse -&gt; rorse (将 &#39;h&#39; 替换为 &#39;r&#39;)
+rorse -&gt; rose (删除 &#39;r&#39;)
+rose -&gt; ros (删除 &#39;e&#39;)</code></pre><p>示例 2：</p>
+<pre><code>输入：word1 = &quot;intention&quot;, word2 = &quot;execution&quot;
+输出：5
+解释：
+intention -&gt; inention (删除 &#39;t&#39;)
+inention -&gt; enention (将 &#39;i&#39; 替换为 &#39;e&#39;)
+enention -&gt; exention (将 &#39;n&#39; 替换为 &#39;x&#39;)
+exention -&gt; exection (将 &#39;n&#39; 替换为 &#39;c&#39;)
+exection -&gt; execution (插入 &#39;u&#39;)</code></pre><p>提示：</p>
 <ul>
-<li>树中节点的数量少于 4096</li>
-<li>-1000 &lt;= node.val &lt;= 1000</li>
+<li>0 &lt;= word1.length, word2.length &lt;= 500</li>
+<li>word1 和 word2 由小写英文字母组成</li>
 </ul>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>二叉树的解题分三步走：</p>
-<ol>
-<li>一般节点应该做什么</li>
-<li>叶子节点应该做什么</li>
-<li>前序、中序还是后序</li>
-</ol>
-<p>对于这道题一般节点需要将它的左子树根节点的 next 域指向右子树的根节点</p>
-<p>然后对于叶子节点依旧是直接返回自身即可</p>
-<p>至于遍历次序的话可以先都试试看～</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>于是我们很快就能写出如下答案:</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">/**
- * Definition for a Node.
- * type Node struct {
- *     Val int
- *     Left *Node
- *     Right *Node
- *     Next *Node
- * }
- */</span>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题和【leetcode 1143动态规划子序列】一样也是一道二维的动态规划算法题。解体套路也是非常的相似。</p>
+<h2 id="动态规划三步走"><a href="#动态规划三步走" class="headerlink" title="动态规划三步走"></a>动态规划三步走</h2><h4 id="定义dp数组"><a href="#定义dp数组" class="headerlink" title="定义dp数组"></a>定义dp数组</h4><p>注意这里由于有两个字符串，所以我们需要定义一个二维的dp数组。</p>
+<h5 id="dp-i-j-表示对于-world1-1-i-和-world2-1-j-，它们的编辑距离度是-dp-i-j"><a href="#dp-i-j-表示对于-world1-1-i-和-world2-1-j-，它们的编辑距离度是-dp-i-j" class="headerlink" title="dp[i][j] 表示对于 world1[1..i] 和 world2[1..j]，它们的编辑距离度是 dp[i][j]"></a><center><font color="red">dp[i][j] 表示对于 world1[1..i] 和 world2[1..j]，它们的编辑距离度是 dp[i][j]</font></center></h5><h4 id="确定-base-case"><a href="#确定-base-case" class="headerlink" title="确定 base case"></a>确定 base case</h4><p>根据dp数组的定义。我们就可以确定 base case，即</p>
+<h5 id="dp-i-0-i-dp-0-j-j"><a href="#dp-i-0-i-dp-0-j-j" class="headerlink" title="dp[i][0] = i, dp[0][j] = j"></a><center><font color="red">dp[i][0] = i, dp[0][j] = j</font></center></h5><p>因为只要有一个字符串是空串，此时编辑距离就是另一个字符串的长度。</p>
+<h4 id="推导状态转移方程"><a href="#推导状态转移方程" class="headerlink" title="推导状态转移方程"></a>推导状态转移方程</h4><p>依旧是采用数学归纳法来寻找状态转移关系：假设我们已经计算出了dp[i-1][j-1]，dp[i-1][j]以及dp[i][j-1],如何推导出dp[i][j]呢？</p>
+<p><font color="blue">如题意，我们很快可以知道dp[i][j]有三种选择，分别是插入、删除和替换一个字符，而实际上这里还隐含了一种选择，就是什么也不做，也就是dp[i]==dp[j]的时候。</font>。<br><big></big></p>
+<pre><code>             dp[i-1][j-1],            当s[i]==s[j]时
+dp[i][j] = 
+             min(dp[i][j-1]+1, dp[i-1][j]+1, dp[i-1][j-1])+1) 当s[i]!=s[j]时</code></pre>
+至此，我们列出状态转移方程，就可以直接写代码了。
 
-<span class="token keyword">func</span> <span class="token function">connect</span><span class="token punctuation">(</span>root <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token operator">*</span>Node <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 为了防止下面的操作出现空指针报错</span>
-    <span class="token keyword">if</span> root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token operator">||</span> root<span class="token punctuation">.</span>Left <span class="token operator">==</span> <span class="token boolean">nil</span>  <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> root
-    <span class="token punctuation">}</span>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func minDistance(word1 string, word2 string) int {
+    // 定义 dp 数组, dp[i][j] 表示world1[i]和word2[j]的编辑距离
+    l1, l2 := len(word1), len(word2)
+    // 注意这里dp数组的二维长度都需要+1，
+    // 因为要把第一列空出来用来表示其中一个字符串为空的这种情况
+    dp := make([][]int, l1 + 1)
+    for k := range dp {
+        dp[k] = make([]int, l2 + 1)
+    }
 
-    <span class="token comment" spellcheck="true">//左子树根节点的 next 域指向右子树的根节点</span>
-    root<span class="token punctuation">.</span>Left<span class="token punctuation">.</span>Next <span class="token operator">=</span> root<span class="token punctuation">.</span>Right
-    <span class="token function">connect</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
-    <span class="token function">connect</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> root
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>需要注意的是，对于叶子节点的判断，由于存在 root.Left.Next 这个逻辑，意味着root.Left不能为空，在一开始需要加上这个判断，否则会报空指针错误</p>
-</blockquote>
-<p>当我们写出如上代码进行提交时，会得到如下结果：</p>
-<pre class="line-numbers language-go"><code class="language-go">输入
-<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">]</span>
-输出
-<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>#<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>#<span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span>#<span class="token punctuation">]</span>
-预期结果
-<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>#<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>#<span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span>#<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我们会发现5号节点的后面直接是空，而不是7号节点，原来是因为5号和6号并不在同一棵子树中（他们的父节点不是同一个），因此需要考虑这种特殊情况。</p>
-<p>完善后的代码如下：</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">/**
- * Definition for a Node.
- * type Node struct {
- *     Val int
- *     Left *Node
- *     Right *Node
- *     Next *Node
- * }
- */</span>
+    // 定义 base case, dp[i][0]表示当word2为空字符串，此时编辑距离就是word1的长度
+    for i := 0; i &lt;= l1 ; i++ {
+        dp[i][0] = i
+    }
+    for j := 0 ; j &lt;= l2 ; j++ {
+        dp[0][j] = j
+    }
 
-<span class="token keyword">func</span> <span class="token function">connect</span><span class="token punctuation">(</span>root <span class="token operator">*</span>Node<span class="token punctuation">)</span> <span class="token operator">*</span>Node <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token operator">||</span> root<span class="token punctuation">.</span>Left <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> root
-    <span class="token punctuation">}</span>
+    // 列出状态转移方程
+    for i := 1; i &lt;= l1 ; i ++ {
+        for j := 1 ; j &lt;= l2 ; j++ {
+            // 当两个字符串的字符相等时，直接跳过这个字符，相当于什么都不做
+            if word1[i-1] == word2[j-1] {
+                dp[i][j] = dp[i-1][j-1]
+            } else {
+                // 当两个字符不相等时，那么就对s[i]执行插入、删除或替换的操作，取其中代价最小的操作
+                dp[i][j] = min(dp[i][j-1] + 1, min(dp[i-1][j] + 1, dp[i-1][j-1] + 1))
+            }
+        }
+    }
+    return dp[l1][l2]
+}
 
-    root<span class="token punctuation">.</span>Left<span class="token punctuation">.</span>Next <span class="token operator">=</span> root<span class="token punctuation">.</span>Right
-
-    <span class="token comment" spellcheck="true">// 增加了不在同一棵子树的情况，注意防止出现空指针报错</span>
-    <span class="token keyword">if</span> root<span class="token punctuation">.</span>Next <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">&amp;&amp;</span> root<span class="token punctuation">.</span>Right <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        root<span class="token punctuation">.</span>Right<span class="token punctuation">.</span>Next <span class="token operator">=</span> root<span class="token punctuation">.</span>Next<span class="token punctuation">.</span>Left
-    <span class="token punctuation">}</span>
-
-    <span class="token function">connect</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
-    <span class="token function">connect</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> root
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>反思：二叉树的题目重在观察，有时候我们可以快速写出题解，但是答案却不对，这个时候或许需要注意考虑一些特殊情况</p>
-</blockquote>
+func min(a, b int) int  {
+    if a &lt; b {
+        return a
+    }
+    return b
+}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-mn"><a href="#时间复杂度：O-mn" class="headerlink" title="时间复杂度：O((mn))"></a>时间复杂度：O((mn))</h3><p>其中 m 为 word1 的长度，n 为 word2 的长度</p>
+<h3 id="空间复杂度：O-mn"><a href="#空间复杂度：O-mn" class="headerlink" title="空间复杂度：O((mn))"></a>空间复杂度：O((mn))</h3><p>我们需要大小为 O((mn)) 的 dp 数组来记录状态值。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>此题和【1143. 最长公共子序列】解法非常相似，都是属于二维的动态规划算法题，套用的是同一个模版。</p>
 
             </div>
             <hr />
@@ -771,9 +757,9 @@ struct Node {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-116】填充每个节点的下一个右侧节点指针》
+                    《【leetcode-72】编辑距离》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/04/leetcode-116/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/17/leetcode-72/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -814,7 +800,7 @@ struct Node {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/04/leetcode-116/',
+        id: '2021/01/17/leetcode-72/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -835,29 +821,30 @@ struct Node {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/04/leetcode-114/">
+                <a href="/2021/01/17/leetcode-72/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="【leetcode-114】二叉树展开为链表">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="【leetcode-72】编辑距离">
                         
-                        <span class="card-title">【leetcode-114】二叉树展开为链表</span>
+                        <span class="card-title">【leetcode-72】编辑距离</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一看到二叉树的题目就需要思考是前序、中序、还是后序遍历，一旦确定，就可以套模版了，接下来就是一些细节问题……
+                            此题和【1143. 最长公共子序列】解法非常相似，都是属于二维的动态规划算法题，套用的是同一个模版。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -870,6 +857,7 @@ struct Node {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -877,12 +865,8 @@ struct Node {
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/tree/" target="_blank">
-                        <span class="chip bg-color">tree</span>
-                    </a>
-                    
-                    <a href="/tags/前序遍历/" target="_blank">
-                        <span class="chip bg-color">前序遍历</span>
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
                     </a>
                     
                 </div>
@@ -896,24 +880,24 @@ struct Node {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/02/leetcode-226/">
+                <a href="/2021/01/16/leetcode-1143/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【leetcode-226】翻转二叉树">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="【leetcode-1143】最长公共子序列">
                         
-                        <span class="card-title">【leetcode-226】翻转二叉树</span>
+                        <span class="card-title">【leetcode-1143】最长公共子序列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            二叉树题目的一个难点就是，如何把题目的要求细化成每个节点需要做的事情，像这道题就是相当于交换每个节点的左右子节点。
+                            最长公共子序列是一道非常经典的面试题目，因为它的解法是典型的二维动态规划，大部分比较困难的字符串问题都和这个问题一个套路，比如说编辑距离。而且，这个算法稍加改造就可以用于解决其他问题，所以说 LCS 算法是值得掌握的。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-02
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-16
                             </span>
                         <span class="publish-author">
                             
@@ -934,8 +918,8 @@ struct Node {
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/tree/" target="_blank">
-                        <span class="chip bg-color">tree</span>
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
                     </a>
                     
                 </div>
