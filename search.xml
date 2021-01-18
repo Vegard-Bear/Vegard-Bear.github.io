@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>【Go 源码解析5】函数调用</title>
+      <link href="/2021/01/18/go-sourcecode-functioncall/"/>
+      <url>/2021/01/18/go-sourcecode-functioncall/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>函数是 Go 语言的一等公民，掌握和理解函数的调用过程是我们深入学习 Go 无法跳过的，本节将从函数的调用惯例和参数传递方法两个方面分别介绍函数的执行过程。</p></blockquote><p><img src="http://vegard-bear.github.io/images/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8.png" alt></p><blockquote><p>点击图片查看高清大图</p></blockquote>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-72】编辑距离</title>
       <link href="/2021/01/17/leetcode-72/"/>
       <url>/2021/01/17/leetcode-72/</url>
