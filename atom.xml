@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-01-19T14:10:06.031Z</updated>
+  <updated>2021-01-20T14:53:27.301Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Go源码解析6】接口</title>
+    <link href="https://vegard-bear.github.io/2021/01/20/go-sourcecode-interface/"/>
+    <id>https://vegard-bear.github.io/2021/01/20/go-sourcecode-interface/</id>
+    <published>2021-01-20T14:51:30.000Z</published>
+    <updated>2021-01-20T14:53:27.301Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;Go 语言中的接口是一组方法的签名，它是 Go 语言的重要组成部分。使用接口能够让我们写出易于测试的代码，然而很多工程师对 Go
+        
+      
+    
+    </summary>
+    
+      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
+    
+    
+      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
+    
+      <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    
+      <category term="接口" scheme="https://vegard-bear.github.io/tags/%E6%8E%A5%E5%8F%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>【leetcode-516】最长回文子序列</title>
@@ -49,7 +80,7 @@
     <link href="https://vegard-bear.github.io/2021/01/18/go-sourcecode-functioncall/"/>
     <id>https://vegard-bear.github.io/2021/01/18/go-sourcecode-functioncall/</id>
     <published>2021-01-18T11:29:00.000Z</published>
-    <updated>2021-01-18T11:29:43.121Z</updated>
+    <updated>2021-01-20T14:53:27.306Z</updated>
     
     <summary type="html">
     
@@ -66,6 +97,14 @@
     
     </summary>
     
+      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
+    
+    
+      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
+    
+      <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    
+      <category term="函数" scheme="https://vegard-bear.github.io/tags/%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
@@ -545,32 +584,6 @@
         
         
           &lt;h3 id=&quot;什么是锁？&quot;&gt;&lt;a href=&quot;#什么是锁？&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
-    
-    
-      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Go特性4】select</title>
-    <link href="https://vegard-bear.github.io/2020/12/24/go-feature-select/"/>
-    <id>https://vegard-bear.github.io/2020/12/24/go-feature-select/</id>
-    <published>2020-12-24T14:46:50.000Z</published>
-    <updated>2020-12-24T14:48:10.588Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;select&quot;&gt;&lt;a href=&quot;#select&quot; class=&quot;headerlink&quot; title=&quot;select&quot;&gt;&lt;/a&gt;select&lt;/h1&gt;&lt;h2 id=&quot;select作用&quot;&gt;&lt;a href=&quot;#select作用&quot; class=&quot;headerlink&quot;
         
       
     

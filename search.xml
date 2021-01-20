@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>【Go源码解析6】接口</title>
+      <link href="/2021/01/20/go-sourcecode-interface/"/>
+      <url>/2021/01/20/go-sourcecode-interface/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Go 语言中的接口是一组方法的签名，它是 Go 语言的重要组成部分。使用接口能够让我们写出易于测试的代码，然而很多工程师对 Go 的接口了解都非常有限，也不清楚其底层的实现原理，这成为了开发高性能服务的阻碍。</p></blockquote><p><img src="https://vegard-bear.github.io/images/%E6%8E%A5%E5%8F%A3.png" alt></p><blockquote><p>点击图片查看高清大图</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+            <tag> 源码解析 </tag>
+            
+            <tag> 接口 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-516】最长回文子序列</title>
       <link href="/2021/01/19/leetcode-516/"/>
       <url>/2021/01/19/leetcode-516/</url>
@@ -38,6 +67,22 @@
         <content type="html"><![CDATA[<blockquote><p>函数是 Go 语言的一等公民，掌握和理解函数的调用过程是我们深入学习 Go 无法跳过的，本节将从函数的调用惯例和参数传递方法两个方面分别介绍函数的执行过程。</p></blockquote><p><img src="http://vegard-bear.github.io/images/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8.png" alt></p><blockquote><p>点击图片查看高清大图</p></blockquote>]]></content>
       
       
+      <categories>
+          
+          <category> go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+            <tag> 源码解析 </tag>
+            
+            <tag> 函数 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -1063,9 +1108,9 @@
             
             <tag> fabric </tag>
             
-            <tag> chaincode </tag>
-            
             <tag> 2.2 </tag>
+            
+            <tag> chaincode </tag>
             
         </tags>
       
