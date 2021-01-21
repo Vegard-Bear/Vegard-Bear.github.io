@@ -1,3 +1,4 @@
+https://vegard-bear.github.io/2021/01/21/leetcode-1312/
 https://vegard-bear.github.io/2021/01/20/go-sourcecode-interface/
 https://vegard-bear.github.io/2021/01/19/leetcode-516/
 https://vegard-bear.github.io/2021/01/18/go-sourcecode-functioncall/

@@ -4,20 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-72】编辑距离, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-1312】让字符串成为回文串的最少插入次数, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接72. 编辑距离
-题目描述给你两个单词 word1 和 word2，请你计算出将 word1 转换成 word2 所使用的最少操作数 。
-你可以对一个单词进行如下三种操作：
-
-插入一个字符
-删除一个字符
-替换一个字符
-
+    <meta name="description" content="题目链接1312. 让字符串成为回文串的最少插入次数
+题目描述给你一个字符串 s ，每一次操作你都可以在字符串的任意位置插入任意字符。
+请你返回让 s 成为回文串的 最少操作次数 。
+「回文串」是正读和反读都相同的字符串。
 示例 1：
-">
+输入">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-72】编辑距离 | 小熊的作坊</title>
+    <title>【leetcode-1312】让字符串成为回文串的最少插入次数 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -338,13 +334,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-72】编辑距离
+                        【leetcode-1312】让字符串成为回文串的最少插入次数
                     </div>
                 </div>
             </div>
@@ -483,7 +479,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-17
+                    2021-01-21
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -497,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    950
+                    1.1k
                 </div>
                 
 
@@ -520,75 +516,73 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/edit-distance/" target="_blank" rel="noopener">72. 编辑距离</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你两个单词 word1 和 word2，请你计算出将 word1 转换成 word2 所使用的最少操作数 。</p>
-<p>你可以对一个单词进行如下三种操作：</p>
-<ul>
-<li>插入一个字符</li>
-<li>删除一个字符</li>
-<li>替换一个字符</li>
-</ul>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/" target="_blank" rel="noopener">1312. 让字符串成为回文串的最少插入次数</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个字符串 s ，每一次操作你都可以在字符串的任意位置插入任意字符。</p>
+<p>请你返回让 s 成为回文串的 最少操作次数 。</p>
+<p>「回文串」是正读和反读都相同的字符串。</p>
 <p>示例 1：</p>
-<pre><code>输入：word1 = &quot;horse&quot;, word2 = &quot;ros&quot;
-输出：3
-解释：
-horse -&gt; rorse (将 &#39;h&#39; 替换为 &#39;r&#39;)
-rorse -&gt; rose (删除 &#39;r&#39;)
-rose -&gt; ros (删除 &#39;e&#39;)</code></pre><p>示例 2：</p>
-<pre><code>输入：word1 = &quot;intention&quot;, word2 = &quot;execution&quot;
+<pre><code>输入：s = &quot;zzazz&quot;
+输出：0
+解释：字符串 &quot;zzazz&quot; 已经是回文串了，所以不需要做任何插入操作。</code></pre><p>示例 2：</p>
+<pre><code>输入：s = &quot;mbadm&quot;
+输出：2
+解释：字符串可变为 &quot;mbdadbm&quot; 或者 &quot;mdbabdm&quot; 。</code></pre><p>示例 3：</p>
+<pre><code>输入：s = &quot;leetcode&quot;
 输出：5
-解释：
-intention -&gt; inention (删除 &#39;t&#39;)
-inention -&gt; enention (将 &#39;i&#39; 替换为 &#39;e&#39;)
-enention -&gt; exention (将 &#39;n&#39; 替换为 &#39;x&#39;)
-exention -&gt; exection (将 &#39;n&#39; 替换为 &#39;c&#39;)
-exection -&gt; execution (插入 &#39;u&#39;)</code></pre><p>提示：</p>
+解释：插入 5 个字符后字符串变为 &quot;leetcodocteel&quot; 。</code></pre><p>示例 4：</p>
+<pre><code>输入：s = &quot;g&quot;
+输出：0</code></pre><p>示例 5：</p>
+<pre><code>输入：s = &quot;no&quot;
+输出：1</code></pre><p>提示：</p>
 <ul>
-<li>0 &lt;= word1.length, word2.length &lt;= 500</li>
-<li>word1 和 word2 由小写英文字母组成</li>
+<li>1 &lt;= s.length &lt;= 500</li>
+<li>s 中所有字符都是小写字母。</li>
 </ul>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题和【leetcode 1143动态规划子序列】一样也是一道二维的动态规划算法题。解体套路也是非常的相似。</p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题和 <font color="blue">最长回文子序列</font> 一样套用的都是单个字符串的二维dp数组模版。</p>
 <h2 id="动态规划三步走"><a href="#动态规划三步走" class="headerlink" title="动态规划三步走"></a>动态规划三步走</h2><h4 id="定义dp数组"><a href="#定义dp数组" class="headerlink" title="定义dp数组"></a>定义dp数组</h4><p>注意这里由于有两个字符串，所以我们需要定义一个二维的dp数组。</p>
-<h5 id="dp-i-j-表示对于-world1-1-i-和-world2-1-j-，它们的编辑距离度是-dp-i-j"><a href="#dp-i-j-表示对于-world1-1-i-和-world2-1-j-，它们的编辑距离度是-dp-i-j" class="headerlink" title="dp[i][j] 表示对于 world1[1..i] 和 world2[1..j]，它们的编辑距离度是 dp[i][j]"></a><center><font color="red">dp[i][j] 表示对于 world1[1..i] 和 world2[1..j]，它们的编辑距离度是 dp[i][j]</font></center></h5><h4 id="确定-base-case"><a href="#确定-base-case" class="headerlink" title="确定 base case"></a>确定 base case</h4><p>根据dp数组的定义。我们就可以确定 base case，即</p>
-<h5 id="dp-i-0-i-dp-0-j-j"><a href="#dp-i-0-i-dp-0-j-j" class="headerlink" title="dp[i][0] = i, dp[0][j] = j"></a><center><font color="red">dp[i][0] = i, dp[0][j] = j</font></center></h5><p>因为只要有一个字符串是空串，此时编辑距离就是另一个字符串的长度。</p>
-<h4 id="推导状态转移方程"><a href="#推导状态转移方程" class="headerlink" title="推导状态转移方程"></a>推导状态转移方程</h4><p>依旧是采用数学归纳法来寻找状态转移关系：假设我们已经计算出了dp[i-1][j-1]，dp[i-1][j]以及dp[i][j-1],如何推导出dp[i][j]呢？</p>
-<p><font color="blue">如题意，我们很快可以知道dp[i][j]有三种选择，分别是插入、删除和替换一个字符，而实际上这里还隐含了一种选择，就是什么也不做，也就是dp[i]==dp[j]的时候。</font>。<br><big></big></p>
-<pre><code>             dp[i-1][j-1],            当s[i]==s[j]时
+<h5 id="dp-i-j-表示让子串s-i…j-成为回文子序列的最少插入次数"><a href="#dp-i-j-表示让子串s-i…j-成为回文子序列的最少插入次数" class="headerlink" title="dp[i][j] 表示让子串s[i…j]成为回文子序列的最少插入次数"></a><center><font color="red">dp[i][j] 表示让子串s[i…j]成为回文子序列的最少插入次数</font></center></h5><h4 id="确定-base-case"><a href="#确定-base-case" class="headerlink" title="确定 base case"></a>确定 base case</h4><p>根据dp数组的定义。我们就可以确定 base case，即</p>
+<h5 id="当-i-等于-j-时-dp-i-j-1"><a href="#当-i-等于-j-时-dp-i-j-1" class="headerlink" title="当 i 等于 j 时, dp[i][j] = 1 "></a><center><font color="red">当 i 等于 j 时, dp[i][j] = 1 </font></center></h5><p>这是因为i等于j时，dp[i][j]表示单个字符，而单个字符一定是回文序列，此时不需要插入字符，也就是说插入次数为0，也就是说二维dp数组的对角线上都是0</p>
+<h4 id="推导状态转移方程"><a href="#推导状态转移方程" class="headerlink" title="推导状态转移方程"></a>推导状态转移方程</h4><p>依旧是采用数学归纳法来寻找状态转移关系：假设我们已经计算出了dp[i+1][j-1]，dp[i+1][j]以及dp[i][j-1],如何推导出dp[i][j]呢？</p>
+<p>对于dp[i][j]有两种选择：</p>
+<ol>
+<li>如果s[i]等于s[j]，也就是首尾两个字符相等，那么直接拼上中间的最长回文序列，形成一个更长的回文子序列，此时不需要插入字符。</li>
+<li>如果 s[i] 等于 s[j]，那么此时只有三个选择，要么在右边插一个字符，要么在左边插一个字符，要么都插<big>
+
+</big></li>
+</ol>
+<pre><code>             dp[i+1][j-1]                                                       当s[i]==s[j]时
 dp[i][j] = 
-             min(dp[i][j-1]+1, dp[i-1][j]+1, dp[i-1][j-1])+1) 当s[i]!=s[j]时</code></pre>
-至此，我们列出状态转移方程，就可以直接写代码了。
+             dp[i][j] = min(min(dp[i+1][j], dp[i][j-1]) + 1, dp[i+1][j-1] + 2)  当s[i]!=s[j]时</code></pre>
 
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func minDistance(word1 string, word2 string) int {
-    // 定义 dp 数组, dp[i][j] 表示world1[i]和word2[j]的编辑距离
-    l1, l2 := len(word1), len(word2)
-    // 注意这里dp数组的二维长度都需要+1，
-    // 因为要把第一列空出来用来表示其中一个字符串为空的这种情况
-    dp := make([][]int, l1 + 1)
-    for k := range dp {
-        dp[k] = make([]int, l2 + 1)
+<h4 id="dp数组遍历方式"><a href="#dp数组遍历方式" class="headerlink" title="dp数组遍历方式"></a>dp数组遍历方式</h4><p>最后还剩下一个问题，就是dp数组的遍历方式，注意这里其实是有两种遍历方式的，我们取其中一种即可，至于具体怎么选择，可参考 <a href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/solution/zi-xu-lie-wen-ti-tong-yong-si-lu-zui-chang-hui-wen/" target="_blank" rel="noopener">子序列问题通用思路|最长回文子序列</a></p>
+<p>至此，我们就可以直接写代码了。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func minInsertions(s string) int {
+    // 按照字符串长度定义一个 n*n 的 dp 二维数组
+    // dp[i][j] 表示 s[i..j] 的最少插入次数
+    n := len(s)
+    dp := make([][]int, n)
+    for i := range dp {
+        dp[i] = make([]int, n)
     }
 
-    // 定义 base case, dp[i][0]表示当word2为空字符串，此时编辑距离就是word1的长度
-    for i := 0; i &lt;= l1 ; i++ {
-        dp[i][0] = i
-    }
-    for j := 0 ; j &lt;= l2 ; j++ {
-        dp[0][j] = j
-    }
+    // 定义 base case, 当 i 等于 j 时，说明是单个字符，必定回文，所以插入次数为 0，由于默认是0，所以不用赋值
+    // for i := 0; i &lt; n ; i++ {
+    //     dp[i][i] = 0
+    // }
 
-    // 列出状态转移方程
-    for i := 1; i &lt;= l1 ; i ++ {
-        for j := 1 ; j &lt;= l2 ; j++ {
-            // 当两个字符串的字符相等时，直接跳过这个字符，相当于什么都不做
-            if word1[i-1] == word2[j-1] {
-                dp[i][j] = dp[i-1][j-1]
+    // 开始遍历 dp 数组，注意遍历顺序
+    for i := n - 2; i &gt;= 0 ; i-- {
+        for j := i + 1; j &lt; n ; j++ {
+            // 如果 s[i] 等于 s[j]，说明首尾字符串相等，已经是回文了，不需要再插入字符
+            if s[i] == s[j] {
+                dp[i][j] = dp[i+1][j-1]
             } else {
-                // 当两个字符不相等时，那么就对s[i]执行插入、删除或替换的操作，取其中代价最小的操作
-                dp[i][j] = min(dp[i][j-1] + 1, min(dp[i-1][j] + 1, dp[i-1][j-1] + 1))
+                // 如果 s[i] 等于 s[j]，那么此时只有三个选择，要么在右边插一个字符，要么在左边插一个字符，要么都插
+                dp[i][j] = min(min(dp[i+1][j], dp[i][j-1]) + 1, dp[i+1][j-1] + 2)
             }
         }
     }
-    return dp[l1][l2]
+    return dp[0][n-1]
 }
 
 func min(a, b int) int  {
@@ -596,9 +590,9 @@ func min(a, b int) int  {
         return a
     }
     return b
-}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-mn"><a href="#时间复杂度：O-mn" class="headerlink" title="时间复杂度：O((mn))"></a>时间复杂度：O((mn))</h3><p>其中 m 为 word1 的长度，n 为 word2 的长度</p>
-<h3 id="空间复杂度：O-mn"><a href="#空间复杂度：O-mn" class="headerlink" title="空间复杂度：O((mn))"></a>空间复杂度：O((mn))</h3><p>我们需要大小为 O((mn)) 的 dp 数组来记录状态值。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>此题和【1143. 最长公共子序列】解法非常相似，都是属于二维的动态规划算法题，套用的是同一个模版。</p>
+}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>n 为字符串 s 的长度</p>
+<h3 id="空间复杂度：O-n-2"><a href="#空间复杂度：O-n-2" class="headerlink" title="空间复杂度：O((n^2))"></a>空间复杂度：O((n^2))</h3><p>我们需要大小为 O((n^2)) 的 dp 数组来记录状态值。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题和 <font color="blue">最长回文子序列</font> 一样套用的都是单个字符串的二维dp数组模版。</p>
 
             </div>
             <hr />
@@ -757,9 +751,9 @@ func min(a, b int) int  {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-72】编辑距离》
+                    《【leetcode-1312】让字符串成为回文串的最少插入次数》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/17/leetcode-72/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/21/leetcode-1312/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -800,7 +794,7 @@ func min(a, b int) int  {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/01/17/leetcode-72/',
+        id: '2021/01/21/leetcode-1312/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -821,29 +815,84 @@ func min(a, b int) int  {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/01/18/go-sourcecode-functioncall/">
+                <a href="/2021/01/21/leetcode-1312/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="【Go 源码解析5】函数调用">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="【leetcode-1312】让字符串成为回文串的最少插入次数">
                         
-                        <span class="card-title">【Go 源码解析5】函数调用</span>
+                        <span class="card-title">【leetcode-1312】让字符串成为回文串的最少插入次数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            函数是 Go 语言的一等公民，掌握和理解函数的调用过程是我们深入学习 Go 无法跳过的，本节将从函数的调用惯例和参数传递方法两个方面分别介绍函数的执行过程。
+                            这道题和【最长回文子序列】一样套用的都是单个字符串的二维dp数组模版。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-18
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/01/20/go-sourcecode-interface/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【Go源码解析6】接口">
+                        
+                        <span class="card-title">【Go源码解析6】接口</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Go 语言中的接口是一组方法的签名，它是 Go 语言的重要组成部分。使用接口能够让我们写出易于测试的代码，然而很多工程师对 Go 的接口了解都非常有限，也不清楚其底层的实现原理，这成为了开发高性能服务的阻碍。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -867,61 +916,8 @@ func min(a, b int) int  {
                         <span class="chip bg-color">源码解析</span>
                     </a>
                     
-                    <a href="/tags/函数/" target="_blank">
-                        <span class="chip bg-color">函数</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/01/16/leetcode-1143/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="【leetcode-1143】最长公共子序列">
-                        
-                        <span class="card-title">【leetcode-1143】最长公共子序列</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            最长公共子序列是一道非常经典的面试题目，因为它的解法是典型的二维动态规划，大部分比较困难的字符串问题都和这个问题一个套路，比如说编辑距离。而且，这个算法稍加改造就可以用于解决其他问题，所以说 LCS 算法是值得掌握的。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-16
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/leetcode/" class="post-category" target="_blank">
-                                    leetcode
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
-                    </a>
-                    
-                    <a href="/tags/动态规划/" target="_blank">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/接口/" target="_blank">
+                        <span class="chip bg-color">接口</span>
                     </a>
                     
                 </div>

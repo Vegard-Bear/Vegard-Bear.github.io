@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-01-20T14:53:27.301Z</updated>
+  <updated>2021-01-21T09:55:20.569Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【leetcode-1312】让字符串成为回文串的最少插入次数</title>
+    <link href="https://vegard-bear.github.io/2021/01/21/leetcode-1312/"/>
+    <id>https://vegard-bear.github.io/2021/01/21/leetcode-1312/</id>
+    <published>2021-01-21T09:51:26.000Z</published>
+    <updated>2021-01-21T09:55:20.569Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
+    
+      <category term="动态规划" scheme="https://vegard-bear.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【Go源码解析6】接口</title>
     <link href="https://vegard-bear.github.io/2021/01/20/go-sourcecode-interface/"/>
     <id>https://vegard-bear.github.io/2021/01/20/go-sourcecode-interface/</id>
     <published>2021-01-20T14:51:30.000Z</published>
-    <updated>2021-01-20T14:53:27.301Z</updated>
+    <updated>2021-01-21T09:51:56.367Z</updated>
     
     <summary type="html">
     
@@ -567,32 +595,6 @@
       <category term="bccsp" scheme="https://vegard-bear.github.io/tags/bccsp/"/>
     
       <category term="密码" scheme="https://vegard-bear.github.io/tags/%E5%AF%86%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Go特性5】锁和条件变量</title>
-    <link href="https://vegard-bear.github.io/2020/12/25/go-feature-lock/"/>
-    <id>https://vegard-bear.github.io/2020/12/25/go-feature-lock/</id>
-    <published>2020-12-25T14:45:45.000Z</published>
-    <updated>2020-12-25T14:51:17.139Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;什么是锁？&quot;&gt;&lt;a href=&quot;#什么是锁？&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
-    
-    
-      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
     
   </entry>
   
