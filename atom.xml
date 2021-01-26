@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-01-24T08:07:55.103Z</updated>
+  <updated>2021-01-26T14:21:32.726Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Go源码解析7】反射</title>
+    <link href="https://vegard-bear.github.io/2021/01/26/go-sourcecode-reflect/"/>
+    <id>https://vegard-bear.github.io/2021/01/26/go-sourcecode-reflect/</id>
+    <published>2021-01-26T14:20:28.000Z</published>
+    <updated>2021-01-26T14:21:32.726Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;虽然在大多数的应用和服务中并不常见，但是很多框架都依赖 Go 语言的反射机制简化代码。因为 Go 语言的语法元素很少、设计简单，所以它没有特别强的表达能力，但是 Go 语言的 reflect
+        
+      
+    
+    </summary>
+    
+      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
+    
+    
+      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
+    
+      <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    
+      <category term="反射" scheme="https://vegard-bear.github.io/tags/%E5%8F%8D%E5%B0%84/"/>
+    
+  </entry>
   
   <entry>
     <title>【leetcode-651】4键键盘</title>
@@ -566,32 +597,6 @@
       <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
     
       <category term="滑动窗口" scheme="https://vegard-bear.github.io/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Go特性6】Socket编程初探</title>
-    <link href="https://vegard-bear.github.io/2020/12/29/go-feature-socket/"/>
-    <id>https://vegard-bear.github.io/2020/12/29/go-feature-socket/</id>
-    <published>2020-12-29T05:38:41.000Z</published>
-    <updated>2020-12-29T05:40:10.310Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;什么是Socket&quot;&gt;&lt;a href=&quot;#什么是Socket&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
-    
-    
-      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
     
   </entry>
   
