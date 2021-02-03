@@ -1218,9 +1218,9 @@
             
             <tag> fabric </tag>
             
-            <tag> chaincode </tag>
-            
             <tag> 2.2 </tag>
+            
+            <tag> chaincode </tag>
             
         </tags>
       
