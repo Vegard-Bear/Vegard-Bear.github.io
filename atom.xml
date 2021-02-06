@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-01-26T14:21:32.726Z</updated>
+  <updated>2021-02-06T10:01:08.027Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【基金01】投资的基石</title>
+    <link href="https://vegard-bear.github.io/2021/02/06/fund-01/"/>
+    <id>https://vegard-bear.github.io/2021/02/06/fund-01/</id>
+    <published>2021-02-06T09:57:03.000Z</published>
+    <updated>2021-02-06T10:01:08.027Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src
+        
+      
+    
+    </summary>
+    
+      <category term="投资" scheme="https://vegard-bear.github.io/categories/%E6%8A%95%E8%B5%84/"/>
+    
+    
+      <category term="基金" scheme="https://vegard-bear.github.io/tags/%E5%9F%BA%E9%87%91/"/>
+    
+  </entry>
   
   <entry>
     <title>【Go源码解析7】反射</title>
@@ -569,34 +595,6 @@
       <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
     
       <category term="tcp" scheme="https://vegard-bear.github.io/tags/tcp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【leetcode-567】字符串的排列</title>
-    <link href="https://vegard-bear.github.io/2020/12/30/leetcode-567/"/>
-    <id>https://vegard-bear.github.io/2020/12/30/leetcode-567/</id>
-    <published>2020-12-30T03:28:19.000Z</published>
-    <updated>2020-12-30T12:49:27.235Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
-    
-      <category term="滑动窗口" scheme="https://vegard-bear.github.io/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
     
   </entry>
   
