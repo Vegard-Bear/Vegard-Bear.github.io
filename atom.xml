@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-02-06T10:03:06.114Z</updated>
+  <updated>2021-02-08T14:00:42.037Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【基金02】基金入门</title>
+    <link href="https://vegard-bear.github.io/2021/02/08/fund-02/"/>
+    <id>https://vegard-bear.github.io/2021/02/08/fund-02/</id>
+    <published>2021-02-08T13:54:54.000Z</published>
+    <updated>2021-02-08T14:00:42.037Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://vegard-bear.github.io/images/%E5%9F%BA%E9%87%91%E5%85%A5%E9%97%A8.png&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="投资" scheme="https://vegard-bear.github.io/categories/%E6%8A%95%E8%B5%84/"/>
+    
+    
+      <category term="基金" scheme="https://vegard-bear.github.io/tags/%E5%9F%BA%E9%87%91/"/>
+    
+  </entry>
   
   <entry>
     <title>【基金01】投资的基石</title>
@@ -567,34 +593,6 @@
       <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
     
       <category term="udp" scheme="https://vegard-bear.github.io/tags/udp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Go特性7】Socket编程之TCP</title>
-    <link href="https://vegard-bear.github.io/2020/12/31/go-feature-socket-tcp/"/>
-    <id>https://vegard-bear.github.io/2020/12/31/go-feature-socket-tcp/</id>
-    <published>2020-12-31T02:19:03.000Z</published>
-    <updated>2021-01-02T06:54:18.952Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;TCP&quot;&gt;&lt;a href=&quot;#TCP&quot; class=&quot;headerlink&quot; title=&quot;TCP&quot;&gt;&lt;/a&gt;TCP&lt;/h1&gt;&lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
-    
-    
-      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
-    
-      <category term="tcp" scheme="https://vegard-bear.github.io/tags/tcp/"/>
     
   </entry>
   
