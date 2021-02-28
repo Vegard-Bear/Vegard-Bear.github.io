@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【leetcode-887】鸡蛋掉落</title>
+      <link href="/2021/02/28/leetcode-887/"/>
+      <url>/2021/02/28/leetcode-887/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/super-egg-drop/" target="_blank" rel="noopener">887. 鸡蛋掉落</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。</p><p>每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再把它掉下去。</p><p>你知道存在楼层 F ，满足 0 &lt;= F &lt;= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。</p><p>每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 &lt;= X &lt;= N）。</p><p>你的目标是确切地知道 F 的值是多少。</p><p>无论 F 的初始值如何，你确定 F 的值的最小移动次数是多少？</p><p>样例 1:</p><pre><code>输入：K = 1, N = 2输出：2解释：鸡蛋从 1 楼掉落。如果它碎了，我们肯定知道 F = 0 。否则，鸡蛋从 2 楼掉落。如果它碎了，我们肯定知道 F = 1 。如果它没碎，那么我们肯定知道 F = 2 。因此，在最坏的情况下我们需要移动 2 次以确定 F 是多少。</code></pre><p>样例 2:</p><pre><code>输入：K = 2, N = 6输出：3</code></pre><p>示例 3：</p><pre><code>输入：K = 3, N = 14输出：4</code></pre><p>注释:</p><ul><li>1 &lt;= K &lt;= 100</li><li>1 &lt;= N &lt;= 10000</li></ul><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>参考 <a href="https://leetcode-cn.com/problems/super-egg-drop/solution/ji-ben-dong-tai-gui-hua-jie-fa-by-labuladong/" target="_blank" rel="noopener">题目理解 + 基本解法 + 进阶解法</a></p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>// 使用备忘录消解重叠子问题var memo map[string]intfunc superEggDrop(K int, N int) int {    memo = make(map[string]int, 0)    // dp(i,j)表示当前还剩i个鸡蛋，面对j层楼时的最小移动次数    return dp(K, N)}func dp(K, N int) int {    // 确定 base case    // 当只剩一个鸡蛋时，只能线性扫描所有楼层，所以直接返回楼层数    if K == 1 {        return N    }    // 当楼层数为0时，说明不用接着扔鸡蛋了    if N == 0 {        return 0    }    if _, ok := memo[string(K) + string(N)]; ok  {        return memo[string(K) + string(N)]    }    // 先初始化结果为无限大    res := math.MaxInt32    // 穷举所有可能，在所有楼层中选第i层扔鸡蛋，最后要其中最小的结果    //for i := 1; i &lt;= N ; i++  {    //    res = min(res, max(    //        dp(K, N-i),     // 没碎，鸡蛋数不变，然后往上找    //        dp(K-1, i-1)) + 1 )  // 碎了，鸡蛋数-1，然后往下找    //}    // 使用二分搜索代替线性搜索    low, high := 1, N    for low &lt;= high  {        mid := (low + high)/2        broken := dp(K-1, mid-1) // 碎了，鸡蛋数-1，然后往下一层找        notBroken := dp(K, N-mid) // 碎了，鸡蛋数-1，然后往上找        if notBroken &gt;= broken {            // 说明在交点的左侧，需要向右半部分搜索，左边界右移动            low = mid + 1            // 此时两条曲线的较大值属于notBroken这条曲线            res = min(res, notBroken + 1)        } else {            // 说明在交点的右侧，需要向左半部分搜索，右边界左移            high = mid - 1            // 此时两条曲线的较大值属于broken这条曲线            res = min(res, broken + 1)        }    }    // 将结果记录备忘录    memo[string(K)+string(N)] = res    return res}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-KNlogN"><a href="#时间复杂度：O-KNlogN" class="headerlink" title="时间复杂度：O((KNlogN))"></a>时间复杂度：O((K<em>N</em>logN))</h3><p>动态规划算法的时间复杂度就是子问题个数 × 函数本身的复杂度。</p><p>函数本身的复杂度就是忽略递归部分的复杂度，这里 dp 函数中用了一个二分搜索，所以函数本身的复杂度是 O((logN))。</p><p>子问题个数也就是不同状态组合的总数，显然是两个状态的乘积，也就是 O((KN))。</p><p>所以算法的总时间复杂度是 O((K<em>N</em>logN))</p><h3 id="空间复杂度：O-KN"><a href="#空间复杂度：O-KN" class="headerlink" title="空间复杂度：O((KN))"></a>空间复杂度：O((KN))</h3><p>需要开辟一个长度为K*N的memo数组。</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>对动态规划问题，最重要的是想清楚这个问题有什么「状态」，有什么「选择」，然后套用算法框架即可。</p><ul><li><p>「状态」很明显，就是当前拥有的鸡蛋数 K 和需要测试的楼层数 N。随着测试的进行，鸡蛋个数可能减少，楼层的搜索范围会减小，这就是状态的变化。</p></li><li><p>「选择」其实就是去选择哪层楼扔鸡蛋。不同的选择会造成不同的状态转移。</p></li></ul><p>当然，这道题为了降低时间复杂度，对于穷举选择的过程采用了二分搜索进行优化，所以难度会更大一些。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 动态规划 </tag>
+            
+            <tag> 二分 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【基金02】基金入门</title>
       <link href="/2021/02/08/fund-02/"/>
       <url>/2021/02/08/fund-02/</url>
@@ -807,7 +834,7 @@
             
             <tag> leetcode </tag>
             
-            <tag> 二分查找 </tag>
+            <tag> 二分 </tag>
             
         </tags>
       
@@ -834,9 +861,9 @@
             
             <tag> 数组 </tag>
             
-            <tag> 剑指offer </tag>
-            
             <tag> 二分 </tag>
+            
+            <tag> 剑指offer </tag>
             
         </tags>
       
