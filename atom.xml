@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-02-28T03:23:22.092Z</updated>
+  <updated>2021-03-02T06:53:52.622Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Go源码解析8】for和range循环</title>
+    <link href="https://vegard-bear.github.io/2021/03/02/go-sourcecode-for/"/>
+    <id>https://vegard-bear.github.io/2021/03/02/go-sourcecode-for/</id>
+    <published>2021-03-02T06:47:21.000Z</published>
+    <updated>2021-03-02T06:53:52.622Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;本节将深入分析 Go 语言的两种循环，也就是 for 循环和 for-range 循环，我们会分析这两种循环的运行时结构以及它们的实现原理。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
+    
+    
+      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
+    
+      <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    
+      <category term="循环" scheme="https://vegard-bear.github.io/tags/%E5%BE%AA%E7%8E%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>【leetcode-887】鸡蛋掉落</title>
@@ -564,35 +597,6 @@
       <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
     
       <category term="数组" scheme="https://vegard-bear.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Go源码解析0】预备知识</title>
-    <link href="https://vegard-bear.github.io/2021/01/03/go-sourcecode-prepare/"/>
-    <id>https://vegard-bear.github.io/2021/01/03/go-sourcecode-prepare/</id>
-    <published>2021-01-03T02:37:57.000Z</published>
-    <updated>2021-01-03T02:40:20.567Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;学习Go语言的内部实现，主要依靠对源代码的分析，所以阅读源代码是很好的方式。大名鼎鼎的Linux之父linus谈到如何学习Linux内核时也说过”Read the F**ing Source
-        
-      
-    
-    </summary>
-    
-      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
-    
-    
-      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
-    
-      <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
     
   </entry>
   
