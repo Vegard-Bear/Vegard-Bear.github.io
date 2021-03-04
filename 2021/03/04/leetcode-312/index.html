@@ -4,17 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="govendor使用, 小熊的作坊">
+    <meta name="keywords" content="leetcode-312, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-由于最近遇到个项目需要使用go vendor进行依赖管理，所以就简单学习了一下
-
-三步走
-第一步：进入项目
-cd [project name]执行 
-govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
+    <meta name="description" content="leetcode-312 | 小熊的作坊">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +16,7 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>govendor使用 | 小熊的作坊</title>
+    <title>leetcode-312 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -335,13 +329,13 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        govendor使用
+                        leetcode-312
                     </div>
                 </div>
             </div>
@@ -451,24 +445,11 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
                 <div class="col s7">
                     
                     <div class="article-tag">
-                        
-                        <a href="/tags/go/" target="_blank">
-                            <span class="chip bg-color">go</span>
-                        </a>
-                        
+                        <span class="chip bg-color">无标签</span>
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fa fa-bookmark fa-fw icon-category"></i>
-                        
-                        <a href="/categories/go/" class="post-category" target="_blank">
-                            go
-                        </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -476,7 +457,7 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-18
+                    2021-03-04
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -490,7 +471,7 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    209
+                    0
                 </div>
                 
 
@@ -513,21 +494,7 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>由于最近遇到个项目需要使用go vendor进行依赖管理，所以就简单学习了一下</p>
-</blockquote>
-<p>三步走</p>
-<h4 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h4><p>进入项目</p>
-<pre><code>cd [project name]</code></pre><p>执行 </p>
-<pre><code>govendor init</code></pre><p>项目根目录下即会自动生成 vendor 目录和 vendor.json 文件</p>
-<h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将已被引用且在 $GOPATH 下的所有包复制到 vendor 目录</p>
-<pre><code>govendor add +external</code></pre><h4 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h4><p>拉取所有依赖的包到 vendor 目录(包括 $GOPATH 存在或不存在的包)</p>
-<pre><code>govendor fetch +out</code></pre><h4 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h4><p>从远程仓库添加或更新某个包(不会在 $GOPATH 也存一份)</p>
-<pre><code>govendor fetch golang.org/x/net/context</code></pre><p>安装指定版本的包</p>
-<pre><code>govendor fetch golang.org/x/net/context@a4bbce9fcae005b22ae5443f6af064d80a6f5a55</code></pre><p>包已在 vendor 目录，但想从 $GOPATH 更新</p>
-<pre><code>govendor update +vendor</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://lessisbetter.site/2018/11/17/An-introduction-to-Govendor/" target="_blank" rel="noopener">https://lessisbetter.site/2018/11/17/An-introduction-to-Govendor/</a></p>
-<p><a href="https://shockerli.net/post/go-package-manage-tool-govendor/" target="_blank" rel="noopener">https://shockerli.net/post/go-package-manage-tool-govendor/</a></p>
-
+                
             </div>
             <hr />
 
@@ -685,9 +652,9 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《govendor使用》
+                    《leetcode-312》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/18/govendor/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/04/leetcode-312/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -728,7 +695,7 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/07/18/govendor/',
+        id: '2021/03/04/leetcode-312/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -749,49 +716,36 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/07/25/tx-flow/">
+                <a href="/2021/03/04/leetcode-312/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Fabric交易处理流程">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="leetcode-312">
                         
-                        <span class="card-title">Fabric交易处理流程</span>
+                        <span class="card-title">leetcode-312</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文描述了一笔交易从发送到最终上链所经历的过程
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-04
+                            </span>
                         <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
-                                </a>
-                            
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -802,31 +756,31 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/14/fabric-contribute/">
+                <a href="/2021/03/02/go-sourcecode-for/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="向 fabric 贡献代码">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【Go源码解析8】for和range循环">
                         
-                        <span class="card-title">向 fabric 贡献代码</span>
+                        <span class="card-title">【Go源码解析8】for和range循环</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要记录了向fabric开源社区贡献代码的过程
+                            本节将深入分析 Go 语言的两种循环，也就是 for 循环和 for-range 循环，我们会分析这两种循环的运行时结构以及它们的实现原理
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
                                 </a>
                             
                             
@@ -836,8 +790,16 @@ govendor init项目根目录下即会自动生成 vendor 目录和 vendor.">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
+                    </a>
+                    
+                    <a href="/tags/源码解析/" target="_blank">
+                        <span class="chip bg-color">源码解析</span>
+                    </a>
+                    
+                    <a href="/tags/循环/" target="_blank">
+                        <span class="chip bg-color">循环</span>
                     </a>
                     
                 </div>
