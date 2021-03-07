@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>【leetcode-416】分割等和子集(子集背包)</title>
+      <link href="/2021/03/07/leetcode-416/"/>
+      <url>/2021/03/07/leetcode-416/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/partition-equal-subset-sum/" target="_blank" rel="noopener">01背包</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个只包含正整数的非空数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。</p><p>注意:</p><ul><li>每个数组中的元素不会超过 100</li><li>数组的大小不会超过 200<br>示例 1:<pre><code>输入: [1, 5, 11, 5]</code></pre></li></ul><p>输出: true</p><p>解释: 数组可以分割成 [1, 5, 5] 和 [11].</p><pre><code>示例 2:</code></pre><p>输入: [1, 2, 3, 5]</p><p>输出: false</p><p>解释: 数组不能分割成两个元素和相等的子集.</p><pre><code># 解题思路这道题可以转化为经典的子集背包问题，其实就是01背包问题的变体，关于01背包在[01背包](https://vegard-bear.github.io/2021/03/07/01-bei-bao/)中有详细介绍。那么这道题为什么可以转化为01背包呢，我们可以这么考虑：将n个数的集合（和为sum）分成两个和相等的子集不就是在这个集合中选若干个数，使他们的和为sum/2吗，因为这样剩下的数的和就自动为sum/2了。好了，现在问题就转变成：**给一个可装载sum/2的背包和N个物品，每个物品的重量为nums[i]，是否存在一种装法，能够恰好将背包装满？**这不就是01背包问题的模型吗，甚至比01背包更简单，因为最后求的不是最大值而只是一个bool值。这一点也会在我们定义dp数组的时候有所体现。### 1. 定义dp数组##### &lt;center&gt;&lt;font  color=blue&gt; dp[i][j]表示对于前i个物体，当前背包的重量为j，这种情况下如果存在一种装法，可以恰好装满背包，则dp[i][j]=true，否则dp[i][j]=false则&lt;/font&gt;&lt;/center&gt;### 2. 确定base case</code></pre><p>dp[0][…]=false </p><pre><code>表示没有物品可选了，此时肯定无法装满背包了</code></pre><p>dp[…][0]=true</p><pre><code>表示背包容量为0，此时什么也不需要做，相当于装满了### 3. 推导状态转移方程推导状态转移方程本质就是做选择，也就是把第i个物体放入或者不放入背包，然后做最优选择就行了##### &lt;center&gt;&lt;font  color=blue&gt; dp [ i ] [ j ] = dp [ i - 1 ] [ j ] || dp [ i - 1 ] [ j - nums [ i - 1 ] ] &lt;/font&gt;&lt;/center&gt;这里需要注意的是数组的下标，由于i是从1开始的，所以题目中的给的数组下标为i-1时表示的是第i个物品的重量。# 题解</code></pre><p>func canPartition(nums []int) bool {<br>    // 先求数组元素和<br>    n, sum := len(nums), 0<br>    for i := range nums {<br>        sum += nums[i]<br>    }</p><pre><code>// 如果和不是偶数直接返回if sum%2 != 0 {    return false}// 注意转化成背包问题，背包的重量只有和的一半sum = sum/2// 定义dp数组，dp[i][j]表示前否从i个物品中选出恰好装满重量为j背包的物品// 这里之所以长度是n+1和sum+1是因为dp[0][..]和dp[...][0]是有额外用处的(定义base case)dp := make([][]bool, n+1)for i := 0; i &lt;= n; i++ {    dp[i] = make([]bool, sum+1)}// 确定base case// dp[0][...]=false 表示没有物品可选了，此时肯定无法装满背包了// dp[...][0]=true 表示背包容量为0，此时什么也不需要做，相当于装满了for i := 0; i &lt; n; i++ {    dp[i][0] = true}// 推导状态转移方程，注意这里下标都是从1开始的for i := 1; i &lt;= n; i++ {    for j := 1; j &lt;= sum; j++ {        // 如果背包容量不够放入第i个物品，肯定不能放        // 注意第i个物品的在nums数组中的下标是1-1        if j - nums[i-1] &lt; 0 {            dp[i][j] = dp[i-1][j]        } else {            // 装入或者不装入背包，看看是否存在刚好装满的情况            dp[i][j] = dp[i-1][j] || dp[i-1][j - nums[i-1]]        }    }}return dp[n][sum]</code></pre><p>}</p><pre><code>## 复杂度分析### 时间复杂度：O((N*S))假设元素的个数为N, 和为S，两层循环，所以算法的总时间复杂度是 O((N*S))### 空间复杂度：O((N*S))需要开辟一个为N*S大小的dp数组。# 反思子集背包属于01背包的变体，可以稍微转化一下在套用01背包的模版。</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 动态规划 </tag>
+            
+            <tag> 背包 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>01背包问题</title>
       <link href="/2021/03/07/01-bei-bao/"/>
       <url>/2021/03/07/01-bei-bao/</url>
