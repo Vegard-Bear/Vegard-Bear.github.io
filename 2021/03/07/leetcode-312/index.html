@@ -4,11 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="leetcode-312, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-312】戳气球, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="leetcode-312 | 小熊的作坊">
+    <meta name="description" content="题目链接312. 戳气球
+题目描述有 n 个气球，编号为0 到 n - 1，每个气球上都标有一个数字，这些数字存在数组 nums 中。
+现在要求你戳破所有的气球。戳破第 i 个气球，你可以获得 nums[i - 1]  nums[i]  n">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>leetcode-312 | 小熊的作坊</title>
+    <title>【leetcode-312】戳气球 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -329,13 +331,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        leetcode-312
+                        【leetcode-312】戳气球
                     </div>
                 </div>
             </div>
@@ -445,11 +447,28 @@
                 <div class="col s7">
                     
                     <div class="article-tag">
-                        <span class="chip bg-color">无标签</span>
+                        
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
+                        </a>
+                        
+                        <a href="/tags/动态规划/" target="_blank">
+                            <span class="chip bg-color">动态规划</span>
+                        </a>
+                        
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
+                        </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -457,7 +476,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-04
+                    2021-03-07
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -471,14 +490,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    840
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
                 
@@ -494,7 +513,61 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/burst-balloons/" target="_blank" rel="noopener">312. 戳气球</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>有 n 个气球，编号为0 到 n - 1，每个气球上都标有一个数字，这些数字存在数组 nums 中。</p>
+<p>现在要求你戳破所有的气球。戳破第 i 个气球，你可以获得 nums[i - 1] <em> nums[i] </em> nums[i + 1] 枚硬币。 这里的 i - 1 和 i + 1 代表和 i 相邻的两个气球的序号。如果 i - 1或 i + 1 超出了数组的边界，那么就当它是一个数字为 1 的气球。</p>
+<p>求所能获得硬币的最大数量。</p>
+<p>示例 1：</p>
+<pre><code>输入：nums = [3,1,5,8]
+输出：167
+解释：
+nums = [3,1,5,8] --&gt; [3,5,8] --&gt; [3,8] --&gt; [8] --&gt; []
+coins =  3*1*5    +   3*5*8   +  1*3*8  + 1*8*1 = 167</code></pre><p>示例 2：</p>
+<pre><code>输入：nums = [1,5]
+输出：10</code></pre><p>提示：</p>
+<ul>
+<li>n == nums.length</li>
+<li>1 &lt;= n &lt;= 500</li>
+<li>0 &lt;= nums[i] &lt;= 100</li>
+</ul>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于这道题依旧是采用动态规划算法，但是这道题的独特之处在于每戳破一个气球，得到的分数和该气球相邻的气球nums[left]和nums[right]是有相关性的。</p>
+<p>我们之前提到动态规划算法需要满足的一个条件是子问题之间必须是相互独立的。因此，为了解决这个问题，我们需要想办法通过定义dp数组来避免这个相关性。</p>
+<p>实际上最关键的就两点</p>
+<h3 id="1-定义dp数组"><a href="#1-定义dp数组" class="headerlink" title="1. 定义dp数组"></a>1. 定义dp数组</h3><h5 id="dp-i-j-x表示戳破气球i和j之间的所有气球可以获得的最高分数为x"><a href="#dp-i-j-x表示戳破气球i和j之间的所有气球可以获得的最高分数为x" class="headerlink" title=" dp[i][j]=x表示戳破气球i和j之间的所有气球可以获得的最高分数为x "></a><center><font color="blue"> dp[i][j]=x表示戳破气球i和j之间的所有气球可以获得的最高分数为x </font></center></h5><h3 id="2-推导状态转移方程"><a href="#2-推导状态转移方程" class="headerlink" title="2. 推导状态转移方程"></a>2. 推导状态转移方程</h3><p>这里需要逆向思考，气球i和气球j之间最后一个被戳破的气球是哪个？</p>
+<p>这里可以假设为第k个, 那么</p>
+<h5 id="dp-i-j-dp-i-k-dp-k-i-nums-i-nums-k-nums-j"><a href="#dp-i-j-dp-i-k-dp-k-i-nums-i-nums-k-nums-j" class="headerlink" title=" dp[i][j]=dp[i][k]+dp[k][i]+nums[i]nums[k]nums[j]"></a><center><font color="blue"> dp[i][j]=dp[i][k]+dp[k][i]+nums[i]<em>nums[k]</em>nums[j]</font></center></h5><p>这里是个难点，可以画图思考一下为什么。</p>
+<p>解决了以上两个问题，最后需要注意一下 i, j, k 的遍历顺序就行了。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func maxCoins(nums []int) int {
+    // 在两侧添加虚拟气球
+    nums = append(append([]int{1}, nums...), 1)
+
+    // 定义dp数组，dp[i][j]表示戳破气球i和气球j之间的所有气球所能获得的最高分数
+    // dp数组的长度为气球的个数（包括新加的虚拟气球）
+    n := len(nums)
+    dp := make([][]int, n)
+    for i := range dp {
+        dp[i] = make([]int, n)
+    }
+
+    // 确定base case，这里base case已经都被初始化为0，不需要重新赋值
+
+    // 推导状态转移方程
+    // i自下而上
+    for i := n - 1; i &gt;= 0 ; i-- {
+        // j自左向右
+        for j := i; j &lt;= n-1 ; j++ {
+            // 在i和j之间枚举k, 假设最后戳破气球k（注意i和j取不到）
+            for k := i + 1; k &lt; j; k++ {
+                dp[i][j] = max(dp[i][j], dp[i][k] + dp[k][j] + nums[i] * nums[j] * nums[k])
+            }
+        }
+    }
+    return dp[0][n-1]
+}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-N-3"><a href="#时间复杂度：O-N-3" class="headerlink" title="时间复杂度：O((N^3))"></a>时间复杂度：O((N^3))</h3><p>i，j，k三层循环，每层循环的复杂度是N</p>
+<p>所以算法的总时间复杂度是 O((K<em>N</em>logN))</p>
+<h3 id="空间复杂度：O-N-2"><a href="#空间复杂度：O-N-2" class="headerlink" title="空间复杂度：O((N^2))"></a>空间复杂度：O((N^2))</h3><p>需要开辟一个为N*N的dp数组。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>我们之前提到动态规划算法需要满足的一个条件是子问题之间必须是相互独立的。因此，为了解决这个问题，我们需要想办法通过定义dp数组来避免这个相关性。</p>
+
             </div>
             <hr />
 
@@ -652,9 +725,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《leetcode-312》
+                    《【leetcode-312】戳气球》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/04/leetcode-312/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/07/leetcode-312/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -695,7 +768,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/03/04/leetcode-312/',
+        id: '2021/03/07/leetcode-312/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -721,31 +794,50 @@
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/03/04/leetcode-312/">
+                <a href="/2021/03/07/leetcode-312/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="leetcode-312">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【leetcode-312】戳气球">
                         
-                        <span class="card-title">leetcode-312</span>
+                        <span class="card-title">【leetcode-312】戳气球</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            我们之前提到动态规划算法需要满足的一个条件是子问题之间必须是相互独立的。因此，为了解决这个问题，我们需要想办法通过定义dp数组来避免这个相关性。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-04
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-07
                             </span>
                         <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -760,7 +852,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="【Go源码解析8】for和range循环">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="【Go源码解析8】for和range循环">
                         
                         <span class="card-title">【Go源码解析8】for和range循环</span>
                     </div>
@@ -973,7 +1065,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">78.8k</span>
+            <span class="white-color">79.7k</span>
             
 
             <br>
