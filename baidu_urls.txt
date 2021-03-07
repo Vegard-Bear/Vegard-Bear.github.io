@@ -1,3 +1,4 @@
+https://vegard-bear.github.io/2021/03/07/01-bei-bao/
 https://vegard-bear.github.io/2021/03/07/leetcode-312/
 https://vegard-bear.github.io/2021/03/02/go-sourcecode-for/
 https://vegard-bear.github.io/2021/02/28/leetcode-887/
