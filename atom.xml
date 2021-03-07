@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-03-07T07:52:58.515Z</updated>
+  <updated>2021-03-07T08:53:14.006Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Go源码解析9】select</title>
+    <link href="https://vegard-bear.github.io/2021/03/07/go-sourcecode-select/"/>
+    <id>https://vegard-bear.github.io/2021/03/07/go-sourcecode-select/</id>
+    <published>2021-03-07T08:49:43.000Z</published>
+    <updated>2021-03-07T08:53:14.006Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Go 语言的 select 与操作系统中的 select 比较相似，本节会介绍 Go 语言 select 关键字常见的现象、数据结构以及实现原理。&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
+    
+    
+      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
+    
+      <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    
+      <category term="切片" scheme="https://vegard-bear.github.io/tags/%E5%88%87%E7%89%87/"/>
+    
+  </entry>
   
   <entry>
     <title>【leetcode-416】分割等和子集(子集背包)</title>
@@ -561,37 +592,6 @@
       <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
     
       <category term="动态规划" scheme="https://vegard-bear.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Go源码解析4】字符串</title>
-    <link href="https://vegard-bear.github.io/2021/01/07/go-sourcecode-string/"/>
-    <id>https://vegard-bear.github.io/2021/01/07/go-sourcecode-string/</id>
-    <published>2021-01-07T06:39:59.000Z</published>
-    <updated>2021-01-31T13:54:55.014Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;字符串是 Go
-        
-      
-    
-    </summary>
-    
-      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
-    
-    
-      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
-    
-      <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
-    
-      <category term="字符串" scheme="https://vegard-bear.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   

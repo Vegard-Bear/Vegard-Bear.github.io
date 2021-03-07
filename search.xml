@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>【Go源码解析9】select</title>
+      <link href="/2021/03/07/go-sourcecode-select/"/>
+      <url>/2021/03/07/go-sourcecode-select/</url>
+      
+        <content type="html"><![CDATA[<p>Go 语言的 select 与操作系统中的 select 比较相似，本节会介绍 Go 语言 select 关键字常见的现象、数据结构以及实现原理。</p><p><img src="https://vegard-bear.github.io/images/select.png" alt></p><blockquote><p>点击图片查看高清大图</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+            <tag> 源码解析 </tag>
+            
+            <tag> 切片 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-416】分割等和子集(子集背包)</title>
       <link href="/2021/03/07/leetcode-416/"/>
       <url>/2021/03/07/leetcode-416/</url>
