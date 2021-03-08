@@ -4,17 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="01背包问题, 小熊的作坊">
+    <meta name="keywords" content="fabric如何使用SoftHSM, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接01背包
-题目描述已知一个背包最多能容纳物体的体积为V现有n个物品第i个物品的体积为v_ivi​  第i个物品的重量为w_iwi​    
-求当前背包最多能装多大重量的物品
-示例1
-输入
-10,2,[[1,3],[10,4]]输出
-">
+    <meta name="description" content="引言
+官方文档 Using a Hardware Security Module (HSM)
+
+在 Fabric 1.4源码分析:BCCSP模块 的最后部分介绍了fabric的加密模块BCCSP目前主要分为PKCS11和noPKCS11两个">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>01背包问题 | 小熊的作坊</title>
+    <title>fabric如何使用SoftHSM | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -335,13 +332,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        01背包问题
+                        fabric如何使用SoftHSM
                     </div>
                 </div>
             </div>
@@ -452,16 +449,16 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/leetcode/" target="_blank">
-                            <span class="chip bg-color">leetcode</span>
+                        <a href="/tags/密码学/" target="_blank">
+                            <span class="chip bg-color">密码学</span>
                         </a>
                         
-                        <a href="/tags/动态规划/" target="_blank">
-                            <span class="chip bg-color">动态规划</span>
+                        <a href="/tags/fabric/" target="_blank">
+                            <span class="chip bg-color">fabric</span>
                         </a>
                         
-                        <a href="/tags/背包/" target="_blank">
-                            <span class="chip bg-color">背包</span>
+                        <a href="/tags/SoftHSM/" target="_blank">
+                            <span class="chip bg-color">SoftHSM</span>
                         </a>
                         
                     </div>
@@ -472,8 +469,12 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/leetcode/" class="post-category" target="_blank">
-                            leetcode
+                        <a href="/categories/密码学/" class="post-category" target="_blank">
+                            密码学
+                        </a>
+                        
+                        <a href="/categories/密码学/fabric/" class="post-category" target="_blank">
+                            fabric
                         </a>
                         
                     </div>
@@ -484,7 +485,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-07
+                    2021-03-08
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -498,14 +499,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    933
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    7 分
                 </div>
                 
                 
@@ -521,64 +522,147 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://www.nowcoder.com/questionTerminal/2820ea076d144b30806e72de5e5d4bbf" target="_blank" rel="noopener">01背包</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>已知一个背包最多能容纳物体的体积为V<br>现有n个物品第i个物品的体积为v_iv<br>i<br>​<br>  第i个物品的重量为w_iw<br>i<br>​    </p>
-<p>求当前背包最多能装多大重量的物品</p>
-<p>示例1</p>
-<p>输入</p>
-<pre><code>10,2,[[1,3],[10,4]]</code></pre><p>输出</p>
-<pre><code>4</code></pre><p>说明</p>
-<pre><code>第一个物品的体积为1，重量为3，第二个物品的体积为10，重量为4。只取第二个物品可以达到最优方案，取物重量为4 </code></pre><p>备注:</p>
-<pre><code>1≤V≤200
-1≤n≤200
-1≤v≤200
-1≤w≤200</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于动态规划问题，我们首先需要搞清楚【状态】和【选择】是什么？</p>
-<p>这道题涉及到的变化的状态量有两个，就是背包的体积和当前可选的物品，选择就是把物体装进背包或者不装进背包。</p>
-<p>这样就可以定义我们的dp数组了.</p>
-<h3 id="1-定义dp数组"><a href="#1-定义dp数组" class="headerlink" title="1. 定义dp数组"></a>1. 定义dp数组</h3><p>首先两个状态量就是二维dp数组的两个维度。</p>
-<h5 id="dp-i-j-x表示对于前i个物体，当前背包的体积为j，这种情况下可以装的最大重量是dp-i-j"><a href="#dp-i-j-x表示对于前i个物体，当前背包的体积为j，这种情况下可以装的最大重量是dp-i-j" class="headerlink" title=" dp[i][j]=x表示对于前i个物体，当前背包的体积为j，这种情况下可以装的最大重量是dp[i][j] "></a><center><font color="blue"> dp[i][j]=x表示对于前i个物体，当前背包的体积为j，这种情况下可以装的最大重量是dp[i][j] </font></center></h5><blockquote>
-<p>这里的定义可能并不直观，但是这是背包问题的典型套路，记住就行了</p>
+                <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><blockquote>
+<p>官方文档 <a href="https://hyperledger-fabric.readthedocs.io/en/latest/hsm.html" target="_blank" rel="noopener">Using a Hardware Security Module (HSM)</a></p>
 </blockquote>
-<h3 id="2-确定base-case"><a href="#2-确定base-case" class="headerlink" title="2. 确定base case"></a>2. 确定base case</h3><p>物体个数为0或者背包体积为0时可以装的物体重量都为0，即 </p>
-<pre><code>dp[0][...]=0，dp[...][0]=0</code></pre><h3 id="3-推导状态转移方程"><a href="#3-推导状态转移方程" class="headerlink" title="3. 推导状态转移方程"></a>3. 推导状态转移方程</h3><p>推导状态转移方程本质就是做选择，也就是把第i个物体放入或者不放入背包，然后做最优选择就行了</p>
-<h5 id="dp-i-j-max-dp-i-1-j-dp-i-1-j-vw-i-1-0-vw-i-1-1"><a href="#dp-i-j-max-dp-i-1-j-dp-i-1-j-vw-i-1-0-vw-i-1-1" class="headerlink" title=" dp[i][j] = max((dp[i-1][j], dp[i-1][j-vw[i-1][0]] + vw[i-1][1]))"></a><center><font color="blue"> dp[i][j] = max((dp[i-1][j], dp[i-1][j-vw[i-1][0]] + vw[i-1][1]))</font></center></h5><p>这里需要注意的是数组的下标，由于i是从1开始的，所以题目中的给的数组下标为i-1时表示的是第i个物品的重量。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>/**
- * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
- * 计算01背包问题的结果
- * @param V int整型 背包的体积
- * @param n int整型 物品的个数
- * @param vw int整型二维数组 第一维度为n,第二维度为2的二维数组,vw[i][0],vw[i][1]分别描述i+1个物品的vi,wi
- * @return int整型
-*/
-func knapsack(V int ,n int ,vw [][]int ) int {
-    // 定义dp数组，dp[i][j]表示对于前i个物体，当前背包体积为j，最多可以装多大重量的物体
-    dp := make([][]int, n+1)
-    for i := 0; i &lt;= n ; i++ {
-        // 定义base case
-        // 物体个数为0或者背包体积为0时可以装的物体重量都为0，即
-        // dp[0][...]=0，dp[...][0]=0这个已经自动初始化好了
-        dp[i] = make([]int, V+1)
-    }
+<p>在 <a href="https://vegard-bear.github.io/2020/12/26/fabric-bccsp/">Fabric 1.4源码分析:BCCSP模块</a> 的最后部分介绍了fabric的加密模块BCCSP目前主要分为PKCS11和noPKCS11两个大的分支。我们以noPKCS11分支的SW插件实现为例分析了BCCSP模块的源码实现，另外也提到了目前PKCS11实现主要依赖的是github上开源的第三方库 <a href="https://github.com/miekg/pkcs11" target="_blank" rel="noopener">pkcs11</a>，并且这个库已经和SoftHSM测试过了。</p>
+<p>而本节我们就来讲讲如何在fabric中配置SoftHSM。</p>
+<h1 id="什么是SoftHSM"><a href="#什么是SoftHSM" class="headerlink" title="什么是SoftHSM"></a>什么是SoftHSM</h1><p>在搞清楚什么是SoftHSM之前，我们先来了解一下HSM。</p>
+<blockquote>
+<p>硬件安全模块（英语：Hardware security module，缩写HSM）是一种用于保障和管理强认证系统所使用的数字密钥，并同时提供相关密码学操作的计算机硬件设备。硬件安全模块一般通过扩展卡或外部设备的形式直接连接到电脑或网络服务器。</p>
+</blockquote>
+<ul>
+<li>引用自维基百科<a href="https://zh.wikipedia.org/wiki/%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97" target="_blank" rel="noopener">硬件安全模块</a></li>
+</ul>
+<p>简单来说，HSM就是一种用于密钥管理和加解密操作的独立硬件设备。</p>
+<p>实际上，在某些场景下，用户可能需要HSM提供的密码服务，但同时他们又不愿意投入较多的资金购买新的密码硬件设备，这个时候SoftHSM就是一种很好的选择。</p>
+<p><a href="https://www.opendnssec.org/softhsm/" target="_blank" rel="noopener">SoftHSM</a>属于开源项目<a href="https://www.opendnssec.org/" target="_blank" rel="noopener">OpenDNSSEC</a>，它是一种可通过PKCS11接口访问的密码存储实现。代码托管在<a href="https://github.com/opendnssec/SoftHSMv2" target="_blank" rel="noopener">github</a>上。这意味着任何应用都能够通过pkcs11的接口标准访问softHSM提供的密钥管理等密码服务，如图所示，SoftHSM是HSM的一种替代选择。</p>
+<p><img src="https://vegard-bear.github.io/images/softHSM%E7%AE%80%E4%BB%8B.png" alt></p>
+<p>关于SoftHSM的具体使用请参考 <a href="https://vegard-bear.github.io/2021/03/08/softhsm-introduce/">SoftHSM操作手册</a></p>
+<h3 id="主要配置文件"><a href="#主要配置文件" class="headerlink" title="主要配置文件"></a>主要配置文件</h3><ul>
+<li>libsofthsm2.so （ubuntu:  /usr/lib/softhsm/libsofthsm2.so）((centos:/usr/local/lib/softhsm/libsofthsm2.so))</li>
+<li>softhsm2.conf，配置文件，里面配置了softhsm使用时，存储文件的路径和方式（例如：file，/var/lib/softhsm/tokens/）</li>
+<li>/var/lib/softhsm/tokens/ 这里面放了softhsm生成的文件</li>
+</ul>
+<h1 id="Fabric-CA配置SoftHSM"><a href="#Fabric-CA配置SoftHSM" class="headerlink" title="Fabric CA配置SoftHSM"></a>Fabric CA配置SoftHSM</h1><h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>fabric-ca所在的服务器或者容器内安装了softhsm</p>
+<h3 id="编译二进制"><a href="#编译二进制" class="headerlink" title="编译二进制"></a>编译二进制</h3><p>下载好fabric-ca的代码后，添加GO_TAGS=pkcs11 重新编译二进制文件并放入环境变量:</p>
+<pre><code>make fabric-ca-server GO_TAGS=pkcs11
+make fabric-ca-client GO_TAGS=pkcs11</code></pre><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>配置fabric-ca-server-config.yaml文件和fabric-ca-client.yaml文件中的bccsp部分,这里的具体配置与安装的softhsm一致</p>
+<pre><code>bccsp:
+default: PKCS11
+#sw:
+#    hash: SHA2
+#    security: 256
+#    filekeystore:
+        # The directory used for the software file-based keystore
+#        keystore: msp/keystore
+pkcs11:
+    library: /usr/local/lib/softhsm/libsofthsm2.so
+    Label: ForFabric
+    Pin: 98765432
+    hash: SHA2
+    security: 256
+    filekeystore:
+        # The directory used for the software file-based keystore
+        #             keystore: msp/keystore</code></pre><h3 id="生成证书套件"><a href="#生成证书套件" class="headerlink" title="生成证书套件"></a>生成证书套件</h3><p>配置完这两个配置文件后就可以利用fabric-ca为组织申请一套证书用于替代byfn的crypto-config（不包含TLS证书），具体步骤可参考</p>
+<ul>
+<li><p><a href="https://yq.aliyun.com/articles/625191" target="_blank" rel="noopener">HyperLedger Fabric ca正式环境部署-阿里云开发者社区</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/ahilll/article/details/83046667" target="_blank" rel="noopener">HyperLedger Fabric 1.2 生产环境使用ca生成msp和tls（12）_ahilll的博客-CSDN博客_fabric ca 生成证书</a></p>
+</li>
+</ul>
+<p>这里为了方便，我们直接用c脚本一键生成的方式:</p>
+<ol>
+<li>首先进入之前配置好的fabric-ca-server-config.yaml所在目录，启动一个fabric-ca-server</li>
+</ol>
+<pre><code>fabric-ca-server start -b admin:adminpw</code></pre><ol start="2">
+<li>执行完显示如下：</li>
+</ol>
+<pre><code>2021/03/08 11:19:07 [INFO] Listening on http://0.0.0.0:7054</code></pre><ol start="3">
+<li>然后执行脚本</li>
+</ol>
+<pre><code>sh fabric-ca-regitser.sh</code></pre><ol start="4">
+<li>执行完后一切顺利的话会生成crypto-config目录，我们需要将此目录拷贝到byfn下面</li>
+</ol>
+<pre><code>cp -r ./fabric-ca-client/crypto-config $GOPATH/src/github.com/hyperledger/fabric/fabric-samples/first-network</code></pre><h1 id="Fabric配置SoftHSM"><a href="#Fabric配置SoftHSM" class="headerlink" title="Fabric配置SoftHSM"></a>Fabric配置SoftHSM</h1><h3 id="前提条件-1"><a href="#前提条件-1" class="headerlink" title="前提条件"></a>前提条件</h3><p>fabric-ca所在的服务器或者容器内安装了softhsm</p>
+<h3 id="在SoftHSM中创建密钥"><a href="#在SoftHSM中创建密钥" class="headerlink" title="在SoftHSM中创建密钥"></a>在SoftHSM中创建密钥</h3><ul>
+<li>初始化token</li>
+</ul>
+<pre><code>softhsm2-util --init-token --slot 0 --label &quot;ForFabric&quot; --so-pin 1234 --pin 98765432</code></pre><p>注意这里需要指定label和pin，这里的label和pin会在修改fabric的配置文件的时候用到。</p>
+<p>执行完以上命令后可以查看刚刚创建的slot和token信息</p>
+<pre><code>➜ softhsm2-util --show-slots
+Slot 1655411567
+    Slot info:
+        Description:      SoftHSM slot ID 0x62ab936f
+        Manufacturer ID:  SoftHSM project
+        Hardware version: 2.2
+        Firmware version: 2.2
+        Token present:    yes
+    Token info:
+        Manufacturer ID:  SoftHSM project
+        Model:            SoftHSM v2
+        Hardware version: 2.2
+        Firmware version: 2.2
+        Serial number:    4f6dddc562ab936f
+        Initialized:      yes
+        User PIN init.:   yes
+        Label:            ForFabric</code></pre><p>至此，说明我们已经成功创建了一个标记为 “ForFabric” 并把 pin 设置为 “98765432” 的秘钥。</p>
+<h3 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>这一步我们需要在节点配置文件（core.yaml和orderer.yaml）中更新 BCCSP 部分。</p>
+<ul>
+<li>core.yaml</li>
+</ul>
+<pre><code>    # BCCSP (Blockchain crypto provider): Select which crypto implementation or
+    # library to use
+    BCCSP:
+        # if setting is GM, chaincode.golang.dynamiclink must be false.
+        Default: PKCS11
+        # Settings for the SW crypto provider (i.e. when DEFAULT: SW)
+        SW:
+            # TODO: The default Hash and Security level needs refactoring to be
+            # fully configurable. Changing these defaults requires coordination
+            # SHA2 is hardcoded in several places, not only BCCSP
+            Hash: SHA2
+            Security: 256
+            Library: 
+            # Location of Key Store
+            FileKeyStore:
+                # If &quot;&quot;, defaults to &#39;mspConfigPath&#39;/keystore
+                KeyStore:
+        # Settings for the PKCS#11 crypto provider (i.e. when DEFAULT: PKCS11)
+        PKCS11:
+            # Location of the PKCS11 module library
+            Library: /usr/lib/softhsm/libsofthsm2.so 
+            #/etc/hyperledger/fabric/libsofthsm2.so
+            # Token Label
+            Label: ForFabric
+            # User PIN
+            Pin: &quot;98765432&quot;
+            Hash: SHA2
+            Security: 256</code></pre><h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p>这里我们采用的是通过编译docker镜像并使 docker compose文件 部署节点，所以需要修改 docker compose 配置文件的 volumes 部分来挂载softhsm库和配置文件。</p>
+<p>下边的示例演示了如何在docker compose 配置文件中设置环境变量和挂载：</p>
+<pre><code>  environment:
+     - SOFTHSM2_CONF=/etc/hyperledger/fabric/config.file
+  volumes:
+     - /home/softhsm/config.file:/etc/hyperledger/fabric/config.file
+     - /usr/local/Cellar/softhsm/2.1.0/lib/softhsm/libsofthsm2.so:/etc/hyperledger/fabric/libsofthsm2.so</code></pre><p>注意这里的/home/softhsm/config.file需要在宿主机上存在，这里我们需要将原来默认的/etc/softhsm2.conf文件拷贝一份到/home/softhsm/目录下，然后修改其中的token文件夹路径：</p>
+<pre><code># SoftHSM v2 configuration file
 
-    // 推导状态转移方程
-    // 按照物体数量进行遍历
-    for i := 1; i &lt;= n; i++ {
-        // 按照背包可用体积进行遍历
-        for j := 1; j &lt;= V; j++ {
-            // 背包体积已经不够装第i个物体了,只能不装入背包
-            if j - vw[i-1][0] &lt; 0 {
-                dp[i][j] = dp[i-1][j]
-            } else {
-                // 可以选择装入或不装入，取较大值
-                dp[i][j] = max(dp[i-1][j], dp[i-1][j-vw[i-1][0]] + vw[i-1][1])
-            }
-        }
-    }
-    return dp[n][V]
-}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-C-N"><a href="#时间复杂度：O-C-N" class="headerlink" title="时间复杂度：O((C*N))"></a>时间复杂度：O((C*N))</h3><p>假设物品的个数为N, 背包的容量是C，两层循环，所以算法的总时间复杂度是 O((C*N))</p>
-<h3 id="空间复杂度：O-C-N"><a href="#空间复杂度：O-C-N" class="headerlink" title="空间复杂度：O((C*N))"></a>空间复杂度：O((C*N))</h3><p>需要开辟一个为C*N大小的dp数组。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>背包问题是非常经典的动态规划问题，本题01背包是其中最基本的问题，先熟悉一下套路。</p>
+directories.tokendir = /etc/hyperledger/fabric/tokens/
+objectstore.backend = file
 
+# ERROR, WARNING, INFO, DEBUG
+log.level = INFO</code></pre><p>这里的 <strong>/etc/hyperledger/fabric/tokens/</strong> 实际上就对应配置文件中的</p>
+<pre><code>- /var/lib/softhsm/tokens/:/etc/hyperledger/fabric/tokens/</code></pre><p>尤其需要注意的是不能直接配成</p>
+<pre><code>- /etc/softhsm2.conf:/etc/hyperledger/fabric/config.file</code></pre><p>会报错</p>
+<pre><code>2021-03-08 07:27:08.704 UTC [main] InitCmd -&gt; ERRO 01f Cannot run peer because error when setting up MSP of type bccsp from directory /etc/hyperledger/fabric/msp: could not initialize BCCSP Factories: Failed initializing PKCS11.BCCSP %!s(&lt;nil&gt;): Could not initialize BCCSP PKCS11 [Failed initializing PKCS11 library /usr/lib/softhsm/libsofthsm2.so ForFabric: Could not find token with label ForFabric]
+Could not find default `PKCS11` BCCSP</code></pre><h3 id="重新编译镜像"><a href="#重新编译镜像" class="headerlink" title="重新编译镜像"></a>重新编译镜像</h3><pre><code>make docker GO_TAGS=pkcs11 或 make all GO_TAGS=pkcs11</code></pre><h3 id="运行byfn"><a href="#运行byfn" class="headerlink" title="运行byfn"></a>运行byfn</h3><p>注意目前fabric-samples/first-network下的byfn<br>配置暂不支持tls的，也就是TLS_ENABLED要设置为false</p>
+<ul>
+<li>生成需要的配置文件</li>
+</ul>
+<pre><code>./byfn generate</code></pre><ul>
+<li>执行e2e的测试用例</li>
+</ul>
+<pre><code>./byfn up</code></pre>
             </div>
             <hr />
 
@@ -736,9 +820,9 @@ func knapsack(V int ,n int ,vw [][]int ) int {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《01背包问题》
+                    《fabric如何使用SoftHSM》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/07/01-bei-bao/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/08/fabric-softhsm/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -779,7 +863,7 @@ func knapsack(V int ,n int ,vw [][]int ) int {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/03/07/01-bei-bao/',
+        id: '2021/03/08/fabric-softhsm/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -800,54 +884,60 @@ func knapsack(V int ,n int ,vw [][]int ) int {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/03/07/leetcode-416/">
+                <a href="/2021/03/08/fabric-softhsm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="【leetcode-416】分割等和子集(子集背包)">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="fabric如何使用SoftHSM">
                         
-                        <span class="card-title">【leetcode-416】分割等和子集(子集背包)</span>
+                        <span class="card-title">fabric如何使用SoftHSM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            子集背包属于01背包的变体，可以稍微转化一下在套用01背包的模版。
+                            本节我们来讲讲如何在fabric中配置SoftHSM
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/leetcode/" class="post-category" target="_blank">
-                                    leetcode
+                            <a href="/categories/密码学/" class="post-category" target="_blank">
+                                    密码学
+                                </a>
+                            
+                            <a href="/categories/密码学/fabric/" class="post-category" target="_blank">
+                                    fabric
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/密码学/" target="_blank">
+                        <span class="chip bg-color">密码学</span>
                     </a>
                     
-                    <a href="/tags/动态规划/" target="_blank">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/fabric/" target="_blank">
+                        <span class="chip bg-color">fabric</span>
                     </a>
                     
-                    <a href="/tags/背包/" target="_blank">
-                        <span class="chip bg-color">背包</span>
+                    <a href="/tags/SoftHSM/" target="_blank">
+                        <span class="chip bg-color">SoftHSM</span>
                     </a>
                     
                 </div>
@@ -861,31 +951,31 @@ func knapsack(V int ,n int ,vw [][]int ) int {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/07/leetcode-312/">
+                <a href="/2021/03/08/softhsm-introduce/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【leetcode-312】戳气球">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="SoftHSM操作手册">
                         
-                        <span class="card-title">【leetcode-312】戳气球</span>
+                        <span class="card-title">SoftHSM操作手册</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            我们之前提到动态规划算法需要满足的一个条件是子问题之间必须是相互独立的。因此，为了解决这个问题，我们需要想办法通过定义dp数组来避免这个相关性。
+                            本文简单介绍了SoftHSM的安装及使用流程
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-07
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/leetcode/" class="post-category" target="_blank">
-                                    leetcode
+                            <a href="/categories/密码学/" class="post-category" target="_blank">
+                                    密码学
                                 </a>
                             
                             
@@ -895,12 +985,12 @@ func knapsack(V int ,n int ,vw [][]int ) int {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/密码学/" target="_blank">
+                        <span class="chip bg-color">密码学</span>
                     </a>
                     
-                    <a href="/tags/动态规划/" target="_blank">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/SoftHSM/" target="_blank">
+                        <span class="chip bg-color">SoftHSM</span>
                     </a>
                     
                 </div>
