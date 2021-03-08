@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>SoftHSM操作手册</title>
+      <link href="/2021/03/08/softhsm-introduce/"/>
+      <url>/2021/03/08/softhsm-introduce/</url>
+      
+        <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>OpenDNSSEC通过PKCS＃11接口处理并存储其加密密钥。该接口指定如何与诸如HSM :（硬件安全模块）和智能卡之类的加密设备进行通信。这些设备的目的是在不向外界透露私钥材料的情况下生成密码密钥和签名信息。</p><p>使用PKCS＃11接口的潜在问题是，它可能会限制OpenDNSSEC的广泛使用，因为潜在的用户可能不愿投资于新的硬件设备。为了消除这种影响，OpenDNSSEC正在提供具有PKCS＃11接口的通用加密设备SoftHSM的软件实现。SoftHSM旨在满足OpenDNSSEC的要求，但由于具有PKCS＃11接口，因此还可以与其他加密产品一起使用。</p><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>首先下载源码 <a href="https://github.com/opendnssec/SoftHSMv2" target="_blank" rel="noopener">opendnssec/SoftHSMv2</a></p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>配置安装/编译脚本：</p><pre><code>sh ./autogen.sh./configure</code></pre><p>选项：</p><pre><code>--disable-non-paged-memory            Disable non-paged memory for secure storage            (default enabled)--disable-ecc        Disable support for ECC (default enabled)--disable-gost        Disable support for GOST (default enabled)--disable-visibility    Disable hidden visibilty link mode [enabled]--with-crypto-backend    Select crypto backend (openssl|botan)--with-openssl=PATH    Specify prefix of path of OpenSSL--with-botan=PATH    Specify prefix of path of Botan--with-migrate        Build the migration tool. Used when migrating            a SoftHSM v1 token database. Requires SQLite3--with-objectstore-backend-db            Build with database object store (SQLite3)--with-sqlite3=PATH    Specify prefix of path of SQLite3--disable-p11-kit    Disable p11-kit integration (default enabled)--with-p11-kit=PATH    Specify install path of the p11-kit module, will            override path given by pkg-config</code></pre><p>有关更多选项：</p><pre><code>./configure --help</code></pre><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>使用以下命令编译源代码：</p><pre><code>make 或 sudo make</code></pre><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>使用以下命令安装库：</p><pre><code>sudo make install</code></pre><p>验证是否安装成功</p><pre><code>softhsm2-util --show-slots</code></pre><p>如果所有都安装后，还报错误：<br>checking for OpenSSL GOST support… Cannot GOST engine<br>configure: error: OpenSSL library has no GOST support 【执行 ./configure –disable-gost 再安装 （2.2.0版本会有这个问题）】</p><h2 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h2><p>配置文件的默认位置是/etc/softhsm2.conf。可以通过设置环境变量来更改此位置，比如：</p><pre><code>export SOFTHSM2_CONF=/home/user/config.file</code></pre><p>配置文件中定义了生成的token文件路径以及日志等级等信息：</p><pre><code># SoftHSM v2 configuration filedirectories.tokendir = /var/lib/softhsm/tokens/objectstore.backend = file# ERROR, WARNING, INFO, DEBUGlog.level = INFO</code></pre><p>有关配置的详细信息，可以使用<strong>man softhsm2.conf</strong>。</p><h2 id="初始化token"><a href="#初始化token" class="headerlink" title="初始化token"></a>初始化token</h2><p>创建在配置文件中定义的token目录：</p><pre><code>mkdir /var/lib/softhsm/tokens/</code></pre><p>在初始状态下，最下面的slot0表示目前的slot数量为0，状态为未初始化。</p><pre><code>Slot 0    Slot info:        Description:      SoftHSM slot ID 0x0        Manufacturer ID:  SoftHSM project        Hardware version: 2.2        Firmware version: 2.2        Token present:    yes    Token info:        Manufacturer ID:  SoftHSM project        Model:            SoftHSM v2        Hardware version: 2.2        Firmware version: 2.2        Serial number:        Initialized:      no        User PIN init.:   no        Label:</code></pre><p>然后每次初始化一个token就会增加一个新的slot用于记录刚刚初始化的token信息。</p><p>比如执行</p><pre><code>softhsm2-util --init-token --slot 0 --label &quot;ForFabric&quot; --so-pin 1234 --pin 98765432</code></pre><p>这里，我们需要记下pin和label，用于后续配置在应用程序（比如fabric和fabric ca）中，这样应用程序才可以利用这些信息与去SoftHSM找到对应的token信息。</p><blockquote><p>注意，这里指定的slot0 必须是已经存在的slot，否则会报错。</p></blockquote><p>执行完以上命令后再次查看slot</p><pre><code>➜  ~ softhsm2-util --show-slotsAvailable slots:Slot 1655411567    Slot info:        Description:      SoftHSM slot ID 0x62ab936f        Manufacturer ID:  SoftHSM project        Hardware version: 2.2        Firmware version: 2.2        Token present:    yes    Token info:        Manufacturer ID:  SoftHSM project        Model:            SoftHSM v2        Hardware version: 2.2        Firmware version: 2.2        Serial number:    4f6dddc562ab936f        Initialized:      yes        User PIN init.:   yes        Label:            ForFabricSlot 1    Slot info:        Description:      SoftHSM slot ID 0x1        Manufacturer ID:  SoftHSM project        Hardware version: 2.2        Firmware version: 2.2        Token present:    yes    Token info:        Manufacturer ID:  SoftHSM project        Model:            SoftHSM v2        Hardware version: 2.2        Firmware version: 2.2        Serial number:        Initialized:      no        User PIN init.:   no        Label:</code></pre><p>可以看到从上倒下新增了一个token，就是我们刚刚初始化的token。</p><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>链接到该库并使用PKCS11接口。</p><h2 id="后备"><a href="#后备" class="headerlink" title="后备"></a>后备</h2><p>所有令牌及其对象都存储在softhsm2.conf给定的位置。因此可以将备份作为常规文件副本进行。</p><h1 id="从存储库构建"><a href="#从存储库构建" class="headerlink" title="从存储库构建"></a>从存储库构建</h1><p>如果直接从代码存储库下载代码，则必须准备配置脚本，然后才能继续使用真实的README。</p><p>您需要安装automake，autoconf，libtool等。<br>运行命令“ sh autogen.sh”<br>继续阅读此自述文件。</p><h1 id="操作接口"><a href="#操作接口" class="headerlink" title="操作接口"></a>操作接口</h1><p>SoftHSM的常用操作接口主要由三部分组成：</p><ul><li>softhsm2-util</li><li>softhsm2-keyconv </li><li>softhsm2-dump-file  </li></ul><h2 id="softhsm2-util"><a href="#softhsm2-util" class="headerlink" title="softhsm2-util"></a>softhsm2-util</h2><p>softhsm2-util 是 libsofthsm2的支持工具</p><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><ul><li><p>softhsm2-util –show-slots</p></li><li><p>softhsm2-util –init-token –free –label text [–so-pin PIN —-pin PIN]</p></li><li><p>softhsm2-util –import path [–file-pin PIN] –token label [–pin PIN –no-public-key] –label text –id hex</p></li><li><p>softhsm2-util –delete-token –token text</p></li></ul><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>softhsm2-util是一个主要用于libsofthsm2的支持工具。它还可以通过使用选项–module与其他PKCS#11库一起使用</p><p>大多数应用程序都假定它们想要使用的token已经初始化。然后由用户初始化PKCS#11的token。这是通过调用PKCS#11接口完成的，但是您可以使用softhsm2-util工具，而不是编写自己的工具。</p><p>密钥通常是直接在token中创建的，但用户可能希望使用现有的密钥对。密钥可以通过使用PKCS#11接口导入到令牌中，但是如果用户在PKCS#8文件中有密钥对，也可以使用这个工具。如果您需要将密钥从 BIND.private-key 格式转换成 PKCS#8, 可以使用 softhsm2-keyconv。</p><p>libsofthsm2库，也称为SoftHSM，通过使用PKCS#11 API提供加密功能。作为<br>OpenDNSSEC的项目，因此需要满足OpenDNSSEC的要求，而且还可以与其他软件一起使用。</p><p>SoftHSM是一个带有pkcs#11接口的通用密码设备的软件实现。这些设备通常被称为token。</p><p>请参阅手册 <a href="https://linux.die.net/man/5/softhsm.conf" target="_blank" rel="noopener">softhsm2.conf(5)</a>，了解如何创建这些token，以及如何将它们添加到SoftHSM中的一个slot。</p><p>PKCS#11 API可用于处理和存储加密密钥。该接口指定如何与加密设备通信，例如hsm(硬件安全模块)和智能卡。</p><p>这些设备的目的是在产生加密密钥和签名信息的同时而不向外界透露私钥材料信息。与普通计算机中的普通进程相比，它们通常被设计为在这些特定的情况下表现良好的任务。</p><h3 id="ACTIONS"><a href="#ACTIONS" class="headerlink" title="ACTIONS"></a>ACTIONS</h3><ul><li>–delete-token</li></ul><p>删除给定slot上的token。与–token或–serial一起使用。token中的任何内容都将被删除。</p><ul><li>–help, -h</li></ul><p>显示帮助信息。</p><ul><li>–import path</li></ul><p>从给定路径导入密钥对。文件必须是pkcs# 8格式。<br>与–slot或–token或–serial、–file-pin、–pin、–no-public-key、–label和–id一起使用。</p><ul><li>–init-token</li></ul><p>在给定的slot、token标签或token串行上初始化token。如果token已经初始化，那么这个命令将会重新初始化, 并删除标记中的所有对象。同时，进行重新初始化的时候必须提供配对的Security Officer ((SO)) PIN密码</p><p>此命令与 –slot or –token or –serial or –free, –label, –so-pin, and –pin 一起使用。</p><ul><li>–show-slots</li></ul><p>显示所有可用slot及其他们当前的状态。</p><p>–version，-v</p><p>显示版本信息。</p><h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><ul><li>–file-pin PIN</li></ul><p>PIN将被用于解密PKCS#8文件。如果没有给出，那么PKCS#8文件就被认为是未加密的。</p><ul><li>–force</li></ul><p>使用此选项可覆盖警告并强制执行给定操作。</p><ul><li>–free</li></ul><p>使用第一个 free/uninitialized 的令牌。</p><ul><li>–id [hex]</li></ul><p>选择密钥对的ID。该ID为可变长度的十六进制形式。在导入密钥对时使用 –force，如果ID已经存在。</p><ul><li>–label [text]</li></ul><p>定义要设置的对象或token的标签。</p><ul><li>–module [path]</li></ul><p>使用另一个PKCS#11库而不是SoftHSM。</p><ul><li>–no-public-key</li></ul><p>不要导入公钥</p><ul><li>–pin [PIN]</li></ul><p>普通用户的PIN码。</p><p> –serial [number]</p><p>将使用具有匹配序列号的令牌</p><ul><li>–solt [number]</li></ul><p>token所在的slot</p><ul><li>–so-pin PIN</li></ul><p>Security Officer ((SO))的PIN</p><p> –token label</p><p>将使用带有匹配token标签的token。</p><h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><p>可以使用以下命令初始化token:</p><pre><code>softhsm2-util——init-token——slot 1——label“mytoken”</code></pre><p>可以使用softhsm工具导入密钥对，其中指定密钥文件的路径、slot号、新对象的label和ID，和用户PIN。文件必须是pkcs# 8格式。</p><pre><code>softhsm2-util --import key1.pem --token &quot;mytoken&quot; --label &quot;My key&quot; --id A1B2 --pin 123456</code></pre><p>((Add，——file-pin [PIN]，如果密钥文件是加密的))</p><h2 id="softhsm2-keyconv"><a href="#softhsm2-keyconv" class="headerlink" title="softhsm2-keyconv"></a>softhsm2-keyconv</h2><p>softhsm2-keyconv </p><p>-从BIND转化成PKCS#8密钥文件格式</p><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>softhsm2-keyconv –in path –out path [–pin PIN]</p><h3 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h3><p>softhsm2-keyconv可以将BIND.private-key文件转换为PKCS#8文件格式。这样就可以使用softhsm2-util命令将PKCS#8文件导入libsofthsm。如果您有另一种文件格式，那么openssl可能可以帮助您将其转换为PKCS#8文件格式。</p><h3 id="选项-1"><a href="#选项-1" class="headerlink" title="选项"></a>选项</h3><ul><li>–help， -h</li></ul><p>显示帮助界面</p><ul><li>–in [path]</li></ul><p>输入文件的路径</p><ul><li>–out [path]</li></ul><p>输出文件的路径</p><ul><li>–pin [PIN]</li></ul><p>PIN将被用于加密PKCS#8文件。如果没有给出，那么PKCS#8文件将是未加密的。</p><ul><li>–version, -v</li></ul><p>显示版本信息</p><h3 id="examples"><a href="#examples" class="headerlink" title="examples"></a>examples</h3><p>以下命令可以用来将BIND .private-key文件转换为PKCS#8文件:</p><pre><code> softhsm2-keyconv --in Kexample.com.+007+05474.private --out rsa.pem</code></pre><h2 id="softhsm2-dump-file"><a href="#softhsm2-dump-file" class="headerlink" title="softhsm2-dump-file"></a>softhsm2-dump-file</h2><h4 id="name"><a href="#name" class="headerlink" title="name"></a>name</h4><p>softhsm2-dump-file - SoftHSM对象文件存储</p><h4 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h4><p>softhsm2-dump-file [path]</p><h4 id="描述-2"><a href="#描述-2" class="headerlink" title="描述"></a>描述</h4><p>softhsm2-dump-file是一个可以转储SoftHSM v2对象文件的工具，用于调试。</p><h4 id="选项-2"><a href="#选项-2" class="headerlink" title="选项"></a>选项</h4><p>[path] 存放待转储的SoftHSM v2对象文件。</p><p>–help -h</p><p>显示帮助信息</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 密码学 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 密码学 </tag>
+            
+            <tag> SoftHSM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Go源码解析10】defer</title>
       <link href="/2021/03/07/go-sourcecode-defer/"/>
       <url>/2021/03/07/go-sourcecode-defer/</url>
@@ -871,9 +898,9 @@
       
         <tags>
             
-            <tag> fabric </tag>
+            <tag> 密码学 </tag>
             
-            <tag> 密码 </tag>
+            <tag> fabric </tag>
             
             <tag> bccsp </tag>
             
@@ -1704,9 +1731,9 @@
       
         <tags>
             
-            <tag> fabric </tag>
+            <tag> 密码学 </tag>
             
-            <tag> 密码 </tag>
+            <tag> fabric </tag>
             
         </tags>
       
