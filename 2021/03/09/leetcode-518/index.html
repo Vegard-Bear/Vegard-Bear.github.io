@@ -4,15 +4,15 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-567】字符串的排列, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-518】零钱兑换 II((完全背包)), 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接567. 字符串的排列
-题目描述给定两个字符串 s1 和 s2，写一个函数来判断 s2 是否包含 s1 的排列。
-换句话说，第一个字符串的排列之一是第二个字符串的子串。
-示例1:
-输入: s1 = &amp;quot;ab&amp;quot; s2">
+    <meta name="description" content="题目链接518. 零钱兑换 II
+题目描述给定不同面额的硬币和一个总金额。写出函数来计算可以凑成总金额的硬币组合数。假设每一种面额的硬币有无限个。 
+示例 1:
+输入: amount = 5, coins = [1, 2, 5]
+输出: 4">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-567】字符串的排列 | 小熊的作坊</title>
+    <title>【leetcode-518】零钱兑换 II((完全背包)) | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -333,13 +333,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-567】字符串的排列
+                        【leetcode-518】零钱兑换 II((完全背包))
                     </div>
                 </div>
             </div>
@@ -454,8 +454,12 @@
                             <span class="chip bg-color">leetcode</span>
                         </a>
                         
-                        <a href="/tags/滑动窗口/" target="_blank">
-                            <span class="chip bg-color">滑动窗口</span>
+                        <a href="/tags/动态规划/" target="_blank">
+                            <span class="chip bg-color">动态规划</span>
+                        </a>
+                        
+                        <a href="/tags/背包/" target="_blank">
+                            <span class="chip bg-color">背包</span>
                         </a>
                         
                     </div>
@@ -478,7 +482,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-30
+                    2021-03-09
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -492,7 +496,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
@@ -515,115 +519,77 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/permutation-in-string/" target="_blank" rel="noopener">567. 字符串的排列</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定两个字符串 s1 和 s2，写一个函数来判断 s2 是否包含 s1 的排列。</p>
-<p>换句话说，第一个字符串的排列之一是第二个字符串的子串。</p>
-<p>示例1:</p>
-<pre><code>输入: s1 = &quot;ab&quot; s2 = &quot;eidbaooo&quot;
-输出: True
-解释: s2 包含 s1 的排列之一 (&quot;ba&quot;).</code></pre><p>示例2:</p>
-<pre><code>输入: s1= &quot;ab&quot; s2 = &quot;eidboaoo&quot;
-输出: False</code></pre><p>注意：</p>
-<ol>
-<li>输入的字符串只包含小写字母</li>
-<li>两个字符串的长度都在 [1, 10,000] 之间</li>
-</ol>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题的直接思路是先对子串s1进行全排列，然后将每种排列去s2中找，但是由于全排列的时间复杂度为O((n!))，所以不可能这么做，也就是说我们需要换一种思路。</p>
-<p>现在我们换一种问法，能否s2中找到一个子串，使得这个子串包含s1中的所有字符但是不包含其他字符？</p>
-<p>作为字符串匹配问题，我们很容易就想到滑动窗口算法。既然采用滑动窗口算法，就需要套算法框架：</p>
-<pre><code>/* 滑动窗口算法框架 */
-void slidingWindow(string s, string t) {
-    unordered_map&lt;char, int&gt; need, window;
-    for (char c : t) need[c]++;
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/coin-change-2/" target="_blank" rel="noopener">518. 零钱兑换 II</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定不同面额的硬币和一个总金额。写出函数来计算可以凑成总金额的硬币组合数。假设每一种面额的硬币有无限个。 </p>
+<p>示例 1:</p>
+<pre><code>输入: amount = 5, coins = [1, 2, 5]
+输出: 4
+解释: 有四种方式可以凑成总金额:
+5=5
+5=2+2+1
+5=2+1+1+1
+5=1+1+1+1+1</code></pre><p>示例 2:</p>
+<pre><code>输入: amount = 3, coins = [2]
+输出: 0
+解释: 只用面额2的硬币不能凑成总金额3。</code></pre><p>示例 3:</p>
+<pre><code>输入: amount = 10, coins = [10] 
+输出: 1</code></pre><p>注意:</p>
+<p>你可以假设：</p>
+<ul>
+<li>0 &lt;= amount ((总金额)) &lt;= 5000</li>
+<li>1 &lt;= coin ((硬币面额)) &lt;= 5000</li>
+<li>硬币种类不超过 500 种</li>
+<li>结果符合 32 位符号整数</li>
+</ul>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题和 <a href="https://vegard-bear.github.io/2021/03/07/leetcode-416/">leetcode-512 分割等和子集</a>一样属于01背包问题的变体，关于01背包在<a href="https://vegard-bear.github.io/2021/03/07/01-bei-bao/">01背包</a>中有详细介绍。</p>
+<p>那么我们把这道题可以转化为背包问题：</p>
+<ul>
+<li>有一个容量为amount的背包，然后有一堆物品，每个物品的重量为coins[i], <strong>每个物品的数量无限</strong>。那么把背包装满有多少种方法？</li>
+</ul>
+<p>注意，这里的物品数量是无限的，我们也把这种背包问题称为完全背包问题，这一点也会在后面推导状态转移方程的时候体现。至此，我们就可以按照背包问题来分析了。</p>
+<h3 id="1-定义dp数组"><a href="#1-定义dp数组" class="headerlink" title="1. 定义dp数组"></a>1. 定义dp数组</h3><h5 id="dp-i-j-表示对于前i个物体，当前背包的重量为j，那么有dp-i-j种方法恰好可以将背包装满"><a href="#dp-i-j-表示对于前i个物体，当前背包的重量为j，那么有dp-i-j种方法恰好可以将背包装满" class="headerlink" title=" dp[i][j]表示对于前i个物体，当前背包的重量为j，那么有dp[i][j种方法恰好可以将背包装满"></a><center><font color="blue"> dp[i][j]表示对于前i个物体，当前背包的重量为j，那么有dp[i][j种方法恰好可以将背包装满</font></center></h5><h3 id="2-确定base-case"><a href="#2-确定base-case" class="headerlink" title="2. 确定base case"></a>2. 确定base case</h3><pre><code>dp[0][...]=0</code></pre><p>表示不用硬币就无法凑出任何面值的金额</p>
+<pre><code>dp[...][0]=1</code></pre><p>表示凑出面额为0的金额，组合有且只有一个（什么都不用做）</p>
+<h3 id="3-推导状态转移方程"><a href="#3-推导状态转移方程" class="headerlink" title="3. 推导状态转移方程"></a>3. 推导状态转移方程</h3><p>推导状态转移方程本质就是做选择，也就是把第i个物体放入或者不放入背包，然后做最优选择就行了</p>
+<p>如果背包剩余的容量足够大，有两种选择，选或者不选，总的组合数是这两种选择的组合数之和</p>
+<p><font color="red">特别注意，完全背包问题和之前的01背包和子集背包问题最大的不同在于物品的数量是无限的,所以如果选择了这种面值的硬币，则是dp[i][j-coins[i-1]]而不是之前的dp[i-1][j-coins[i-1]]</font></p>
+<h5 id="dp-i-j-dp-i-1-j-dp-i-j-coins-i-1"><a href="#dp-i-j-dp-i-1-j-dp-i-j-coins-i-1" class="headerlink" title=" dp [ i ] [ j ] = dp [ i - 1 ] [ j ] + dp [ i ] [ j - coins [ i - 1 ] ] "></a><center><font c olor="blue"> dp [ i ] [ j ] = dp [ i - 1 ] [ j ] + dp [ i ] [ j - coins [ i - 1 ] ] </font></center></h5><p>这里需要注意的是数组的下标，由于i是从1开始的，所以题目中的给的数组下标为i-1时表示的是第i个物品的重量。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func change(amount int, coins []int) int {
+    n := len(coins)
 
-    int left = 0, right = 0;
-    int valid = 0; 
-    while (right &lt; s.size()) {
-        // c 是将移入窗口的字符
-        char c = s[right];
-        // 右移窗口
-        right++;
-        // 进行窗口内数据的一系列更新
-        ...
+    // 定义二维dp数组，dp[i][j]表示用前i个面值的硬币凑成总金额的组合数
+    // 注意这里数组的长度是n+1
+    dp := make([][]int, n + 1)
+    for i := 0; i &lt;= n; i++ {
+        dp[i] = make([]int, amount + 1)
+    }
 
-        /*** debug 输出的位置 ***/
-        printf(&quot;window: [%d, %d)\n&quot;, left, right);
-        /********************/
+    //定义 base case
+    // dp[0][...]=0 表示不用硬币就无法凑出任何面值的金额
+    // dp[...][0]=1 表示凑出面额为0的金额，组合有且只有一个（什么都不用做）
+    // 注意这两个 base case 定义的先后顺序
+    for i := 0; i &lt;= n; i++ {
+        //dp[0][i] = 0
+        dp[i][0] = 1
+    }
 
-        // 判断左侧窗口是否要收缩
-        while (window needs shrink) {
-            // d 是将移出窗口的字符
-            char d = s[left];
-            // 左移窗口
-            left++;
-            // 进行窗口内数据的一系列更新
-            ...
+    // 推导状态转移方程，注意下标从1开始，coins[i-1]表示第i种面值
+    for i := 1; i &lt;= n; i++ {
+        for j := 1; j &lt;= amount; j++ {
+            // 如果背包剩余的容量足够大，有两种选择，选或者不选，总的组合数是这两种选择的组合数之和
+            // 特别注意，完全背包问题和之前的01背包和子集背包问题最大的不同在于物品的数量是无限的
+            // 所以如果选择了这种面值的硬币，则是dp[i][j-coins[i-1]]而不是之前的dp[i-1][j-coins[i-1]]
+            if j - coins[i-1] &gt;= 0 {
+                dp[i][j] = dp[i-1][j] + dp[i][j-coins[i-1]]
+            } else {
+            // 如果背包剩余的容量小于当前这个硬币的面值，那么肯定就不选
+                dp[i][j] = dp[i-1][j]
+            }
         }
     }
-}</code></pre><p>对于这个问题，我们主要需要注意的点在于：</p>
-<ol>
-<li>判断窗口收缩的条件是什么？</li>
-<li>何时返回true？</li>
-</ol>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func checkInclusion(s1 string, s2 string) bool {
-    // 用map定义滑动窗口和目标子串
-    window, need := make(map[byte]int), make(map[byte]int)
-    // 初始化目标子串
-    for _, v := range s1 {
-        need[byte(v)]++
-    }
-    // 定义窗口左右边界
-    left, right := 0,0
-
-    // 记录已经凑足的有效字符种类数
-    valid := 0
-
-    // 右边界没到底
-    for right != len(s2)  {
-        // 记录当前字符
-        c := s2[right]
-        // 右边界右移
-        right++
-        // 将此字符加入窗口
-        window[c]++
-        // 如果这个字符所需个数已经满足要求，valid++
-        if window[c] == need[c] {
-            valid++
-        }
-
-        // 如果字符总个数已经达到了要求字符数，可能是一种全排列，准备缩小窗口
-        for right - left == len(s1)  {
-            // 字符总个数和对应字符数均符合，说明刚好是一种全排列，直接返回true
-            if valid == len(need) {
-                return true
-            }
-
-            // 走到这里说明不是一种全排列，缩小窗口
-            c := s2[left]
-            // 如果减去这个字符之后会导致这个字符的个数不足，那么valid--
-            if window[c] == need[c] {
-                valid--
-            }
-
-            // 缩小窗口
-            window[c]--
-            left++
-            }
-    }
-    // 已经走到底了还是没有符合要求的字符串
-    return false
-}
-</code></pre><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>在最坏的情况下，两个指针都要扫描整个字符串S一遍，如果字符串的长度为n，则时间复杂度是O((2n))=O((n))</p>
-<h3 id="空间复杂度：O-C"><a href="#空间复杂度：O-C" class="headerlink" title="空间复杂度：O((C))"></a>空间复杂度：O((C))</h3><p>采用了两个辅助的map，用于记录当前窗口的字符串和子串，如果子串字符种类数为C，则空间复杂度为O((C))</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>写出滑动窗口算法的框架不难，难的是处理好细节问题，而这个细节问题则需要具体问题具体分析，比如对于这道题，需要注意的就是：</p>
-<ol>
-<li><p>何时不再扩张窗口（右边界不移动）？</p>
-<p> 由于各种全排列的字符数量是固定的，所以一旦窗口扩张到字符数量到了目标子串的数量，那么就需要查看是否已经得到了满足要求的子串，如果没有，则需要移动左边界，缩小窗口，然后右边界继续右移。</p>
-</li>
-<li><p>何时返回 true ？</p>
-<p> 当进入缩小窗口循环的时候，说明字符总数已经匹配了，那么只要再满足一个条件，就是对应字符的数量匹配就说明是一个合法的排列了，可以直接返回true。</p>
-</li>
-</ol>
+    return dp[n][amount]
+}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-N-amount"><a href="#时间复杂度：O-N-amount" class="headerlink" title="时间复杂度：O((N*amount))"></a>时间复杂度：O((N*amount))</h3><p>硬币面值为N，总金额数是amount，两层循环，所以算法的总时间复杂度是 O((N*amount))</p>
+<h3 id="空间复杂度：O-N-amount"><a href="#空间复杂度：O-N-amount" class="headerlink" title="空间复杂度：O((N*amount))"></a>空间复杂度：O((N*amount))</h3><p>需要开辟一个为N*amount大小的dp数组。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>完全背包问题和之前的01背包和子集背包问题最大的不同在于物品的数量是无限的，在推导状态转移方程的时候需要特别注意。</p>
 
             </div>
             <hr />
@@ -782,9 +748,9 @@ void slidingWindow(string s, string t) {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-567】字符串的排列》
+                    《【leetcode-518】零钱兑换 II((完全背包))》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/30/leetcode-567/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/09/leetcode-518/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -825,7 +791,7 @@ void slidingWindow(string s, string t) {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/30/leetcode-567/',
+        id: '2021/03/09/leetcode-518/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -846,50 +812,56 @@ void slidingWindow(string s, string t) {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/31/go-feature-socket-tcp/">
+                <a href="/2021/03/09/leetcode-518/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【Go特性7】Socket编程之TCP">
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="【leetcode-518】零钱兑换 II((完全背包))">
                         
-                        <span class="card-title">【Go特性7】Socket编程之TCP</span>
+                        <span class="card-title">【leetcode-518】零钱兑换 II((完全背包))</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要是接着【Go特性6】Socket编程初探来进一步介绍一下在Go语言中是如何具体实现TCP通信的，这里我们采用的是C/S架构。
+                            完全背包问题和之前的01背包和子集背包问题最大的不同在于物品的数量是无限的，在推导状态转移方程的时候需要特别注意。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/tcp/" target="_blank">
-                        <span class="chip bg-color">tcp</span>
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
+                    </a>
+                    
+                    <a href="/tags/背包/" target="_blank">
+                        <span class="chip bg-color">背包</span>
                     </a>
                     
                 </div>
@@ -903,31 +875,35 @@ void slidingWindow(string s, string t) {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/29/go-feature-socket/">
+                <a href="/2021/03/08/fabric-softhsm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【Go特性6】Socket编程初探">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="fabric如何使用SoftHSM">
                         
-                        <span class="card-title">【Go特性6】Socket编程初探</span>
+                        <span class="card-title">fabric如何使用SoftHSM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Socket，英文含义是【插座、插孔】，一般称之为套接字，用于描述IP地址和端口。可以实现不同程序间的数据通信。
+                            本节我们来讲讲如何在fabric中配置SoftHSM
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-29
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
+                            <a href="/categories/密码学/" class="post-category" target="_blank">
+                                    密码学
+                                </a>
+                            
+                            <a href="/categories/密码学/fabric/" class="post-category" target="_blank">
+                                    fabric
                                 </a>
                             
                             
@@ -937,8 +913,16 @@ void slidingWindow(string s, string t) {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
+                    <a href="/tags/密码学/" target="_blank">
+                        <span class="chip bg-color">密码学</span>
+                    </a>
+                    
+                    <a href="/tags/SoftHSM/" target="_blank">
+                        <span class="chip bg-color">SoftHSM</span>
+                    </a>
+                    
+                    <a href="/tags/fabric/" target="_blank">
+                        <span class="chip bg-color">fabric</span>
                     </a>
                     
                 </div>
