@@ -4,13 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-198】打家劫舍, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-337】打家劫舍III, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接198. 打家劫舍
-题目描述你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
-给定一个代表每个房">
+    <meta name="description" content="题目链接337. 打家劫舍 III
+题目描述在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-198】打家劫舍 | 小熊的作坊</title>
+    <title>【leetcode-337】打家劫舍III | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -331,13 +330,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-198】打家劫舍
+                        【leetcode-337】打家劫舍III
                     </div>
                 </div>
             </div>
@@ -456,6 +455,10 @@
                             <span class="chip bg-color">动态规划</span>
                         </a>
                         
+                        <a href="/tags/tree/" target="_blank">
+                            <span class="chip bg-color">tree</span>
+                        </a>
+                        
                     </div>
                     
                 </div>
@@ -490,14 +493,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    552
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    2 分
                 </div>
                 
                 
@@ -513,64 +516,68 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/house-robber/" target="_blank" rel="noopener">198. 打家劫舍</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
-<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
-<p>示例 1：</p>
-<pre><code>输入：[1,2,3,1]
-输出：4
-解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
-     偷窃到的最高金额 = 1 + 3 = 4 。
-</code></pre><p>示例 2：</p>
-<pre><code>输入：[2,7,9,3,1]
-输出：12
-解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，接着偷窃 5 号房屋 (金额 = 1)。
-     偷窃到的最高金额 = 2 + 9 + 1 = 12 。</code></pre><p>提示：</p>
-<ul>
-<li>0 &lt;= nums.length &lt;= 100</li>
-<li>0 &lt;= nums[i] &lt;= 400</li>
-</ul>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这是一道典型的动态规划题型，而动态规划的关键在于【状态】和【选择】。</p>
-<p>现在我们来模拟一下这个场景，假设我们从第一间房子开始，可以选择取出该房子内的钱或者不取。</p>
-<ul>
-<li><p>假设取出该房子内的钱，那么相邻的下一个房子就不能取了，只能到再下一个房子继续做选择。</p>
-</li>
-<li><p>假设不取出该房子内的钱，那么就可以走到相邻的下一个房子，继续做选择。</p>
-</li>
-</ul>
-<p>当我们走过最后一个房子，显然就不能做选择，此时我们所能获得现金就是0（所谓的base case）</p>
-<p>我们这里的状态（在做选择的过程中变化的量）其实就是房子的索引。</p>
-<h3 id="1-定义dp数组"><a href="#1-定义dp数组" class="headerlink" title="1. 定义dp数组"></a>1. 定义dp数组</h3><h5 id="dp-i-表示从第i个房子开始做选择，最多可以获得的金额"><a href="#dp-i-表示从第i个房子开始做选择，最多可以获得的金额" class="headerlink" title="dp[i]表示从第i个房子开始做选择，最多可以获得的金额"></a><center><font color="blue">dp[i]表示从第i个房子开始做选择，最多可以获得的金额</font></center></h5><h3 id="2-确定base-case"><a href="#2-确定base-case" class="headerlink" title="2. 确定base case"></a>2. 确定base case</h3><h5 id="dp-n-1-0"><a href="#dp-n-1-0" class="headerlink" title=" dp[n+1]=0 "></a><center><font color="blue"> dp[n+1]=0 </font></center></h5><p>表示（从i+1个）开始选，但是注意此时已经没有房子可以选了，所以金额只能是0</p>
-<h3 id="3-推导状态转移方程"><a href="#3-推导状态转移方程" class="headerlink" title="3. 推导状态转移方程"></a>3. 推导状态转移方程</h3><p>有两个选择，在第i个房子取钱或者不取钱</p>
-<ul>
-<li>如果取了第i个房子里的钱就不能取第i+1个，只能从i+2个开始取。</li>
-<li>如果没有取第i个房子里的钱，那么就可以从第i+1个开始取。</li>
-</ul>
-<p>然后从这两个选择里面取最优结果就行了。</p>
-<h5 id="dp-i-max-dp-i-1-nums-i-dp-i-2"><a href="#dp-i-max-dp-i-1-nums-i-dp-i-2" class="headerlink" title=" dp [ i ] = max ( dp [ i + 1 ], nums[ i ] + dp [ i + 2 ] ) "></a><center><font color="blue"> dp [ i ] = max ( dp [ i + 1 ], nums[ i ] + dp [ i + 2 ] ) </font></center></h5><p>分析完动态规划的框架后，其实已经可以直接写代码了。但是我们先等等，因为如果我们直接按照这个思路写代码虽然很好理解，但是由于base case是i=n+1，也就是我们最先知道的是dp[n+1]，那么如果从i=1开始遍历，就意味着要进行递归，因为dp[i]的结果是依赖于dp[i+1]和dp[i+2]的，而dp[i+1]的结果是依赖于dp[i+2]和dp[i+3]的……</p>
-<p>所以我们为了避开递归，可以从i=n-1开始((为什么不是i=n，是因为第i个房子里的钱是nums[i-1]))，这里主要是为了防止数组越界），这样写出来的代码就简洁多了。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func rob(nums []int) int {
-    n := len(nums)
-    // 这里的状态只有选第几个房子，选择就是取钱还是不取钱
-    // 定义dp数组，dp[i]表示从第i个房子开始做选择，最多可以获得的金额
-    // 需注意dp数组的大小
-    dp := make([]int, n + 2)
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/house-robber-iii/" target="_blank" rel="noopener">337. 打家劫舍 III</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果两个直接相连的房子在同一天晚上被打劫，房屋将自动报警。</p>
+<p>计算在不触动警报的情况下，小偷一晚能够盗取的最高金额。</p>
+<p>示例 1:</p>
+<pre><code>输入: [3,2,3,null,3,null,1]
 
-    //     确定base case，这里已经自动初始化好了
-    //dp[n+1] = 0
+     3
+    / \
+   2   3
+    \   \ 
+     3   1
 
-    // 推导状态转移方程，注意这里为了防止数组越界，i是从n+1开始的
-    for i := n - 1; i &gt;= 0 ;i--  {
-        // 有两个选择，在第i个房子取钱或者不取钱
-        dp[i] = max(dp[i+1], nums[i] + dp[i+2])
+输出: 7 
+解释: 小偷一晚能够盗取的最高金额 = 3 + 3 + 1 = 7.</code></pre><p>示例 2:</p>
+<pre><code>输入: [3,4,5,1,3,null,1]
+
+     3
+    / \
+   4   5
+  / \   \ 
+ 1   3   1
+
+输出: 9
+解释: 小偷一晚能够盗取的最高金额 = 4 + 5 = 9.</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这是打家劫舍系列的第三题，但这次不是数组了，是二叉树了。</p>
+<p>对于二叉树来说，相邻的房子的索引不再是i-1或者是i-1了，而是父节点和左右子节点，所以这里我们只需要在<a href="https://leetcode-cn.com/problems/house-robber/" target="_blank" rel="noopener">198. 打家劫舍</a>的基础上改变一下遍历的顺序就行了，按照二叉树的顺序遍历而不是线性表。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>// 定义备忘录
+var memo = map[*TreeNode]int{}
+
+func rob(root *TreeNode) int {
+    // 定义base case
+    if root == nil {
+        return 0
     }
-    return dp[0]
-}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>这里就一层循环，遍历了一下所有的房子，所以算法的总时间复杂度是 O((n))</p>
-<h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>需要开辟一个大小为n的dp数组。</p>
-<blockquote>
-<p>值得注意的是，我们其实可以通过状态压缩进一步将空间复杂度压缩到常数级，也就是O((1))，不过写出来的代码就有点不好理解了。</p>
-</blockquote>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>动态规划中，对dp数组适当的遍历顺序可以简化代码。</p>
+
+    // 利用备忘录消除重叠子问题
+    if _, ok := memo[root]; ok {
+        return memo[root]
+    }
+
+    // 做选择
+    // 选当前节点，那么只能隔一层选下下层
+    do := root.Val
+    if root.Left != nil {
+        do += rob(root.Left.Left) + rob(root.Left.Right)
+    }
+
+    if root.Right != nil {
+        do += rob(root.Right.Left) + rob(root.Right.Right)
+    }
+
+    // 不选当前节点，可以选下一层
+    notDo := rob(root.Left) + rob(root.Right)
+
+    // 选其中较大者
+    res := max(do, notDo)
+    // 记录备忘录
+    memo[root] = res
+    return res
+}
+</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>n为树的节点数</p>
+<h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>需要开辟一个大小为n的memo数组。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题需要注意二叉树的遍历顺序。</p>
 
             </div>
             <hr />
@@ -729,9 +736,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-198】打家劫舍》
+                    《【leetcode-337】打家劫舍III》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/11/leetcode-198/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/11/leetcode-337/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -772,7 +779,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/03/11/leetcode-198/',
+        id: '2021/03/11/leetcode-337/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -793,9 +800,68 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/03/11/leetcode-337/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【leetcode-337】打家劫舍III">
+                        
+                        <span class="card-title">【leetcode-337】打家劫舍III</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            这道题需要注意二叉树的遍历顺序。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
+                    </a>
+                    
+                    <a href="/tags/tree/" target="_blank">
+                        <span class="chip bg-color">tree</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2021/03/11/leetcode-213/">
                     <div class="card-image">
@@ -813,9 +879,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -837,66 +903,6 @@
                     
                     <a href="/tags/动态规划/" target="_blank">
                         <span class="chip bg-color">动态规划</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/03/10/go-sourcecode-panic-recover/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="【Go源码解析11】panic和recover">
-                        
-                        <span class="card-title">【Go源码解析11】panic和recover</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-本节将分析 Go 语言中两个经常成对出现的两个关键字 — panic 和 recover。这两个关键字与上一节提到的 defer 有紧密的联系，它们都是 Go 语言中的内置函数，也提供了互补的功能。
-
-
-
-点击图片查看高清大图
-
-
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-10
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
-                    </a>
-                    
-                    <a href="/tags/源码解析/" target="_blank">
-                        <span class="chip bg-color">源码解析</span>
                     </a>
                     
                 </div>
