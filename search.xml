@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>【Go源码解析12】make和new</title>
+      <link href="/2021/03/11/go-sourcecode-make-new/"/>
+      <url>/2021/03/11/go-sourcecode-make-new/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>当我们想要在 Go 语言中初始化一个结构时，可能会用到两个不同的关键字 — make 和 new。因为它们的功能相似，所以初学者可能会对这两个关键字的作用感到困惑1，但是它们两者能够初始化的变量却有较大的不同。</p></blockquote><p><img src="https://vegard-bear.github.io/images/make%E5%92%8Cnew.png" alt></p><blockquote><p>点击图片查看高清大图</p></blockquote>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-337】打家劫舍III</title>
       <link href="/2021/03/11/leetcode-337/"/>
       <url>/2021/03/11/leetcode-337/</url>
