@@ -176,9 +176,9 @@
             
             <tag> 密码学 </tag>
             
-            <tag> SoftHSM </tag>
-            
             <tag> fabric </tag>
+            
+            <tag> SoftHSM </tag>
             
         </tags>
       
@@ -1673,9 +1673,9 @@
             
             <tag> fabric </tag>
             
-            <tag> 2.2 </tag>
-            
             <tag> chaincode </tag>
+            
+            <tag> 2.2 </tag>
             
         </tags>
       
