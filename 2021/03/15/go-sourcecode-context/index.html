@@ -4,12 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【Go源码解析7】反射, 小熊的作坊">
+    <meta name="keywords" content="【Go源码解析10】上下文context, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-虽然在大多数的应用和服务中并不常见，但是很多框架都依赖 Go 语言的反射机制简化代码。因为 Go 语言的语法元素很少、设计简单，所以它没有特别强的表达能力，但是 Go 语言的 reflect 包能够弥补它在语法上reflect.Type的">
+    <meta name="description" content="上下文 context.Context Go 语言中用来设置截止日期、同步信号，传递请求相关值的结构体。上下文与 Goroutine 有比较密切的关系，是 Go 语言中独特的设计，在其他编程语言中我们很少见到类似的概念。
+
+
+点击图片查看高">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【Go源码解析7】反射 | 小熊的作坊</title>
+    <title>【Go源码解析10】上下文context | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -330,13 +332,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【Go源码解析7】反射
+                        【Go源码解析10】上下文context
                     </div>
                 </div>
             </div>
@@ -455,10 +457,6 @@
                             <span class="chip bg-color">源码解析</span>
                         </a>
                         
-                        <a href="/tags/反射/" target="_blank">
-                            <span class="chip bg-color">反射</span>
-                        </a>
-                        
                     </div>
                     
                 </div>
@@ -479,7 +477,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-26
+                    2021-03-15
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -493,7 +491,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    101
+                    84
                 </div>
                 
 
@@ -516,10 +514,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>虽然在大多数的应用和服务中并不常见，但是很多框架都依赖 Go 语言的反射机制简化代码。因为 Go 语言的语法元素很少、设计简单，所以它没有特别强的表达能力，但是 Go 语言的 reflect 包能够弥补它在语法上reflect.Type的一些劣势。</p>
-</blockquote>
-<p><img src="https://vegard-bear.github.io/images/%E5%8F%8D%E5%B0%84.png" alt></p>
+                <p>上下文 context.Context Go 语言中用来设置截止日期、同步信号，传递请求相关值的结构体。上下文与 Goroutine 有比较密切的关系，是 Go 语言中独特的设计，在其他编程语言中我们很少见到类似的概念。</p>
+<p><img src="https://vegard-bear.github.io/images/%E4%B8%8A%E4%B8%8B%E6%96%87context.png" alt></p>
 <blockquote>
 <p>点击图片查看高清大图</p>
 </blockquote>
@@ -681,9 +677,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【Go源码解析7】反射》
+                    《【Go源码解析10】上下文context》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/26/go-sourcecode-reflect/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/15/go-sourcecode-context/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -724,7 +720,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/01/26/go-sourcecode-reflect/',
+        id: '2021/03/15/go-sourcecode-context/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -745,47 +741,52 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/02/06/fund-01/">
+                <a href="/2021/03/15/go-sourcecode-context/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="【基金01】投资的基石">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="【Go源码解析10】上下文context">
                         
-                        <span class="card-title">【基金01】投资的基石</span>
+                        <span class="card-title">【Go源码解析10】上下文context</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            投资的基石
-
+                            上下文 context.Context Go 语言中用来设置截止日期、同步信号，传递请求相关值的结构体。上下文与 Goroutine 有比较密切的关系，是 Go 语言中独特的设计，在其他编程语言中我们很少见到类似的概念。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/投资/" class="post-category" target="_blank">
-                                    投资
+                            <a href="/categories/go/" class="post-category" target="_blank">
+                                    go
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/基金/" target="_blank">
-                        <span class="chip bg-color">基金</span>
+                    <a href="/tags/go/" target="_blank">
+                        <span class="chip bg-color">go</span>
+                    </a>
+                    
+                    <a href="/tags/源码解析/" target="_blank">
+                        <span class="chip bg-color">源码解析</span>
                     </a>
                     
                 </div>
@@ -799,24 +800,24 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/01/24/leetcode-651/">
+                <a href="/2021/03/15/leetcode-494/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【leetcode-651】4键键盘">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="【leetcode-494】目标和">
                         
-                        <span class="card-title">【leetcode-651】4键键盘</span>
+                        <span class="card-title">【leetcode-494】目标和</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            动态规划难就难在寻找状态转移，不同的定义可以产生不同的状态转移逻辑，虽然最后都能得到正确的结果，但是效率可能有巨大的差异。
+                            回溯算法和动态规划其实有很多相似之处，对于大多数题目可以相互转化。对于第二种解法，可以考虑状态压缩，也就是将二维数组压缩成一维数组，可以进一步优化空间复杂度。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-24
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-15
                             </span>
                         <span class="publish-author">
                             
@@ -839,6 +840,10 @@
                     
                     <a href="/tags/动态规划/" target="_blank">
                         <span class="chip bg-color">动态规划</span>
+                    </a>
+                    
+                    <a href="/tags/背包/" target="_blank">
+                        <span class="chip bg-color">背包</span>
                     </a>
                     
                 </div>
