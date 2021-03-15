@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>【leetcode-494】目标和</title>
+      <link href="/2021/03/15/leetcode-494/"/>
+      <url>/2021/03/15/leetcode-494/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/target-sum/" target="_blank" rel="noopener">494. 目标和</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个非负整数数组，a1, a2, …, an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择一个符号添加在前面。</p><p>返回可以使最终数组和为目标数 S 的所有添加符号的方法数。</p><p>示例：</p><pre><code>输入：nums: [1, 1, 1, 1, 1], S: 3输出：5解释：-1+1+1+1+1 = 3+1-1+1+1+1 = 3+1+1-1+1+1 = 3+1+1+1-1+1 = 3+1+1+1+1-1 = 3一共有5种方法让最终目标和为3。</code></pre><p>提示：</p><ul><li>数组非空，且长度不会超过 20 。</li><li>初始的数组的和不会超过 1000 。</li><li>保证返回的最终结果能被 32 位整数存下。</li></ul><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题我们将给出两个题解决，第一种是常规的动态规划（第一反应应该想到的），第二种是将题意转化成【子集背包问题】，然后再套用背包算法框架解决。</p><p>动态规划首先需要确定状态和选择，在这道题中，状态就是遍历到第几个数（数组的下标），选择就是给每个数字选择“+”还是“-”号。此外还可以通过设置备忘录消除重叠子问题。</p><p>具体题解可参考<a href="https://leetcode-cn.com/problems/target-sum/solution/dong-tai-gui-hua-he-hui-su-suan-fa-dao-di-shui-shi/" target="_blank" rel="noopener">动态规划和回溯算法对比</a></p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h2 id="传统动态规划"><a href="#传统动态规划" class="headerlink" title="传统动态规划"></a>传统动态规划</h2><pre><code>// 利用备忘录消除重叠子问题var memo = map[string]int{}func findTargetSumWays(nums []int, S int) int {    memo = map[string]int{}    // 如果数组为空，直接返回    if len(nums) == 0 {        return 0    }    // 从nums[0]开始选择，初始状态需要凑的数字为S    return dp(nums, 0, S)}func dp(nums []int, i, rest int) int {    // 定义base case    // 如果已经遍历完所有的数字    if i == len(nums) {        // 此时刚好凑成需要的数字        if rest == 0 {            // 那么说明已经找到了一种符合要求的组合，直接返回1            return 1        }        // 用了所有的数字仍然没刚好凑足数字，返回0        return 0    }    // 如果已经计算过，直接返回    // 这里采用拼凑的方法得到key，memo[key]表示遍历到nums[i]开始算，有多少种组合可以凑成rest    // 注意这里将int转成string不能直接用string()，否则会转成空    key := strconv.Itoa(i) + &quot;,&quot; + strconv.Itoa(rest)    if n, ok := memo[key]; ok {        return n    }    // 推导状态转移方程，其实就是选择&quot;+&quot;还是&quot;-&quot;    // 注意这里是将两个组合相加而不是选最优    result := dp(nums, i + 1, rest - nums[i]) + dp(nums, i + 1, rest + nums[i])    // 将计算过的结果添加到备忘录中    memo[key] = result    return result}</code></pre><h2 id="背包问题解法"><a href="#背包问题解法" class="headerlink" title="背包问题解法"></a>背包问题解法</h2><pre><code>func findTargetSumWays(nums []int, S int) int {    // 转化为背包问题，重新定义target    sum := 0    for _, num := range nums {        sum += num    }    target := (S + sum)/2    // 注意，这两种情况没法进行子集划分，不符合背包问题，需要排除    if sum &lt; S || (S + sum)%2 == 1 {        return 0    }    // 定义dp数组，dp[i][j]表示对于前i个物品，恰好装满容量为j的背包有几种组合    n := len(nums)    dp := make([][]int, n + 1)    for i := 0; i &lt;= n; i++ {        dp[i] = make([]int, target + 1)    }    // 定义base case    // dp[0][...]=0表示物品个数为0时没有能装满背包的方法    // dp[...][0]=1表示背包容量为0时，什么都不用做也算一种组合    for i := 0; i &lt;= n; i++ {        dp[i][0] = 1    }    // 推导状态转移方程，注意这里的i是从1开始算的，那么nums[i-1]就表示第i个物品    // 注意，这道题和常规的背包问题有所不同，j是从0开始的    // 因为dp[...][0]不能简单的认为就是1，就是说可能存在x个物品，这x个物品的重量都为0，    // 那么当背包的承重为0的时候，是可以在这x个物品中任选来实现的，所以在求dp数组的时候，j是要从0开始计算的    for i := 1; i &lt;= n; i++ {        for j := 0; j &lt;= target; j++ {            // 当前物品太大，放不进背包，肯定不放            if j - nums[i-1] &lt; 0 {                dp[i][j] = dp[i-1][j]            } else {                // 可以选择放或者不放，两种选择之和                dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]]            }        }    }    return dp[n][target]}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n-S"><a href="#时间复杂度：O-n-S" class="headerlink" title="时间复杂度：O((n*S))"></a>时间复杂度：O((n*S))</h3><p>n为数组的元素个数</p><h3 id="空间复杂度：O-n-S"><a href="#空间复杂度：O-n-S" class="headerlink" title="空间复杂度：O((n*S))"></a>空间复杂度：O((n*S))</h3><p>需要开辟一个大小为n*S的二维数组</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>回溯算法和动态规划其实有很多相似之处，对于大多数题目可以相互转化。对于第二种解法，可以考虑状态压缩，也就是将二维数组压缩成一维数组，可以进一步优化空间复杂度。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 动态规划 </tag>
+            
+            <tag> 背包 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Go源码解析12】make和new</title>
       <link href="/2021/03/11/go-sourcecode-make-new/"/>
       <url>/2021/03/11/go-sourcecode-make-new/</url>
@@ -176,9 +205,9 @@
             
             <tag> 密码学 </tag>
             
-            <tag> fabric </tag>
-            
             <tag> SoftHSM </tag>
+            
+            <tag> fabric </tag>
             
         </tags>
       

@@ -4,17 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【Go 基础】, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-494】目标和, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="指针Go语言保留了指针，但与C语言指针有所不同。主要体现在：
-
-默认值 nil
-操作符 “&amp;amp;” 取变量地址， “*” 通过指针访问目标对象
-不支持指针运算，不支持 “-&amp;gt;” 运算符，直接⽤ “.” 访问目标成员
-
-函数new表">
+    <meta name="description" content="题目链接494. 目标和
+题目描述给定一个非负整数数组，a1, a2, …, an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择一个符号添加在前面。
+返回可以使最终数组和为目标数 ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【Go 基础】 | 小熊的作坊</title>
+    <title>【leetcode-494】目标和 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -335,13 +331,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【Go 基础】
+                        【leetcode-494】目标和
                     </div>
                 </div>
             </div>
@@ -452,8 +448,16 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/go/" target="_blank">
-                            <span class="chip bg-color">go</span>
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
+                        </a>
+                        
+                        <a href="/tags/动态规划/" target="_blank">
+                            <span class="chip bg-color">动态规划</span>
+                        </a>
+                        
+                        <a href="/tags/背包/" target="_blank">
+                            <span class="chip bg-color">背包</span>
                         </a>
                         
                     </div>
@@ -464,8 +468,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/go/" class="post-category" target="_blank">
-                            go
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
                         </a>
                         
                     </div>
@@ -476,7 +480,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-16
+                    2021-03-15
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -490,14 +494,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    4 分
                 </div>
                 
                 
@@ -513,201 +517,118 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><p>Go语言保留了指针，但与C语言指针有所不同。主要体现在：</p>
-<ul>
-<li>默认值 nil</li>
-<li>操作符 “&amp;” 取变量地址， “*” 通过指针访问目标对象</li>
-<li>不支持指针运算，不支持 “-&gt;” 运算符，直接⽤ “.” 访问目标成员</li>
-</ul>
-<h4 id="函数new"><a href="#函数new" class="headerlink" title="函数new"></a>函数new</h4><p>表达式new(T)将创建一个T类型的<strong>匿名变量</strong>，所做的是为T类型的新值分配并清零一块内存空间，然后将这块内存空间的地址作为结果返回，而这个结果就是指向这个新的T类型值的指针值，返回的指针类型为*T。</p>
-<p>new创建的内存空间位于heap上，空间的默认值为数据类型默认值。如：new(int) 则 <em>p为0，new(bool) 则 </em>p为false</p>
-<pre><code>func main() { 
-    var p1 *int 
-    p1 = new(int)                     
-    //p1为*int 类型, 指向匿名的int变量 
-    fmt.Println(&quot;*p1 = &quot;, *p1)          //*p1 =  0  
-    p2 := new(bool)                      //p2为*bool 类型, 指向匿名的bool变量 
-    fmt.Println(&quot;*p2 = &quot;, *p2)          //*p2 = false 
-    *p2 = true 
-    fmt.Println(&quot;*p2 = &quot;, *p2)          //*p1 = true 
-}
-</code></pre><h4 id="指针做函数参数"><a href="#指针做函数参数" class="headerlink" title="指针做函数参数"></a>指针做函数参数</h4><pre><code>func swap01(a, b int) {
-    a, b = b, a
-    fmt.Printf(&quot;swap01 a = %d, b = %d\n&quot;, a, b)
-}
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/target-sum/" target="_blank" rel="noopener">494. 目标和</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个非负整数数组，a1, a2, …, an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择一个符号添加在前面。</p>
+<p>返回可以使最终数组和为目标数 S 的所有添加符号的方法数。</p>
+<p>示例：</p>
+<pre><code>输入：nums: [1, 1, 1, 1, 1], S: 3
+输出：5
+解释：
 
-func swap02(x, y *int) {
-    *x, *y = *y, *x
-}
+-1+1+1+1+1 = 3
++1-1+1+1+1 = 3
++1+1-1+1+1 = 3
++1+1+1-1+1 = 3
++1+1+1+1-1 = 3
 
-func main() {
-    a := 10
-    b := 20
+一共有5种方法让最终目标和为3。</code></pre><p>提示：</p>
+<ul>
+<li>数组非空，且长度不会超过 20 。</li>
+<li>初始的数组的和不会超过 1000 。</li>
+<li>保证返回的最终结果能被 32 位整数存下。</li>
+</ul>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题我们将给出两个题解决，第一种是常规的动态规划（第一反应应该想到的），第二种是将题意转化成【子集背包问题】，然后再套用背包算法框架解决。</p>
+<p>动态规划首先需要确定状态和选择，在这道题中，状态就是遍历到第几个数（数组的下标），选择就是给每个数字选择“+”还是“-”号。此外还可以通过设置备忘录消除重叠子问题。</p>
+<p>具体题解可参考<a href="https://leetcode-cn.com/problems/target-sum/solution/dong-tai-gui-hua-he-hui-su-suan-fa-dao-di-shui-shi/" target="_blank" rel="noopener">动态规划和回溯算法对比</a></p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h2 id="传统动态规划"><a href="#传统动态规划" class="headerlink" title="传统动态规划"></a>传统动态规划</h2><pre><code>// 利用备忘录消除重叠子问题
+var memo = map[string]int{}
 
-    //swap01(a, b)     //值传递（传值）
-    swap02(&amp;a, &amp;b)     //地址传递（传引用）
-    fmt.Printf(&quot;a = %d, b = %d\n&quot;, a, b)
-}</code></pre><h4 id="关于多重赋值"><a href="#关于多重赋值" class="headerlink" title="关于多重赋值"></a>关于多重赋值</h4><p><a href="https://www.jianshu.com/p/de95ef71162d" target="_blank" rel="noopener">https://www.jianshu.com/p/de95ef71162d</a></p>
-<h1 id="切片（slice）"><a href="#切片（slice）" class="headerlink" title="切片（slice）"></a>切片（slice）</h1><h4 id="为什么要有切片"><a href="#为什么要有切片" class="headerlink" title="为什么要有切片?"></a>为什么要有切片?</h4><ol>
-<li>数组的容量固定，不能自动拓展。</li>
-<li>值传递。 数组作为函数参数时，将整个数组值拷贝一份给形参（值拷贝内存消耗大）。</li>
-</ol>
-<p>在Go语言中，我们几乎可以在所有的场景中，使用切片替换数组使用。</p>
-<ul>
-<li>一个slice由三个部分构成：指针、长度和容量。</li>
-</ul>
-<p><font color="red">切片并不是数组或数组指针，它通过内部指针和相关属性引⽤数组⽚段，以实现变⻓⽅案。（后续通过阅读源码深入了解）</font></p>
-<h4 id="切片创建"><a href="#切片创建" class="headerlink" title="切片创建"></a>切片创建</h4><p>可以用make关键字:</p>
-<pre><code>s := make([]int, 5)</code></pre><blockquote>
-<p>注意：make只能创建slice、map和channel，并且返回一个有初始值(非零)的对象。</p>
-</blockquote>
-<h4 id="切片截取"><a href="#切片截取" class="headerlink" title="切片截取"></a>切片截取</h4><p>截取可表示为s[low：high：max]。</p>
-<ul>
-<li>low：表示下标的起点。</li>
-<li>high：表示下标的终点<font color="red">（左闭右开，不包括此下标）</font>。 </li>
-<li>长度 len = high – low。</li>
-<li>容量 cap = max – low。</li>
-</ul>
-<p>长度对应slice中元素的数目；长度不能超过容量，容量一般是从slice的开始位置到底层数据的结尾位置。</p>
-<blockquote>
-<p>切片作为函数参数时，传引用</p>
-</blockquote>
-<h4 id="append函数"><a href="#append函数" class="headerlink" title="append函数"></a>append函数</h4><p>append函数会智能的将底层数组的容量增长，一旦超过原底层数组容量，通常以2倍（1024以下）容量重新分配底层数组，并复制原来的数据。</p>
-<p>因此，使用append 给切片做扩充时，切片的地址可能发生变化。但，数据都被重新保存了，不影响使用</p>
-<h4 id="copy函数"><a href="#copy函数" class="headerlink" title="copy函数"></a>copy函数</h4><p>函数 copy 在两个 slice 间复制数据，复制⻓度以 len 小的为准，两个 slice 指向同⼀底层数组。直接对应位置覆盖。</p>
-<ul>
-<li>copy（目标位置切片， 源切片）</li>
-</ul>
-<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><p>Go语言中的map(映射、字典)是一种内置的数据结构，它是一个<font color="red">无序</font>的key-value对的集合，比如以身份证号作为唯一键来标识一个人的信息。</p>
-<p>Go语言中并没有提供一个set类型，但是map中的key也是不相同的，可以用map实现类似set的功能。</p>
-<p>map的格式:</p>
-<pre><code>map[keyType]valueType</code></pre><p><strong>在一个map里所有的键都是唯一的，而且必须是支持==和!=操作符的类型，切片、函数以及包含切片的结构类型这些类型由于具有引用语义，不能作为映射的键，使用这些类型会造成编译错误。</strong></p>
-<blockquote>
-<p>注意：map是无序的，我们无法决定它的返回顺序，所以，每次打印结果的顺利有可能不同。</p>
-</blockquote>
-<h4 id="创建map"><a href="#创建map" class="headerlink" title="创建map"></a>创建map</h4><pre><code>m := make(map[int]string, 10)   //第2个参数指定容量</code></pre><h4 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h4><ul>
-<li><p>如果新map元素的key与原map元素key相同     ——&gt; 覆盖（替换）</p>
-</li>
-<li><p>如果新map元素的key与原map元素key不同    ——&gt; 添加</p>
-</li>
-</ul>
-<h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><p>Map的迭代顺序是不确定的，并且不同的哈希函数实现可能导致不同的遍历顺序。在实践中，遍历的顺序是随机的，每一次遍历的顺序都不相同。</p>
-<p>判断map中key是否存在：</p>
-<pre><code>value, ok := m[1]</code></pre><ul>
-<li><p>如果key存在，第一个返回值返回value的值。第二个返回值为 true。</p>
-</li>
-<li><p>如果key存在，第一个返回值返回value的值。第二个返回值为 true。</p>
-</li>
-</ul>
-<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p>使用delete()函数，指定key值可以方便的删除map中的k-v映射。</p>
-<pre><code>delete(m1, 2)         //删除key值为2的map</code></pre><blockquote>
-<p>map 做函数参数和返回值，传引用。</p>
-</blockquote>
-<h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><p>如果结构体的全部成员都是可以比较的，那么结构体也是可以比较的，那样的话两个结构体将可以使用 == 或 != 运算符进行比较，但不支持 &gt; 或 &lt;</p>
-<h4 id="做函数参数"><a href="#做函数参数" class="headerlink" title="做函数参数"></a>做函数参数</h4><p>传参过程中，实参会将自己的值拷贝一份给形参。因此结构体“传值”操作几乎不会在实际开发中被使用到。近乎100%的使用都采用“传址”的方式，将结构体的引用传递给所需函数。</p>
-<h1 id="字符串处理函数"><a href="#字符串处理函数" class="headerlink" title="字符串处理函数"></a>字符串处理函数</h1><p>具体可参考<a href="https://studygolang.com/pkgdoc" target="_blank" rel="noopener">Golang标准库文档</a></p>
-<p>除Contains、Join、Trim、Replace等我们学过的字符串处理函数之外，以下函数也常常会被用到。</p>
-<h4 id="字符串分割"><a href="#字符串分割" class="headerlink" title="字符串分割"></a>字符串分割</h4><ul>
-<li>func Split(s, sep string) []string</li>
-</ul>
-<p>功能：把s字符串按照sep分割，返回slice</p>
-<h4 id="按空格拆分字符串"><a href="#按空格拆分字符串" class="headerlink" title="按空格拆分字符串"></a>按空格拆分字符串</h4><ul>
-<li>func Split(s, sep string) []string<br>功能：把s字符串按照sep分割，返回slice</li>
-</ul>
-<h4 id="判断字符串后缀"><a href="#判断字符串后缀" class="headerlink" title="判断字符串后缀"></a>判断字符串后缀</h4><ul>
-<li>func HasSuffix(s, suffix string) bool<br>功能：判断s字符串是否有后缀子串suffix</li>
-</ul>
-<h4 id="判断字符串前缀"><a href="#判断字符串前缀" class="headerlink" title="判断字符串前缀"></a>判断字符串前缀</h4><ul>
-<li>func HasPrefix(s, prefix string) bool<br>功能：判断s字符串是否有前缀子串suffix</li>
-</ul>
-<h1 id="文件IO"><a href="#文件IO" class="headerlink" title="文件IO"></a>文件IO</h1><h2 id="打开、创建文件："><a href="#打开、创建文件：" class="headerlink" title="打开、创建文件："></a>打开、创建文件：</h2><ol>
-<li>创建文件  Create：     文件不存在创建，文件存在，将文件内容清空。</li>
-</ol>
-<ul>
-<li>参数：name， 打开文件的路径： 绝对路径、相对路径        目录分割符：/ </li>
-</ul>
-<ol start="2">
-<li>打开文件 Open：        以只读方式打开文件。文件不存在，打开失败。</li>
-</ol>
-<ul>
-<li>参数：name， 打开文件的路径： 绝对路径、相对路径</li>
-</ul>
-<ol start="3">
-<li>打开文件 OpenFile：    以只读、只写、读写 方式打开文件。文件不存在，打开失败。</li>
-</ol>
-<ul>
-<li><p>参1：name， 打开文件的路径： 绝对路径、相对路径</p>
-</li>
-<li><p>参2：打开文件权限： O_RDONLY、O_WRONLY、O_RDWR</p>
-</li>
-<li><p>参3：一般传 6</p>
-</li>
-</ul>
-<h2 id="写文件："><a href="#写文件：" class="headerlink" title="写文件："></a>写文件：</h2><h4 id="按字符串写："><a href="#按字符串写：" class="headerlink" title="按字符串写："></a>按字符串写：</h4><p>WriteString（）    –&gt; n个写入的字符个数</p>
-<pre><code>n, err := f.WriteString(&quot;123&quot;)</code></pre><p>回车换行：    windows： \r\n    Linux: \n</p>
-<h4 id="按位置写"><a href="#按位置写" class="headerlink" title="按位置写:"></a>按位置写:</h4><p>Seek():     修改文件的读写指针位置。</p>
-<ul>
-<li><p>参1： 偏移量。 正：向文件尾偏， 负：向文件头偏</p>
-</li>
-<li><p>参2： 偏移起始位置：    </p>
-</li>
-</ul>
-<p>io.SeekStart: 文件起始位置</p>
-<p>io.SeekCurrent： 文件当前位置</p>
-<p>io.SeekEnd: 文件结尾位置</p>
-<p>返回值：表示从文件起始位置，到当前文件读写指针位置的偏移量。</p>
-<pre><code>off, _ := f.Seek(-5, io.SeekEnd)</code></pre><h4 id="按字节写："><a href="#按字节写：" class="headerlink" title="按字节写："></a>按字节写：</h4><p>writeAt():  在文件制定偏移位置，写入 []byte ,  通常搭配 Seek()</p>
-<ul>
-<li><p>参1： 待写入的数据</p>
-</li>
-<li><p>参2：偏移量</p>
-</li>
-</ul>
-<p>返回：实际写出的字节数。</p>
-<p>n, _ = f.WriteAt([]byte(“1111”), off)    </p>
-<h2 id="读文件："><a href="#读文件：" class="headerlink" title="读文件："></a>读文件：</h2><h4 id="按行读"><a href="#按行读" class="headerlink" title="按行读"></a>按行读</h4><ol>
-<li>创建一个带有缓冲区的 Reader（读写器）</li>
-</ol>
-<pre><code>reader : = bufio.NewReader(打开的文件指针)</code></pre><ol start="2">
-<li>从reader的缓冲区中 ，读取指定长度的数据。数据长度取决于 参数 dlime</li>
-</ol>
-<pre><code>buf, err := reader.ReadBytes(&#39;\n&#39;)  按行读。</code></pre><p>判断到达文件结尾： </p>
-<pre><code>if err != nil &amp;&amp; err == io.EOF</code></pre><p>到文件结尾。</p>
-<p>文件结束标记，是要单独读一次获取到的。</p>
-<blockquote>
-<p>缓冲区：内存中的一块区域，用来减少物理磁盘访问操作。《计算硬件及组成原理》 —— 机械工业出版社。</p>
-</blockquote>
-<p>按字节读、写文件。</p>
-<ul>
-<li><p>read([]byte):  按字节读文件</p>
-</li>
-<li><p>write([]byte)：按字节字节</p>
-</li>
-</ul>
-<h2 id="目录操作："><a href="#目录操作：" class="headerlink" title="目录操作："></a>目录操作：</h2><h4 id="打开目录：-OpenFile"><a href="#打开目录：-OpenFile" class="headerlink" title="打开目录： OpenFile"></a>打开目录： OpenFile</h4><p>打开目录 OpenFile：    以只读方式打开目录。</p>
-<ul>
-<li><p>参1：name， 打开目录的路径： 绝对路径、相对路径</p>
-</li>
-<li><p>参2：打开目录权限： O_RDONLY</p>
-</li>
-<li><p>参3：os.ModeDir</p>
-</li>
-</ul>
-<p>返回值： 返回一个可以读目录的 文件指针。</p>
-<h4 id="读目录：Readdir"><a href="#读目录：Readdir" class="headerlink" title="读目录：Readdir"></a>读目录：Readdir</h4><p>函数原型：</p>
-<pre><code>func (f *File) Readdir(n int) ([]FileInfo, error) {
-    //参数: 欲打开的目录项个数。 -1 ， 表所有
-    //返回值：FileInfo ：
+func findTargetSumWays(nums []int, S int) int {
+    memo = map[string]int{}
+    // 如果数组为空，直接返回
+    if len(nums) == 0 {
+        return 0
+    }
+
+    // 从nums[0]开始选择，初始状态需要凑的数字为S
+    return dp(nums, 0, S)
 }
 
-type FileInfo interface {
-    Name() string               // base name of the file
-    Size() int64                // length in bytes for regular files; system-dependent for others
-    Mode() FileMode             // file mode bits
-    ModTime() time.Time     // modification time
-    IsDir() bool                // abbreviation for Mode().IsDir()
-    Sys() interface{}           // underlying data source (can return nil)
-}    </code></pre>
+func dp(nums []int, i, rest int) int {
+    // 定义base case
+    // 如果已经遍历完所有的数字
+    if i == len(nums) {
+        // 此时刚好凑成需要的数字
+        if rest == 0 {
+            // 那么说明已经找到了一种符合要求的组合，直接返回1
+            return 1
+        }
+        // 用了所有的数字仍然没刚好凑足数字，返回0
+        return 0
+    }
+
+    // 如果已经计算过，直接返回
+    // 这里采用拼凑的方法得到key，memo[key]表示遍历到nums[i]开始算，有多少种组合可以凑成rest
+    // 注意这里将int转成string不能直接用string()，否则会转成空
+    key := strconv.Itoa(i) + &quot;,&quot; + strconv.Itoa(rest)
+    if n, ok := memo[key]; ok {
+        return n
+    }
+
+    // 推导状态转移方程，其实就是选择&quot;+&quot;还是&quot;-&quot;
+    // 注意这里是将两个组合相加而不是选最优
+    result := dp(nums, i + 1, rest - nums[i]) + dp(nums, i + 1, rest + nums[i])
+
+    // 将计算过的结果添加到备忘录中
+    memo[key] = result
+    return result
+}</code></pre><h2 id="背包问题解法"><a href="#背包问题解法" class="headerlink" title="背包问题解法"></a>背包问题解法</h2><pre><code>func findTargetSumWays(nums []int, S int) int {
+    // 转化为背包问题，重新定义target
+    sum := 0
+    for _, num := range nums {
+        sum += num
+    }
+    target := (S + sum)/2
+
+    // 注意，这两种情况没法进行子集划分，不符合背包问题，需要排除
+    if sum &lt; S || (S + sum)%2 == 1 {
+        return 0
+    }
+
+    // 定义dp数组，dp[i][j]表示对于前i个物品，恰好装满容量为j的背包有几种组合
+    n := len(nums)
+    dp := make([][]int, n + 1)
+    for i := 0; i &lt;= n; i++ {
+        dp[i] = make([]int, target + 1)
+    }
+
+    // 定义base case
+    // dp[0][...]=0表示物品个数为0时没有能装满背包的方法
+    // dp[...][0]=1表示背包容量为0时，什么都不用做也算一种组合
+    for i := 0; i &lt;= n; i++ {
+        dp[i][0] = 1
+    }
+
+    // 推导状态转移方程，注意这里的i是从1开始算的，那么nums[i-1]就表示第i个物品
+    // 注意，这道题和常规的背包问题有所不同，j是从0开始的
+    // 因为dp[...][0]不能简单的认为就是1，就是说可能存在x个物品，这x个物品的重量都为0，
+    // 那么当背包的承重为0的时候，是可以在这x个物品中任选来实现的，所以在求dp数组的时候，j是要从0开始计算的
+    for i := 1; i &lt;= n; i++ {
+        for j := 0; j &lt;= target; j++ {
+            // 当前物品太大，放不进背包，肯定不放
+            if j - nums[i-1] &lt; 0 {
+                dp[i][j] = dp[i-1][j]
+            } else {
+                // 可以选择放或者不放，两种选择之和
+                dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]]
+            }
+        }
+    }
+    return dp[n][target]
+}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n-S"><a href="#时间复杂度：O-n-S" class="headerlink" title="时间复杂度：O((n*S))"></a>时间复杂度：O((n*S))</h3><p>n为数组的元素个数</p>
+<h3 id="空间复杂度：O-n-S"><a href="#空间复杂度：O-n-S" class="headerlink" title="空间复杂度：O((n*S))"></a>空间复杂度：O((n*S))</h3><p>需要开辟一个大小为n*S的二维数组</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>回溯算法和动态规划其实有很多相似之处，对于大多数题目可以相互转化。对于第二种解法，可以考虑状态压缩，也就是将二维数组压缩成一维数组，可以进一步优化空间复杂度。</p>
+
             </div>
             <hr />
 
@@ -865,9 +786,9 @@ type FileInfo interface {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【Go 基础】》
+                    《【leetcode-494】目标和》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/16/go-basic/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/15/leetcode-494/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -908,7 +829,7 @@ type FileInfo interface {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/16/go-basic/',
+        id: '2021/03/15/leetcode-494/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -929,77 +850,29 @@ type FileInfo interface {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/17/go-feature-concurrent/">
+                <a href="/2021/03/15/leetcode-494/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【Go特性1】并发编程技术">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="【leetcode-494】目标和">
                         
-                        <span class="card-title">【Go特性1】并发编程技术</span>
+                        <span class="card-title">【leetcode-494】目标和</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Go最突出的特性之一就在于其对并发编程的支持很好，本文是作为Go并发特性介绍的预备知识
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-17
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/12/15/leetcode-51/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【leetcode-51】N皇后">
-                        
-                        <span class="card-title">【leetcode-51】N皇后</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            N 皇后问题是一个经典问题，本题的答案可以作为回溯剪枝的模版进行练习
+                            回溯算法和动态规划其实有很多相似之处，对于大多数题目可以相互转化。对于第二种解法，可以考虑状态压缩，也就是将二维数组压缩成一维数组，可以进一步优化空间复杂度。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-15
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-15
                             </span>
                         <span class="publish-author">
                             
@@ -1013,6 +886,7 @@ type FileInfo interface {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1020,14 +894,48 @@ type FileInfo interface {
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/DFS/" target="_blank">
-                        <span class="chip bg-color">DFS</span>
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
                     </a>
                     
-                    <a href="/tags/回溯剪枝/" target="_blank">
-                        <span class="chip bg-color">回溯剪枝</span>
+                    <a href="/tags/背包/" target="_blank">
+                        <span class="chip bg-color">背包</span>
                     </a>
                     
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/11/go-sourcecode-make-new/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【Go源码解析12】make和new">
+                        
+                        <span class="card-title">【Go源码解析12】make和new</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            当我们想要在 Go 语言中初始化一个结构时，可能会用到两个不同的关键字 — make 和 new。因为它们的功能相似，所以初学者可能会对这两个关键字的作用感到困惑1，但是它们两者能够初始化的变量却有较大的不同。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-11
+                            </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
                 </div>
                 
             </div>
