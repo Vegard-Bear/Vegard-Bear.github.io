@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-03-15T09:13:57.210Z</updated>
+  <updated>2021-03-29T07:39:48.268Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【leetcode-146】LRU 缓存机制</title>
+    <link href="https://vegard-bear.github.io/2021/03/29/leetcode-146/"/>
+    <id>https://vegard-bear.github.io/2021/03/29/leetcode-146/</id>
+    <published>2021-03-29T07:22:15.000Z</published>
+    <updated>2021-03-29T07:39:48.268Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/lru-cache/&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
+    
+      <category term="LRU" scheme="https://vegard-bear.github.io/tags/LRU/"/>
+    
+  </entry>
   
   <entry>
     <title>【Go源码解析10】上下文context</title>
@@ -566,37 +594,6 @@
     
     
       <category term="基金" scheme="https://vegard-bear.github.io/tags/%E5%9F%BA%E9%87%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Go源码解析7】反射</title>
-    <link href="https://vegard-bear.github.io/2021/01/26/go-sourcecode-reflect/"/>
-    <id>https://vegard-bear.github.io/2021/01/26/go-sourcecode-reflect/</id>
-    <published>2021-01-26T14:20:28.000Z</published>
-    <updated>2021-01-26T14:21:32.726Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;虽然在大多数的应用和服务中并不常见，但是很多框架都依赖 Go 语言的反射机制简化代码。因为 Go 语言的语法元素很少、设计简单，所以它没有特别强的表达能力，但是 Go 语言的 reflect
-        
-      
-    
-    </summary>
-    
-      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
-    
-    
-      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
-    
-      <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
-    
-      <category term="反射" scheme="https://vegard-bear.github.io/tags/%E5%8F%8D%E5%B0%84/"/>
     
   </entry>
   
