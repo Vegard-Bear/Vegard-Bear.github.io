@@ -796,8 +796,8 @@ func (this *LFUCache) removeMinFreqKey() {
 
     // 同步更新KeyToVal表
     delete(this.keyToVal, data.key)
-}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-1"><a href="#时间复杂度：O-1" class="headerlink" title="时间复杂度：O((1))"></a>时间复杂度：O((1))</h3><p>get 时间复杂度 O((1))，put 时间复杂度 O((1))。由于两个操作从头至尾都只利用了哈希表的插入删除还有链表的插入删除，且它们的时间复杂度均为 O((1))，所以保证了两个操作的时间复杂度均为 O((1))。</p>
-<h3 id="空间复杂度：O-capacity"><a href="#空间复杂度：O-capacity" class="headerlink" title="空间复杂度：O((capacity))"></a>空间复杂度：O((capacity))</h3><p>其中capacity为LFU的缓存容量。哈希表中不会存放超过缓存容量的键值对。</p>
+}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O（1）"><a href="#时间复杂度：O（1）" class="headerlink" title="时间复杂度：O（1）"></a>时间复杂度：O（1）</h3><p>get 时间复杂度 O（1），put 时间复杂度 O（1）。由于两个操作从头至尾都只利用了哈希表的插入删除还有链表的插入删除，且它们的时间复杂度均为 O（1），所以保证了两个操作的时间复杂度均为 O（1）。</p>
+<h3 id="空间复杂度：O（capacity）"><a href="#空间复杂度：O（capacity）" class="headerlink" title="空间复杂度：O（capacity）"></a>空间复杂度：O（capacity）</h3><p>其中capacity为LFU的缓存容量。哈希表中不会存放超过缓存容量的键值对。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>LFU 的逻辑不难理解，但是写代码实现并不容易，因为要同时维护多个哈希表。</p>
 <ol>
 <li>不要企图上来就实现算法的所有细节，而应该自顶向下，逐步求精，先写清楚主函数的逻辑框架，然后再一步步实现细节。</li>
