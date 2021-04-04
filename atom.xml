@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-03-29T07:39:48.268Z</updated>
+  <updated>2021-04-04T09:50:14.233Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【leetcode-460】LFU 缓存</title>
+    <link href="https://vegard-bear.github.io/2021/04/04/leetcode-460/"/>
+    <id>https://vegard-bear.github.io/2021/04/04/leetcode-460/</id>
+    <published>2021-04-04T04:49:41.000Z</published>
+    <updated>2021-04-04T09:50:14.233Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/lfu-cache/&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
+    
+      <category term="LFU" scheme="https://vegard-bear.github.io/tags/LFU/"/>
+    
+  </entry>
   
   <entry>
     <title>【leetcode-146】LRU 缓存机制</title>
@@ -559,32 +587,6 @@
         
         
           &lt;h1 id=&quot;基金入门&quot;&gt;&lt;a href=&quot;#基金入门&quot; class=&quot;headerlink&quot; title=&quot;基金入门&quot;&gt;&lt;/a&gt;基金入门&lt;/h1&gt;&lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-      <category term="投资" scheme="https://vegard-bear.github.io/categories/%E6%8A%95%E8%B5%84/"/>
-    
-    
-      <category term="基金" scheme="https://vegard-bear.github.io/tags/%E5%9F%BA%E9%87%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【基金01】投资的基石</title>
-    <link href="https://vegard-bear.github.io/2021/02/06/fund-01/"/>
-    <id>https://vegard-bear.github.io/2021/02/06/fund-01/</id>
-    <published>2021-02-06T09:57:03.000Z</published>
-    <updated>2021-02-10T13:27:00.218Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;投资的基石&quot;&gt;&lt;a href=&quot;#投资的基石&quot; class=&quot;headerlink&quot; title=&quot;投资的基石&quot;&gt;&lt;/a&gt;投资的基石&lt;/h1&gt;&lt;p&gt;&lt;img
         
       
     
