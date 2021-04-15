@@ -327,11 +327,11 @@
       
         <tags>
             
+            <tag> fabric </tag>
+            
             <tag> 密码学 </tag>
             
             <tag> SoftHSM </tag>
-            
-            <tag> fabric </tag>
             
         </tags>
       
@@ -1234,9 +1234,9 @@
       
         <tags>
             
-            <tag> 密码学 </tag>
-            
             <tag> fabric </tag>
+            
+            <tag> 密码学 </tag>
             
             <tag> bccsp </tag>
             
@@ -2067,9 +2067,9 @@
       
         <tags>
             
-            <tag> 密码学 </tag>
-            
             <tag> fabric </tag>
+            
+            <tag> 密码学 </tag>
             
         </tags>
       
