@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>【leetcode-222】完全二叉树的节点个数</title>
+      <link href="/2021/04/18/leetcode-222/"/>
+      <url>/2021/04/18/leetcode-222/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/count-complete-tree-nodes/" target="_blank" rel="noopener">222. 完全二叉树的节点个数</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一棵 完全二叉树 的根节点 root ，求出该树的节点个数。</p><p>完全二叉树 的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层，则该层包含 1~ 2h 个节点。</p><p>示例 1：</p><pre><code>输入：root = [1,2,3,4,5,6]输出：6</code></pre><p>示例 2：</p><pre><code>输入：root = []输出：0</code></pre><p>示例 3：</p><pre><code>输入：root = [1]输出：1</code></pre><p>提示：</p><ul><li>树中节点的数目范围是[0, 5 * 104]</li><li>0 &lt;= Node.val &lt;= 5 * 104</li><li>题目数据保证输入的树是完全二叉树</li></ul><p>进阶：遍历树来统计节点是一种时间复杂度为 O(n) 的简单解决方案。你可以设计一个更快的算法吗？</p><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>完全二叉树是一类特殊的二叉树，它介于满二叉树和普通二叉树之间。如果是满二叉树的话，很简单，直接计算出它的<strong>高度</strong>就行了，然后节点数就等于2^<strong>高度</strong>-1。但如果不是一棵满二叉树，则可以直接按照普通二叉树的方法求解。</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func countNodes(root *TreeNode) int {    // 先通过比较左右子树的高度判断是否是一棵满二叉树    l, r := root, root    hl, hr := 0, 0    for l != nil {        l = l.Left        hl++    }    for r != nil {        r = r.Right        hr++    }    // 左子树高度等于右子树高度，则是一棵满二叉树    // 满二叉树的节点数 = 2^高度 - 1    if hl == hr {        return int(math.Pow(2, float64(hl))) - 1    }    // 如果不是一棵满二叉树，则按普通二叉树的逻辑计算    return 1 + countNodes(root.Left) + countNodes(root.Right)}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-1"><a href="#时间复杂度：O-1" class="headerlink" title="时间复杂度：O((1))"></a>时间复杂度：O((1))</h3><p>首先计算树的高度的时间复杂度是logN，然后对树进行递归的话，表面上是N，但实际上是logN，因为最多只有其中一棵子树的递归会真正进行下去，而另一棵一定会触发hl=hr，然后直接返回，这是因为一棵完全二叉树的两棵子树，至少又一棵是满二叉树。<br>综上，时间复杂度就是logNlogN</p><h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>递归的空间复杂度为<strong>递归的次数</strong> <em> <strong>每次递归的空间复杂度</strong>，<br>也就是 n </em> O((1)) = O((n))</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>一棵完全二叉树的两棵子树，至少又一棵是满二叉树。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> tree </tag>
+            
+            <tag> 完全二叉树 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode】二叉搜索树系列</title>
       <link href="/2021/04/18/leetcode-bst/"/>
       <url>/2021/04/18/leetcode-bst/</url>
@@ -1855,9 +1884,9 @@
             
             <tag> fabric </tag>
             
-            <tag> 2.2 </tag>
-            
             <tag> chaincode </tag>
+            
+            <tag> 2.2 </tag>
             
         </tags>
       

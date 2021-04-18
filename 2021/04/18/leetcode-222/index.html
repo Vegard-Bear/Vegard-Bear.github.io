@@ -4,17 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="01背包问题, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-222】完全二叉树的节点个数, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接01背包
-题目描述已知一个背包最多能容纳物体的体积为V现有n个物品第i个物品的体积为v_ivi​  第i个物品的重量为w_iwi​    
-求当前背包最多能装多大重量的物品
-示例1
-输入
-10,2,[[1,3],[10,4]]输出
-">
+    <meta name="description" content="题目链接222. 完全二叉树的节点个数
+题目描述给你一棵 完全二叉树 的根节点 root ，求出该树的节点个数。
+完全二叉树 的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>01背包问题 | 小熊的作坊</title>
+    <title>【leetcode-222】完全二叉树的节点个数 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -335,13 +331,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        01背包问题
+                        【leetcode-222】完全二叉树的节点个数
                     </div>
                 </div>
             </div>
@@ -456,12 +452,12 @@
                             <span class="chip bg-color">leetcode</span>
                         </a>
                         
-                        <a href="/tags/动态规划/" target="_blank">
-                            <span class="chip bg-color">动态规划</span>
+                        <a href="/tags/tree/" target="_blank">
+                            <span class="chip bg-color">tree</span>
                         </a>
                         
-                        <a href="/tags/背包/" target="_blank">
-                            <span class="chip bg-color">背包</span>
+                        <a href="/tags/完全二叉树/" target="_blank">
+                            <span class="chip bg-color">完全二叉树</span>
                         </a>
                         
                     </div>
@@ -484,7 +480,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-07
+                    2021-04-18
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -498,14 +494,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    933
+                    649
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    2 分
                 </div>
                 
                 
@@ -521,63 +517,49 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://www.nowcoder.com/questionTerminal/2820ea076d144b30806e72de5e5d4bbf" target="_blank" rel="noopener">01背包</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>已知一个背包最多能容纳物体的体积为V<br>现有n个物品第i个物品的体积为v_iv<br>i<br>​<br>  第i个物品的重量为w_iw<br>i<br>​    </p>
-<p>求当前背包最多能装多大重量的物品</p>
-<p>示例1</p>
-<p>输入</p>
-<pre><code>10,2,[[1,3],[10,4]]</code></pre><p>输出</p>
-<pre><code>4</code></pre><p>说明</p>
-<pre><code>第一个物品的体积为1，重量为3，第二个物品的体积为10，重量为4。只取第二个物品可以达到最优方案，取物重量为4 </code></pre><p>备注:</p>
-<pre><code>1≤V≤200
-1≤n≤200
-1≤v≤200
-1≤w≤200</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于动态规划问题，我们首先需要搞清楚【状态】和【选择】是什么？</p>
-<p>这道题涉及到的变化的状态量有两个，就是背包的体积和当前可选的物品，选择就是把物体装进背包或者不装进背包。</p>
-<p>这样就可以定义我们的dp数组了.</p>
-<h3 id="1-定义dp数组"><a href="#1-定义dp数组" class="headerlink" title="1. 定义dp数组"></a>1. 定义dp数组</h3><p>首先两个状态量就是二维dp数组的两个维度。</p>
-<h5 id="dp-i-j-x表示对于前i个物体，当前背包的体积为j，这种情况下可以装的最大重量是dp-i-j"><a href="#dp-i-j-x表示对于前i个物体，当前背包的体积为j，这种情况下可以装的最大重量是dp-i-j" class="headerlink" title=" dp[i][j]=x表示对于前i个物体，当前背包的体积为j，这种情况下可以装的最大重量是dp[i][j] "></a><center><font color="blue"> dp[i][j]=x表示对于前i个物体，当前背包的体积为j，这种情况下可以装的最大重量是dp[i][j] </font></center></h5><blockquote>
-<p>这里的定义可能并不直观，但是这是背包问题的典型套路，记住就行了</p>
-</blockquote>
-<h3 id="2-确定base-case"><a href="#2-确定base-case" class="headerlink" title="2. 确定base case"></a>2. 确定base case</h3><p>物体个数为0或者背包体积为0时可以装的物体重量都为0，即 </p>
-<pre><code>dp[0][...]=0，dp[...][0]=0</code></pre><h3 id="3-推导状态转移方程"><a href="#3-推导状态转移方程" class="headerlink" title="3. 推导状态转移方程"></a>3. 推导状态转移方程</h3><p>推导状态转移方程本质就是做选择，也就是把第i个物体放入或者不放入背包，然后做最优选择就行了</p>
-<h5 id="dp-i-j-max-dp-i-1-j-dp-i-1-j-vw-i-1-0-vw-i-1-1"><a href="#dp-i-j-max-dp-i-1-j-dp-i-1-j-vw-i-1-0-vw-i-1-1" class="headerlink" title=" dp[i][j] = max((dp[i-1][j], dp[i-1][j-vw[i-1][0]] + vw[i-1][1]))"></a><center><font color="blue"> dp[i][j] = max((dp[i-1][j], dp[i-1][j-vw[i-1][0]] + vw[i-1][1]))</font></center></h5><p>这里需要注意的是数组的下标，由于i是从1开始的，所以题目中的给的数组下标为i-1时表示的是第i个物品的重量。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>/**
- * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
- * 计算01背包问题的结果
- * @param V int整型 背包的体积
- * @param n int整型 物品的个数
- * @param vw int整型二维数组 第一维度为n,第二维度为2的二维数组,vw[i][0],vw[i][1]分别描述i+1个物品的vi,wi
- * @return int整型
-*/
-func knapsack(V int ,n int ,vw [][]int ) int {
-    // 定义dp数组，dp[i][j]表示对于前i个物体，当前背包体积为j，最多可以装多大重量的物体
-    dp := make([][]int, n+1)
-    for i := 0; i &lt;= n ; i++ {
-        // 定义base case
-        // 物体个数为0或者背包体积为0时可以装的物体重量都为0，即
-        // dp[0][...]=0，dp[...][0]=0这个已经自动初始化好了
-        dp[i] = make([]int, V+1)
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/count-complete-tree-nodes/" target="_blank" rel="noopener">222. 完全二叉树的节点个数</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一棵 完全二叉树 的根节点 root ，求出该树的节点个数。</p>
+<p>完全二叉树 的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层，则该层包含 1~ 2h 个节点。</p>
+<p>示例 1：</p>
+<pre><code>输入：root = [1,2,3,4,5,6]
+输出：6</code></pre><p>示例 2：</p>
+<pre><code>输入：root = []
+输出：0</code></pre><p>示例 3：</p>
+<pre><code>输入：root = [1]
+输出：1</code></pre><p>提示：</p>
+<ul>
+<li>树中节点的数目范围是[0, 5 * 104]</li>
+<li>0 &lt;= Node.val &lt;= 5 * 104</li>
+<li>题目数据保证输入的树是完全二叉树</li>
+</ul>
+<p>进阶：遍历树来统计节点是一种时间复杂度为 O(n) 的简单解决方案。你可以设计一个更快的算法吗？</p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>完全二叉树是一类特殊的二叉树，它介于满二叉树和普通二叉树之间。如果是满二叉树的话，很简单，直接计算出它的<strong>高度</strong>就行了，然后节点数就等于2^<strong>高度</strong>-1。但如果不是一棵满二叉树，则可以直接按照普通二叉树的方法求解。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func countNodes(root *TreeNode) int {
+    // 先通过比较左右子树的高度判断是否是一棵满二叉树
+    l, r := root, root
+    hl, hr := 0, 0
+
+    for l != nil {
+        l = l.Left
+        hl++
     }
 
-    // 推导状态转移方程
-    // 按照物体数量进行遍历
-    for i := 1; i &lt;= n; i++ {
-        // 按照背包可用体积进行遍历
-        for j := 1; j &lt;= V; j++ {
-            // 背包体积已经不够装第i个物体了,只能不装入背包
-            if j - vw[i-1][0] &lt; 0 {
-                dp[i][j] = dp[i-1][j]
-            } else {
-                // 可以选择装入或不装入，取较大值
-                dp[i][j] = max(dp[i-1][j], dp[i-1][j-vw[i-1][0]] + vw[i-1][1])
-            }
-        }
+    for r != nil {
+        r = r.Right
+        hr++
     }
-    return dp[n][V]
-}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-C-N"><a href="#时间复杂度：O-C-N" class="headerlink" title="时间复杂度：O((C*N))"></a>时间复杂度：O((C*N))</h3><p>假设物品的个数为N, 背包的容量是C，两层循环，所以算法的总时间复杂度是 O((C*N))</p>
-<h3 id="空间复杂度：O-C-N"><a href="#空间复杂度：O-C-N" class="headerlink" title="空间复杂度：O((C*N))"></a>空间复杂度：O((C*N))</h3><p>需要开辟一个为C*N大小的dp数组。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>背包问题是非常经典的动态规划问题，本题01背包是其中最基本的问题，先熟悉一下套路。</p>
+
+    // 左子树高度等于右子树高度，则是一棵满二叉树
+    // 满二叉树的节点数 = 2^高度 - 1
+    if hl == hr {
+        return int(math.Pow(2, float64(hl))) - 1
+    }
+
+    // 如果不是一棵满二叉树，则按普通二叉树的逻辑计算
+    return 1 + countNodes(root.Left) + countNodes(root.Right)
+}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-1"><a href="#时间复杂度：O-1" class="headerlink" title="时间复杂度：O((1))"></a>时间复杂度：O((1))</h3><p>首先计算树的高度的时间复杂度是logN，然后对树进行递归的话，表面上是N，但实际上是logN，因为最多只有其中一棵子树的递归会真正进行下去，而另一棵一定会触发hl=hr，然后直接返回，这是因为一棵完全二叉树的两棵子树，至少又一棵是满二叉树。<br>综上，时间复杂度就是logNlogN</p>
+<h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>递归的空间复杂度为<strong>递归的次数</strong> <em> <strong>每次递归的空间复杂度</strong>，<br>也就是 n </em> O((1)) = O((n))</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>一棵完全二叉树的两棵子树，至少又一棵是满二叉树。</p>
 
             </div>
             <hr />
@@ -736,9 +718,9 @@ func knapsack(V int ,n int ,vw [][]int ) int {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《01背包问题》
+                    《【leetcode-222】完全二叉树的节点个数》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/07/01-bei-bao/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/04/18/leetcode-222/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -779,7 +761,7 @@ func knapsack(V int ,n int ,vw [][]int ) int {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/03/07/01-bei-bao/',
+        id: '2021/04/18/leetcode-222/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -800,29 +782,30 @@ func knapsack(V int ,n int ,vw [][]int ) int {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/03/07/leetcode-416/">
+                <a href="/2021/04/18/leetcode-222/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【leetcode-416】分割等和子集（子集背包）">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="【leetcode-222】完全二叉树的节点个数">
                         
-                        <span class="card-title">【leetcode-416】分割等和子集（子集背包）</span>
+                        <span class="card-title">【leetcode-222】完全二叉树的节点个数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            子集背包属于01背包的变体，可以稍微转化一下在套用01背包的模版。
+                            一棵完全二叉树的两棵子树，至少又一棵是满二叉树
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -835,6 +818,7 @@ func knapsack(V int ,n int ,vw [][]int ) int {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -842,12 +826,12 @@ func knapsack(V int ,n int ,vw [][]int ) int {
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/动态规划/" target="_blank">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/tree/" target="_blank">
+                        <span class="chip bg-color">tree</span>
                     </a>
                     
-                    <a href="/tags/背包/" target="_blank">
-                        <span class="chip bg-color">背包</span>
+                    <a href="/tags/完全二叉树/" target="_blank">
+                        <span class="chip bg-color">完全二叉树</span>
                     </a>
                     
                 </div>
@@ -861,24 +845,24 @@ func knapsack(V int ,n int ,vw [][]int ) int {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/07/leetcode-312/">
+                <a href="/2021/04/18/leetcode-bst/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【leetcode-312】戳气球">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【leetcode】二叉搜索树系列">
                         
-                        <span class="card-title">【leetcode-312】戳气球</span>
+                        <span class="card-title">【leetcode】二叉搜索树系列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            我们之前提到动态规划算法需要满足的一个条件是子问题之间必须是相互独立的。因此，为了解决这个问题，我们需要想办法通过定义dp数组来避免这个相关性。
+                            本节是一个系列，包括二叉树几种常用的算法操作（判断、搜索、插入，删除）。除了删除操作之外，其他操作都比较简单，这里就不给出具体的解题思路了，直接上代码应该也能看懂。为了方便理解，这里给出的题目顺序是从难到易的。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-07
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-18
                             </span>
                         <span class="publish-author">
                             
@@ -899,8 +883,12 @@ func knapsack(V int ,n int ,vw [][]int ) int {
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/动态规划/" target="_blank">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/tree/" target="_blank">
+                        <span class="chip bg-color">tree</span>
+                    </a>
+                    
+                    <a href="/tags/二叉搜索树/" target="_blank">
+                        <span class="chip bg-color">二叉搜索树</span>
                     </a>
                     
                 </div>
