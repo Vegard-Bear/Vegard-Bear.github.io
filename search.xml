@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【leetcode-236】二叉树的最近公共祖先</title>
+      <link href="/2021/05/22/leetcode-236/"/>
+      <url>/2021/05/22/leetcode-236/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank" rel="noopener">236. 二叉树的最近公共祖先</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p><p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p><p>示例 1：</p><pre><code>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1输出：3解释：节点 5 和节点 1 的最近公共祖先是节点 3 。</code></pre><p>示例 2：</p><pre><code>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4输出：5解释：节点 5 和节点 4 的最近公共祖先是节点 5 。因为根据定义最近公共祖先节点可以为节点本身。</code></pre><p>示例 3：</p><pre><code>输入：root = [1,2], p = 1, q = 2输出：1</code></pre><p>提示：</p><ul><li>树中节点数目在范围 [2, 105] 内。</li><li>-109 &lt;= Node.val &lt;= 109</li><li>所有 Node.val 互不相同 。</li><li>p != q</li><li>p 和 q 均存在于给定的二叉树中。</li></ul><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于二叉树问题，最常用的就是前中后序遍历。所以我们上来先把这个框架写出来：</p><pre><code>func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {    left := lowestCommonAncestor(root.left, p, q)    right := lowestCommonAncestor(root.right, p, q)}</code></pre><p>这里我们选择的是后序遍历，因为后续遍历是从上往下走，就好比是从p和q出发往上走，第一次相交的节点就是这个root，那么这个root必定是公共祖先。</p><p>接下来我们就要分情况讨论了。</p><ul><li><p>情况一：<br>如果根节点本身就是p或者q节点，那么另一个节点必定在其子树中，所以公共节点就是根节点。</p></li><li><p>情况二：<br>如果p和q都在以root为根的树中，那么left和right一定分别是p和q，此时他们的最近公共祖先就是根节点。这个是由后序遍历的特点决定的，在上文中已经有说明。</p></li><li><p>情况三：<br>如果p和q都在左子树或者右子树中，那么直接返回左子树或者右子树遍历的结果。</p></li></ul><p>想清楚这几种情况，就可以开始直接写题解了。另外插一句，就是在解题的时候我们其实很难把所有细节都想得明明白白，而是心中有了个大致的思路其实就可以开始动手写代码，先确定框架，再补充细节，先保证写出一个能够AC的代码，后面再想着怎么去进一步优化细节，提高时间复杂度和空间复杂度，而不是上来就要做一个完美的解法，先从无到有，在从有到优，这也比较符合实际生产环境中敏捷开发，快速迭代的思想。</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>/** * Definition for a binary tree node. * type TreeNode struct { *     Val int *     Left *TreeNode *     Right *TreeNode * } */func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {    // base case    if root == nil {        return nil    }    // 如果根节点本身就是p或者q节点，那么另一个节点必定在其子树中，所以公共节点就是根节点    if root == p || root == q {        return root    }    // 遍历左右子树    left := lowestCommonAncestor(root.Left, p, q)    right := lowestCommonAncestor(root.Right, p, q)    // 如果p和q都在以root为根的树中，那么left和right一定分别是p和q，此时他们的最近公共祖先就是根节点    if left != nil &amp;&amp; right != nil {        return root    }    // p和q都在右子树中    if left == nil {        return right    }    // p和q都在左子树中    return left}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N"><a href="#时间复杂度：O-N" class="headerlink" title="时间复杂度：O((N))"></a>时间复杂度：O((N))</h3><p>其中 N 是二叉树的节点数。二叉树的所有节点有且只会被访问一次，因此时间复杂度为 O((N))。</p><h3 id="空间复杂度：O-N"><a href="#空间复杂度：O-N" class="headerlink" title="空间复杂度：O((N))"></a>空间复杂度：O((N))</h3><p>其中 N 是二叉树的节点数。递归调用的栈深度取决于二叉树的高度，二叉树最坏情况下为一条链，此时高度为 N，因此空间复杂度为 O((N))。</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题难度不大，但是非常经典，值得反复练习。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> tree </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-297】二叉树的序列化和反序列化</title>
       <link href="/2021/05/16/leetcode-297/"/>
       <url>/2021/05/16/leetcode-297/</url>
@@ -414,9 +441,9 @@
             
             <tag> 密码学 </tag>
             
-            <tag> fabric </tag>
-            
             <tag> SoftHSM </tag>
+            
+            <tag> fabric </tag>
             
         </tags>
       

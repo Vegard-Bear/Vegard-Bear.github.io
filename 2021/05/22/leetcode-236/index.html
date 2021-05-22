@@ -4,17 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-111】二叉树的最小深度, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-236】二叉树的最近公共祖先, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接111. 二叉树的最小深度
-题目描述给定一个二叉树，找出其最小深度。
-最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
-说明：叶子节点是指没有子节点的节点。
-示例 1：
-
-输入：root = [3,9,20,null,nul">
+    <meta name="description" content="题目链接236. 二叉树的最近公共祖先
+题目描述给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
+百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-111】二叉树的最小深度 | 小熊的作坊</title>
+    <title>【leetcode-236】二叉树的最近公共祖先 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -335,13 +331,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-111】二叉树的最小深度
+                        【leetcode-236】二叉树的最近公共祖先
                     </div>
                 </div>
             </div>
@@ -460,10 +456,6 @@
                             <span class="chip bg-color">tree</span>
                         </a>
                         
-                        <a href="/tags/BFS/" target="_blank">
-                            <span class="chip bg-color">BFS</span>
-                        </a>
-                        
                     </div>
                     
                 </div>
@@ -484,7 +476,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-09
+                    2021-05-22
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -498,7 +490,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    964
+                    1k
                 </div>
                 
 
@@ -521,107 +513,79 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/" target="_blank" rel="noopener">111. 二叉树的最小深度</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个二叉树，找出其最小深度。</p>
-<p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p>
-<p>说明：叶子节点是指没有子节点的节点。</p>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank" rel="noopener">236. 二叉树的最近公共祖先</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
 <p>示例 1：</p>
-<p><img src="https://assets.leetcode.com/uploads/2020/10/12/ex_depth.jpg" alt></p>
-<pre class="line-numbers language-go"><code class="language-go">输入：root <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span>null<span class="token punctuation">,</span>null<span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">]</span>
-输出：<span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>示例 2：</p>
-<pre class="line-numbers language-go"><code class="language-go">输入：root <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span>null<span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>null<span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span>null<span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span>null<span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span>
-输出：<span class="token number">5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>提示：</p>
-<p>树中节点数的范围在 [0, 105] 内<br>-1000 &lt;= Node.val &lt;= 1000</p>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题有两种常见解法，即DFS和BFS，各有优劣，但是都是套用模版就行。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h2 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h2><p>对于DFS的话，对于每一个非叶子节点，我们只需要分别递归地计算其左右子树的最小深度，然后当前子树的最小深度就是其中较小者+1</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">minDepth</span><span class="token punctuation">(</span>root <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 遍历到空节点，直接返回高度0</span>
-    <span class="token keyword">if</span> root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token number">0</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 遍历到叶子节点，返回高度1</span>
-    <span class="token keyword">if</span> root<span class="token punctuation">.</span>Left <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token operator">&amp;&amp;</span> root<span class="token punctuation">.</span>Right <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token number">1</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 定义一个无穷大的数</span>
-    minD <span class="token operator">:=</span> math<span class="token punctuation">.</span>MaxInt32
+<pre><code>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+输出：3
+解释：节点 5 和节点 1 的最近公共祖先是节点 3 。</code></pre><p>示例 2：</p>
+<pre><code>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+输出：5
+解释：节点 5 和节点 4 的最近公共祖先是节点 5 。因为根据定义最近公共祖先节点可以为节点本身。</code></pre><p>示例 3：</p>
+<pre><code>输入：root = [1,2], p = 1, q = 2
+输出：1</code></pre><p>提示：</p>
+<ul>
+<li>树中节点数目在范围 [2, 105] 内。</li>
+<li>-109 &lt;= Node.val &lt;= 109</li>
+<li>所有 Node.val 互不相同 。</li>
+<li>p != q</li>
+<li>p 和 q 均存在于给定的二叉树中。</li>
+</ul>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于二叉树问题，最常用的就是前中后序遍历。所以我们上来先把这个框架写出来：</p>
+<pre><code>func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+    left := lowestCommonAncestor(root.left, p, q)
+    right := lowestCommonAncestor(root.right, p, q)
+}</code></pre><p>这里我们选择的是后序遍历，因为后续遍历是从上往下走，就好比是从p和q出发往上走，第一次相交的节点就是这个root，那么这个root必定是公共祖先。</p>
+<p>接下来我们就要分情况讨论了。</p>
+<ul>
+<li><p>情况一：<br>如果根节点本身就是p或者q节点，那么另一个节点必定在其子树中，所以公共节点就是根节点。</p>
+</li>
+<li><p>情况二：<br>如果p和q都在以root为根的树中，那么left和right一定分别是p和q，此时他们的最近公共祖先就是根节点。这个是由后序遍历的特点决定的，在上文中已经有说明。</p>
+</li>
+<li><p>情况三：<br>如果p和q都在左子树或者右子树中，那么直接返回左子树或者右子树遍历的结果。</p>
+</li>
+</ul>
+<p>想清楚这几种情况，就可以开始直接写题解了。另外插一句，就是在解题的时候我们其实很难把所有细节都想得明明白白，而是心中有了个大致的思路其实就可以开始动手写代码，先确定框架，再补充细节，先保证写出一个能够AC的代码，后面再想着怎么去进一步优化细节，提高时间复杂度和空间复杂度，而不是上来就要做一个完美的解法，先从无到有，在从有到优，这也比较符合实际生产环境中敏捷开发，快速迭代的思想。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
 
-    <span class="token comment" spellcheck="true">// 递归求左子树的最小高度</span>
-    <span class="token keyword">if</span> root<span class="token punctuation">.</span>Left <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        minD <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">minDepth</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Left<span class="token punctuation">)</span><span class="token punctuation">,</span> minD<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 递归求右子树的最小高度</span>
-    <span class="token keyword">if</span> root<span class="token punctuation">.</span>Right <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        minD <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">minDepth</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span><span class="token punctuation">,</span> minD<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 当前二叉树的最小高度等于左右子树的较小高度+1</span>
-    <span class="token keyword">return</span> minD <span class="token operator">+</span> <span class="token number">1</span>
-<span class="token punctuation">}</span>
+func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+    // base case
+    if root == nil {
+        return nil
+    }
 
-<span class="token comment" spellcheck="true">//  写个求较小值的方法</span>
-<span class="token keyword">func</span> <span class="token function">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> x <span class="token operator">&lt;</span> y <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> x
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> y
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h2><p>对于BFS就是首先明确起点和终点，而在这道题中，起点就是根节点，终点就是叶子节点（左右子节点都是nil），然后就可以套模版了。</p>
-<p>模版如下：</p>
-<ol>
-<li>定义队列</li>
-<li>将第一个节点加入队列（起点）</li>
-<li>只要队列不空，循环</li>
-<li>依次从队首拿出元素，判断是否到达终点</li>
-<li>将其相邻节点加入队列</li>
-<li>更新步数</li>
-</ol>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">minDepth</span><span class="token punctuation">(</span>root <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token number">0</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 这里用了go的一个list库</span>
-    q <span class="token operator">:=</span> list<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
-    <span class="token comment" spellcheck="true">// 根节点入队（从根节点开始）</span>
-    q<span class="token punctuation">.</span><span class="token function">PushBack</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// root本身就是一层，将depth初始化为1</span>
-    depth <span class="token operator">:=</span> <span class="token number">1</span>
-    <span class="token comment" spellcheck="true">// 只要队列不空，就遍历队列中的元素</span>
-    <span class="token keyword">for</span> <span class="token punctuation">;</span> q<span class="token punctuation">.</span><span class="token function">Len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token punctuation">{</span>
-        size <span class="token operator">:=</span> q<span class="token punctuation">.</span><span class="token function">Len</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size <span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 取出队首元素，并删除</span>
-            front <span class="token operator">:=</span> q<span class="token punctuation">.</span><span class="token function">Front</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            q<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>front<span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true">// 进行类型断言</span>
-            node<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> front<span class="token punctuation">.</span>Value<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token operator">*</span>TreeNode<span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true">// 判断是否到达终点</span>
-            <span class="token keyword">if</span> node<span class="token punctuation">.</span>Left <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token operator">&amp;&amp;</span> node<span class="token punctuation">.</span>Right <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span> depth
-            <span class="token punctuation">}</span>
-            <span class="token comment" spellcheck="true">// 将左右子节点加入队列</span>
-            <span class="token keyword">if</span> node<span class="token punctuation">.</span>Left <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-                q<span class="token punctuation">.</span><span class="token function">PushBack</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">if</span> node<span class="token punctuation">.</span>Right <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-                q<span class="token punctuation">.</span><span class="token function">PushBack</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">// 往前推进了一层，步数+1</span>
-        depth <span class="token operator">++</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> depth
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="DFS-1"><a href="#DFS-1" class="headerlink" title="DFS"></a>DFS</h3><p>时间复杂度：O((N))，其中 N 是树的节点数。对每个节点访问一次。</p>
-<p>空间复杂度：O((H))，其中 H 是树的高度。空间复杂度主要取决于递归时栈空间的开销，最坏情况下，树呈现链状，空间复杂度为 O((N))。平均情况下树的高度与节点数的对数正相关，空间复杂度为 O((logN))。</p>
-<h3 id="BFS-1"><a href="#BFS-1" class="headerlink" title="BFS"></a>BFS</h3><p>时间复杂度：O((N))，其中 N 是树的节点数。对每个节点访问一次。</p>
-<p>空间复杂度：O((N))，其中 N 是树的节点数。空间复杂度主要取决于队列的开销，队列中的元素个数不会超过树的节点数。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这里用到了go的一个库来模拟队列，可以参考</p>
-<p><a href="https://blog.wolfogre.com/posts/slice-queue-vs-list-queue/" target="_blank" rel="noopener">https://blog.wolfogre.com/posts/slice-queue-vs-list-queue/</a></p>
-<blockquote>
-<p>深度优先和广度优先遍历都可以找到最短距离，但是广度优先遍历的时间复杂度更低，深度优先遍历的空间复杂度更低。这是因为在实际情况下，BFS一旦推进到叶子节点就结束了，还没遍历完整棵树。而DFS一定是要遍历完所有节点，然后进行比较才能得出最短路径。</p>
-</blockquote>
+    // 如果根节点本身就是p或者q节点，那么另一个节点必定在其子树中，所以公共节点就是根节点
+    if root == p || root == q {
+        return root
+    }
+
+    // 遍历左右子树
+    left := lowestCommonAncestor(root.Left, p, q)
+    right := lowestCommonAncestor(root.Right, p, q)
+
+    // 如果p和q都在以root为根的树中，那么left和right一定分别是p和q，此时他们的最近公共祖先就是根节点
+    if left != nil &amp;&amp; right != nil {
+        return root
+    }
+
+    // p和q都在右子树中
+    if left == nil {
+        return right
+    }
+
+    // p和q都在左子树中
+    return left
+}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N"><a href="#时间复杂度：O-N" class="headerlink" title="时间复杂度：O((N))"></a>时间复杂度：O((N))</h3><p>其中 N 是二叉树的节点数。二叉树的所有节点有且只会被访问一次，因此时间复杂度为 O((N))。</p>
+<h3 id="空间复杂度：O-N"><a href="#空间复杂度：O-N" class="headerlink" title="空间复杂度：O((N))"></a>空间复杂度：O((N))</h3><p>其中 N 是二叉树的节点数。递归调用的栈深度取决于二叉树的高度，二叉树最坏情况下为一条链，此时高度为 N，因此空间复杂度为 O((N))。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题难度不大，但是非常经典，值得反复练习。</p>
 
             </div>
             <hr />
@@ -780,9 +744,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-111】二叉树的最小深度》
+                    《【leetcode-236】二叉树的最近公共祖先》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/09/leetcode-111/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/05/22/leetcode-236/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -823,7 +787,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/09/leetcode-111/',
+        id: '2021/05/22/leetcode-236/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -844,29 +808,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/10/leetcode-752/">
+                <a href="/2021/05/22/leetcode-236/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="【leetcode-752】打开转盘锁">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="【leetcode-236】二叉树的最近公共祖先">
                         
-                        <span class="card-title">【leetcode-752】打开转盘锁</span>
+                        <span class="card-title">【leetcode-236】二叉树的最近公共祖先</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            对于一些考察点不明显的问题，要想办法抽象为我们熟悉的数据结构，然后再套用对应的模版去解题
+                            本题难度不大，但是非常经典，值得反复练习。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -879,6 +844,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -888,10 +854,6 @@
                     
                     <a href="/tags/tree/" target="_blank">
                         <span class="chip bg-color">tree</span>
-                    </a>
-                    
-                    <a href="/tags/BFS/" target="_blank">
-                        <span class="chip bg-color">BFS</span>
                     </a>
                     
                 </div>
@@ -905,24 +867,24 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/07/leetcode-654/">
+                <a href="/2021/05/16/leetcode-297/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="【leetcode-654】最大二叉树">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="【leetcode-297】二叉树的序列化和反序列化">
                         
-                        <span class="card-title">【leetcode-654】最大二叉树</span>
+                        <span class="card-title">【leetcode-297】二叉树的序列化和反序列化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            把题目的要求细化，搞清楚根节点应该做什么，然后剩下的事情抛给前/中/后序的遍历框架就行了
+                            本题将前序、后序和层序遍历一网打尽
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-07
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-16
                             </span>
                         <span class="publish-author">
                             
