@@ -4,15 +4,15 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【Go特性1】并发编程技术, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-239】滑动窗口最大值, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-Go最突出的特性之一就在于其对并发编程的支持很好，本文是作为Go并发特性介绍的预备知识
-
-并行和并发并行 ((parallel))指在同一时刻，有多条指令在多个处理器上同时执行。
-并发 ((concurrency))指在同一时刻只能有一条">
+    <meta name="description" content="题目链接239. 滑动窗口最大值
+题目描述给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+返回滑动窗口中的最大值。
+示例 1：
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +20,7 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【Go特性1】并发编程技术 | 小熊的作坊</title>
+    <title>【leetcode-239】滑动窗口最大值 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -333,13 +333,13 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【Go特性1】并发编程技术
+                        【leetcode-239】滑动窗口最大值
                     </div>
                 </div>
             </div>
@@ -450,8 +450,16 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/go/" target="_blank">
-                            <span class="chip bg-color">go</span>
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
+                        </a>
+                        
+                        <a href="/tags/queue/" target="_blank">
+                            <span class="chip bg-color">queue</span>
+                        </a>
+                        
+                        <a href="/tags/滑动窗口/" target="_blank">
+                            <span class="chip bg-color">滑动窗口</span>
                         </a>
                         
                     </div>
@@ -462,8 +470,8 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/go/" class="post-category" target="_blank">
-                            go
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
                         </a>
                         
                     </div>
@@ -474,7 +482,7 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-17
+                    2021-05-23
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -488,14 +496,14 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
                 
@@ -511,69 +519,127 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>Go最突出的特性之一就在于其对并发编程的支持很好，本文是作为Go并发特性介绍的预备知识</p>
-</blockquote>
-<h1 id="并行和并发"><a href="#并行和并发" class="headerlink" title="并行和并发"></a>并行和并发</h1><h3 id="并行-parallel"><a href="#并行-parallel" class="headerlink" title="并行 ((parallel))"></a>并行 ((parallel))</h3><p>指在同一时刻，有<font color="red">多条指令在多个处理器上同时执行</font>。</p>
-<h3 id="并发-concurrency"><a href="#并发-concurrency" class="headerlink" title="并发 ((concurrency))"></a>并发 ((concurrency))</h3><p>指在<font color="red">同一时刻只能有一条指令执行</font>，但多个进程指令被快速的轮换执行，使得在宏观上具有多个进程同时执行的效果，但在微观上并不是同时执行的，只是把时间分成若干段，<font color="red">通过cpu时间片轮转使多个进程快速交替的执行</font>。</p>
-<h1 id="程序和进程"><a href="#程序和进程" class="headerlink" title="程序和进程"></a>程序和进程</h1><ul>
-<li><p>程序，是指编译好的二进制文件，在磁盘上，不占用系统资源(cpu、内存、打开的文件、设备、锁….)</p>
-</li>
-<li><p>进程，是一个抽象的概念，与操作系统原理联系紧密。进程是活跃的程序，占用系统资源。在内存中执行。(程序运行起来，产生一个进程)</p>
-</li>
-</ul>
-<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h3 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h3><p>进程基本的状态有5种，分别为初始态，就绪态，运行态，挂起态与终止态。</p>
-<h3 id="进程并发"><a href="#进程并发" class="headerlink" title="进程并发"></a>进程并发</h3><p>存在问题：</p>
-<ol>
-<li>系统开销比较大，占用资源比较多，开启进程数量比较少。</li>
-<li>在unix/linux系统下，还会产生“孤儿进程”和“僵尸进程”。</li>
-</ol>
-<ul>
-<li>孤儿进程</li>
-<li>僵尸进程</li>
-</ul>
-<p>在操作系统中，可以产生很多的进程。在unix/linux系统中，正常情况下，<font color="red">子进程是通过父进程fork创建的，子进程再创建新的进程</font>。并且父进程永远无法预测子进程 到底什么时候结束。 当一个 进程完成它的工作终止之后，它的父进程需要调用系统调用取得子进程的终止状态。</p>
-<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h3 id="线程并发"><a href="#线程并发" class="headerlink" title="线程并发"></a>线程并发</h3><p>什么是线程？</p>
-<p>LWP：light weight process 轻量级的进程，本质仍是进程 (Linux下)。</p>
-<ul>
-<li><p>进程：独立地址空间，拥有PCB </p>
-</li>
-<li><p>线程：有独立的PCB，但没有独立的地址空间(共享)</p>
-</li>
-</ul>
-<p>区别：在于是否共享地址空间。独居(进程)；合租(线程)。<br><big></big></p>
-<ul>
-<li>线程：最小的执行单位</li>
-<li>进程：最小分配资源单位，可看成是只有一个线程的进程。
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/sliding-window-maximum/" target="_blank" rel="noopener">239. 滑动窗口最大值</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
+<p>返回滑动窗口中的最大值。</p>
+<p>示例 1：</p>
+<pre><code>输入：nums = [1,3,-1,-3,5,3,6,7], k = 3
+输出：[3,3,5,5,6,7]
+解释：
+滑动窗口的位置                最大值
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7</code></pre><p>示例 2：</p>
+<pre><code>输入：nums = [1], k = 1
+输出：[1]
+示例 3：
 
-</li>
-</ul>
-<h4 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h4><p>线程同步，指一个线程发出某一功能调用时，在没有得到结果之前，该调用不返回。同时其它线程为保证数据一致性，不能调用该功能。</p>
-<p>“同步”的目的，是为了避免数据混乱，解决与时间有关的错误。实际上，不仅线程间需要同步，进程间、信号间等等都需要同步机制。</p>
-<blockquote>
-<p>所有“多个控制流，共同操作一个共享资源”的情况，都需要同步。</p>
-</blockquote>
-<h1 id="锁的应用"><a href="#锁的应用" class="headerlink" title="锁的应用"></a>锁的应用</h1><h3 id="互斥锁-mutex"><a href="#互斥锁-mutex" class="headerlink" title="互斥锁 mutex"></a>互斥锁 mutex</h3><p>Linux中提供一把互斥锁mutex（也称之为互斥量）。<br>每个线程在对资源操作前都尝试先加锁，成功加锁才能操作，操作结束解锁。同一时刻，只能有一个线程持有该锁。</p>
-<p>互斥锁实质上是操作系统提供的一把“建议锁”（又称“协同锁”），建议程序中有多线程访问共享资源的时候使用该机制。但，并没有强制限定。因此，<font color="red">即使有了mutex，如果有线程不按规则来访问数据，依然会造成数据混乱。</font></p>
-<h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>与互斥量类似，但读写锁允许更高的并行性。其特性为：写独占，读共享。</p>
-<h5 id="读写锁特性："><a href="#读写锁特性：" class="headerlink" title="读写锁特性："></a>读写锁特性：</h5><ol>
-<li>读写锁是“写模式加锁”时， 解锁前，所有对该锁加锁的线程都会被阻塞。</li>
-<li>读写锁是“读模式加锁”时， 如果线程以读模式对其加锁会成功；如果线程以写模式加锁会阻塞。</li>
-<li>读写锁是“读模式加锁”时， 既有试图以写模式加锁的线程，也有试图以读模式加锁的线程。那么读写锁会阻塞随后的读模式锁请求。优先满足写模式锁。<font color="red">读锁、写锁并行阻塞，写锁优先级高</font>。</li>
-</ol>
-<p>读写锁也叫共享-独占锁。当读写锁以读模式锁住时，它是以共享模式锁住的；当它以写模式锁住时，它是以独占模式锁住的。写独占、读共享。</p>
-<p>读写锁非常适合于对数据结构读的次数远大于写的情况。</p>
-<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>协程((coroutine)), 也叫轻量级线程。</p>
+输入：nums = [1,-1], k = 1
+输出：[1,-1]
+示例 4：
+
+输入：nums = [9,11], k = 2
+输出：[11]
+示例 5：
+
+输入：nums = [4,-2], k = 2
+输出：[4]</code></pre><p>提示：</p>
 <ul>
-<li><p>与传统的系统级线程和进程相比，协程最大的优势在于“轻量级”。可以轻松创建上万个而不会导致系统资源衰竭。而线程和进程通常很难超过1万个。这也是协程别称“轻量级线程”的原因。</p>
-</li>
-<li><p>一个线程中可以有任意多个协程，但某一时刻只能有一个协程在运行，多个协程分享该线程分配到的计算机资源。</p>
-</li>
-<li><p>除了Python、Lua、Ruset,go等，多数语言在语法层面并不直接支持协程。</p>
-</li>
-<li><p>在协程中，调用一个任务就像调用一个函数一样，消耗的系统资源最少！但能达到进程、线程并发相同的效果。<br>从系统资源消耗的角度出发来看，进程相当多，线程次之，协程最少。</p>
-</li>
+<li>1 &lt;= nums.length &lt;= 105</li>
+<li>-104 &lt;= nums[i] &lt;= 104</li>
+<li>1 &lt;= k &lt;= nums.length</li>
 </ul>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题不复杂，难点在于如何在 O(1) 时间算出每个「窗口」中的最大值，使得整个算法在线性时间完成。</p>
+<p>在一堆数字中，已知最值，如果给这堆数添加一个数，那么比较一下就可以很快算出最值；但如果减少一个数，就不一定能很快得到最值了，而要遍历所有数重新找最值。</p>
+<p>回到这道题的场景，每个窗口前进的时候，要添加一个数同时减少一个数，所以想在 O(1) 的时间得出新的最值，就需要「单调队列」这种特殊的数据结构来辅助了。</p>
+<p>单调队列的最大的特性在于队列内的元素全部是单调递增或者单调递减的。这个主要通过每次在队尾插入新元素的时候做一些额外的操作来实现。</p>
+<p>也就是将队列传统的push方法做一些小的改动就可以</p>
+<pre><code>// 实现单调队列的push方法，注意传引用
+func (mq *MonotonicQueue) push(n int)  {
+    // 依旧是从队尾插入，但注意需要把前面比自己小的元素都删掉
+    for len(mq.q) &gt; 0 &amp;&amp; mq.q[len(mq.q)-1] &lt; n {
+        // 只要当前队尾元素比要插入的元素小，就删掉
+        mq.q = mq.q[:len(mq.q)-1]
+    }
+
+    // 直到所有小的元素都删掉后再插入元素
+    mq.q = append(mq.q, n)
+}</code></pre><p>此外，我们还需要补充max和pop方法</p>
+<pre><code>// 获取单调队列的最大值
+func (mq MonotonicQueue) max() int {
+    // 因为是单调队列，所以最大元素就是队首元素，直接取出来就好了
+    return mq.q[0]
+}
+
+// 实现单调队列的pop方法，注意传引用
+func (mq *MonotonicQueue) pop(n int)  {
+    // 因为队要删除的素可能在push的时候为了保持单调性已经被删掉，所以要确认有再pop
+    if mq.q[0] == n {
+        mq.q = mq.q[1:]
+    }
+}</code></pre><p>至此，我们就实现了本题中单调队列所需的所有方法，然后就可以借助这个单调队列完成题目了，完整代码如下</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>// 用切片模拟单调队列
+type MonotonicQueue struct {
+    q []int
+}
+
+// 实现单调队列的push方法，注意传引用
+func (mq *MonotonicQueue) push(n int)  {
+    // 依旧是从队尾插入，但注意需要把前面比自己小的元素都删掉
+    for len(mq.q) &gt; 0 &amp;&amp; mq.q[len(mq.q)-1] &lt; n {
+        // 只要当前队尾元素比要插入的元素小，就删掉
+        mq.q = mq.q[:len(mq.q)-1]
+    }
+
+    // 直到所有小的元素都删掉后再插入元素
+    mq.q = append(mq.q, n)
+}
+
+// 获取单调队列的最大值
+func (mq MonotonicQueue) max() int {
+    // 因为是单调队列，所以最大元素就是队首元素，直接取出来就好了
+    return mq.q[0]
+}
+
+// 实现单调队列的pop方法，注意传引用
+func (mq *MonotonicQueue) pop(n int)  {
+    // 因为队要删除的素可能在push的时候为了保持单调性已经被删掉，所以要确认有再pop
+    if mq.q[0] == n {
+        mq.q = mq.q[1:]
+    }
+}
+
+func maxSlidingWindow(nums []int, k int) []int {
+    // 用单调队列维护一个滑动窗口
+    window := MonotonicQueue{}
+    // 存放结果
+    res := make([]int, 0)
+
+    // 先填满窗口的前k-1个元素
+    i := 0
+    for ;i &lt; k-1; i++ {
+        window.push(nums[i])
+    }
+
+    // 开始遍历数组，依次加入新数字
+    for  ;i &lt; len(nums); i++ {
+        // 窗口向前滑动，加入新数字
+        window.push(nums[i])
+        // 获取当前滑动窗口的最大值也就是单调队列的最大值
+        res = append(res, window.max())
+        // 左边界向前移动一位
+        // 注意因为当前新的右边界数字下标是i，而窗口大小是k，所以左边界的数字下标是i-k+1，
+        window.pop(nums[i-k+1])
+    }
+    // 返回结果
+    return res
+}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N"><a href="#时间复杂度：O-N" class="headerlink" title="时间复杂度：O((N))"></a>时间复杂度：O((N))</h3><p>单独看 push 操作的复杂度确实不是 O((1))，但是算法整体的复杂度依然是 O((N)) 线性时间。要这样想，nums 中的每个元素最多被 push_back 和 pop_back 一次，没有任何多余操作，所以整体的复杂度还是 O((N))</p>
+<h3 id="空间复杂度：O-K"><a href="#空间复杂度：O-K" class="headerlink" title="空间复杂度：O((K))"></a>空间复杂度：O((K))</h3><p>空间复杂度就很简单了，就是窗口的大小 O((k))。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>滑动窗口问题是一个非常经典的问题，并且难度是Hard，但是通过引入一个单调队列，维护一个滑动窗口，本题就引刃而解。</p>
 
             </div>
             <hr />
@@ -732,9 +798,9 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【Go特性1】并发编程技术》
+                    《【leetcode-239】滑动窗口最大值》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/17/go-feature-concurrent/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/05/23/leetcode-239/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -775,7 +841,7 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/17/go-feature-concurrent/',
+        id: '2021/05/23/leetcode-239/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -796,29 +862,88 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/18/leetcode-142/">
+                <a href="/2021/05/23/leetcode-239/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="【leetcode-142】环形链表2">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【leetcode-239】滑动窗口最大值">
                         
-                        <span class="card-title">【leetcode-142】环形链表2</span>
+                        <span class="card-title">【leetcode-239】滑动窗口最大值</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这道题是【leetcode-142】环形链表的变体，可以有两种方法解决
+                            滑动窗口问题是一个非常经典的问题，并且难度是Hard，但是通过引入一个单调队列，维护一个滑动窗口，本题就引刃而解。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-18
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/queue/" target="_blank">
+                        <span class="chip bg-color">queue</span>
+                    </a>
+                    
+                    <a href="/tags/滑动窗口/" target="_blank">
+                        <span class="chip bg-color">滑动窗口</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/05/22/leetcode-236/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="【leetcode-236】二叉树的最近公共祖先">
+                        
+                        <span class="card-title">【leetcode-236】二叉树的最近公共祖先</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本题难度不大，但是非常经典，值得反复练习。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -838,57 +963,8 @@ Go最突出的特性之一就在于其对并发编程的支持很好，本文是
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/链表/" target="_blank">
-                        <span class="chip bg-color">链表</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/12/16/go-basic/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【Go 基础】">
-                        
-                        <span class="card-title">【Go 基础】</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            主要是自我梳理一下go语言的一些基础语法，指针、切片、map、字符串等，查漏补缺
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-16
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
+                    <a href="/tags/tree/" target="_blank">
+                        <span class="chip bg-color">tree</span>
                     </a>
                     
                 </div>
