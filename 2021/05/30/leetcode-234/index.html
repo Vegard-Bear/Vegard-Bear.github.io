@@ -4,13 +4,18 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-222】完全二叉树的节点个数, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-234】回文链表, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接222. 完全二叉树的节点个数
-题目描述给你一棵 完全二叉树 的根节点 root ，求出该树的节点个数。
-完全二叉树 的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该">
+    <meta name="description" content="题目链接234. 回文链表
+题目描述请判断一个链表是否为回文链表。
+示例 1:
+输入: 1-&amp;gt;2
+输出: false示例 2:
+输入: 1-&amp;gt;2-&amp;gt;2-&amp;gt;1
+输出: true
+进阶：你能否用O((n)) 时间复杂度和">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +23,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-222】完全二叉树的节点个数 | 小熊的作坊</title>
+    <title>【leetcode-234】回文链表 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -331,13 +336,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-222】完全二叉树的节点个数
+                        【leetcode-234】回文链表
                     </div>
                 </div>
             </div>
@@ -452,12 +457,8 @@
                             <span class="chip bg-color">leetcode</span>
                         </a>
                         
-                        <a href="/tags/tree/" target="_blank">
-                            <span class="chip bg-color">tree</span>
-                        </a>
-                        
-                        <a href="/tags/完全二叉树/" target="_blank">
-                            <span class="chip bg-color">完全二叉树</span>
+                        <a href="/tags/链表/" target="_blank">
+                            <span class="chip bg-color">链表</span>
                         </a>
                         
                     </div>
@@ -480,7 +481,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-04-18
+                    2021-05-30
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -494,14 +495,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    649
+                    965
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
                 
@@ -517,49 +518,104 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/count-complete-tree-nodes/" target="_blank" rel="noopener">222. 完全二叉树的节点个数</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一棵 完全二叉树 的根节点 root ，求出该树的节点个数。</p>
-<p>完全二叉树 的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层，则该层包含 1~ 2h 个节点。</p>
-<p>示例 1：</p>
-<pre><code>输入：root = [1,2,3,4,5,6]
-输出：6</code></pre><p>示例 2：</p>
-<pre><code>输入：root = []
-输出：0</code></pre><p>示例 3：</p>
-<pre><code>输入：root = [1]
-输出：1</code></pre><p>提示：</p>
-<ul>
-<li>树中节点的数目范围是[0, 5 * 104]</li>
-<li>0 &lt;= Node.val &lt;= 5 * 104</li>
-<li>题目数据保证输入的树是完全二叉树</li>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/palindrome-linked-list/" target="_blank" rel="noopener">234. 回文链表</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>请判断一个链表是否为回文链表。</p>
+<p>示例 1:</p>
+<pre><code>输入: 1-&gt;2
+输出: false</code></pre><p>示例 2:</p>
+<pre><code>输入: 1-&gt;2-&gt;2-&gt;1
+输出: true</code></pre><ul>
+<li>进阶：<br>你能否用O((n)) 时间复杂度和 O((1)) 空间复杂度解决此题？</li>
 </ul>
-<p>进阶：遍历树来统计节点是一种时间复杂度为 O(n) 的简单解决方案。你可以设计一个更快的算法吗？</p>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>完全二叉树是一类特殊的二叉树，它介于满二叉树和普通二叉树之间。如果是满二叉树的话，很简单，直接计算出它的<strong>高度</strong>就行了，然后节点数就等于2^<strong>高度</strong>-1。但如果不是一棵满二叉树，则可以直接按照普通二叉树的方法求解。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func countNodes(root *TreeNode) int {
-    // 先通过比较左右子树的高度判断是否是一棵满二叉树
-    l, r := root, root
-    hl, hr := 0, 0
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题我们用两种解法，第一种是采用借助递归的堆栈把链表节点放入一个栈，然后再拿出来，这时候元素的顺序是反的，空间复杂度是O((n))，类似于二叉树的后序遍历。</p>
+<p>第二种则进一步优化了空间复杂度为O((1))，具体采用同三步走：</p>
+<ol>
+<li>先通过“双指针技巧”中的快、慢指针来找到链表的中点</li>
+<li>从链表的中点开始反转后面的链表</li>
+<li>设置两个指针分别指向头节点和反转后子链表的头节点，两两比较回文串</li>
+</ol>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h2 id="解法一-利用递归函数堆栈"><a href="#解法一-利用递归函数堆栈" class="headerlink" title="解法一: 利用递归函数堆栈"></a>解法一: 利用递归函数堆栈</h2><pre><code>// 左侧指针
+var left *ListNode
 
-    for l != nil {
-        l = l.Left
-        hl++
+func isPalindrome(head *ListNode) bool {
+    // 左侧指针初始指向头节点
+    left = head
+    return traverse(head)
+}
+
+// 利用递归，倒序遍历单链表
+func traverse(right *ListNode) bool {
+    // 右指针已经到了链表结尾，也就是最右边，可以直接返回了
+    if right == nil {
+        return true
     }
 
-    for r != nil {
-        r = r.Right
-        hr++
+    // 有指针没到结尾，继续向右寻找
+    res := traverse(right.Next)
+
+    // 开始头尾两两成对比较，注意当前比较要带上上一次比较的结果
+    res = res &amp;&amp; (left.Val == right.Val)
+
+    // 继续比较下一组
+    // 注意left要向右边移动，right则是利用递归返回，相当于向左移动
+    left = left.Next
+    return res
+}</code></pre><h2 id="解法二-快慢指针-反转链表"><a href="#解法二-快慢指针-反转链表" class="headerlink" title="解法二: 快慢指针 + 反转链表"></a>解法二: 快慢指针 + 反转链表</h2><pre><code>func isPalindrome(head *ListNode) bool {
+    // 第一步先利用快慢指针找到链表中点
+    slow, fast := head, head
+    for fast != nil &amp;&amp; fast.Next != nil {
+        slow = slow.Next
+        fast = fast.Next.Next
+    }
+    // slow 指针此时指向链表中点
+
+    // 对于奇数个节点的链表，中间那个节点不需要做匹配，直接跳过
+    // 而如果fast指针没有指向nil，说明链表长度为奇数
+    if fast != nil {
+        slow = slow.Next
     }
 
-    // 左子树高度等于右子树高度，则是一棵满二叉树
-    // 满二叉树的节点数 = 2^高度 - 1
-    if hl == hr {
-        return int(math.Pow(2, float64(hl))) - 1
-    }
+    // 第二步是从slow开始反转后面的链表，然后就可以两两配对了
+    left := head
+    right := reverse(slow)
 
-    // 如果不是一棵满二叉树，则按普通二叉树的逻辑计算
-    return 1 + countNodes(root.Left) + countNodes(root.Right)
-}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-1"><a href="#时间复杂度：O-1" class="headerlink" title="时间复杂度：O((1))"></a>时间复杂度：O((1))</h3><p>首先计算树的高度的时间复杂度是logN，然后对树进行递归的话，表面上是N，但实际上是logN，因为最多只有其中一棵子树的递归会真正进行下去，而另一棵一定会触发hl=hr，然后直接返回，这是因为一棵完全二叉树的两棵子树，至少又一棵是满二叉树。<br>综上，时间复杂度就是logNlogN</p>
-<h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>递归的空间复杂度为<strong>递归的次数</strong> <em> <strong>每次递归的空间复杂度</strong>，<br>也就是 n </em> O((1)) = O((n))</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>一棵完全二叉树的两棵子树，至少又一棵是满二叉树。</p>
+    // 此时right指向反转后子链表的头节点
+    for right != nil {
+        // 依次两两比较
+        if left.Val != right.Val {
+            return false
+        }
+        left = left.Next
+        right = right.Next
+    }
+    return true
+}
+
+// 反转以head为头的链表，返回反转后的头节点
+func reverse(head *ListNode) *ListNode  {
+    // 设置前驱节点和当前节点，原来的前驱节点会作为新的后继节点，所以初始设置为nil
+    var pre, cur *ListNode
+    pre, cur = nil, head
+    // 开始依次反转
+    for cur != nil {
+        // 先暂存后继节点
+        next := cur.Next
+        // 原来的前驱节点会作为新的后继节点
+        cur.Next = pre
+        // 当前节点作为前驱节点，后继节点作为新的当前节点，相当于整体向后移动一位
+        pre = cur
+        cur = next
+    }
+    return pre
+}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N"><a href="#时间复杂度：O-N" class="headerlink" title="时间复杂度：O((N))"></a>时间复杂度：O((N))</h3><p>解法一和解法二都需要遍历整个链表，所以时间复杂度都是O((n))</p>
+<h3 id="空间复杂度：O-1-O-n"><a href="#空间复杂度：O-1-O-n" class="headerlink" title="空间复杂度：O((1))/O((n))"></a>空间复杂度：O((1))/O((n))</h3><ul>
+<li><p>解法一利用的是递归函数的堆栈，堆栈的深度即链表的长度，所以是O((n))。</p>
+</li>
+<li><p>解法二不需要开辟额外的空间，采用的是就地反转链表，空间复杂度是O((1))</p>
+</li>
+</ul>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>寻找回文串是从中间向两端扩展，判断回文串是从两端向中间收缩。对于单链表，无法直接倒序遍历，因此可以考虑对链表进行反转。比如用栈结构倒序处理链表。</p>
+<p>对于回文链表，由于回文的特殊性，可以不完全反转链表，而是仅仅反转部分链表，将空间复杂度降到O(1)</p>
 
             </div>
             <hr />
@@ -718,9 +774,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-222】完全二叉树的节点个数》
+                    《【leetcode-234】回文链表》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/04/18/leetcode-222/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/05/30/leetcode-234/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -761,7 +817,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/04/18/leetcode-222/',
+        id: '2021/05/30/leetcode-234/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -782,29 +838,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/05/16/leetcode-297/">
+                <a href="/2021/05/30/leetcode-234/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="【leetcode-297】二叉树的序列化和反序列化">
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="【leetcode-234】回文链表">
                         
-                        <span class="card-title">【leetcode-297】二叉树的序列化和反序列化</span>
+                        <span class="card-title">【leetcode-234】回文链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本题将前序、后序和层序遍历一网打尽
+                            寻找回文串是从中间向两端扩展，判断回文串是从两端向中间收缩。对于单链表，无法直接倒序遍历，因此可以考虑对链表进行反转。比如用栈结构倒序处理链表。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -817,6 +874,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -824,8 +882,8 @@
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/tree/" target="_blank">
-                        <span class="chip bg-color">tree</span>
+                    <a href="/tags/链表/" target="_blank">
+                        <span class="chip bg-color">链表</span>
                     </a>
                     
                 </div>
@@ -839,24 +897,24 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/18/leetcode-bst/">
+                <a href="/2021/05/23/leetcode-239/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【leetcode】二叉搜索树系列">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【leetcode-239】滑动窗口最大值">
                         
-                        <span class="card-title">【leetcode】二叉搜索树系列</span>
+                        <span class="card-title">【leetcode-239】滑动窗口最大值</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本节是一个系列，包括二叉树几种常用的算法操作（判断、搜索、插入，删除）。除了删除操作之外，其他操作都比较简单，这里就不给出具体的解题思路了，直接上代码应该也能看懂。为了方便理解，这里给出的题目顺序是从难到易的。
+                            滑动窗口问题是一个非常经典的问题，并且难度是Hard，但是通过引入一个单调队列，维护一个滑动窗口，本题就引刃而解。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-18
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-23
                             </span>
                         <span class="publish-author">
                             
@@ -877,12 +935,12 @@
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/tree/" target="_blank">
-                        <span class="chip bg-color">tree</span>
+                    <a href="/tags/queue/" target="_blank">
+                        <span class="chip bg-color">queue</span>
                     </a>
                     
-                    <a href="/tags/二叉搜索树/" target="_blank">
-                        <span class="chip bg-color">二叉搜索树</span>
+                    <a href="/tags/滑动窗口/" target="_blank">
+                        <span class="chip bg-color">滑动窗口</span>
                     </a>
                     
                 </div>
