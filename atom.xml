@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-05-30T08:14:17.714Z</updated>
+  <updated>2021-06-05T12:54:42.047Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【leetcode-78】子集</title>
+    <link href="https://vegard-bear.github.io/2021/06/05/leetcode-78/"/>
+    <id>https://vegard-bear.github.io/2021/06/05/leetcode-78/</id>
+    <published>2021-06-05T12:52:25.000Z</published>
+    <updated>2021-06-05T12:54:42.047Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/subsets/&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
+    
+    
+      <category term="回溯剪枝" scheme="https://vegard-bear.github.io/tags/%E5%9B%9E%E6%BA%AF%E5%89%AA%E6%9E%9D/"/>
+    
+      <category term="leecode" scheme="https://vegard-bear.github.io/tags/leecode/"/>
+    
+  </entry>
   
   <entry>
     <title>【leetcode-234】回文链表</title>
@@ -542,9 +570,9 @@
     
       <category term="密码学" scheme="https://vegard-bear.github.io/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
-      <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
-    
       <category term="SoftHSM" scheme="https://vegard-bear.github.io/tags/SoftHSM/"/>
+    
+      <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
     
   </entry>
   
@@ -573,35 +601,6 @@
       <category term="密码学" scheme="https://vegard-bear.github.io/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
       <category term="SoftHSM" scheme="https://vegard-bear.github.io/tags/SoftHSM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Go源码解析10】defer</title>
-    <link href="https://vegard-bear.github.io/2021/03/07/go-sourcecode-defer/"/>
-    <id>https://vegard-bear.github.io/2021/03/07/go-sourcecode-defer/</id>
-    <published>2021-03-07T12:16:10.000Z</published>
-    <updated>2021-03-07T12:20:06.907Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;很多现代的编程语言中都有 defer 关键字，Go 语言的 defer 会在当前函数返回前执行传入的函数，它会经常被用于关闭文件描述符、关闭数据库连接以及解锁资源。&lt;/p&gt;
-&lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-      <category term="go" scheme="https://vegard-bear.github.io/categories/go/"/>
-    
-    
-      <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
-    
-      <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
     
   </entry>
   
