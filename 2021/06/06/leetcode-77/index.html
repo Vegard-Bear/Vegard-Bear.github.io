@@ -4,16 +4,21 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-654】最大二叉树, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-77】组合, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接654. 最大二叉树
-题目描述给定一个不含重复元素的整数数组。一个以此数组构建的最大二叉树定义如下:
-
-二叉树的根是数组中的最大元素。
-左子树是通过数组中最大值左边部分构造出的最大二叉树。
-右子树是通过数组中最大值右边部分构造出的最">
+    <meta name="description" content="题目链接78. 子集
+题目描述给定两个整数 n 和 k，返回 1 … n 中所有可能的 k 个数的组合。
+示例:
+输入: n = 4, k = 2
+输出:
+[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +26,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-654】最大二叉树 | 小熊的作坊</title>
+    <title>【leetcode-77】组合 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -334,13 +339,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-654】最大二叉树
+                        【leetcode-77】组合
                     </div>
                 </div>
             </div>
@@ -451,12 +456,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/leetcode/" target="_blank">
-                            <span class="chip bg-color">leetcode</span>
+                        <a href="/tags/回溯剪枝/" target="_blank">
+                            <span class="chip bg-color">回溯剪枝</span>
                         </a>
                         
-                        <a href="/tags/tree/" target="_blank">
-                            <span class="chip bg-color">tree</span>
+                        <a href="/tags/leecode/" target="_blank">
+                            <span class="chip bg-color">leecode</span>
                         </a>
                         
                     </div>
@@ -479,7 +484,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-07
+                    2021-06-06
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -493,14 +498,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    458
+                    577
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -516,70 +521,61 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/maximum-binary-tree/" target="_blank" rel="noopener">654. 最大二叉树</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个不含重复元素的整数数组。一个以此数组构建的最大二叉树定义如下:</p>
-<ol>
-<li>二叉树的根是数组中的最大元素。</li>
-<li>左子树是通过数组中最大值左边部分构造出的最大二叉树。</li>
-<li>右子树是通过数组中最大值右边部分构造出的最大二叉树。</li>
-</ol>
-<p>通过给定的数组构建最大二叉树，并且输出这个树的根节点。</p>
-<p>示例 ：</p>
-<pre class="line-numbers language-go"><code class="language-go">输入：<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/combinations/" target="_blank" rel="noopener">78. 子集</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定两个整数 n 和 k，返回 1 … n 中所有可能的 k 个数的组合。</p>
+<p>示例:</p>
+<pre><code>输入: n = 4, k = 2
+输出:
+[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题其实与 <a href="https://leetcode-cn.com/problems/subsets/" target="_blank" rel="noopener">78.子集</a> 非常相似，也是属于回溯算法，主要不同在于遍历决策树的时候子集是所有节点都算是子集，都需要更新res，而组合则是只有在到达叶子节点时才算是一种组合，才需要更新res。实际上77、78和46三道题可以一起看，感受其中的相同与不同，因为这三道都是典型的回溯算法。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>// 记录所有组合
+var res [][]int
 
-输出：返回下面这棵树的根节点：
+func combine(n int, k int) [][]int {
+    // 先重置一下结果
+    res = [][]int{}
 
-      <span class="token number">6</span>
-    <span class="token operator">/</span>   \
-   <span class="token number">3</span>     <span class="token number">5</span>
-    \    <span class="token operator">/</span> 
-     <span class="token number">2</span>  <span class="token number">0</span>   
-       \
-        <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题的解题思路比较常规，没有什么特别的技巧，就是遍历数组找到最大值，作为根节点 root，然后对最大值左边的数组和右边的数组进行递归调用，作为 root 的左右子树。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */</span>
+    // 特殊情况直接返回
+    if k &lt;= 0 || n &lt;= 0 {
+        return res
+    }
 
-<span class="token keyword">func</span> <span class="token function">constructMaximumBinaryTree</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">*</span>TreeNode <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token function">constuct</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+    // 记录一条路径
+    track := make([]int, 0)
+    // 开始回溯
+    backtrack(n, k, 1, track)
+    return res
+}
 
-<span class="token keyword">func</span> <span class="token function">constuct</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> low<span class="token punctuation">,</span> high <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">*</span>TreeNode <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 说明当前要找的数组已经没有元素了</span>
-    <span class="token keyword">if</span> low <span class="token operator">></span> high <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token boolean">nil</span>
-    <span class="token punctuation">}</span>
+func backtrack(n, k, start int, track []int) {
+    // 如果已经到达叶子节点，说明已经有了一种组合，记录下来
+    if len(track) == k {
+        temp := make([]int, len(track))
+        copy(temp, track)
+        res = append(res, temp)
+        return
+    }
 
-    <span class="token comment" spellcheck="true">// 找到最大值的下标</span>
-    index <span class="token operator">:=</span> <span class="token function">findMaxNodeIndex</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> low<span class="token punctuation">,</span> high<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// 根据最大值构造根节点</span>
-    root <span class="token operator">:=</span> <span class="token function">new</span><span class="token punctuation">(</span>TreeNode<span class="token punctuation">)</span>
-    root<span class="token punctuation">.</span>Val <span class="token operator">=</span> nums<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
-    <span class="token comment" spellcheck="true">// 左右递归遍历构造左右子树，注意数组边界（+1和-1）</span>
-    root<span class="token punctuation">.</span>Left <span class="token operator">=</span> <span class="token function">constuct</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> low<span class="token punctuation">,</span> index<span class="token number">-1</span><span class="token punctuation">)</span>
-    root<span class="token punctuation">.</span>Right <span class="token operator">=</span> <span class="token function">constuct</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> high<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> root
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">// 返回指定数组中最大值的那个下标</span>
-<span class="token keyword">func</span> <span class="token function">findMaxNodeIndex</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> low<span class="token punctuation">,</span> high <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
-    index <span class="token operator">:=</span> low
-    <span class="token keyword">for</span> i <span class="token operator">:=</span> low<span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> high <span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> nums<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token punctuation">{</span>
-            index <span class="token operator">=</span> i
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> index
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>反思：在搭建好框架后还要处理一些细节问题，比如 “=” 取不取得到，要不要 “+1” 或者 “-1” 等，这些细节问题可能还需要debug的时候一点点去抠</p>
-</blockquote>
+    // 从start开始继续遍历
+    for i := start; i &lt;= n; i++ {
+        // 选择把节点i加入
+        track = append(track, i)
+        // 继续向下遍历
+        backtrack(n, k, i+1,track)
+        // 回退一层
+        track = track[:len(track)-1]
+    }
+}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n-2-n"><a href="#时间复杂度：O-n-2-n" class="headerlink" title="时间复杂度：O((n * 2^n))"></a>时间复杂度：O((n * 2^n))</h3><p>时间复杂度就是决策树节点总数，因为每个节点至少遍历一次，也就是2^n，但是由于每次遍历到叶子节点都需要把当前路径track做一次append操作，也是O((n))的时间复杂度，所以总的时间复杂度就是O((n * 2^n))</p>
+<h3 id="空间复杂度：O-n-2-n"><a href="#空间复杂度：O-n-2-n" class="headerlink" title="空间复杂度：O((n * 2^n))"></a>空间复杂度：O((n * 2^n))</h3><p>空间复杂度就是最后返回的结果res所占的空间也就是所有的状态树，对应决策树的所有状态所占的空间：</p>
+<p>O((2^n)) <em> n = O((n </em> 2^n))</p>
+<p>最多有2^((n-1))个状态，每个状态最多占用大小为n的空间（相当于全集）</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>实际上<strong>78.子集</strong>、<strong>77.组合</strong>、和<strong>46.排列</strong>三道题可以一起看，感受其中的相同与不同，因为这三道都是典型的回溯算法。</p>
 
             </div>
             <hr />
@@ -738,9 +734,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-654】最大二叉树》
+                    《【leetcode-77】组合》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/07/leetcode-654/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/06/06/leetcode-77/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -781,7 +777,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/12/07/leetcode-654/',
+        id: '2021/06/06/leetcode-77/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -802,29 +798,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/09/leetcode-111/">
+                <a href="/2021/06/06/leetcode-77/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="【leetcode-111】二叉树的最小深度">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【leetcode-77】组合">
                         
-                        <span class="card-title">【leetcode-111】二叉树的最小深度</span>
+                        <span class="card-title">【leetcode-77】组合</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            对于求树的高度一类的问题基本就是深度优先或者广度优先，然后直接套用模版就可以了
+                            实际上**78.子集**、**77.组合**、和**46.排列**三道题可以一起看，感受其中的相同与不同，因为这三道都是典型的回溯算法。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -837,19 +834,16 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/回溯剪枝/" target="_blank">
+                        <span class="chip bg-color">回溯剪枝</span>
                     </a>
                     
-                    <a href="/tags/tree/" target="_blank">
-                        <span class="chip bg-color">tree</span>
-                    </a>
-                    
-                    <a href="/tags/BFS/" target="_blank">
-                        <span class="chip bg-color">BFS</span>
+                    <a href="/tags/leecode/" target="_blank">
+                        <span class="chip bg-color">leecode</span>
                     </a>
                     
                 </div>
@@ -863,24 +857,24 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/04/leetcode-114/">
+                <a href="/2021/06/05/leetcode-78/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="【leetcode-114】二叉树展开为链表">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="【leetcode-78】子集">
                         
-                        <span class="card-title">【leetcode-114】二叉树展开为链表</span>
+                        <span class="card-title">【leetcode-78】子集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一看到二叉树的题目就需要思考是前序、中序、还是后序遍历，一旦确定，就可以套模版了，接下来就是一些细节问题……
+                            所有的穷举问题都可以采取回溯算法解决，比如子集问题，然后我们根据题意改造回溯算法的模版就好了。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-04
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-05
                             </span>
                         <span class="publish-author">
                             
@@ -897,16 +891,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/回溯剪枝/" target="_blank">
+                        <span class="chip bg-color">回溯剪枝</span>
                     </a>
                     
-                    <a href="/tags/tree/" target="_blank">
-                        <span class="chip bg-color">tree</span>
-                    </a>
-                    
-                    <a href="/tags/前序遍历/" target="_blank">
-                        <span class="chip bg-color">前序遍历</span>
+                    <a href="/tags/leecode/" target="_blank">
+                        <span class="chip bg-color">leecode</span>
                     </a>
                     
                 </div>

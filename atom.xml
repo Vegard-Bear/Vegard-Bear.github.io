@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-06-05T12:54:42.047Z</updated>
+  <updated>2021-06-06T03:56:07.106Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【leetcode-77】组合</title>
+    <link href="https://vegard-bear.github.io/2021/06/06/leetcode-77/"/>
+    <id>https://vegard-bear.github.io/2021/06/06/leetcode-77/</id>
+    <published>2021-06-06T03:53:34.000Z</published>
+    <updated>2021-06-06T03:56:07.106Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/combinations/&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
+    
+    
+      <category term="回溯剪枝" scheme="https://vegard-bear.github.io/tags/%E5%9B%9E%E6%BA%AF%E5%89%AA%E6%9E%9D/"/>
+    
+      <category term="leecode" scheme="https://vegard-bear.github.io/tags/leecode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【leetcode-78】子集</title>
     <link href="https://vegard-bear.github.io/2021/06/05/leetcode-78/"/>
     <id>https://vegard-bear.github.io/2021/06/05/leetcode-78/</id>
     <published>2021-06-05T12:52:25.000Z</published>
-    <updated>2021-06-05T12:54:42.047Z</updated>
+    <updated>2021-06-06T03:56:07.111Z</updated>
     
     <summary type="html">
     
@@ -573,34 +601,6 @@
       <category term="SoftHSM" scheme="https://vegard-bear.github.io/tags/SoftHSM/"/>
     
       <category term="fabric" scheme="https://vegard-bear.github.io/tags/fabric/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SoftHSM操作手册</title>
-    <link href="https://vegard-bear.github.io/2021/03/08/softhsm-introduce/"/>
-    <id>https://vegard-bear.github.io/2021/03/08/softhsm-introduce/</id>
-    <published>2021-03-08T08:02:39.000Z</published>
-    <updated>2021-03-08T08:06:15.738Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;OpenDNSSEC通过PKCS＃11接口处理并存储其加密密钥。该接口指定如何与诸如HSM
-        
-      
-    
-    </summary>
-    
-      <category term="密码学" scheme="https://vegard-bear.github.io/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
-    
-      <category term="密码学" scheme="https://vegard-bear.github.io/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
-      <category term="SoftHSM" scheme="https://vegard-bear.github.io/tags/SoftHSM/"/>
     
   </entry>
   

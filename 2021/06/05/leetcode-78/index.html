@@ -334,7 +334,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    746
+                    750
                 </div>
                 
 
@@ -569,7 +569,7 @@ func backTrack(nums []int, start int, track []int)  {
         track = track[:len(track)-1]
     }
 }
-</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n-2-n"><a href="#时间复杂度：O-n-2-n" class="headerlink" title="时间复杂度：O((n * 2^n))"></a>时间复杂度：O((n * 2^n))</h3><p>时间复杂度就是决策树节点总数因为每个节点至少遍历一次，也就是2^n，但是由于每次遍历一个节点都需要把当前路径track做一次append操作，也是O((n))的时间复杂度，所以总的时间复杂度就是</p>
+</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n-2-n"><a href="#时间复杂度：O-n-2-n" class="headerlink" title="时间复杂度：O((n * 2^n))"></a>时间复杂度：O((n * 2^n))</h3><p>时间复杂度就是决策树节点总数因为每个节点至少遍历一次，也就是2^n，但是由于每次遍历一个节点都需要把当前路径track做一次append操作，也是O((n))的时间复杂度，所以总的时间复杂度就是O((n * 2^n))</p>
 <h3 id="空间复杂度：O-n-2-n"><a href="#空间复杂度：O-n-2-n" class="headerlink" title="空间复杂度：O((n * 2^n))"></a>空间复杂度：O((n * 2^n))</h3><p>空间复杂度就是最后返回的结果res所占的空间也就是所有的状态树，对应决策树的所有状态所占的空间：</p>
 <p>O((2^n)) <em> n = O((n </em> 2^n))</p>
 <p>最多有2^n个状态，每个状态最多占用大小为n的空间（相当于全集）</p>
@@ -796,30 +796,29 @@ func backTrack(nums []int, start int, track []int)  {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/06/05/leetcode-78/">
+                <a href="/2021/06/06/leetcode-77/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【leetcode-78】子集">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【leetcode-77】组合">
                         
-                        <span class="card-title">【leetcode-78】子集</span>
+                        <span class="card-title">【leetcode-77】组合</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            所有的穷举问题都可以采取回溯算法解决，比如子集问题，然后我们根据题意改造回溯算法的模版就好了。
+                            实际上**78.子集**、**77.组合**、和**46.排列**三道题可以一起看，感受其中的相同与不同，因为这三道都是典型的回溯算法。
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-05
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-06
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -832,7 +831,6 @@ func backTrack(nums []int, start int, track []int)  {
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -859,7 +857,7 @@ func backTrack(nums []int, start int, track []int)  {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="【leetcode-234】回文链表">
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="【leetcode-234】回文链表">
                         
                         <span class="card-title">【leetcode-234】回文链表</span>
                     </div>
@@ -1068,7 +1066,7 @@ func backTrack(nums []int, start int, track []int)  {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">101.5k</span>
+            <span class="white-color">102.1k</span>
             
 
             <br>
