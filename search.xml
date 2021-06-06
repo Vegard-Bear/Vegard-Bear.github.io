@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>【leetcode-22】括号生成</title>
+      <link href="/2021/06/06/leetcode-22/"/>
+      <url>/2021/06/06/leetcode-22/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/generate-parentheses/" target="_blank" rel="noopener">22. 括号生成</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。</p><p>示例 1：</p><pre><code>输入：n = 3输出：[&quot;((()))&quot;,&quot;(()())&quot;,&quot;(())()&quot;,&quot;()(())&quot;,&quot;()()()&quot;]</code></pre><p>示例 2：</p><pre><code>输入：n = 1输出：[&quot;()&quot;]</code></pre><p>提示：</p><ul><li>1 &lt;= n &lt;= 8</li></ul><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>关于括号问题，需要记住以下性质：</p><ol><li>一个“合法”括号组合的左括号数量一定等于右括号数量</li><li>对于一个“合法”的括号字符串P，从左往右算的话，肯定是左括号的数量大于等于右括号的数量，到最后左括号和右括号的数量相等。</li></ol><p>明白了以上性质，就可以把这道题转化以下问题：</p><ul><li>现在有2n个位置，每个位置可以放置字符（或者），组成的所有括号组合中，有多少个是合法的？</li></ul><p>然后我们就可以对回溯算法模版进行改造，得到以下解法：</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>var res []stringfunc generateParenthesis(n int) []string {    // 特例直接返回    if n == 0 {        return []string{&quot;&quot;}    }    // 重置一下结果    res = []string{}    // 保存一条路径    var track string    // 回溯剪枝    backTrack(n, n, track)    return res}func backTrack(left, right int, track string)  {    // 数量小于0肯定不合法    if left &lt; 0 || right &lt; 0 {        return    }    // 如果剩下的左括号剩下的多肯定不合法，因为意味着已经用的右括号比左括号多    if left &gt; right {        return    }    // 如果左括号和右括号都恰好用完，说明得到一个合法的括号组合    if left == 0 &amp;&amp; right == 0 {        res = append(res, track)        return    }    // 尝试添加一个左括号    track += &quot;(&quot;    // 继续往下走    backTrack(left - 1, right, track)    // 撤销选择    track = track[:len(track)-1]    // 尝试添加一个右括号    track += &quot;)&quot;    // 继续往下走    backTrack(left, right - 1, track)    // 撤销选择    track = track[:len(track)-1]}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h1 id="时间复杂度："><a href="#时间复杂度：" class="headerlink" title="时间复杂度："></a>时间复杂度：</h1><p>我们的复杂度分析依赖于理解 generateParenthesis((n)) 中有多少个元素。这个分析超出了本文的范畴。</p><h1 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h1><p>除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要 O((1)) 的空间，最多递归 2n 层，因此空间复杂度为 O((n))。</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>括号生成也是一道非常经典的题目，关键是要知道一个合法括号组合的性质，那么问题就迎刃而解了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leecode </tag>
+            
+            <tag> 回溯剪枝 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【leetcode-37】解数独</title>
+      <link href="/2021/06/06/leetcode-37/"/>
+      <url>/2021/06/06/leetcode-37/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/sudoku-solver/" target="_blank" rel="noopener">37. 解数独</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>编写一个程序，通过填充空格来解决数独问题。</p><p>数独的解法需遵循如下规则：</p><p>数字1-9在每一行只能出现一次。<br>数字1-9在每一列只能出现一次。<br>数字1-9在每一个以粗实线分隔的3x3宫内只能出现一次。（请参考示例图）<br>数独部分空格内已填入了数字，空白格用’.’表示。</p><p>示例：</p><pre><code>输入：board = [[&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;],[&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;],[&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;],[&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;],[&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]输出：[[&quot;5&quot;,&quot;3&quot;,&quot;4&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;,&quot;9&quot;,&quot;1&quot;,&quot;2&quot;],[&quot;6&quot;,&quot;7&quot;,&quot;2&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;3&quot;,&quot;4&quot;,&quot;8&quot;],[&quot;1&quot;,&quot;9&quot;,&quot;8&quot;,&quot;3&quot;,&quot;4&quot;,&quot;2&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;],[&quot;8&quot;,&quot;5&quot;,&quot;9&quot;,&quot;7&quot;,&quot;6&quot;,&quot;1&quot;,&quot;4&quot;,&quot;2&quot;,&quot;3&quot;],[&quot;4&quot;,&quot;2&quot;,&quot;6&quot;,&quot;8&quot;,&quot;5&quot;,&quot;3&quot;,&quot;7&quot;,&quot;9&quot;,&quot;1&quot;],[&quot;7&quot;,&quot;1&quot;,&quot;3&quot;,&quot;9&quot;,&quot;2&quot;,&quot;4&quot;,&quot;8&quot;,&quot;5&quot;,&quot;6&quot;],[&quot;9&quot;,&quot;6&quot;,&quot;1&quot;,&quot;5&quot;,&quot;3&quot;,&quot;7&quot;,&quot;2&quot;,&quot;8&quot;,&quot;4&quot;],[&quot;2&quot;,&quot;8&quot;,&quot;7&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;6&quot;,&quot;3&quot;,&quot;5&quot;],[&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;2&quot;,&quot;8&quot;,&quot;6&quot;,&quot;1&quot;,&quot;7&quot;,&quot;9&quot;]]解释：输入的数独如上图所示，唯一有效的解决方案如下所示：</code></pre><p>提示：</p><ul><li>board.length == 9</li><li>board[i].length == 9</li><li>board[i][j] 是一位数字或者 ‘.’</li><li>题目数据 保证 输入数独仅有一个解</li></ul><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>数独也是典型的回溯剪枝算法，与N皇后问题非常类似，主要不同可能就在于一个是判断棋子合法性的方法不同，还有就是N皇后需要得到所有的解，而本题只要找到符合要求的一个解即可，因此最终返回的判定条件也有所不同。</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func solveSudoku(board [][]byte)  {    backtrack(board, 0,0)}// 规定好边界 9*9的棋盘var m,n = 9,9func backtrack(board [][]byte, i, j int) bool {    // 如果穷举到最后一列，就换一行重新开始    if j == n {        return backtrack(board, i+1, 0)    }    // 如果找到一个可行解，直接返回    if i == m {        return true    }    // 如果当前位置已经有数字了，直接跳过    if board[i][j] != &#39;.&#39; {        return backtrack(board, i, j+1)    }    // 将1-9依次进行穷举    for ch := byte(&#39;1&#39;); ch &lt;= byte(&#39;9&#39;); ch++ {        // 尝试填入一个数字，检查填入后是否符合要求        if !isValid(board, i, j, ch) {            // 不合法，就跳过，换个数字试试            continue        }        // 走到这里说明合法了，就直接填入        board[i][j] = ch        // 继续向下遍历，如果找到一个可行解，立即结束        if backtrack(board, i, j+1) {            return true        }        // 走到这里说明填满了格子仍旧没找到可行解，回退一格        board[i][j] = &#39;.&#39;    }    // 穷举完1-9，仍旧没有找到可行解    // 需要前面的格子换个数字穷举    return false}// 判断board[i][j]是否可以填入数字chfunc isValid(board [][]byte, row, col int, ch byte) bool {    for i := 0; i &lt; 9; i++ {        // 判断同行是否重复        if board[row][i] == ch {            return false        }        // 判断同列是否重复        if board[i][col] == ch {            return false        }        // 判断同单元（3*3）是否重复        // 这里需要一点技巧，需要找到当前格子所在单元的起始格子，然后依次遍历        // [0,0]、[0,1]、[0,2]、[1,0]、[1,1]、[1,2]、[2,0]、[2,1]、[2,2]、        if board[(row/3)*3+i/3][(col/3)*3+i%3] == ch {            return false        }    }    return true}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-9-M"><a href="#时间复杂度：O-9-M" class="headerlink" title="时间复杂度：O((9^M))"></a>时间复杂度：O((9^M))</h3><p>在最坏的情况下，需要对每个空着的格子枚举9个数，所以时间复杂度就是O((9^M))，其中M是棋盘中空着的格子数量。</p><p>当然在实际情况下复杂度并没有这么高，因为很多数字不需要穷举所有可能，因为当我们找到一个可行的解的时候就结束了，后续的递归都没有展开。所以这个O((9^M))的时间复杂度实际上是完全穷举，或者说是找到所有可行解的时间复杂度。</p><h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>数独也是典型的回溯剪枝算法，与N皇后问题非常类似，建议一起做，对比着看。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leecode </tag>
+            
+            <tag> 回溯剪枝 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-77】组合</title>
       <link href="/2021/06/06/leetcode-77/"/>
       <url>/2021/06/06/leetcode-77/</url>
@@ -20,9 +74,9 @@
       
         <tags>
             
-            <tag> 回溯剪枝 </tag>
-            
             <tag> leecode </tag>
+            
+            <tag> 回溯剪枝 </tag>
             
         </tags>
       
@@ -47,9 +101,9 @@
       
         <tags>
             
-            <tag> 回溯剪枝 </tag>
-            
             <tag> leecode </tag>
+            
+            <tag> 回溯剪枝 </tag>
             
         </tags>
       
@@ -1774,9 +1828,9 @@
             
             <tag> leetcode </tag>
             
-            <tag> DFS </tag>
-            
             <tag> 回溯剪枝 </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
       
@@ -1803,9 +1857,9 @@
             
             <tag> leetcode </tag>
             
-            <tag> DFS </tag>
-            
             <tag> 回溯剪枝 </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
       
