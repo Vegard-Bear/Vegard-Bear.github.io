@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【leetcode-773】滑动谜题</title>
+      <link href="/2021/06/16/leetcode-773/"/>
+      <url>/2021/06/16/leetcode-773/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/sliding-puzzle/" target="_blank" rel="noopener">773. 滑动谜题成</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>在一个 2 x 3 的板上（board）有 5 块砖瓦，用数字 1~5 来表示, 以及一块空缺用 0 来表示.</p><p>一次移动定义为选择 0 与一个相邻的数字（上下左右）进行交换.</p><p>最终当板 board 的结果是 [[1,2,3],[4,5,0]] 谜板被解开。</p><p>给出一个谜板的初始状态，返回最少可以通过多少次移动解开谜板，如果不能解开谜板，则返回 -1 。</p><p>示例：</p><pre><code>输入：board = [[1,2,3],[4,0,5]]输出：1解释：交换 0 和 5 ，1 步完成</code></pre><pre><code>输入：board = [[1,2,3],[5,4,0]]输出：-1解释：没有办法完成谜板</code></pre><pre><code>输入：board = [[4,1,2],[5,0,3]]输出：5解释：最少完成谜板的最少移动次数是 5 ，一种移动路径:尚未移动: [[4,1,2],[5,0,3]]移动 1 次: [[4,1,2],[0,5,3]]移动 2 次: [[0,1,2],[4,5,3]]移动 3 次: [[1,0,2],[4,5,3]]移动 4 次: [[1,2,0],[4,5,3]]移动 5 次: [[1,2,3],[4,5,0]]</code></pre><pre><code>输入：board = [[3,2,4],[1,5,0]]输出：14</code></pre><p>提示：</p><ul><li>board 是一个如上所述的 2 x 3 的数组.</li><li>board[i][j] 是一个 [0, 1, 2, 3, 4, 5] 的排列.</li></ul><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于求最小步数的问题，我们要敏锐得想到BFS算法，也就是层序遍历，也就是从一个起点出发，一层层地向外扩张，第一次到达终点的时候，扩张的层数就是最小步数。</p><p>只不过这道题稍微有些特殊，就是每次不是向外走一步，而是和相邻的数字交换一下。这就需要我们将和相邻数字交换这个操作转化成向相邻路径走一步。</p><p>我们这里的 board 仅仅是 2x3 的二维数组，所以可以压缩成一个一维字符串。其中比较有技巧性的点在于，二维数组有「上下左右」的概念，压缩成一维后，如何得到某一个索引上下左右的索引？</p><p>很简单，我们只要手动写出来这个映射就行了：</p><pre><code>vector&lt;vector&lt;int&gt;&gt; neighbor = {    { 1, 3 },    { 0, 4, 2 },    { 1, 5 },    { 0, 4 },    { 3, 1, 5 },    { 4, 2 }};</code></pre><p>这个含义就是，在一维字符串中，索引 i 在二维数组中的的相邻索引为 neighbor[i]，至此，我们就把这个问题完全转化成标准的 BFS 问题了，借助前文 BFS 算法框架的代码框架，直接就可以套出解法代码了。</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func slidingPuzzle(board [][]int) int {    // 将2*3的数组转化为字符串    m, n := 2,3    start := []byte(&quot;&quot;)    target := &quot;123450&quot;    for i := 0; i &lt; m; i++ {        for j := 0; j &lt; n;j++ {            start = append(start , byte(board[i][j] + &#39;0&#39;))        }    }    // 记录一堆字符串的相邻索引    neighbor := [][]int{{1,3},{0,4,2},{1,5},{0,4},{3,1,5},{4,2}}    // 开始BFS遍历    // 定义一个队列记录当前的排列状态    q := make([][]byte, 0)    // 用一个map记录访问过的路径    visited := make(map[string]bool, 0)    // 先把当前的排列加入队列，作为起点    q = append(q, start)    visited[string(start)] = true    // 初始化步数    step := 0    for len(q) &gt; 0 {        // 注意要提前取好长度，如果在循环中len(q)，则q一直在增长，不固定        length := len(q)        for i := 0; i &lt; length; i++ {            // 取队头，判断当前排列是否达到目标            cur := q[0]            q = q[1:]            // 如果已经符合，直接返回步数            if string(cur) == target {                return step            }            // 找到当前排列中数字0的位置index            var index int            for index = 0; cur[index] != &#39;0&#39;; index++ {            }            // 依次两两交换和0相邻数字，构造新的拼图，相当于BFS向下遍历一层            for _, adj := range neighbor[index] {                // 注意需要用一个新的切片进行拷贝，否则由于Go的切片共用内存，当前的cur也会随着new_board的改变而改变                tmp_board := make([]byte,len(cur))                copy(tmp_board, cur)                new_board := tmp_board                // 交换和0相邻的数字                tmp_adj := new_board[adj]                new_board[adj] = new_board[index]                new_board[index] = tmp_adj                // 防止走回头路                if _, ok := visited[string(new_board)]; !ok {                    // 将新的拼图插入队列，用于下一次BFS遍历                    tmp := make([]byte,len(new_board))                    copy(tmp, new_board)                    q = append(q, tmp)                    visited[string(tmp)] = true                }            }        }        // 向下遍历了一层，记录步数+1        step++    }    return -1}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-R∗C∗-R∗C"><a href="#时间复杂度：O-R∗C∗-R∗C" class="headerlink" title="时间复杂度：O(R∗C∗(R∗C)!)"></a>时间复杂度：O(R∗C∗(R∗C)!)</h3><p>BFS的时间复杂度即可能存在的状态数。</p><p>R, C 为棋盘的行数和列数。最多有 O((R∗C)!) 种可能的棋盘状态。</p><p>对于每种状态都需要进行一次append操作，而一次操作的开销就是状态的长度，也就是O(R * C)</p><h3 id="空间复杂度：O-R∗C∗-R∗C"><a href="#空间复杂度：O-R∗C∗-R∗C" class="headerlink" title="空间复杂度：O(R∗C∗(R∗C)!)"></a>空间复杂度：O(R∗C∗(R∗C)!)</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题的关键在于将题目转化成BFS的条件</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leecode </tag>
+            
+            <tag> 回溯剪枝 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-22】括号生成</title>
       <link href="/2021/06/06/leetcode-22/"/>
       <url>/2021/06/06/leetcode-22/</url>
@@ -464,9 +491,9 @@
             
             <tag> leetcode </tag>
             
-            <tag> 动态规划 </tag>
-            
             <tag> tree </tag>
+            
+            <tag> 动态规划 </tag>
             
         </tags>
       
@@ -605,9 +632,9 @@
             
             <tag> 密码学 </tag>
             
-            <tag> SoftHSM </tag>
-            
             <tag> fabric </tag>
+            
+            <tag> SoftHSM </tag>
             
         </tags>
       
