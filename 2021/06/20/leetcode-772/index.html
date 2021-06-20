@@ -4,14 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="fabric 2.2 的新特性, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-772】基本计算器 III, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="2.2 的新特性1. 分权的chaincode⽣命周期的管理详⻅ 2.0 beta版的chaincode⽣命周期管理
-
-多数组织需要同意chaincode的相关参数，⽐⽅说policy等。 
-更慎重的chaincode升级过程（需要组织重新">
+    <meta name="description" content="题目链接772. 基本计算器 III
+题目描述实现一个基本的计算器来计算简单的表达式字符串。
+表达式字符串只包含非负整数，算符 +、-、*、/ ，左括号 ( 和右括号 ) 。整数除法需要 向下截断 。
+你可以假定给定的表达式总是有效的。所有">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>fabric 2.2 的新特性 | 小熊的作坊</title>
+    <title>【leetcode-772】基本计算器 III | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +332,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        fabric 2.2 的新特性
+                        【leetcode-772】基本计算器 III
                     </div>
                 </div>
             </div>
@@ -449,12 +449,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/fabric/" target="_blank">
-                            <span class="chip bg-color">fabric</span>
-                        </a>
-                        
-                        <a href="/tags/2-2/" target="_blank">
-                            <span class="chip bg-color">2.2</span>
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
                         </a>
                         
                     </div>
@@ -465,8 +461,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/fabric/" class="post-category" target="_blank">
-                            fabric
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
                         </a>
                         
                     </div>
@@ -477,7 +473,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-08
+                    2021-06-20
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -491,14 +487,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    710
+                    965
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
                 
@@ -514,55 +510,107 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="2-2-的新特性"><a href="#2-2-的新特性" class="headerlink" title="2.2 的新特性"></a>2.2 的新特性</h1><h2 id="1-分权的chaincode⽣命周期的管理"><a href="#1-分权的chaincode⽣命周期的管理" class="headerlink" title="1. 分权的chaincode⽣命周期的管理"></a>1. 分权的chaincode⽣命周期的管理</h2><p>详⻅ 2.0 beta版的chaincode⽣命周期管理</p>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/basic-calculator-iii/" target="_blank" rel="noopener">772. 基本计算器 III</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>实现一个基本的计算器来计算简单的表达式字符串。</p>
+<p>表达式字符串只包含非负整数，算符 +、-、*、/ ，左括号 ( 和右括号 ) 。整数除法需要 向下截断 。</p>
+<p>你可以假定给定的表达式总是有效的。所有的中间结果的范围为 [-231, 231 - 1] 。</p>
+<p>示例 1：</p>
+<pre><code>输入：s = &quot;1+1&quot;
+输出：2</code></pre><p>示例 2：</p>
+<pre><code>输入：s = &quot;6-4/2&quot;
+输出：4</code></pre><p>示例 3：</p>
+<pre><code>输入：s = &quot;2*(5+5*2)/3+(6/2+8)&quot;
+输出：21</code></pre><p>示例 4：</p>
+<pre><code>输入：s = &quot;(2+6*3+5-(3*14/7+2)*5)+3&quot;
+输出：-12</code></pre><p>示例 5：</p>
+<pre><code>输入：s = &quot;0&quot;
+输出：0</code></pre><p>提示：</p>
 <ul>
-<li>多数组织需要同意chaincode的相关参数，⽐⽅说policy等。 </li>
-<li>更慎重的chaincode升级过程（需要组织重新同意chaincode的相关参数）。 </li>
-<li>更简便地升级policy或者私密数据配置（不⽤重新安装合约，可以直接从让多家组织同意新的参数开始，也就是升级参数的 话，chaincode的version可以不变） </li>
-<li>可检查的chaincode包（需要先打包chaincode，再安装） </li>
-<li>不同成员的同⼀个chaincode的源码可以不同（可以使⽤不同的语⾔编写，或者同⼀语⾔逻辑不同） </li>
+<li>1 &lt;= s &lt;= 104</li>
+<li>s 由整数、’+’、’-‘、’*’、’/‘、’(‘ 和 ‘)’ 组成</li>
+<li>s 是一个 有效的 表达式</li>
 </ul>
-<h2 id="2-新的chaincode部署形式"><a href="#2-新的chaincode部署形式" class="headerlink" title="2. 新的chaincode部署形式"></a>2. 新的chaincode部署形式</h2><ul>
-<li>删除对docker daemon的依赖。</li>
-<li>增加了除了docker容器外的其他运⾏chaincode的选择。</li>
-<li>提供了外部创建chaincode的接⼝，可以⾃⼰实现其他的chaincode的创建和部署过程。 </li>
-<li>chaincode可以作为⼀个外部服务</li>
-</ul>
-<h2 id="3-私密数据的增强"><a href="#3-私密数据的增强" class="headerlink" title="3. 私密数据的增强"></a>3. 私密数据的增强</h2><p>详⻅2.0beta版私密数据新特性</p>
-<ul>
-<li>分享和验证私密数据。拥有私密数据的⼀⽅可以将私密数据分享给没有权限的⼀⽅，接收⽅可以通过调⽤GetPrivateDataHash<br>来验证私密数据的正确性。</li>
-<li>新增collection级别的背书策略。</li>
-<li>隐形的组织级别的collection。如果是单组织使⽤的私密数据，collection可以不⽤显性地去定义就可以直接使⽤。</li>
-</ul>
-<h2 id="4-CouchDB增加缓存来提升性能"><a href="#4-CouchDB增加缓存来提升性能" class="headerlink" title="4. CouchDB增加缓存来提升性能"></a>4. CouchDB增加缓存来提升性能</h2><h2 id="5-更轻量级的docker镜像"><a href="#5-更轻量级的docker镜像" class="headerlink" title="5. 更轻量级的docker镜像"></a>5. 更轻量级的docker镜像</h2><p>改⽤Apline Linux作为底层的操作系统。镜像⼤⼩变⼩了。</p>
-<h2 id="其他变化"><a href="#其他变化" class="headerlink" title="其他变化"></a>其他变化</h2><ul>
-<li>ccenv镜像不再包含shim</li>
-<li>logger从chaincode shim中移除，chaincode的log⼯作交给chaincode开发者⾃⼰处理 </li>
-<li>不再⽀持⽤户的chaincode调⽤系统chaincode </li>
-<li>GetHistoryForKey排序⽅式更改为从新到旧 </li>
-<li>对于orderer来说，之前⽀持的provisional启动⽅式被移除 </li>
-<li>orderer配置的genesismethod和genesisfile改为bootstrapmethod和bootstrapfile</li>
-<li>系统chaincode插件被移除，不可以通过go插件来添加系统chaincode了</li>
-<li>新镜像⾥不⽀持bash</li>
-<li>go版本升级到了1.13.4<font color="green"></font></li>
-<li>添加了背书失败的背书节点的 metrics</li>
-<li>可以在 core.yaml 中通过配置项对背书节点的并发请求数作出限制</li>
-<li>可以在 core.yaml 中通过配置项覆盖私有数据集合分发策略</li>
-<li>服务发现支持在链码私有数据集合级别指定背书策略</li>
-<li>Discover CLI现在支持SEC 1格式的私钥</li>
-<li>依赖更新<ul>
-<li>docker镜像更新到 3.11</li>
-<li>go 版本更新到 1.14.1</li>
-<li>go grpc 更新到 1.28.0</li>
-</ul>
-</li>
-<li>添加对 TLS 1.3 的支持</li>
-<li>添加查询已批准的链码定义的详细信息的功能
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>本题属于hard级别，关键在于层层拆解，化整为零，逐个击破。<br>通过拆解后需要解决以下几个问题：</p>
+<ol>
+<li>字符串如何转整数</li>
+<li>如何处理加减法（栈）</li>
+<li>如何处理乘除法（和栈顶元素结合）</li>
+<li>如何处理括号（递归）</li>
+</ol>
+<p>这里值得注意的是，在处理括号的时候，需要将处理后的string和计算结果一并传回来，因为在Go语言中，string和普通变量一样是值传递，因此为了保证退出递归后，括号内的结果计算完毕后，原来字符串的整个括号部分也应该同步消掉，所以改变后的字符串也要传出来，否则会在外层会进行重复计算括号内的结果。这算是一个坑</p>
+<p>具体代码如下：</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func calculate(s string) int {
+    res, _ := recursive(s)
+    return res
+}
 
-</li>
-</ul>
-<p><strong>注：标记为绿色的部分为 2.1.0 和 2.2.0 新增的特性，2.0.1 和 2.1.1 版本都是一些 bugfix，没有新的特性。</strong></p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://hyperledger-fabric.readthedocs.io/en/release-2.2/whatsnew.html" target="_blank" rel="noopener">What’s new in Hyperledger Fabric v2.x</a></p>
+func recursive(s string) (int, string) {
+    // 用一个栈存储处理后的数字
+    stack := make([]int, 0)
+    // 初始状态默认sign是&#39;+&#39;,num是0
+    sign := byte(&#39;+&#39;)
+    num := 0
+
+    for len(s) &gt; 0 {
+        c := s[0]
+        s = s[1:]
+        // 如果是数字就直接转成int类型的数字
+        if isDigit(c) {
+            num = num * 10 + int(c - &#39;0&#39;)
+        }
+
+        // 如果是左括号就递归计算num
+        if c == &#39;(&#39; {
+            // 这里尤其需要注意的是string和普通变量一样是值传递，因此
+            // 为了保证退出递归后，括号内的结果计算完毕后，原来字符串的整个括号部分也应该同步消掉
+            // 所以改变后的字符串也要传出来，否则会在外层会进行重复计算括号内的结果
+            num, s = recursive(s)
+        }
+
+        // 如果不是数字也不是空格（说明是个运算符）或者已经走到了尽头，都将数字入栈
+        if !isDigit(c) &amp;&amp; c != &#39; &#39; || len(s) == 0 {
+            switch sign {
+            case &#39;+&#39;:
+                stack = append(stack, num)
+            case &#39;-&#39;:
+                stack = append(stack, -num)
+            case &#39;*&#39;:
+                pre := stack[len(stack)-1]
+                stack = stack[:len(stack)-1]
+                stack = append(stack, pre * num)
+            case &#39;/&#39;:
+                pre := stack[len(stack)-1]
+                stack = stack[:len(stack)-1]
+                stack = append(stack, pre  / num)
+            }
+            // 更新符号为当前符号，数字清零
+            num = 0
+            sign = c
+        }
+
+        // 遇到右括号返回递归结果
+        if c == &#39;)&#39; {
+            break
+        }
+    }
+    // 把栈中所有数字相加
+    return sum(stack), string(s)
+}
+
+func isDigit(c byte) bool {
+    return c &gt;= &#39;0&#39; &amp;&amp; c &lt;= &#39;9&#39;
+}
+
+func sum(stack []int) int {
+    res := 0
+    for _, n := range stack {
+        res += n
+    }
+    return res
+}
+</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>因为整个过程下来也就相当于把字符串完整遍历一遍，所以时间复杂度就是字符串的长度</p>
+<h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>由于用到了递归，空间复杂度就是 递归的次数 <em> 每次递归需要的栈空间，也就是 K </em> O((n)) ，其中K是括号的个数，而每次递归开辟的栈最多也不会超过字符串的长度</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题属于hard类型，但是如果逐步拆解成单个问题，却又不是很难，属于非常经典的题目</p>
 
             </div>
             <hr />
@@ -721,9 +769,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《fabric 2.2 的新特性》
+                    《【leetcode-772】基本计算器 III》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/08/08/fabric-newfeature-2-2/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/06/20/leetcode-772/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -764,7 +812,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2020/08/08/fabric-newfeature-2-2/',
+        id: '2021/06/20/leetcode-772/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -785,54 +833,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/08/fabric-chaincode-2-2/">
+                <a href="/2021/06/20/leetcode-772/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="fabric 2.2 生命周期链码实战">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【leetcode-772】基本计算器 III">
                         
-                        <span class="card-title">fabric 2.2 生命周期链码实战</span>
+                        <span class="card-title">【leetcode-772】基本计算器 III</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            fabric 2.2和1.4的一个重要不同就是进一步完善了对链码的生命周期管理
+                            本题属于hard类型，但是如果逐步拆解成单个问题，却又不是很难，属于非常经典的题目
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
-                    </a>
-                    
-                    <a href="/tags/chaincode/" target="_blank">
-                        <span class="chip bg-color">chaincode</span>
-                    </a>
-                    
-                    <a href="/tags/2-2/" target="_blank">
-                        <span class="chip bg-color">2.2</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>
@@ -846,31 +888,31 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/08/fabric-upgrade-2-2/">
+                <a href="/2021/06/19/leetcode-15/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="fabric 1.4 升级到 2.2 的⽅案">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【leetcode-15】三数之和">
                         
-                        <span class="card-title">fabric 1.4 升级到 2.2 的⽅案</span>
+                        <span class="card-title">【leetcode-15】三数之和</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            最近Fabric新发布了2.2版本，也是继1.4以来又一个LTS版本
+                            做完了这道题还可以尝试一下四数之和（4Sum），以及拓展到n个数字之和（nSum）
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-08
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/fabric/" class="post-category" target="_blank">
-                                    fabric
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
@@ -880,16 +922,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/2-2/" target="_blank">
-                        <span class="chip bg-color">2.2</span>
-                    </a>
-                    
-                    <a href="/tags/upgrade/" target="_blank">
-                        <span class="chip bg-color">upgrade</span>
+                    <a href="/tags/双指针/" target="_blank">
+                        <span class="chip bg-color">双指针</span>
                     </a>
                     
                 </div>
