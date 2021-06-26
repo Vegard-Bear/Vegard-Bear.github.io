@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【leetcode-969】煎饼排序</title>
+      <link href="/2021/06/26/leetcode-969/"/>
+      <url>/2021/06/26/leetcode-969/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/pancake-sorting/" target="_blank" rel="noopener">969. 煎饼排序</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个整数数组 arr ，请使用 煎饼翻转 完成对数组的排序。</p><p>一次煎饼翻转的执行过程如下：</p><p>选择一个整数 k ，1 &lt;= k &lt;= arr.length<br>反转子数组 arr[0…k-1]（下标从 0 开始）<br>例如，arr = [3,2,1,4] ，选择 k = 3 进行一次煎饼翻转，反转子数组 [3,2,1] ，得到 arr = [1,2,3,4] 。</p><p>以数组形式返回能使 arr 有序的煎饼翻转操作所对应的 k 值序列。任何将数组排序且翻转次数在 10 * arr.length 范围内的有效答案都将被判断为正确。</p><p>示例 1：</p><pre><code>输入：[3,2,4,1]输出：[4,2,4,3]解释：我们执行 4 次煎饼翻转，k 值分别为 4，2，4，和 3。初始状态 arr = [3, 2, 4, 1]第一次翻转后（k = 4）：arr = [1, 4, 2, 3]第二次翻转后（k = 2）：arr = [4, 1, 2, 3]第三次翻转后（k = 4）：arr = [3, 2, 1, 4]第四次翻转后（k = 3）：arr = [1, 2, 3, 4]，此时已完成排序。</code></pre><p>示例 2：</p><pre><code>输入：[1,2,3]输出：[]解释：输入已经排序，因此不需要翻转任何内容。请注意，其他可能的答案，如 [3，3] ，也将被判断为正确。</code></pre><p>提示：</p><ul><li>1 &lt;= arr.length &lt;= 100</li><li>1 &lt;= arr[i] &lt;= arr.length</li><li>arr 中的所有整数互不相同（即，arr 是从 1 到 arr.length 整数的一个排列）</li></ul><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这个问题可以分成两个部分：</p><ol><li><p>首先，我们需要先找到最大的那个煎饼，把它放到最下面，然后在剩下的n-1个煎饼中找打最大的那个，再放到最底下，这很明显可以用递归解决，因为解决问题是类似的，只是问题的规模在不断变小。</p></li><li><p>其次，就是具体怎么做才能将某块烧饼放到最下面呢？</p></li></ol><p>具体分为两步：</p><p>比如第3块烧饼是最大的，</p><ul><li>将前3块烧饼进行翻转，这样最大的烧饼就到了最上面</li><li>将前n块烧饼进行翻转，这样原来最上面的那个最大烧饼此时就到最下面</li></ul><p>至此，就实现了将某个烧饼翻转到最下面的操作。</p><p>具体代码如下：</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func pancakeSort(arr []int) []int {    // 先重置一下数组    res = []int{}    sortCakes(arr, len(arr))    return res}// 记录翻转操作序列var res []intfunc sortCakes(cakes []int, n int) {    // base case: 一块烧饼就不用翻了    if n == 1 {        return    }    // 寻找最大烧饼的索引    maxCake, maxCakeIndex := 0, 0    for i := 0; i &lt; n; i++ {        if cakes[i] &gt; maxCake {            maxCake = cakes[i]            maxCakeIndex = i        }    }    // 第一次翻转，将最大烧饼翻转到最上面    reverseCake(cakes, 0, maxCakeIndex)    // 记录这一次翻转，翻转前maxCakeIndex+1个    res = append(res, maxCakeIndex + 1)    // 第二次翻转，将最大烧饼翻转到最下面    reverseCake(cakes, 0, n - 1)    // 记录这一次翻转，翻转前n个    res = append(res, n)    // 递归调用，翻转剩下的烧饼    sortCakes(cakes, n - 1)}// 翻转arr[i]到arr[j]的元素func reverseCake(arr []int, i, j int)  {    for i &lt; j {        temp := arr[i]        arr[i] = arr[j]        arr[j] = temp        // 翻转下一对        i++        j--    }}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>因为递归的调用次数是n，最多处理n次将某个烧饼翻转到最下面的操作，而每次递归操作都需要寻找最大烧饼，调用一次翻转方法，所以复杂度也是n，所以总的复杂度就是O((n^2))</p><h3 id="空间复杂度：O-n-2"><a href="#空间复杂度：O-n-2" class="headerlink" title="空间复杂度：O((n^2))"></a>空间复杂度：O((n^2))</h3><p>由于用到了递归，空间复杂度就是 递归的次数 <em> 每次递归需要的栈空间，也就是 n </em> O((n)) = O((n^2))</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这个操作结果并不是最优的，如果需要计算最短操作序列该怎么办呢？</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 递归 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-772】基本计算器 III</title>
       <link href="/2021/06/20/leetcode-772/"/>
       <url>/2021/06/20/leetcode-772/</url>
