@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-06-27T04:46:22.805Z</updated>
+  <updated>2021-06-27T14:06:09.525Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【leetcode-372】超级次方</title>
+    <link href="https://vegard-bear.github.io/2021/06/27/leetcode-372/"/>
+    <id>https://vegard-bear.github.io/2021/06/27/leetcode-372/</id>
+    <published>2021-06-27T14:04:35.000Z</published>
+    <updated>2021-06-27T14:06:09.525Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/super-pow/&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
+    
+      <category term="递归" scheme="https://vegard-bear.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+      <category term="幂运算" scheme="https://vegard-bear.github.io/tags/%E5%B9%82%E8%BF%90%E7%AE%97/"/>
+    
+  </entry>
   
   <entry>
     <title>【leetcode-560】和为K的子数组</title>
@@ -558,36 +588,6 @@
       <category term="go" scheme="https://vegard-bear.github.io/tags/go/"/>
     
       <category term="源码解析" scheme="https://vegard-bear.github.io/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【leetcode-494】目标和</title>
-    <link href="https://vegard-bear.github.io/2021/03/15/leetcode-494/"/>
-    <id>https://vegard-bear.github.io/2021/03/15/leetcode-494/</id>
-    <published>2021-03-15T02:51:55.000Z</published>
-    <updated>2021-03-15T02:53:23.980Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/target-sum/&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
-    
-      <category term="动态规划" scheme="https://vegard-bear.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-      <category term="背包" scheme="https://vegard-bear.github.io/tags/%E8%83%8C%E5%8C%85/"/>
     
   </entry>
   

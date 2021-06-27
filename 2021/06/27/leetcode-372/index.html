@@ -4,14 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【leetcode-37】解数独, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-372】超级次方, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="题目链接37. 解数独
-题目描述编写一个程序，通过填充空格来解决数独问题。
-数独的解法需遵循如下规则：
-数字1-9在每一行只能出现一次。数字1-9在每一列只能出现一次。数字1-9在每一个以粗实线分隔的3x3宫内只能出现一次。（请参考示例图）">
+    <meta name="description" content="题目链接372. 超级次方
+题目描述你的任务是计算 ab 对 1337 取模，a 是一个正整数，b 是一个非常大的正整数且会以数组形式给出。
+示例 1：
+输入：a = 2, b = [3]
+输出：8示例 2：
+输入：a = 2, b = [">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【leetcode-37】解数独 | 小熊的作坊</title>
+    <title>【leetcode-372】超级次方 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +334,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【leetcode-37】解数独
+                        【leetcode-372】超级次方
                     </div>
                 </div>
             </div>
@@ -449,12 +451,16 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/leecode/" target="_blank">
-                            <span class="chip bg-color">leecode</span>
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
                         </a>
                         
-                        <a href="/tags/回溯剪枝/" target="_blank">
-                            <span class="chip bg-color">回溯剪枝</span>
+                        <a href="/tags/递归/" target="_blank">
+                            <span class="chip bg-color">递归</span>
+                        </a>
+                        
+                        <a href="/tags/幂运算/" target="_blank">
+                            <span class="chip bg-color">幂运算</span>
                         </a>
                         
                     </div>
@@ -477,7 +483,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-06-06
+                    2021-06-27
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -491,14 +497,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    706
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    2 分
                 </div>
                 
                 
@@ -514,93 +520,92 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/sudoku-solver/" target="_blank" rel="noopener">37. 解数独</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>编写一个程序，通过填充空格来解决数独问题。</p>
-<p>数独的解法需遵循如下规则：</p>
-<p>数字1-9在每一行只能出现一次。<br>数字1-9在每一列只能出现一次。<br>数字1-9在每一个以粗实线分隔的3x3宫内只能出现一次。（请参考示例图）<br>数独部分空格内已填入了数字，空白格用’.’表示。</p>
-<p>示例：</p>
-<pre><code>输入：board = [[&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;],[&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;],[&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;],[&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;],[&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]
-输出：[[&quot;5&quot;,&quot;3&quot;,&quot;4&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;,&quot;9&quot;,&quot;1&quot;,&quot;2&quot;],[&quot;6&quot;,&quot;7&quot;,&quot;2&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;3&quot;,&quot;4&quot;,&quot;8&quot;],[&quot;1&quot;,&quot;9&quot;,&quot;8&quot;,&quot;3&quot;,&quot;4&quot;,&quot;2&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;],[&quot;8&quot;,&quot;5&quot;,&quot;9&quot;,&quot;7&quot;,&quot;6&quot;,&quot;1&quot;,&quot;4&quot;,&quot;2&quot;,&quot;3&quot;],[&quot;4&quot;,&quot;2&quot;,&quot;6&quot;,&quot;8&quot;,&quot;5&quot;,&quot;3&quot;,&quot;7&quot;,&quot;9&quot;,&quot;1&quot;],[&quot;7&quot;,&quot;1&quot;,&quot;3&quot;,&quot;9&quot;,&quot;2&quot;,&quot;4&quot;,&quot;8&quot;,&quot;5&quot;,&quot;6&quot;],[&quot;9&quot;,&quot;6&quot;,&quot;1&quot;,&quot;5&quot;,&quot;3&quot;,&quot;7&quot;,&quot;2&quot;,&quot;8&quot;,&quot;4&quot;],[&quot;2&quot;,&quot;8&quot;,&quot;7&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;6&quot;,&quot;3&quot;,&quot;5&quot;],[&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;2&quot;,&quot;8&quot;,&quot;6&quot;,&quot;1&quot;,&quot;7&quot;,&quot;9&quot;]]
-解释：输入的数独如上图所示，唯一有效的解决方案如下所示：
-</code></pre><p>提示：</p>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/super-pow/" target="_blank" rel="noopener">372. 超级次方</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>你的任务是计算 ab 对 1337 取模，a 是一个正整数，b 是一个非常大的正整数且会以数组形式给出。</p>
+<p>示例 1：</p>
+<pre><code>输入：a = 2, b = [3]
+输出：8</code></pre><p>示例 2：</p>
+<pre><code>输入：a = 2, b = [1,0]
+输出：1024</code></pre><p>示例 3：</p>
+<pre><code>输入：a = 1, b = [4,3,3,8,5,2]
+输出：1</code></pre><p>示例 4：</p>
+<pre><code>输入：a = 2147483647, b = [2,0,0]
+输出：1198</code></pre><p>提示：</p>
 <ul>
-<li>board.length == 9</li>
-<li>board[i].length == 9</li>
-<li>board[i][j] 是一位数字或者 ‘.’</li>
-<li>题目数据 保证 输入数独仅有一个解</li>
+<li>1 &lt;= a &lt;= 231 - 1</li>
+<li>1 &lt;= b.length &lt;= 2000</li>
+<li>0 &lt;= b[i] &lt;= 9</li>
+<li>b 不含前导 0</li>
 </ul>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>数独也是典型的回溯剪枝算法，与N皇后问题非常类似，主要不同可能就在于一个是判断棋子合法性的方法不同，还有就是N皇后需要得到所有的解，而本题只要找到符合要求的一个解即可，因此最终返回的判定条件也有所不同。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func solveSudoku(board [][]byte)  {
-    backtrack(board, 0,0)
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>本题主要有三个难点：</p>
+<ul>
+<li>一是如何处理用数组表示的指数</li>
+</ul>
+<p>现在 b 是一个数组，也就是说 b 可以非常大，没办法直接转成整型，否则可能溢出。你怎么把这个数组作为指数，进行运算呢？</p>
+<ul>
+<li>二是如何得到求模之后的结果？</li>
+</ul>
+<p>按道理，起码应该先把幂运算结果算出来，然后做 % 1337 这个运算。但问题是，指数运算你懂得，真实结果肯定会大得吓人，也就是说，算出来真实结果也没办法表示，早都溢出报错了。</p>
+<ul>
+<li>三是如何高效进行幂运算</li>
+</ul>
+<p>进行幂运算也是有算法技巧的，如果你不了解这个算法，后文会讲解。</p>
+<p>那么对于这几个问题，我们分开思考，逐个击破。</p>
+<h4 id="如何处理数组指数"><a href="#如何处理数组指数" class="headerlink" title="如何处理数组指数"></a>如何处理数组指数</h4><pre><code>  a^[1,5,6,4]
+= a^4 * a^[1,5,6,0]
+= a^4 * (a^[1,5,6])^10</code></pre><h4 id="如何处理-mod-运算"><a href="#如何处理-mod-运算" class="headerlink" title="如何处理 mod 运算"></a>如何处理 mod 运算</h4><p>对乘法的结果求模，等价于先对每个因子都求模，然后对因子相乘的结果再求模。</p>
+<pre><code>(a * b) % k = (a % k)(b % k) % k</code></pre><h4 id="如何高效求幂"><a href="#如何高效求幂" class="headerlink" title="如何高效求幂"></a>如何高效求幂</h4><pre><code>         a * a ^ (b - 1)
+a ^ b =
+         (a ^ (b / 2)) ^ 2</code></pre><h1 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h1><pre><code>var base = 1337
+
+// 处理数组表示的指数
+func superPow(a int, b []int) int {
+    // 递归的 base case，任何数的0次方都是1
+    if len(b) == 0 {
+        return 1
+    }
+
+    // 取出最后一个数
+    last := b[len(b)-1]
+    b = b[:len(b)-1]
+
+    // 将原问题化简，也就是递归迭代
+    part1 := myPow(a, last)
+    part2 := myPow(superPow(a, b), 10)
+
+    return (part1 * part2) % base
 }
 
-// 规定好边界 9*9的棋盘
-var m,n = 9,9
+// 计算a的k次方然后与base求模的结果
+func myPow(a, k int) int {
+    // 方法一：拆分求模
+    //// 对因子求模
+    //a %= base
+    //res := 1
+    //
+    //// 把a^k进行拆解，需要进行k次求模运算
+    //for i := 0; i &lt; k; i++ {
+    //    res *= a
+    //    res %= base
+    //}
+    //return res
 
-func backtrack(board [][]byte, i, j int) bool {
-    // 如果穷举到最后一列，就换一行重新开始
-    if j == n {
-        return backtrack(board, i+1, 0)
+    // 方法二 递归求模
+    // 递归的 base case，任何数的0次方都是1
+    if k == 0 {
+        return 1
     }
 
-    // 如果找到一个可行解，直接返回
-    if i == m {
-        return true
+    // 如果是奇数次方，a ^ b = a * a ^ (b - 1)
+    if k % 2 == 1 {
+        return (a * myPow(a, k - 1)) % base
+    } else {
+        // 如果是偶数次方，a ^ b = (a ^ (b / 2)) ^ 2
+        sub := myPow(a, k/2)
+        return (sub * sub) % base
     }
-
-    // 如果当前位置已经有数字了，直接跳过
-    if board[i][j] != &#39;.&#39; {
-        return backtrack(board, i, j+1)
-    }
-
-    // 将1-9依次进行穷举
-    for ch := byte(&#39;1&#39;); ch &lt;= byte(&#39;9&#39;); ch++ {
-        // 尝试填入一个数字，检查填入后是否符合要求
-        if !isValid(board, i, j, ch) {
-            // 不合法，就跳过，换个数字试试
-            continue
-        }
-
-        // 走到这里说明合法了，就直接填入
-        board[i][j] = ch
-        // 继续向下遍历，如果找到一个可行解，立即结束
-        if backtrack(board, i, j+1) {
-            return true
-        }
-
-        // 走到这里说明填满了格子仍旧没找到可行解，回退一格
-        board[i][j] = &#39;.&#39;
-    }
-
-    // 穷举完1-9，仍旧没有找到可行解
-    // 需要前面的格子换个数字穷举
-    return false
 }
-
-// 判断board[i][j]是否可以填入数字ch
-func isValid(board [][]byte, row, col int, ch byte) bool {
-    for i := 0; i &lt; 9; i++ {
-        // 判断同行是否重复
-        if board[row][i] == ch {
-            return false
-        }
-
-        // 判断同列是否重复
-        if board[i][col] == ch {
-            return false
-        }
-
-        // 判断同单元（3*3）是否重复
-        // 这里需要一点技巧，需要找到当前格子所在单元的起始格子，然后依次遍历
-        // [0,0]、[0,1]、[0,2]、[1,0]、[1,1]、[1,2]、[2,0]、[2,1]、[2,2]、
-        if board[(row/3)*3+i/3][(col/3)*3+i%3] == ch {
-            return false
-        }
-    }
-    return true
-}</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-9-M"><a href="#时间复杂度：O-9-M" class="headerlink" title="时间复杂度：O((9^M))"></a>时间复杂度：O((9^M))</h3><p>在最坏的情况下，需要对每个空着的格子枚举9个数，所以时间复杂度就是O((9^M))，其中M是棋盘中空着的格子数量。</p>
-<p>当然在实际情况下复杂度并没有这么高，因为很多数字不需要穷举所有可能，因为当我们找到一个可行的解的时候就结束了，后续的递归都没有展开。所以这个O((9^M))的时间复杂度实际上是完全穷举，或者说是找到所有可行解的时间复杂度。</p>
-<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>数独也是典型的回溯剪枝算法，与N皇后问题非常类似，建议一起做，对比着看。</p>
+</code></pre><h3 id="时间复杂度："><a href="#时间复杂度：" class="headerlink" title="时间复杂度："></a>时间复杂度：</h3><h3 id="空间复杂度："><a href="#空间复杂度：" class="headerlink" title="空间复杂度："></a>空间复杂度：</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题的处理技巧包括递归、模运算、幂运算技巧，还是很有价值的</p>
 
             </div>
             <hr />
@@ -759,9 +764,9 @@ func isValid(board [][]byte, row, col int, ch byte) bool {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【leetcode-37】解数独》
+                    《【leetcode-372】超级次方》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/06/06/leetcode-37/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/06/27/leetcode-372/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -802,7 +807,7 @@ func isValid(board [][]byte, row, col int, ch byte) bool {
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/06/06/leetcode-37/',
+        id: '2021/06/27/leetcode-372/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -823,29 +828,30 @@ func isValid(board [][]byte, row, col int, ch byte) bool {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/06/06/leetcode-22/">
+                <a href="/2021/06/27/leetcode-372/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【leetcode-22】括号生成">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="【leetcode-372】超级次方">
                         
-                        <span class="card-title">【leetcode-22】括号生成</span>
+                        <span class="card-title">【leetcode-372】超级次方</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            括号生成也是一道非常经典的题目，关键是要知道一个合法括号组合的性质，那么问题就迎刃而解了。
+                            本题的处理技巧包括递归、模运算、幂运算技巧，还是很有价值的
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -858,15 +864,20 @@ func isValid(board [][]byte, row, col int, ch byte) bool {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leecode/" target="_blank">
-                        <span class="chip bg-color">leecode</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/回溯剪枝/" target="_blank">
-                        <span class="chip bg-color">回溯剪枝</span>
+                    <a href="/tags/递归/" target="_blank">
+                        <span class="chip bg-color">递归</span>
+                    </a>
+                    
+                    <a href="/tags/幂运算/" target="_blank">
+                        <span class="chip bg-color">幂运算</span>
                     </a>
                     
                 </div>
@@ -880,24 +891,24 @@ func isValid(board [][]byte, row, col int, ch byte) bool {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/06/leetcode-77/">
+                <a href="/2021/06/27/leetcode-560/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【leetcode-77】组合">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="【leetcode-560】和为K的子数组">
                         
-                        <span class="card-title">【leetcode-77】组合</span>
+                        <span class="card-title">【leetcode-560】和为K的子数组</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            实际上**78.子集**、**77.组合**、和**46.排列**三道题可以一起看，感受其中的相同与不同，因为这三道都是典型的回溯算法。
+                            前缀和的技巧在求解数组和问题的时候非常有用，此外，适当的运用哈希表能够在某些情况下优化时间复杂度，减少一层循环。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-27
                             </span>
                         <span class="publish-author">
                             
@@ -914,12 +925,12 @@ func isValid(board [][]byte, row, col int, ch byte) bool {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leecode/" target="_blank">
-                        <span class="chip bg-color">leecode</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/回溯剪枝/" target="_blank">
-                        <span class="chip bg-color">回溯剪枝</span>
+                    <a href="/tags/前缀和/" target="_blank">
+                        <span class="chip bg-color">前缀和</span>
                     </a>
                     
                 </div>
