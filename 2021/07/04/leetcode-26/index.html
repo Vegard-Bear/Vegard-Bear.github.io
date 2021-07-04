@@ -4,12 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【Go特性8】Socket编程之UDP, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-26】删除有序数组中的重复项, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="UDP在之前的案例中，我们一直使用的是TCP协议来编写Socket的客户端与服务端。其实也可以使用UDP协议来编写Socket的客户端与服务端。
-UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额外创建监听套接字，只需要指定好IP">
+    <meta name="description" content="题目链接26. 删除有序数组中的重复项接雨水
+题目描述给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。
+不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O((1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +18,7 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【Go特性8】Socket编程之UDP | 小熊的作坊</title>
+    <title>【leetcode-26】删除有序数组中的重复项 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -330,13 +331,13 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【Go特性8】Socket编程之UDP
+                        【leetcode-26】删除有序数组中的重复项
                     </div>
                 </div>
             </div>
@@ -447,12 +448,8 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/go/" target="_blank">
-                            <span class="chip bg-color">go</span>
-                        </a>
-                        
-                        <a href="/tags/udp/" target="_blank">
-                            <span class="chip bg-color">udp</span>
+                        <a href="/tags/双指针/" target="_blank">
+                            <span class="chip bg-color">双指针</span>
                         </a>
                         
                     </div>
@@ -463,8 +460,8 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/go/" class="post-category" target="_blank">
-                            go
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
                         </a>
                         
                     </div>
@@ -475,7 +472,7 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-02
+                    2021-07-04
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -489,14 +486,14 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    857
+                    917
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    3 分
                 </div>
                 
                 
@@ -512,51 +509,62 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h1><p>在之前的案例中，我们一直使用的是TCP协议来编写Socket的客户端与服务端。其实也可以使用UDP协议来编写Socket的客户端与服务端。</p>
-<h3 id="UDP服务器"><a href="#UDP服务器" class="headerlink" title="UDP服务器"></a>UDP服务器</h3><p><font color="red">由于UDP是“无连接”的，所以，服务器端不需要额外创建监听套接字</font>，只需要指定好IP和port，然后监听该地址，等待客户端与之建立连接，即可通信。</p>
-<p>创建监听地址：</p>
-<pre><code>func ResolveUDPAddr(network, address string) (*UDPAddr, error) </code></pre><p>创建监听连接：</p>
-<pre><code>func ListenUDP(network string, laddr *UDPAddr) (*UDPConn, error) </code></pre><p>接收udp数据：</p>
-<pre><code>func (c *UDPConn) ReadFromUDP(b []byte) (int, *UDPAddr, error)</code></pre><p>写出数据到udp：</p>
-<pre><code>func (c *UDPConn) WriteToUDP(b []byte, addr *UDPAddr) (int, error)</code></pre><p>服务端完整代码实现如下：</p>
-<pre><code>package main  import (    &quot;fmt&quot;    &quot;net&quot; )  func main() {    //创建监听的地址，并且指定udp协议    udp_addr, err := net.ResolveUDPAddr(&quot;udp&quot;, &quot;127.0.0.1:8002&quot;)    if err != nil {       fmt.Println(&quot;ResolveUDPAddr err:&quot;, err)       return    }    conn, err := net.ListenUDP(&quot;udp&quot;, udp_addr)    //创建监听链接    if err != nil {       fmt.Println(&quot;ListenUDP err:&quot;, err)       return    }    defer conn.Close()     buf := make([]byte, 1024)    n, raddr, err := conn.ReadFromUDP(buf)        //接收客户端发送过来的数据，填充到切片buf中。    if err != nil {       return    }    fmt.Println(&quot;客户端发送：&quot;, string(buf[:n]))     _, err = conn.WriteToUDP([]byte(&quot;nice to see u in udp&quot;), raddr) //向客户端发送数据    if err != nil {       fmt.Println(&quot;WriteToUDP err:&quot;, err)       return    } }</code></pre><h3 id="UDP客户端"><a href="#UDP客户端" class="headerlink" title="UDP客户端"></a>UDP客户端</h3><p>udp客户端的编写与TCP客户端的编写，基本上是一样的，只是将协议换成udp.代码如下：</p>
-<pre><code>package main  import (    &quot;net&quot;    &quot;fmt&quot; )  func main() {    conn, err := net.Dial(&quot;udp&quot;, &quot;127.0.0.1:8002&quot;)     if err != nil {       fmt.Println(&quot;net.Dial err:&quot;, err)       return    }    defer conn.Close()     conn.Write([]byte(&quot;Hello! I&#39;m client in UDP!&quot;))     buf := make([]byte, 1024)    n, err1 := conn.Read(buf)    if err1 != nil {       return    }    fmt.Println(&quot;服务器发来：&quot;, string(buf[:n])) }</code></pre><h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><p>其实对于UDP而言，服务器不需要并发，只要循环处理客户端数据即可。客户端也等同于TCP通信并发的客户端。</p>
-<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><pre><code>package main  import (    &quot;net&quot;    &quot;fmt&quot; )  func main() {    // 创建 服务器 UDP 地址结构。指定 IP + port    laddr, err := net.ResolveUDPAddr(&quot;udp&quot;, &quot;127.0.0.1:8003&quot;)    if err != nil {       fmt.Println(&quot;ResolveUDPAddr err:&quot;, err)       return    }    // 监听 客户端连接    conn, err := net.ListenUDP(&quot;udp&quot;, laddr)    if err != nil {       fmt.Println(&quot;net.ListenUDP err:&quot;, err)       return    }    defer conn.Close()     for {       buf := make([]byte, 1024)       n, raddr, err := conn.ReadFromUDP(buf)       if err != nil {          fmt.Println(&quot;conn.ReadFromUDP err:&quot;, err)          return       }       fmt.Printf(&quot;接收到客户端[%s]：%s&quot;, raddr, string(buf[:n]))        conn.WriteToUDP([]byte(&quot;I-AM-SERVER&quot;), raddr) // 简单回写数据给客户端    } }</code></pre><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><pre><code>package main  import (    &quot;net&quot;    &quot;os&quot;    &quot;fmt&quot; )  func main() {    conn, err := net.Dial(&quot;udp&quot;, &quot;127.0.0.1:8003&quot;)    if err != nil {       fmt.Println(&quot;net.Dial err:&quot;, err)       return    }    defer conn.Close()    go func() {       str := make([]byte, 1024)       for {          n, err := os.Stdin.Read(str) //从键盘读取内容， 放在str          if err != nil {             fmt.Println(&quot;os.Stdin. err1 = &quot;, err)             return          }          conn.Write(str[:n])       // 给服务器发送       }    }()    buf := make([]byte, 1024)    for {       n, err := conn.Read(buf)       if err != nil {          fmt.Println(&quot;conn.Read err:&quot;, err)          return       }       fmt.Println(&quot;服务器写来：&quot;, string(buf[:n]))    } }</code></pre><h2 id="UDP与TCP的差异"><a href="#UDP与TCP的差异" class="headerlink" title="UDP与TCP的差异"></a>UDP与TCP的差异</h2><table>
-<thead>
-<tr>
-<th>TCP</th>
-<th>UDP</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>面向连接</td>
-<td>面向无连接</td>
-</tr>
-<tr>
-<td>要求系统资源较多</td>
-<td>要求系统资源较少</td>
-</tr>
-<tr>
-<td>TCP程序结构较复杂</td>
-<td>UDP程序结构较简单</td>
-</tr>
-<tr>
-<td>使用流式</td>
-<td>使用数据包式</td>
-</tr>
-<tr>
-<td>保证数据准确性</td>
-<td>不保证数据准确性</td>
-</tr>
-<tr>
-<td>保证数据顺序</td>
-<td>不保证数据顺序</td>
-</tr>
-<tr>
-<td>通讯速度较慢</td>
-<td>通讯速度较快</td>
-</tr>
-</tbody></table>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="noopener">26. 删除有序数组中的重复项接雨水</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O((1)) 额外空间的条件下完成。</p>
+<p>说明:</p>
+<p>为什么返回数值是整数，但输出的答案是数组呢?</p>
+<p>请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。</p>
+<p>你可以想象内部操作如下:</p>
+<pre><code>// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
+int len = removeDuplicates(nums);
+
+// 在函数里修改输入数组对于调用者是可见的。
+// 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。
+for (int i = 0; i &lt; len; i++) {
+    print(nums[i]);
+}</code></pre><p>示例 1：</p>
+<pre><code>输入：nums = [1,1,2]
+输出：2, nums = [1,2]
+解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。</code></pre><p>示例 2：</p>
+<pre><code>输入：nums = [0,0,1,1,1,2,2,3,3,4]
+输出：5, nums = [0,1,2,3,4]
+解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。</code></pre><p>提示：</p>
+<ul>
+<li>0 &lt;= nums.length &lt;= 3 * 104</li>
+<li>-104 &lt;= nums[i] &lt;= 104</li>
+<li>nums 已按升序排列</li>
+</ul>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于数组相关的算法问题，有一个通用的技巧：尽量避免在中间删除元素，而是想办法把这个元素换到最后。再一个个弹出，这样每次操作的时间复杂度也就降到O((1))了。按照这个思路，又可以衍生出双指针技巧：快慢指针。</p>
+<p>本题就是采用了快慢指针的思想，让慢指针slow走在后面，快指针fast走在前面探路，找到一个不重复的元素，就填充到slow的位置，然后slow向前移动一步，这样slow就永远指向第一个重复的元素（换言之，slow之前的都是不重复的元素）。如果fast遇到的是重复的元素，则直接跳过，继续往前走，直到再找到一个不重复的元素。这样，当fast指针遍历完整个数组后，nums[0..slow]保存的就是不重复元素，之后的所有元素都是重复元素。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func removeDuplicates(nums []int) int {
+    n := len(nums)
+    if n == 0 {
+        return 0
+    }
+
+    // 快指针走前，慢指针走后
+    slow, fast := 0, 1
+
+    // 快指针没有走到头
+    for fast &lt; n {
+        // 发现了一个新元素（不和之前重复的元素）
+        if nums[fast] != nums[slow] {
+            // slow永远指向第一个重复的元素
+            slow++
+
+            // 用新元素覆盖重复的元素
+            nums[slow] = nums[fast]
+        }
+        // 走到这里，说明元素重复了，直接跳过
+        fast++
+    }
+    // 索引是从0开始的，所以长度=索引+1
+    return slow + 1
+}
+}</code></pre><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>其中 n 是数组的长度。快指针和慢指针最多各移动 n 次。</p>
+<h3 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O((1))"></a>空间复杂度：O((1))</h3><p>维护两个指针即可，因此只需要使用常数的额外空间</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>快慢指针的应用相当广泛，建议做完本题，还可以顺手去把 <a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/" target="_blank" rel="noopener">83. 删除排序链表中的重复元素</a>做了，加深印象。</p>
 
             </div>
             <hr />
@@ -715,9 +723,9 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【Go特性8】Socket编程之UDP》
+                    《【leetcode-26】删除有序数组中的重复项》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/02/go-feature-socket-udp/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/07/04/leetcode-26/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -758,7 +766,7 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/01/02/go-feature-socket-udp/',
+        id: '2021/07/04/leetcode-26/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -779,50 +787,48 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/01/03/go-sourcecode-prepare/">
+                <a href="/2021/07/04/leetcode-26/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="【Go源码解析0】预备知识">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【leetcode-26】删除有序数组中的重复项">
                         
-                        <span class="card-title">【Go源码解析0】预备知识</span>
+                        <span class="card-title">【leetcode-26】删除有序数组中的重复项</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本节主要介绍Go源码解析的预备知识，为进一步学习Go源码做准备。
+                            快慢指针的应用相当广泛，建议做完本题，还可以顺手去把 [83. 删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)做了，加深印象。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
-                    </a>
-                    
-                    <a href="/tags/源码解析/" target="_blank">
-                        <span class="chip bg-color">源码解析</span>
+                    <a href="/tags/双指针/" target="_blank">
+                        <span class="chip bg-color">双指针</span>
                     </a>
                     
                 </div>
@@ -836,31 +842,31 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/31/go-feature-socket-tcp/">
+                <a href="/2021/07/04/leetcode-42/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【Go特性7】Socket编程之TCP">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="【leetcode-42】接雨水">
                         
-                        <span class="card-title">【Go特性7】Socket编程之TCP</span>
+                        <span class="card-title">【leetcode-42】接雨水</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要是接着【Go特性6】Socket编程初探来进一步介绍一下在Go语言中是如何具体实现TCP通信的，这里我们采用的是C/S架构。
+                            本题的暴力解法比较容易理解，但双指针就比较难想到了，也是通过双指针降低时间复杂度的经典题型。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-31
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
@@ -870,12 +876,8 @@ UDP服务器由于UDP是“无连接”的，所以，服务器端不需要额�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
-                    </a>
-                    
-                    <a href="/tags/tcp/" target="_blank">
-                        <span class="chip bg-color">tcp</span>
+                    <a href="/tags/双指针/" target="_blank">
+                        <span class="chip bg-color">双指针</span>
                     </a>
                     
                 </div>
