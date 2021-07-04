@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vegard-bear.github.io/"/>
-  <updated>2021-07-04T11:22:12.739Z</updated>
+  <updated>2021-07-04T12:01:33.655Z</updated>
   <id>https://vegard-bear.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【leetcode-5】最长回文子串</title>
+    <link href="https://vegard-bear.github.io/2021/07/04/leetcode-5/"/>
+    <id>https://vegard-bear.github.io/2021/07/04/leetcode-5/</id>
+    <published>2021-07-04T11:51:40.000Z</published>
+    <updated>2021-07-04T12:01:33.655Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;题目链接&quot;&gt;&lt;a href=&quot;#题目链接&quot; class=&quot;headerlink&quot; title=&quot;题目链接&quot;&gt;&lt;/a&gt;题目链接&lt;/h1&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
+    
+    
+      <category term="双指针" scheme="https://vegard-bear.github.io/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【leetcode-26】删除有序数组中的重复项</title>
     <link href="https://vegard-bear.github.io/2021/07/04/leetcode-26/"/>
     <id>https://vegard-bear.github.io/2021/07/04/leetcode-26/</id>
     <published>2021-07-04T11:20:42.000Z</published>
-    <updated>2021-07-04T11:22:12.739Z</updated>
+    <updated>2021-07-04T11:53:36.672Z</updated>
     
     <summary type="html">
     
@@ -543,39 +569,6 @@
       <category term="tree" scheme="https://vegard-bear.github.io/tags/tree/"/>
     
       <category term="完全二叉树" scheme="https://vegard-bear.github.io/tags/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【leetcode】二叉搜索树系列</title>
-    <link href="https://vegard-bear.github.io/2021/04/18/leetcode-bst/"/>
-    <id>https://vegard-bear.github.io/2021/04/18/leetcode-bst/</id>
-    <published>2021-04-18T08:41:20.000Z</published>
-    <updated>2021-04-18T08:43:36.774Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;本节是一个系列，包括二叉树几种常用的算法操作（判断、搜索、插入，删除）。除了删除操作之外，其他操作都比较简单，这里就不给出具体的解题思路了，直接上代码应该也能看懂。为了方便理解，这里给出的题目顺序是从难到易的。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-        
-      
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://vegard-bear.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://vegard-bear.github.io/tags/leetcode/"/>
-    
-      <category term="tree" scheme="https://vegard-bear.github.io/tags/tree/"/>
-    
-      <category term="二叉搜索树" scheme="https://vegard-bear.github.io/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"/>
     
   </entry>
   
