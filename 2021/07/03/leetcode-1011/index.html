@@ -4,12 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【Go源码解析3】哈希表, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-1011】在 D 天内送达包裹的能力, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-本节会介绍 Go 语言的哈希的实现原理，哈希是除了数组之外，最常见的数据结构。几乎所有的语言都会有数组和哈希表两种集合元素，有的语言将数组实现成列表，而有的语言将哈希称作字典或者映射。无论如何命名或者如何实现，数组和哈希是两种设计集合元素">
+    <meta name="description" content="题目链接1011. 在 D 天内送达包裹的能力
+题目描述传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。
+传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【Go源码解析3】哈希表 | 小熊的作坊</title>
+    <title>【leetcode-1011】在 D 天内送达包裹的能力 | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -330,13 +331,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【Go源码解析3】哈希表
+                        【leetcode-1011】在 D 天内送达包裹的能力
                     </div>
                 </div>
             </div>
@@ -447,16 +448,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/go/" target="_blank">
-                            <span class="chip bg-color">go</span>
+                        <a href="/tags/动态规划/" target="_blank">
+                            <span class="chip bg-color">动态规划</span>
                         </a>
                         
-                        <a href="/tags/源码解析/" target="_blank">
-                            <span class="chip bg-color">源码解析</span>
-                        </a>
-                        
-                        <a href="/tags/map/" target="_blank">
-                            <span class="chip bg-color">map</span>
+                        <a href="/tags/二分/" target="_blank">
+                            <span class="chip bg-color">二分</span>
                         </a>
                         
                     </div>
@@ -467,8 +464,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/go/" class="post-category" target="_blank">
-                            go
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
                         </a>
                         
                     </div>
@@ -479,7 +476,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-07
+                    2021-07-03
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -493,14 +490,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    149
+                    802
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
                 
@@ -516,13 +513,89 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>本节会介绍 Go 语言的哈希的实现原理，哈希是除了数组之外，最常见的数据结构。几乎所有的语言都会有数组和哈希表两种集合元素，有的语言将数组实现成列表，而有的语言将哈希称作字典或者映射。无论如何命名或者如何实现，数组和哈希是两种设计集合元素的思路，数组用于表示元素的序列，而哈希表示的是键值对之间映射关系。</p>
-</blockquote>
-<p><img src="https://vegard-bear.github.io/images/%E5%93%88%E5%B8%8C%E8%A1%A8.png" alt></p>
-<blockquote>
-<p>点击图片查看高清大图</p>
-</blockquote>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/" target="_blank" rel="noopener">1011. 在 D 天内送达包裹的能力</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。</p>
+<p>传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。</p>
+<p>返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。</p>
+<p>示例 1：</p>
+<pre><code>输入：weights = [1,2,3,4,5,6,7,8,9,10], D = 5
+输出：15
+解释：
+船舶最低载重 15 就能够在 5 天内送达所有包裹，如下所示：
+第 1 天：1, 2, 3, 4, 5
+第 2 天：6, 7
+第 3 天：8
+第 4 天：9
+第 5 天：10
+
+请注意，货物必须按照给定的顺序装运，因此使用载重能力为 14 的船舶并将包装分成 (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) 是不允许的。 </code></pre><p>示例 2：</p>
+<pre><code>输入：weights = [3,2,2,4,1,4], D = 3
+输出：6
+解释：
+船舶最低载重 6 就能够在 3 天内送达所有包裹，如下所示：
+第 1 天：3, 2
+第 2 天：2, 4
+第 3 天：1, 4</code></pre><p>示例 3：</p>
+<pre><code>输入：weights = [1,2,3,1,1], D = 4
+输出：3
+解释：
+第 1 天：1
+第 2 天：2
+第 3 天：3
+第 4 天：1, 1</code></pre><p>提示：</p>
+<ul>
+<li>1 &lt;= D &lt;= weights.length &lt;= 5 * 104</li>
+<li>1 &lt;= weights[i] &lt;= 500</li>
+</ul>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题和 <a href="https://leetcode-cn.com/problems/koko-eating-bananas/" target="_blank" rel="noopener">875. 爱吃香蕉的珂珂</a> 是一样的，都是二分查找在实际问题中的应用。</p>
+<p>首先需要确定最小载重的范围，最小值max((weights)，最大值sum((weights))。然后就是在这个范围内进行搜索，这里我们采用的是二分搜索。</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func minEatingSpeed(piles []int, h int) int {
+    // 套用搜索左侧边界的算法框架，注意左右边界，每小时最少吃一个香蕉，最多吃一堆香蕉（最多的那堆）
+    left, right := 1, getMax(piles) + 1
+    for left &lt;  right {
+        // 防止溢出
+        mid := left + (right - left) / 2
+        if canFinish(piles, mid, h) {
+            right = mid
+        } else {
+            left = mid + 1
+        }
+    }
+    // 因为求的是最小速度，所以是搜索左侧边界
+    return left
+}
+
+// 在所有堆中找到最大的那堆
+func getMax(piles []int) int {
+    max := 0
+    for _, pile := range piles {
+        if pile &gt; max {
+             max = pile
+        }
+    }
+    return max
+}
+
+// 以speed的速度能不能在h小时内吃完所有的香蕉
+func canFinish(piles []int, speed, h int) bool {
+    time := 0
+    // 总时间等于吃完每堆香蕉的时间累加
+    for _, piles := range piles {
+        time += timeOf(piles, speed)
+    }
+    return time &lt;= h
+}
+
+// 吃完一堆香蕉所用的时间
+func timeOf(pile int, speed int) int {
+    // 如果不能刚好吃完，剩下的需要再多花一个小时吃
+    if pile % speed &gt; 0 {
+        return pile / speed + 1
+    } else {
+        return pile / speed
+    }
+}</code></pre><h3 id="时间复杂度：O-nlog-Σw"><a href="#时间复杂度：O-nlog-Σw" class="headerlink" title="时间复杂度：O((nlog((Σw))))"></a>时间复杂度：O((nlog((Σw))))</h3><p>其中 n 是数组 weights 的长度，Σw 是数组 weights 中元素的和。二分查找需要执行的 weights 进行依次遍历，时间为 O((n))，相乘即可得到总时间复杂度。</p>
+<h3 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O((1))"></a>空间复杂度：O((1))</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题和 <a href="https://leetcode-cn.com/problems/koko-eating-bananas/" target="_blank" rel="noopener">875. 爱吃香蕉的珂珂</a> 是一样的，都是二分查找在实际问题中的应用。建议一起食用，效果更佳。</p>
 
             </div>
             <hr />
@@ -681,9 +754,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【Go源码解析3】哈希表》
+                    《【leetcode-1011】在 D 天内送达包裹的能力》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/07/go-sourcecode-map/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/07/03/leetcode-1011/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -724,7 +797,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/01/07/go-sourcecode-map/',
+        id: '2021/07/03/leetcode-1011/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -745,54 +818,52 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/01/07/go-sourcecode-string/">
+                <a href="/2021/07/03/leetcode-1011/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="【Go源码解析4】字符串">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="【leetcode-1011】在 D 天内送达包裹的能力">
                         
-                        <span class="card-title">【Go源码解析4】字符串</span>
+                        <span class="card-title">【leetcode-1011】在 D 天内送达包裹的能力</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            字符串是Go语言中的基础数据类型，虽然字符串往往被看做一个整体，但是它实际上是一片连续的内存空间，我们也可以将它理解成一个由字符组成的数组，本节会详细介绍字符串的实现原理、转换过程以及常见操作的实现。
+                            这道题和 [875. 爱吃香蕉的珂珂](https://leetcode-cn.com/problems/koko-eating-bananas/) 是一样的，都是二分查找在实际问题中的应用。建议一起食用，效果更佳。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
                     </a>
                     
-                    <a href="/tags/源码解析/" target="_blank">
-                        <span class="chip bg-color">源码解析</span>
-                    </a>
-                    
-                    <a href="/tags/字符串/" target="_blank">
-                        <span class="chip bg-color">字符串</span>
+                    <a href="/tags/二分/" target="_blank">
+                        <span class="chip bg-color">二分</span>
                     </a>
                     
                 </div>
@@ -806,31 +877,31 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/01/06/go-sourcecode-slice/">
+                <a href="/2021/07/03/leetcode-875/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【Go源码解析2】切片">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【leetcode-875】爱吃香蕉的珂珂">
                         
-                        <span class="card-title">【Go源码解析2】切片</span>
+                        <span class="card-title">【leetcode-875】爱吃香蕉的珂珂</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            上一节介绍的数组在Go语言中没那么常用，更常用的数据结构是切片，即动态数组，其长度并不固定，我们可以向切片中追加元素，它会在容量不足时自动扩容。
+                            本题说穿了就是一个二分查找，但是有时会以这种应用题的形式出现，读者不一定能想到。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-03
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/go/" class="post-category" target="_blank">
-                                    go
+                            <a href="/categories/leetcode/" class="post-category" target="_blank">
+                                    leetcode
                                 </a>
                             
                             
@@ -840,16 +911,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/go/" target="_blank">
-                        <span class="chip bg-color">go</span>
-                    </a>
-                    
-                    <a href="/tags/源码解析/" target="_blank">
-                        <span class="chip bg-color">源码解析</span>
-                    </a>
-                    
-                    <a href="/tags/切片/" target="_blank">
-                        <span class="chip bg-color">切片</span>
+                    <a href="/tags/二分/" target="_blank">
+                        <span class="chip bg-color">二分</span>
                     </a>
                     
                 </div>
