@@ -4,18 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="【Go 源码解析5】函数调用, 小熊的作坊">
+    <meta name="keywords" content="【leetcode-45】跳跃游戏 II, 小熊的作坊">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-函数是 Go 语言的一等公民，掌握和理解函数的调用过程是我们深入学习 Go 无法跳过的，本节将从函数的调用惯例和参数传递方法两个方面分别介绍函数的执行过程。
-
-
-
-点击图片查看高清大图
-
-">
+    <meta name="description" content="题目链接45. 跳跃游戏 II
+题目描述给定一个非负整数数组，你最初位于数组的第一个位置。
+数组中的每个元素代表你在该位置可以跳跃的最大长度。
+你的目标是使用最少的跳跃次数到达数组的最后一个位置。
+假设你总是可以到达数组的最后一个位置。
+示">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【Go 源码解析5】函数调用 | 小熊的作坊</title>
+    <title>【leetcode-45】跳跃游戏 II | 小熊的作坊</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -336,13 +334,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【Go 源码解析5】函数调用
+                        【leetcode-45】跳跃游戏 II
                     </div>
                 </div>
             </div>
@@ -453,16 +451,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/go/" target="_blank">
-                            <span class="chip bg-color">go</span>
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
                         </a>
                         
-                        <a href="/tags/源码解析/" target="_blank">
-                            <span class="chip bg-color">源码解析</span>
-                        </a>
-                        
-                        <a href="/tags/函数/" target="_blank">
-                            <span class="chip bg-color">函数</span>
+                        <a href="/tags/贪心算法/" target="_blank">
+                            <span class="chip bg-color">贪心算法</span>
                         </a>
                         
                     </div>
@@ -473,8 +467,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/go/" class="post-category" target="_blank">
-                            go
+                        <a href="/categories/leetcode/" class="post-category" target="_blank">
+                            leetcode
                         </a>
                         
                     </div>
@@ -485,7 +479,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-18
+                    2021-07-10
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -499,14 +493,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    79
+                    738
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -522,13 +516,57 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>函数是 Go 语言的一等公民，掌握和理解函数的调用过程是我们深入学习 Go 无法跳过的，本节将从函数的调用惯例和参数传递方法两个方面分别介绍函数的执行过程。</p>
-</blockquote>
-<p><img src="http://vegard-bear.github.io/images/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8.png" alt></p>
-<blockquote>
-<p>点击图片查看高清大图</p>
-</blockquote>
+                <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/jump-game-ii/" target="_blank" rel="noopener">45. 跳跃游戏 II</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
+<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
+<p>假设你总是可以到达数组的最后一个位置。</p>
+<p>示例 1:</p>
+<pre><code>输入: [2,3,1,1,4]
+输出: 2
+解释: 跳到最后一个位置的最小跳跃数是 2。
+     从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。</code></pre><p>示例 2:</p>
+<pre><code>输入: [2,3,0,1,4]
+输出: 2</code></pre><p>提示:</p>
+<ul>
+<li>1 &lt;= nums.length &lt;= 1000</li>
+<li>0 &lt;= nums[i] &lt;= 105</li>
+</ul>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>本题是<a href="https://leetcode-cn.com/problems/jump-game/" target="_blank" rel="noopener">55. 跳跃游戏</a>的进阶版。场景是一样，只不过问题换了一下，这次是保证你可以到达最后一个位置，求跳过最后一个位置所需要的最少跳跃数。碰到这种求最少次数的第一反应肯定是动态规划，但是如果真的用动态规划会发现时间复杂度是O((n^2))，因为动态规划需要递归。</p>
+<p>为了减少时间复杂度，不用递归，我们还是选择贪心算法，之所以可以用贪心算法解决，是因为本题具有贪心选择性质，那什么是贪心选择性质呢？</p>
+<h5 id="贪心选择性质就是不需要递归的计算出所有选择的具体结果然后比较求最值，而只需做出那个最有潜力、看起来最优的选择即可。"><a href="#贪心选择性质就是不需要递归的计算出所有选择的具体结果然后比较求最值，而只需做出那个最有潜力、看起来最优的选择即可。" class="headerlink" title="贪心选择性质就是不需要递归的计算出所有选择的具体结果然后比较求最值，而只需做出那个最有潜力、看起来最优的选择即可。"></a>贪心选择性质就是不需要递归的计算出所有选择的具体结果然后比较求最值，而只需做出那个最有潜力、看起来最优的选择即可。</h5><p>具体解法如下：</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func jump(nums []int) int {
+    n := len(nums)
+
+    // 站在索引i，最多能跳到索引end
+    end := 0
+    // 从索引[i...end]起跳，最远能跳到的距离
+    farthest := 0
+    // 记录跳跃次数
+    jumps := 0
+
+    // 对于每一个位置都计算一下能跳到的最远距离
+    for i := 0; i &lt; n - 1; i++ {
+        farthest = max(nums[i] + i, farthest)
+        // 说明从索引[i...end]起跳，所有能跳到的距离已经计算完毕，其中最远的就是farthest
+        if end == i {
+            // 往前跳一步，i直接跳到end+1，然后选择这个farthest作为新的可选最远边界end
+            // 相当于i更新为end+1，end更新为farthest
+            jumps++
+            end = farthest
+        }
+    }
+    return jumps
+}
+
+func max(a, b int) int {
+    if a &gt; b {
+        return a
+    }
+    return b
+}</code></pre><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>其中 n 为数组的大小。只需要访问 nums 数组一遍，共 n 个位置。</p>
+<h3 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O((1))"></a>空间复杂度：O((1))</h3><p>不需要额外的开销。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>贪心算法是一类特殊的动态规划算法，它复杂度比动态规划更低，这是因为少了递归过程。如果一个问题具有贪心选择性质，那么他就可以用贪心算法解决，能用贪心算法解决的问题往往是最优解。</p>
 
             </div>
             <hr />
@@ -687,9 +725,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《【Go 源码解析5】函数调用》
+                    《【leetcode-45】跳跃游戏 II》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/18/go-sourcecode-functioncall/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/07/10/leetcode-45/" property="cc:attributionName"
                rel="cc:attributionURL">
                 小熊
             </a> 采用
@@ -730,7 +768,7 @@
         repo: 'Vegard-Bear.github.io',
         owner: 'Vegard',
         admin: "Vegard",
-        id: '2021/01/18/go-sourcecode-functioncall/',
+        id: '2021/07/10/leetcode-45/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -751,29 +789,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/01/19/leetcode-516/">
+                <a href="/2021/07/10/leetcode-45/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="【leetcode-516】最长回文子序列">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="【leetcode-45】跳跃游戏 II">
                         
-                        <span class="card-title">【leetcode-516】最长回文子序列</span>
+                        <span class="card-title">【leetcode-45】跳跃游戏 II</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这道题和最长公共子序列以及编辑距离套用的都是二维的dp数组模版，但是不同之处在于这里只涉及一个字符串/子序列，所以属于二维dp数组的另一种小类。
+                            贪心算法是一类特殊的动态规划算法，它复杂度比动态规划更低，这是因为少了递归过程。如果一个问题具有贪心选择性质，那么他就可以用贪心算法解决，能用贪心算法解决的问题往往是最优解。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -786,6 +825,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -793,8 +833,8 @@
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/动态规划/" target="_blank">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/贪心算法/" target="_blank">
+                        <span class="chip bg-color">贪心算法</span>
                     </a>
                     
                 </div>
@@ -808,24 +848,24 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/01/17/leetcode-72/">
+                <a href="/2021/07/10/leetcode-55/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【leetcode-72】编辑距离">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="【leetcode-55】跳跃游戏 I">
                         
-                        <span class="card-title">【leetcode-72】编辑距离</span>
+                        <span class="card-title">【leetcode-55】跳跃游戏 I</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            此题和【1143. 最长公共子序列】解法非常相似，都是属于二维的动态规划算法题，套用的是同一个模版。
+                            贪心算法与动态规划的不同在于它对每个子问题的解决方案都做出选择，不能回退。动态规划则会保存以前的运算结果，并根据以前的结果对当前进行选择，有回退功能。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-17
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-10
                             </span>
                         <span class="publish-author">
                             
@@ -846,8 +886,8 @@
                         <span class="chip bg-color">leetcode</span>
                     </a>
                     
-                    <a href="/tags/动态规划/" target="_blank">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/贪心算法/" target="_blank">
+                        <span class="chip bg-color">贪心算法</span>
                     </a>
                     
                 </div>
