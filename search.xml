@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【leetcode-435】无重叠区间</title>
+      <link href="/2021/07/14/leetcode-435/"/>
+      <url>/2021/07/14/leetcode-435/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h1><p><a href="https://leetcode-cn.com/problems/non-overlapping-intervals/" target="_blank" rel="noopener">435. 无重叠区间</a></p><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个区间的集合，找到需要移除区间的最小数量，使剩余区间互不重叠。</p><p>注意:</p><p>可以认为区间的终点总是大于它的起点。<br>区间 [1,2] 和 [2,3] 的边界相互“接触”，但没有相互重叠。</p><p>示例 1:</p><pre><code>输入: [ [1,2], [2,3], [3,4], [1,3] ]输出: 1解释: 移除 [1,3] 后，剩下的区间没有重叠。</code></pre><p>示例 2:</p><pre><code>输入: [ [1,2], [1,2], [1,2] ]输出: 2解释: 你需要移除两个 [1,2] 来使剩下的区间没有重叠。</code></pre><p>示例 3:</p><pre><code>输入: [ [1,2], [2,3] ]输出: 0解释: 你不需要移除任何区间，因为它们已经是无重叠的了。</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>本题可以先做一个转化，即求这些区间中最多有几个不相交的区间。思路如下：</p><ol><li>从区间集合intvs中选择一个区间x，这个区间是在当前所有区间中结束最早的（end最小）。</li><li>把所有区间与x区间相交的区间集合intvs中删除</li><li>重复步骤1和步骤2，直到invts为空。在这个过程中选出的的x就是最大的互不相交的区间子集。</li><li>最后总的区间数减去这个不相交的区间子集个数就是我们要的答案了。</li></ol><p>具体解法如下：</p><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func eraseOverlapIntervals(intervals [][]int) int {    // 总的区间个数减去不相交的区间个数就是需要去除的区间    return len(intervals) - intervalSchedule(intervals)}// 计算最多有几个不重复的区间func intervalSchedule(intvs [][]int) int {    if len(intvs) == 0 {        return 0    }    // 按照end(结束时间)升序排序    sort.Slice(intvs, func(i, j int) bool {        return intvs[i][1] &lt; intvs[j][1]    })    // 至少有一个区间不相交    count := 1    // 排序后，第一个区间都是end最小的区间，记录下end    minEnd := intvs[0][1]    for _, interval := range intvs {        start := interval[0]        // start大于等于end，说明找到第一个不相交的区间了，因为边界相同也算是不相交        if start &gt;= minEnd {            count++            // 新的区间的end将作为新的minEnd，继续寻找这个区间的不相交区间            minEnd = interval[1]        }    }    return count}</code></pre><h3 id="时间复杂度：O-NlogN"><a href="#时间复杂度：O-NlogN" class="headerlink" title="时间复杂度：O((NlogN))"></a>时间复杂度：O((NlogN))</h3><p>其中 n 是区间的数量。我们需要 O((nlogn)) 的时间对所有的区间按照右端点进行升序排序（其实就是快速排序），并且需要 O((n)) 的时间进行遍历。由于前者在渐进意义下大于后者，因此总时间复杂度为 O((nlogn))。</p><h3 id="空间复杂度：O-logN"><a href="#空间复杂度：O-logN" class="headerlink" title="空间复杂度：O((logN))"></a>空间复杂度：O((logN))</h3><p>O((logN)) 即为排序需要使用的栈空间</p><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>只有具备贪心选择性质的问题才可以用贪心算法，贪心选择性质就是每一步都做出一个局部最优的选择，最终的结果就是全局最优。这是一种特殊性质，实际上只有一部分问题具有这个性质。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 贪心算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【leetcode-45】跳跃游戏 II</title>
       <link href="/2021/07/10/leetcode-45/"/>
       <url>/2021/07/10/leetcode-45/</url>
@@ -946,11 +973,11 @@
       
         <tags>
             
-            <tag> fabric </tag>
-            
             <tag> 密码学 </tag>
             
             <tag> SoftHSM </tag>
+            
+            <tag> fabric </tag>
             
         </tags>
       
@@ -1853,9 +1880,9 @@
       
         <tags>
             
-            <tag> fabric </tag>
-            
             <tag> 密码学 </tag>
+            
+            <tag> fabric </tag>
             
             <tag> bccsp </tag>
             
@@ -2686,9 +2713,9 @@
       
         <tags>
             
-            <tag> fabric </tag>
-            
             <tag> 密码学 </tag>
+            
+            <tag> fabric </tag>
             
         </tags>
       
