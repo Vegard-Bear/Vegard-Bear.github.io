@@ -1,3 +1,4 @@
+https://vegard-bear.github.io/2021/07/17/leetcode-20/
 https://vegard-bear.github.io/2021/07/15/leetcode-452/
 https://vegard-bear.github.io/2021/07/14/leetcode-435/
 https://vegard-bear.github.io/2021/07/10/leetcode-45/
@@ -97,4 +98,3 @@ https://vegard-bear.github.io/2020/07/25/orderer-functions-overview/
 https://vegard-bear.github.io/2020/07/25/tx-flow/
 https://vegard-bear.github.io/2020/07/18/govendor/
 https://vegard-bear.github.io/2020/07/14/fabric-contribute/
-https://vegard-bear.github.io/2020/07/14/cicd/
