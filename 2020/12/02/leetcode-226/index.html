@@ -501,7 +501,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    311
+                    336
                 </div>
                 
 
@@ -555,6 +555,7 @@
  * }
  */</span>
 <span class="token keyword">func</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>root <span class="token operator">*</span>TreeNode<span class="token punctuation">)</span> <span class="token operator">*</span>TreeNode <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 如果根节点是空，不用翻转了，直接返回</span>
     <span class="token keyword">if</span> root <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token boolean">nil</span>
     <span class="token punctuation">}</span>
@@ -564,11 +565,12 @@
     root<span class="token punctuation">.</span>Left <span class="token operator">=</span> root<span class="token punctuation">.</span>Right
     root<span class="token punctuation">.</span>Right <span class="token operator">=</span> temp
 
+    <span class="token comment" spellcheck="true">// 再递归交换左右子树</span>
     <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
     <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
 
     <span class="token keyword">return</span> root
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>值得一提的是，这道题用前序和后序遍历是可以的，而中序遍历则不行（为什么）</p>
 </blockquote>
