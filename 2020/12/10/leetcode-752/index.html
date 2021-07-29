@@ -330,7 +330,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -562,7 +562,7 @@
 </li>
 </ul>
 <p>此外，这道题还多了一个附加条件，就是不能访问死亡数字，这个很好解决，就是再定义一个数组，每访问一个数字就检查一下是否包含在死亡数字中。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">openLock</span><span class="token punctuation">(</span>deadends <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> target <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+<h5 id="值得注意的是，字符串常量不能直接赋值，需要转成-byte，再赋值"><a href="#值得注意的是，字符串常量不能直接赋值，需要转成-byte，再赋值" class="headerlink" title="值得注意的是，字符串常量不能直接赋值，需要转成[]byte，再赋值"></a>值得注意的是，字符串常量不能直接赋值，需要转成[]byte，再赋值</h5><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">openLock</span><span class="token punctuation">(</span>deadends <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> target <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 记录需要跳过的死亡密码</span>
     deads <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
     <span class="token keyword">for</span> k<span class="token punctuation">,</span> dead <span class="token operator">:=</span> <span class="token keyword">range</span> deadends <span class="token punctuation">{</span>
@@ -882,7 +882,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【leetcode-322】零钱兑换">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="【leetcode-322】零钱兑换">
                         
                         <span class="card-title">【leetcode-322】零钱兑换</span>
                     </div>
@@ -935,7 +935,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="【leetcode-111】二叉树的最小深度">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【leetcode-111】二叉树的最小深度">
                         
                         <span class="card-title">【leetcode-111】二叉树的最小深度</span>
                     </div>
