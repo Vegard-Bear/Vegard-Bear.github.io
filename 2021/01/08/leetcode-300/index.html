@@ -490,7 +490,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    996
+                    1k
                 </div>
                 
 
@@ -582,7 +582,7 @@ func max(a, b int) int {
 }</code></pre><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>其中 n 为数组 nums 的长度。动态规划的状态数为 n，计算状态 dp[i] 时，需要 O(n) 的时间遍历 dp[0…i−1] 的所有状态，所以总时间复杂度为 O(n^2)</p>
 <h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>需要额外使用长度为 n 的 dp 数组。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>动态规划的题最重要的是如何定义dp数组，确定base case以及状态转移方程。</p>
-
+<h3 id="注意，以nums最后一个数字结尾的子序列并不一定是最大的，这是一个坑，需要重新遍历一遍dp数组，找到最大的那个值"><a href="#注意，以nums最后一个数字结尾的子序列并不一定是最大的，这是一个坑，需要重新遍历一遍dp数组，找到最大的那个值" class="headerlink" title="注意，以nums最后一个数字结尾的子序列并不一定是最大的，这是一个坑，需要重新遍历一遍dp数组，找到最大的那个值"></a>注意，以nums最后一个数字结尾的子序列并不一定是最大的，这是一个坑，需要重新遍历一遍dp数组，找到最大的那个值</h3>
             </div>
             <hr />
 
@@ -1078,7 +1078,7 @@ func max(a, b int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">118.6k</span>
+            <span class="white-color">118.7k</span>
             
 
             <br>
