@@ -491,7 +491,7 @@ LRUCache((int capacity)) 以正整数作为容量 capaci">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.3k
                 </div>
                 
 
@@ -546,6 +546,8 @@ lRUCache.get(4);    // 返回 4</code></pre><p>提示：</p>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>LRU缓存淘汰算法本质就是双向链表+哈希表，具体题解可参考<a href="https://leetcode-cn.com/problems/lru-cache/solution/lru-ce-lue-xiang-jie-he-shi-xian-by-labuladong/" target="_blank" rel="noopener">LRU 策略详解和实现</a></p>
 <p>整体难度倒不是很大，主要是同时考察了双向链表和哈希表的性质，需要注意的细节和坑比较多：</p>
 <ul>
+<li>双向链表头尾两个节点是不做实际用途的，只是用于标记头尾</li>
+<li>最近访问的在前面（靠近队头）</li>
 <li>每次更新链表((插入和删除))的同时，需要注意同步更新哈希表</li>
 <li>双向链表自带头节点和尾节点，删除节点的时候注意不能直接删除tail节点，而是删除tail.pre</li>
 <li>对于key相同，value不同的情况在put的时候需要特别注意</li>
@@ -1161,7 +1163,7 @@ int g
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">118.6k</span>
+            <span class="white-color">118.7k</span>
             
 
             <br>
