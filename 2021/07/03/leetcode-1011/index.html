@@ -331,7 +331,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/27.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -490,7 +490,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    802
+                    805
                 </div>
                 
 
@@ -549,51 +549,57 @@
 </ul>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题和 <a href="https://leetcode-cn.com/problems/koko-eating-bananas/" target="_blank" rel="noopener">875. 爱吃香蕉的珂珂</a> 是一样的，都是二分查找在实际问题中的应用。</p>
 <p>首先需要确定最小载重的范围，最小值max((weights)，最大值sum((weights))。然后就是在这个范围内进行搜索，这里我们采用的是二分搜索。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func minEatingSpeed(piles []int, h int) int {
-    // 套用搜索左侧边界的算法框架，注意左右边界，每小时最少吃一个香蕉，最多吃一堆香蕉（最多的那堆）
-    left, right := 1, getMax(piles) + 1
-    for left &lt;  right {
-        // 防止溢出
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func shipWithinDays(weights []int, days int) int {
+    // 套用搜索左侧边界的算法框架，注意左右边界，
+    //载重最小为最重货物的重量（保证一次至少能运送一件货物），最大为所有货物的重量
+    left, right := getMax(weights), getSum(weights) + 1
+    for left &lt; right {
         mid := left + (right - left) / 2
-        if canFinish(piles, mid, h) {
+        if canFinish(weights, mid, days) {
             right = mid
         } else {
-            left = mid + 1
+            left = mid +1
         }
     }
-    // 因为求的是最小速度，所以是搜索左侧边界
     return left
 }
 
-// 在所有堆中找到最大的那堆
-func getMax(piles []int) int {
+// 当载重为cap时，能否在days天内运送玩所有货物
+func canFinish(weights []int, cap, days int) bool {
+    i := 0
+    // 按照天数遍历，每天都是新的开始，运力为最大，即cap
+    for day := 0; day &lt; days; day++ {
+        maxCap := cap
+        // 只要还有富余空间就运
+        for maxCap - weights[i] &gt;= 0 {
+            maxCap -= weights[i]
+            i++
+            // 每次运送一件货物就检查一下是否到最后了
+            if i == len(weights) {
+                return true
+            }
+        }
+    }
+    return false
+}
+
+// 在货物中找到最大的那个
+func getMax(weights []int) int {
     max := 0
-    for _, pile := range piles {
-        if pile &gt; max {
-             max = pile
+    for _, weight := range weights {
+        if weight &gt; max {
+            max = weight
         }
     }
     return max
 }
 
-// 以speed的速度能不能在h小时内吃完所有的香蕉
-func canFinish(piles []int, speed, h int) bool {
-    time := 0
-    // 总时间等于吃完每堆香蕉的时间累加
-    for _, piles := range piles {
-        time += timeOf(piles, speed)
+func getSum(weights []int) int {
+    sum := 0
+    for _, v := range weights {
+        sum += v
     }
-    return time &lt;= h
-}
-
-// 吃完一堆香蕉所用的时间
-func timeOf(pile int, speed int) int {
-    // 如果不能刚好吃完，剩下的需要再多花一个小时吃
-    if pile % speed &gt; 0 {
-        return pile / speed + 1
-    } else {
-        return pile / speed
-    }
+    return sum
 }</code></pre><h3 id="时间复杂度：O-nlog-Σw"><a href="#时间复杂度：O-nlog-Σw" class="headerlink" title="时间复杂度：O((nlog((Σw))))"></a>时间复杂度：O((nlog((Σw))))</h3><p>其中 n 是数组 weights 的长度，Σw 是数组 weights 中元素的和。二分查找需要执行的 weights 进行依次遍历，时间为 O((n))，相乘即可得到总时间复杂度。</p>
 <h3 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O((1))"></a>空间复杂度：O((1))</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题和 <a href="https://leetcode-cn.com/problems/koko-eating-bananas/" target="_blank" rel="noopener">875. 爱吃香蕉的珂珂</a> 是一样的，都是二分查找在实际问题中的应用。建议一起食用，效果更佳。</p>
 
@@ -826,7 +832,7 @@ func timeOf(pile int, speed int) int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="【leetcode-42】接雨水">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【leetcode-42】接雨水">
                         
                         <span class="card-title">【leetcode-42】接雨水</span>
                     </div>
@@ -875,7 +881,7 @@ func timeOf(pile int, speed int) int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="【leetcode-875】爱吃香蕉的珂珂">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="【leetcode-875】爱吃香蕉的珂珂">
                         
                         <span class="card-title">【leetcode-875】爱吃香蕉的珂珂</span>
                     </div>
