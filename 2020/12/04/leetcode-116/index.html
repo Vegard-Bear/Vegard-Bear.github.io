@@ -334,7 +334,7 @@ struct Node {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -493,7 +493,7 @@ struct Node {
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    805
+                    884
                 </div>
                 
 
@@ -606,10 +606,16 @@ struct Node {
         root<span class="token punctuation">.</span>Right<span class="token punctuation">.</span>Next <span class="token operator">=</span> root<span class="token punctuation">.</span>Next<span class="token punctuation">.</span>Left
     <span class="token punctuation">}</span>
 
+    <span class="token comment" spellcheck="true">// 跨子树的情况可能是差了好几棵子树，所以不能单纯地认为再往下找一层子树就行了</span>
+    <span class="token comment" spellcheck="true">// 而是应该通过root的next指针找到下一棵子树，下面这样写是不对的</span>
+    <span class="token comment" spellcheck="true">//if root.Left.Right!= nil &amp;&amp; root.Right != nil {</span>
+    <span class="token comment" spellcheck="true">//    root.Left.Right.Next = root.Right.Left</span>
+    <span class="token comment" spellcheck="true">//}</span>
+
     <span class="token function">connect</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
     <span class="token function">connect</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>Right<span class="token punctuation">)</span>
     <span class="token keyword">return</span> root
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>反思：二叉树的题目重在观察，有时候我们可以快速写出题解，但是答案却不对，这个时候或许需要注意考虑一些特殊情况</p>
 </blockquote>
@@ -843,7 +849,7 @@ struct Node {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="【leetcode-114】二叉树展开为链表">
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="【leetcode-114】二叉树展开为链表">
                         
                         <span class="card-title">【leetcode-114】二叉树展开为链表</span>
                     </div>
@@ -900,7 +906,7 @@ struct Node {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【leetcode-226】翻转二叉树">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="【leetcode-226】翻转二叉树">
                         
                         <span class="card-title">【leetcode-226】翻转二叉树</span>
                     </div>
@@ -1109,7 +1115,7 @@ struct Node {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">118.7k</span>
+            <span class="white-color">118.8k</span>
             
 
             <br>
