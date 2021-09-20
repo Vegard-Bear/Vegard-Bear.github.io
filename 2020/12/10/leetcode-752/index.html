@@ -330,7 +330,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -563,82 +563,105 @@
 </ul>
 <p>此外，这道题还多了一个附加条件，就是不能访问死亡数字，这个很好解决，就是再定义一个数组，每访问一个数字就检查一下是否包含在死亡数字中。</p>
 <h5 id="值得注意的是，字符串常量不能直接赋值，需要转成-byte，再赋值"><a href="#值得注意的是，字符串常量不能直接赋值，需要转成-byte，再赋值" class="headerlink" title="值得注意的是，字符串常量不能直接赋值，需要转成[]byte，再赋值"></a>值得注意的是，字符串常量不能直接赋值，需要转成[]byte，再赋值</h5><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">openLock</span><span class="token punctuation">(</span>deadends <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> target <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 记录需要跳过的死亡密码</span>
-    deads <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> k<span class="token punctuation">,</span> dead <span class="token operator">:=</span> <span class="token keyword">range</span> deadends <span class="token punctuation">{</span>
-        deads<span class="token punctuation">[</span>dead<span class="token punctuation">]</span> <span class="token operator">=</span> k
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 记录已经访问过的密码，主要是为了避免走回头路，陷入死循环</span>
-    visited <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
-    q <span class="token operator">:=</span> list<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 创建一个队列用于层序遍历</span>
+    q <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 记录走过的路径，防止走回头路</span>
+    visited <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">bool</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 把起点放进队列</span>
+    start <span class="token operator">:=</span> <span class="token string">"0000"</span>
+    q <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>q<span class="token punctuation">,</span> start<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 定义步数</span>
     step <span class="token operator">:=</span> <span class="token number">0</span>
-    <span class="token comment" spellcheck="true">// 从起点 0000 开始 遍历</span>
-    q<span class="token punctuation">.</span><span class="token function">PushBack</span><span class="token punctuation">(</span><span class="token string">"0000"</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> <span class="token punctuation">;</span> q<span class="token punctuation">.</span><span class="token function">Len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">;</span>  <span class="token punctuation">{</span>
-        size <span class="token operator">:=</span> q<span class="token punctuation">.</span><span class="token function">Len</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size <span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
-            element <span class="token operator">:=</span> q<span class="token punctuation">.</span><span class="token function">Front</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            q<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span>
-            cur<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> element<span class="token punctuation">.</span>Value<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true">// 如果可能遇到死亡密码，直接跳过，不作处理</span>
-            <span class="token keyword">if</span> <span class="token boolean">_</span><span class="token punctuation">,</span> ok <span class="token operator">:=</span> deads<span class="token punctuation">[</span>cur<span class="token punctuation">]</span><span class="token punctuation">;</span> ok <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">// 开始层序遍历</span>
+    <span class="token keyword">for</span> <span class="token function">len</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">// 特别注意，在算步数的时候，也就是层数的时候需要加一层循环</span>
+        size <span class="token operator">:=</span> <span class="token function">len</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 取出队头元素</span>
+            cur <span class="token operator">:=</span> q<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+            q <span class="token operator">=</span> q<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+            <span class="token comment" spellcheck="true">// 如果遇到死亡数字就直接跳过</span>
+            <span class="token keyword">if</span> <span class="token function">isInDeadends</span><span class="token punctuation">(</span>cur<span class="token punctuation">,</span> deadends<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token keyword">continue</span>
             <span class="token punctuation">}</span>
-            <span class="token comment" spellcheck="true">// 到达终点，直接返回步数</span>
+
+
+            <span class="token comment" spellcheck="true">// 如果已经拨到了目标值就直接返回</span>
             <span class="token keyword">if</span> cur <span class="token operator">==</span> target <span class="token punctuation">{</span>
                 <span class="token keyword">return</span> step
             <span class="token punctuation">}</span>
 
-            <span class="token comment" spellcheck="true">// 将相邻未遍历节点加入队列</span>
-            <span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">4</span> <span class="token punctuation">;</span> j<span class="token operator">++</span>  <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 尝试拨动一次</span>
+            <span class="token comment" spellcheck="true">// 选择一位数字进行拨动</span>
+            <span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 向上拨动</span>
+                up <span class="token operator">:=</span> <span class="token function">upOneTime</span><span class="token punctuation">(</span>cur<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
 
-                <span class="token comment" spellcheck="true">// 向上拨动，如果没有拨到过，就入队</span>
-                up <span class="token operator">:=</span> <span class="token function">addOne</span><span class="token punctuation">(</span>cur<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
-                <span class="token keyword">if</span>  <span class="token boolean">_</span><span class="token punctuation">,</span> ok <span class="token operator">:=</span> visited<span class="token punctuation">[</span>up<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token operator">!</span>ok <span class="token punctuation">{</span>
-                    q<span class="token punctuation">.</span><span class="token function">PushBack</span><span class="token punctuation">(</span>up<span class="token punctuation">)</span>
-                    visited<span class="token punctuation">[</span>up<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+                <span class="token comment" spellcheck="true">// 把数字加入到队列中，用于下一次遍历</span>
+                <span class="token keyword">if</span> <span class="token operator">!</span>visited<span class="token punctuation">[</span>up<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+                    q <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>q<span class="token punctuation">,</span> up<span class="token punctuation">)</span>
+                    visited<span class="token punctuation">[</span>up<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span>
                 <span class="token punctuation">}</span>
 
-                <span class="token comment" spellcheck="true">// 向下拨动，如果没有拨到过，就入队</span>
-                down <span class="token operator">:=</span> <span class="token function">subOne</span><span class="token punctuation">(</span>cur<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
-                <span class="token keyword">if</span>  <span class="token boolean">_</span><span class="token punctuation">,</span> ok <span class="token operator">:=</span> visited<span class="token punctuation">[</span>down<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token operator">!</span>ok <span class="token punctuation">{</span>
-                    q<span class="token punctuation">.</span><span class="token function">PushBack</span><span class="token punctuation">(</span>down<span class="token punctuation">)</span>
-                    visited<span class="token punctuation">[</span>down<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+                <span class="token comment" spellcheck="true">// 向下拨动</span>
+                down <span class="token operator">:=</span> <span class="token function">downOneTime</span><span class="token punctuation">(</span>cur<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
+
+                <span class="token comment" spellcheck="true">// 把数字加入到队列中，用于下一次遍历</span>
+                <span class="token keyword">if</span> <span class="token operator">!</span>visited<span class="token punctuation">[</span>down<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+                    q <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>q<span class="token punctuation">,</span> down<span class="token punctuation">)</span>
+                    visited<span class="token punctuation">[</span>down<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span>
                 <span class="token punctuation">}</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">// 拨动了一次，步数+1</span>
+
+        <span class="token comment" spellcheck="true">// 拨动了一次</span>
         step<span class="token operator">++</span>
     <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 走到这里说明尝试了所有可能的次数，也没有拨到</span>
     <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// 向上拨动一次</span>
-<span class="token keyword">func</span> <span class="token function">addOne</span><span class="token punctuation">(</span>s <span class="token builtin">string</span><span class="token punctuation">,</span> j <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
-    b <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// 9 再拨动一次是 0（特殊情况）</span>
-    <span class="token keyword">if</span> b<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'9'</span> <span class="token punctuation">{</span>
-        b<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'0'</span>
+<span class="token comment" spellcheck="true">// 向下拨动一次</span>
+<span class="token keyword">func</span> <span class="token function">upOneTime</span><span class="token punctuation">(</span>num <span class="token builtin">string</span><span class="token punctuation">,</span> index <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 字符串常量不能直接赋值，转化成[]byte</span>
+    tmp <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> tmp<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'9'</span> <span class="token punctuation">{</span>
+        tmp<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'0'</span>
     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 其他直接+1就行</span>
-        b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">++</span>
+        tmp<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token operator">++</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
 <span class="token comment" spellcheck="true">// 向下拨动一次</span>
-<span class="token keyword">func</span> <span class="token function">subOne</span><span class="token punctuation">(</span>s <span class="token builtin">string</span><span class="token punctuation">,</span> j <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
-    b <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// 0 再拨动一次是 9（特殊情况）</span>
-    <span class="token keyword">if</span> b<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'0'</span> <span class="token punctuation">{</span>
-        b<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'9'</span>
+<span class="token keyword">func</span> <span class="token function">downOneTime</span><span class="token punctuation">(</span>num <span class="token builtin">string</span><span class="token punctuation">,</span> index <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 字符串常量不能直接赋值，转化成[]byte</span>
+    tmp <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> tmp<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'0'</span> <span class="token punctuation">{</span>
+        tmp<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'9'</span>
     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 其他直接-1</span>
-        b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">--</span>
+        tmp<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token operator">--</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">isInDeadends</span><span class="token punctuation">(</span>num <span class="token builtin">string</span><span class="token punctuation">,</span> deadends <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>deadends<span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> num <span class="token operator">==</span> deadends<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N-2-A-N-D"><a href="#时间复杂度：O-N-2-A-N-D" class="headerlink" title="时间复杂度：O((N^2 * A^N + D))"></a>时间复杂度：O((N^2 * A^N + D))</h3><p>我们用 A 表示数字的个数，N 表示状态的位数，D 表示数组 deadends 的大小。在最坏情况下，我们需要搜索完所有状态，状态的总数为 O((A^N))。对于每个状态，我们要枚举修改的位置，需要 O((N)) 的时间，枚举后得到新的状态同样需要 O((N)) 的时间。</p>
 <h3 id="空间复杂度：O-A-N-D"><a href="#空间复杂度：O-A-N-D" class="headerlink" title="空间复杂度：O((A^N + D))"></a>空间复杂度：O((A^N + D))</h3><p>用来存储队列以及 deadends 的集合。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><ol>
@@ -882,7 +905,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="【leetcode-322】零钱兑换">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="【leetcode-322】零钱兑换">
                         
                         <span class="card-title">【leetcode-322】零钱兑换</span>
                     </div>
@@ -935,7 +958,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="【leetcode-111】二叉树的最小深度">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【leetcode-111】二叉树的最小深度">
                         
                         <span class="card-title">【leetcode-111】二叉树的最小深度</span>
                     </div>
@@ -1148,7 +1171,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">118.8k</span>
+            <span class="white-color">118.9k</span>
             
 
             <br>
