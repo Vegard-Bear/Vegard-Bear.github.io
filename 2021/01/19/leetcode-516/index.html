@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.1k
                 </div>
                 
 
@@ -581,8 +581,7 @@ func max(a, b int) int {
     return b
 }</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>n 为字符串 s 的长度</p>
 <h3 id="空间复杂度：O-n-2"><a href="#空间复杂度：O-n-2" class="headerlink" title="空间复杂度：O((n^2))"></a>空间复杂度：O((n^2))</h3><p>我们需要大小为 O((n^2)) 的 dp 数组来记录状态值。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题和<font color="blue">最长公共子序列</font>以及<font color="blue">编辑距离</font>套用的都是二维的dp数组模版，但是不同之处在于这里只涉及一个字符串/子序列，所以属于二维dp数组的另一种小类。</p>
-
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><h4 id="1-这道题和最长公共子序列以及编辑距离套用的都是二维的dp数组模版，但是不同之处在于这里只涉及一个字符串-子序列，所以属于二维dp数组的另一种小类，是一种隐藏的二维动态规划。"><a href="#1-这道题和最长公共子序列以及编辑距离套用的都是二维的dp数组模版，但是不同之处在于这里只涉及一个字符串-子序列，所以属于二维dp数组的另一种小类，是一种隐藏的二维动态规划。" class="headerlink" title="1. 这道题和最长公共子序列以及编辑距离套用的都是二维的dp数组模版，但是不同之处在于这里只涉及一个字符串/子序列，所以属于二维dp数组的另一种小类，是一种隐藏的二维动态规划。"></a>1. 这道题和<font color="blue">最长公共子序列</font>以及<font color="blue">编辑距离</font>套用的都是二维的dp数组模版，但是不同之处在于这里只涉及一个字符串/子序列，所以属于二维dp数组的另一种小类，是一种隐藏的二维动态规划。</h4><h4 id="2-子序列和字串更难，因为可能是不连续的，几乎肯定是用动态规划做的，这道题和最长公共子序列以及编辑距离还有区别，它的难点在于推导动态规划的时候的数组遍历顺序，需要逆着遍历，具体原因可以参考子序列问题通用思路-最长回文子序列"><a href="#2-子序列和字串更难，因为可能是不连续的，几乎肯定是用动态规划做的，这道题和最长公共子序列以及编辑距离还有区别，它的难点在于推导动态规划的时候的数组遍历顺序，需要逆着遍历，具体原因可以参考子序列问题通用思路-最长回文子序列" class="headerlink" title="2. 子序列和字串更难，因为可能是不连续的，几乎肯定是用动态规划做的，这道题和最长公共子序列以及编辑距离还有区别，它的难点在于推导动态规划的时候的数组遍历顺序，需要逆着遍历，具体原因可以参考子序列问题通用思路|最长回文子序列"></a>2. 子序列和字串更难，因为可能是不连续的，几乎肯定是用动态规划做的，这道题和<font color="blue">最长公共子序列</font>以及<font color="blue">编辑距离</font>还有区别，它的难点在于推导动态规划的时候的数组遍历顺序，需要逆着遍历，具体原因可以参考<a href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/solution/zi-xu-lie-wen-ti-tong-yong-si-lu-zui-chang-hui-wen/" target="_blank" rel="noopener">子序列问题通用思路|最长回文子序列</a></h4>
             </div>
             <hr />
 
@@ -1082,7 +1081,7 @@ func max(a, b int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">119.1k</span>
+            <span class="white-color">119.2k</span>
             
 
             <br>
