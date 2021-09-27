@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://vegard-bear.github.io/2021/03/07/01-bei-bao/</loc>
+    
+    <lastmod>2021-09-27T02:04:38.779Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://vegard-bear.github.io/2021/02/28/leetcode-887/</loc>
     
     <lastmod>2021-09-26T12:48:41.367Z</lastmod>
@@ -418,13 +425,6 @@
     <loc>https://vegard-bear.github.io/2021/03/07/go-sourcecode-select/</loc>
     
     <lastmod>2021-03-07T12:18:12.470Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://vegard-bear.github.io/2021/03/07/01-bei-bao/</loc>
-    
-    <lastmod>2021-03-07T07:50:21.128Z</lastmod>
     
   </url>
   
