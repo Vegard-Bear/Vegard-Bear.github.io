@@ -496,7 +496,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.3k
                 </div>
                 
 
@@ -589,7 +589,12 @@
     return dp[n][amount]
 }</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-N-amount"><a href="#时间复杂度：O-N-amount" class="headerlink" title="时间复杂度：O((N*amount))"></a>时间复杂度：O((N*amount))</h3><p>硬币面值为N，总金额数是amount，两层循环，所以算法的总时间复杂度是 O((N*amount))</p>
 <h3 id="空间复杂度：O-N-amount"><a href="#空间复杂度：O-N-amount" class="headerlink" title="空间复杂度：O((N*amount))"></a>空间复杂度：O((N*amount))</h3><p>需要开辟一个为N*amount大小的dp数组。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>完全背包问题和之前的01背包和子集背包问题最大的不同在于物品的数量是无限的，在推导状态转移方程的时候需要特别注意。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><ol>
+<li><p>特别注意，完全背包问题和之前的01背包和子集背包问题最大的不同在于物品的数量是无限的,所以如果选择了这种面值的硬币，则是dp[i][j-coins[i-1]]而不是之前的dp[i-1][j-coins[i-1]]</p>
+</li>
+<li><p>还有一个点是这里求的不是单个最值或者是能否装这种bool值，而是统计总的组合数，所以再推导状态转移方程的时候递推关系不是最值函数而是相加</p>
+</li>
+</ol>
 
             </div>
             <hr />
@@ -907,16 +912,16 @@
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/fabric/" target="_blank">
+                        <span class="chip bg-color">fabric</span>
+                    </a>
+                    
                     <a href="/tags/密码学/" target="_blank">
                         <span class="chip bg-color">密码学</span>
                     </a>
                     
                     <a href="/tags/SoftHSM/" target="_blank">
                         <span class="chip bg-color">SoftHSM</span>
-                    </a>
-                    
-                    <a href="/tags/fabric/" target="_blank">
-                        <span class="chip bg-color">fabric</span>
                     </a>
                     
                 </div>
