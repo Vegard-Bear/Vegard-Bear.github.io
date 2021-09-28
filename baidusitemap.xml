@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://vegard-bear.github.io/2021/03/15/leetcode-494/</loc>
+    <lastmod>2021-09-28</lastmod>
+  </url>  <url>
     <loc>https://vegard-bear.github.io/2021/03/11/leetcode-337/</loc>
     <lastmod>2021-09-27</lastmod>
   </url>  <url>
@@ -162,9 +165,6 @@
   </url>  <url>
     <loc>https://vegard-bear.github.io/2021/03/11/go-sourcecode-make-new/</loc>
     <lastmod>2021-03-16</lastmod>
-  </url>  <url>
-    <loc>https://vegard-bear.github.io/2021/03/15/leetcode-494/</loc>
-    <lastmod>2021-03-15</lastmod>
   </url>  <url>
     <loc>https://vegard-bear.github.io/2021/03/10/go-sourcecode-panic-recover/</loc>
     <lastmod>2021-03-11</lastmod>
