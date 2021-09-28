@@ -494,14 +494,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
                 
@@ -589,6 +589,11 @@ func dp(nums []int, i, rest int) int {
         sum += num
     }
     target := (S + sum)/2
+
+    // 注意不管如何组合，最终的结果总是在[-sum,sum]间波动，也就是说一个合法的S必然满足 -sum&lt;=S&lt;=sum, 所以 S+sum 必然大于等于0
+    if target &lt; 0 {
+        return 0
+    }
 
     // 注意，这两种情况没法进行子集划分，不符合背包问题，需要排除
     if sum &lt; S || (S + sum)%2 == 1 {
@@ -1120,7 +1125,7 @@ func dp(nums []int, i, rest int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">119.8k</span>
+            <span class="white-color">119.9k</span>
             
 
             <br>
