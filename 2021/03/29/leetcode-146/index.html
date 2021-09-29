@@ -332,7 +332,7 @@ LRUCache((int capacity)) 以正整数作为容量 capaci">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -491,7 +491,7 @@ LRUCache((int capacity)) 以正整数作为容量 capaci">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.4k
                 </div>
                 
 
@@ -666,6 +666,13 @@ func (this *LRUCache) Put(key int, value int)  {
 }</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-1"><a href="#时间复杂度：O-1" class="headerlink" title="时间复杂度：O((1))"></a>时间复杂度：O((1))</h3><p>链表增删和哈希表查找的时间复杂度都是O((1))，因此对于put和get都是O((1))</p>
 <h3 id="空间复杂度：O-capacity"><a href="#空间复杂度：O-capacity" class="headerlink" title="空间复杂度：O((capacity))"></a>空间复杂度：O((capacity))</h3><p>O((capacity))，因为哈希表和双向链表最多存储 capacity+1 个元素</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>LRU缓存淘汰算法原理不难，它同时考察了双向链表+哈希表两个知识点，因此需要对这两种数据结构的操作比较熟悉，一些细节问题尤其需要注意。</p>
+<h4 id="本题主要难点如下："><a href="#本题主要难点如下：" class="headerlink" title="本题主要难点如下："></a>本题主要难点如下：</h4><ol>
+<li>构造数据结构时注意需要哈希表+双向链表。</li>
+<li>构造函数需要把所有数据结构都初始化了</li>
+<li>双向链表的插入和删除操作，插入改四个指针，删除改两个。</li>
+<li>无论是get还是put都要将被访问的节点放到队头。</li>
+<li>哈希表和链表要记得同步更新。</li>
+</ol>
 
             </div>
             <hr />
@@ -896,7 +903,7 @@ func (this *LRUCache) Put(key int, value int)  {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【leetcode-460】LFU 缓存">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="【leetcode-460】LFU 缓存">
                         
                         <span class="card-title">【leetcode-460】LFU 缓存</span>
                     </div>
@@ -954,7 +961,7 @@ int g
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="【Go源码解析13】上下文context">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="【Go源码解析13】上下文context">
                         
                         <span class="card-title">【Go源码解析13】上下文context</span>
                     </div>
@@ -1163,7 +1170,7 @@ int g
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">119.9k</span>
+            <span class="white-color">120k</span>
             
 
             <br>
