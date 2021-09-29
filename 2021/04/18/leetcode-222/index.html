@@ -494,7 +494,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    649
+                    666
                 </div>
                 
 
@@ -559,7 +559,7 @@
     return 1 + countNodes(root.Left) + countNodes(root.Right)
 }</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-1"><a href="#时间复杂度：O-1" class="headerlink" title="时间复杂度：O((1))"></a>时间复杂度：O((1))</h3><p>首先计算树的高度的时间复杂度是logN，然后对树进行递归的话，表面上是N，但实际上是logN，因为最多只有其中一棵子树的递归会真正进行下去，而另一棵一定会触发hl=hr，然后直接返回，这是因为一棵完全二叉树的两棵子树，至少又一棵是满二叉树。<br>综上，时间复杂度就是logNlogN</p>
 <h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>递归的空间复杂度为<strong>递归的次数</strong> <em> <strong>每次递归的空间复杂度</strong>，<br>也就是 n </em> O((1)) = O((n))</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>一棵完全二叉树的两棵子树，至少又一棵是满二叉树。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>一棵完全二叉树的两棵子树，至少有一棵是满二叉树。利用这个性质可以有效降低时间复杂度。</p>
 
             </div>
             <hr />
