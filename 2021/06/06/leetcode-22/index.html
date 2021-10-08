@@ -492,7 +492,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    631
+                    736
                 </div>
                 
 
@@ -586,7 +586,12 @@ func backTrack(left, right int, track string)  {
     track = track[:len(track)-1]
 }</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h1 id="时间复杂度："><a href="#时间复杂度：" class="headerlink" title="时间复杂度："></a>时间复杂度：</h1><p>我们的复杂度分析依赖于理解 generateParenthesis((n)) 中有多少个元素。这个分析超出了本文的范畴。</p>
 <h1 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h1><p>除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要 O((1)) 的空间，最多递归 2n 层，因此空间复杂度为 O((n))。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>括号生成也是一道非常经典的题目，关键是要知道一个合法括号组合的性质，那么问题就迎刃而解了。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题是涉及到括号的合法性问题：</p>
+<ol>
+<li>首先第一反应就是要知道括号合法性的两个性质，上文有写。</li>
+<li>其次就是这里其实也是做选择，每次可以选择左括号和右括号，所以可以考虑回溯算法，值得注意的是，这里用剩余左右括号的数量来标记算法的进度而不是以往的某个数组下标</li>
+<li>关于括号的合法性问题还应该想到的数据结构是【栈】，但是本题没有用到这个性质。</li>
+</ol>
 
             </div>
             <hr />
@@ -1079,7 +1084,7 @@ func backTrack(left, right int, track string)  {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">120.8k</span>
+            <span class="white-color">120.9k</span>
             
 
             <br>
