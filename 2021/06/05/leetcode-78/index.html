@@ -493,14 +493,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    750
+                    898
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
                 
@@ -574,6 +574,11 @@ func backTrack(nums []int, start int, track []int)  {
 <p>O((2^n)) <em> n = O((n </em> 2^n))</p>
 <p>最多有2^n个状态，每个状态最多占用大小为n的空间（相当于全集）</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>所有的穷举问题都可以采取回溯算法解决，比如子集问题，然后我们根据题意改造回溯算法的模版就好了。</p>
+<h4 id="这道题和【77-组合】的主要区别在于append结果的条件不同："><a href="#这道题和【77-组合】的主要区别在于append结果的条件不同：" class="headerlink" title="这道题和【77.组合】的主要区别在于append结果的条件不同："></a>这道题和【77.组合】的主要区别在于append结果的条件不同：</h4><ol>
+<li>组合必须保证有k个数才算一个合法的结果，而这道题则不需要到叶子节点就可以算一个结果</li>
+<li>另外就是这道题上来就把当前的路径算一个结果，然后在判断递归终止的条件，这个先后顺序也要注意</li>
+<li>另外一个与组合类似，就是遍历下一层决策树的时候新的起点是i+1而不是start+1, 避免了集合中数字重复</li>
+</ol>
 
             </div>
             <hr />
@@ -1066,7 +1071,7 @@ func backTrack(nums []int, start int, track []int)  {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">120.4k</span>
+            <span class="white-color">120.5k</span>
             
 
             <br>
