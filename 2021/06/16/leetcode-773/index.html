@@ -491,14 +491,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
                 
@@ -627,7 +627,22 @@
 }</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-R∗C∗-R∗C"><a href="#时间复杂度：O-R∗C∗-R∗C" class="headerlink" title="时间复杂度：O(R∗C∗(R∗C)!)"></a>时间复杂度：O(R∗C∗(R∗C)!)</h3><p>BFS的时间复杂度即可能存在的状态数。</p>
 <p>R, C 为棋盘的行数和列数。最多有 O((R∗C)!) 种可能的棋盘状态。</p>
 <p>对于每种状态都需要进行一次append操作，而一次操作的开销就是状态的长度，也就是O(R * C)</p>
-<h3 id="空间复杂度：O-R∗C∗-R∗C"><a href="#空间复杂度：O-R∗C∗-R∗C" class="headerlink" title="空间复杂度：O(R∗C∗(R∗C)!)"></a>空间复杂度：O(R∗C∗(R∗C)!)</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题的关键在于将题目转化成BFS的条件</p>
+<h3 id="空间复杂度：O-R∗C∗-R∗C"><a href="#空间复杂度：O-R∗C∗-R∗C" class="headerlink" title="空间复杂度：O(R∗C∗(R∗C)!)"></a>空间复杂度：O(R∗C∗(R∗C)!)</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题的困难之处在于一开始会找不到头绪，可以先思考本题考察的是什么算法：</p>
+<ol>
+<li>求最小步数，一层层向外扩张即BFS算法。</li>
+<li>然后想办法套用BFS的模版，就是使用队列的数据结构。</li>
+<li>然后再考虑起点和终点。</li>
+<li>考虑如何向外扩张一层，也就是遍历相邻的元素（找到0的位置，然后通过构造neighbour数组）</li>
+<li>注意交换相邻元素的时候需要构造一个新的board，将原来的拷贝过去。</li>
+<li>注意在队列循环的时候如果发现结果次数明显大于预期的次数，可以考虑加一层循环:</li>
+</ol>
+<pre><code>length := len(q)
+for i := 0; i &lt; length; i++ {
+
+}</code></pre><p>也就是提前取好长度，因为如果在循环中len(q)，则q一直在增长，不固定。</p>
+<ol start="7">
+<li>最后记得设置visited数组，防止重复遍历，导致无限循环。</li>
+</ol>
 
             </div>
             <hr />
@@ -1120,7 +1135,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">120.5k</span>
+            <span class="white-color">120.8k</span>
             
 
             <br>
