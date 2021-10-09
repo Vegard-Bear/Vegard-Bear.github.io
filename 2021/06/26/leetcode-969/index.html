@@ -491,14 +491,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    960
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
                 
@@ -605,7 +605,16 @@ func reverseCake(arr []int, i, j int)  {
     }
 }</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>因为递归的调用次数是n，最多处理n次将某个烧饼翻转到最下面的操作，而每次递归操作都需要寻找最大烧饼，调用一次翻转方法，所以复杂度也是n，所以总的复杂度就是O((n^2))</p>
 <h3 id="空间复杂度：O-n-2"><a href="#空间复杂度：O-n-2" class="headerlink" title="空间复杂度：O((n^2))"></a>空间复杂度：O((n^2))</h3><p>由于用到了递归，空间复杂度就是 递归的次数 <em> 每次递归需要的栈空间，也就是 n </em> O((n)) = O((n^2))</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这个操作结果并不是最优的，如果需要计算最短操作序列该怎么办呢？</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><h1 id="反思-1"><a href="#反思-1" class="headerlink" title="反思"></a>反思</h1><p>本题的整体思路就是先找到最大的那个烧饼下标index，然后翻转[0, index]煎饼，然后再全部翻转一次，这样每次就能保证最大的那个煎饼再最下面，然后再递归处理剩下的煎饼。值得注意的点：</p>
+<ol>
+<li>翻转煎饼本质是两两交换，可以考虑采用双指针避免纠结于交换元素的下标。</li>
+<li>两次翻转煎饼操作类似，只是操作的数组范围不同，可以考虑复用交换的方法。</li>
+<li>涉及到全局变量res, 记得开始要重置一下数组。</li>
+</ol>
+<ul>
+<li>进一步思考</li>
+</ul>
+<p>这个操作结果并不是最优的，如果需要计算最短操作序列该怎么办呢？</p>
 
             </div>
             <hr />
@@ -1094,7 +1103,7 @@ func reverseCake(arr []int, i, j int)  {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">121k</span>
+            <span class="white-color">121.2k</span>
             
 
             <br>
