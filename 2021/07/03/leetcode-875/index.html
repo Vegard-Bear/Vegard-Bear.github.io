@@ -486,7 +486,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    827
+                    943
                 </div>
                 
 
@@ -576,7 +576,11 @@ func timeOf(pile int, speed int) int {
         return pile / speed
     }
 }</code></pre><h3 id="时间复杂度：O-NlogW"><a href="#时间复杂度：O-NlogW" class="headerlink" title="时间复杂度：O((NlogW))"></a>时间复杂度：O((NlogW))</h3><p>外层二分查找的范围时1～W（最大的香蕉堆的大小），所以复杂度是O((logW))<br>内层for循环需要遍历所有的堆，所以时间复杂度是 O((N))</p>
-<h3 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O((1))"></a>空间复杂度：O((1))</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题说穿了就是一个二分查找，但是有时会以这种应用题的形式出现，读者不一定能想到。</p>
+<h3 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O((1))"></a>空间复杂度：O((1))</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题是二分查找的变体，本身实现上并不难，只是比较难想到是二分查找。主要注意点如下：</p>
+<ol>
+<li>如何确定二分查找的范围，也就是最小速度的取值范围，这里认为1 &lt;= K &lt;= 最大堆香蕉的数量，因为一小时最多吃一堆，所以速度大于最大堆数量也是没有意义的（注意左边界是1不是0，一小时至少吃一根）</li>
+<li>二分查找求的是最小值，所以最后返回的是左边界，至于l = mid + 1这个只能靠debug了</li>
+</ol>
 
             </div>
             <hr />
@@ -1073,7 +1077,7 @@ func timeOf(pile int, speed int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">121.4k</span>
+            <span class="white-color">121.6k</span>
             
 
             <br>
