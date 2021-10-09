@@ -332,7 +332,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -487,14 +487,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    965
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
                 
@@ -610,7 +610,11 @@ func sum(stack []int) int {
 }
 </code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>因为整个过程下来也就相当于把字符串完整遍历一遍，所以时间复杂度就是字符串的长度</p>
 <h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>由于用到了递归，空间复杂度就是 递归的次数 <em> 每次递归需要的栈空间，也就是 K </em> O((n)) ，其中K是括号的个数，而每次递归开辟的栈最多也不会超过字符串的长度</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题属于hard类型，但是如果逐步拆解成单个问题，却又不是很难，属于非常经典的题目</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><h4 id="本题还是比较难的，需要好好理清思路"><a href="#本题还是比较难的，需要好好理清思路" class="headerlink" title="本题还是比较难的，需要好好理清思路"></a>本题还是比较难的，需要好好理清思路</h4><ol>
+<li>首先，遇到这种表达式求值的首先应该想到用栈。</li>
+<li>其次，考虑到可能有括号，所以需要用到递归，递归计算括号中的数字。</li>
+<li>本质还是从左向右遍历字符串，然后维护一个数字num和一个符号sign，考虑遇到数字、加减号、左右括号分别应该如果处理，分情况讨论。</li>
+</ol>
 
             </div>
             <hr />
@@ -841,7 +845,7 @@ func sum(stack []int) int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="【leetcode-969】煎饼排序">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【leetcode-969】煎饼排序">
                         
                         <span class="card-title">【leetcode-969】煎饼排序</span>
                     </div>
@@ -894,7 +898,7 @@ func sum(stack []int) int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="【leetcode-15】三数之和">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【leetcode-15】三数之和">
                         
                         <span class="card-title">【leetcode-15】三数之和</span>
                     </div>
@@ -1103,7 +1107,7 @@ func sum(stack []int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">120.9k</span>
+            <span class="white-color">121k</span>
             
 
             <br>
