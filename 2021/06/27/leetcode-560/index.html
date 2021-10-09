@@ -492,7 +492,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    873
+                    961
                 </div>
                 
 
@@ -599,6 +599,11 @@ func subarraySum(nums []int, k int) int {
 }</code></pre><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>其中 n 为数组的长度。我们遍历数组的时间复杂度为 O((n))，中间利用哈希表查询删除的复杂度均为 O((1))，因此总时间复杂度为 O((n))。</p>
 <h3 id="空间复杂度：O-n-1"><a href="#空间复杂度：O-n-1" class="headerlink" title="空间复杂度：O((n))"></a>空间复杂度：O((n))</h3><p>其中 n 为数组的长度。哈希表在最坏情况下可能有 nn 个不同的键值，因此需要 O((n))的空间复杂度。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>前缀和的技巧在求解数组和问题的时候非常有用，此外，适当的运用哈希表能够在某些情况下优化时间复杂度，减少一层循环。</p>
+<p>本题需要注意的点是：</p>
+<ol>
+<li>前缀和数组长度比原数组+1，这样才能使得preSum[j] - preSum[i] 表示nums[i..j]的和</li>
+<li>可以通过哈希表边记录前缀和，边判断前缀和是否满足条件，但是表达式要准确，即 n, ok := visited[preSum[i]-k]，这样可以减少一层循环。</li>
+</ol>
 
             </div>
             <hr />
