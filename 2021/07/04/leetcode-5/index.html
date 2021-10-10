@@ -489,7 +489,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    490
+                    500
                 </div>
                 
 
@@ -571,7 +571,7 @@ func longestString(s1, s2, s3 string) string {
     }
 }</code></pre><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>其中 n 是字符串的长度。长度为 1 和 2 的回文中心分别有 n 和 n-1 个，每个回文中心最多会向外扩展 O((n)) 次。</p>
 <h3 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O((1))"></a>空间复杂度：O((1))</h3><p>维护两个指针即可，因此只需要使用常数的额外空间。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题用到的依旧是双指针技巧，只不过不是快慢指针，而是左右指针。核心思想是：从中间开始向两边扩散来判断回文串。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题的核心思想是：从中间开始向两边扩散来判断回文串。<br>值得注意的是在寻找回文串的时候可以采用双指针技巧，可以简化下标的推导过程。</p>
 
             </div>
             <hr />
