@@ -490,14 +490,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    962
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    6 分
                 </div>
                 
                 
@@ -556,53 +556,91 @@ min(height[i..n-1])
 }</code></pre><p>整体思路就是对于每个位置i，求出它的左边柱子最高高度和右边柱子的最高高度，取两者较小值，然后再减去当前柱子高度值就是水量，最后把所有水量相加即可。</p>
 <p>思路很好理解，但是这个算法有一个致命的缺陷，就是双层for循环，这就导致它的时间复杂度为O((n^2))，这显然不是我们可以接受的，因为对于每个位置都要遍历一遍求最大高度值，这显然是有很多重复的工作。</p>
 <p>这里我们采用的优化策略就是双指针，不再每个都遍历了，而是边走边算当前位置左右两边的高度最值。这样只需要维护一个最值变量就好了。具体解法如下：</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func trap(height []int) int {
-    // 特例
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h2 id="题解一"><a href="#题解一" class="headerlink" title="题解一"></a>题解一</h2><pre><code>// 常规版
+func trap(height []int) int {
+    // 计算所有柱子能接水的总和，先要计算每个柱子能接多少水
+    // 每个柱子能接的水量 = min(左边最高柱子的高度, 右边最高柱子的高度)-当前柱子高度
+    // 依次遍历每个柱子，计算左右最高柱子高度
+    sum := 0
+    for i := 0; i &lt; len(height); i++ {
+        // 计算左边最高柱子高度
+        leftMax := 0
+        for j := 0; j &lt; i; j++ {
+            if leftMax &lt; height[j] {
+                leftMax = height[j]
+            }
+        }
+
+        // 计算右边最高柱子高度
+        rightMax := 0
+        for k := i+1; k &lt; len(height); k++ {
+            if rightMax &lt; height[k] {
+                rightMax = height[k]
+            }
+        }
+
+        // 计算当前柱子能接的水量 = min(左边最高柱子的高度, 右边最高柱子的高度)-当前柱子高度
+        // 注意水量不能为负值，所以这里要加一层判断
+        water := min(leftMax, rightMax) - height[i]
+        if water &gt; 0 {
+            sum += water
+        }
+    }
+    return sum
+}</code></pre><h2 id="题解二"><a href="#题解二" class="headerlink" title="题解二"></a>题解二</h2><pre><code>// 改进版（双指针）
+func trap(height []int) int {
+    // 特例判断
     n := len(height)
     if n == 0 {
         return 0
     }
 
-    // 左右指针分别
-    left, right := 0, n -1
-    // 最终结果
+    // 初始化最后的结果
     sum := 0
 
+    // 初始化左右指针
+    left, right := 0, n-1
+
+    // 初始化左右最大值
     // l_max 代表 height[0..left] 中（左指针以左）最高柱子的高度
     // r_max 代表 height[right..n-1] 中（右指针以右）最高柱子的高度
-    l_max, r_max := height[0], height[n-1]
+    leftMax, rightMax := 0, 0
 
-    // 左右指针向中间逼近
+    // 两边逐渐向中间移动
     for left &lt; right {
-        // 随着左右指针的移动，不断更新左右两边最高高度
-        l_max = max(l_max, height[left])
-        r_max = max(r_max, height[right])
+        // 边走边更新左右最大值
+        leftMax = max(leftMax, height[left])
+        rightMax = max(rightMax, height[right])
 
-        // 比较左右两边的柱子高度，选择较低的那个减去当前柱子高度，即当前位置能装下的水
-        if l_max &lt; r_max {
-            sum += l_max - height[left]
+        // 对于左边柱子来说，只需要知道他的左侧高度最大值leftMax，然后右边存在比他高的(并不需要知道右边所有的柱子高度)
+        // 这样就能保证左右高度最大值之间的较小值一定落在左侧，也就是左侧高度最大值
+        // 而左侧高度最大值刚好是我们已知的leftMax, 这样就可以根据公式直接计算了
+        if leftMax &lt; rightMax {
+            sum += leftMax - height[left]
+            // 当前左边柱子计算完了，计算下一个左边柱子
             left++
         } else {
-            sum += r_max - height[right]
+            // 右边与左边类似，反之亦然
+            sum += rightMax - height[right]
             right--
         }
     }
     return sum
-}
-
-func max(a, b int) int {
-    if a &gt; b {
-        return a
-    }
-    return b
 }</code></pre><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>其中 n 是数组 height 的长度。两个指针的移动总次数不超过 n</p>
 <h3 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O((1))"></a>空间复杂度：O((1))</h3><p>维护两个指针即可，因此只需要使用常数的额外空间</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><ul>
-<li><p>双指针的妙处在于，移动一边的时候，另一边正好保持在最大值。</p>
-</li>
-<li><p>本题的暴力解法比较容易理解，但双指针就比较难想到了，也是通过双指针降低时间复杂度的经典题型。</p>
-</li>
-</ul>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题的第一种暴力解法应当是首先想到的方法，其本质思想就是：</p>
+<ol>
+<li>首先计算所有柱子能接水的总和，先要计算每个柱子能接多少水</li>
+<li>然后有公式:<pre><code>每个柱子能接的水量 = min(左边最高柱子的高度, 右边最高柱子的高度)-当前柱子高度</code></pre></li>
+<li>最后依次遍历每个柱子，计算左右最高柱子高度，根据公式计算水量，求和</li>
+</ol>
+<p>但是这种思路有一个致命缺陷，就是双循环，那么如何去掉这个双重循环呢，实际上双重循环出现的原因是因为我们每次都要计算左右所有高度，并求最大高度，实际上没必要。我们重新审视一下公式：</p>
+<pre><code>每个柱子能接的水量 = min(左边最高柱子的高度, 右边最高柱子的高度)-当前柱子高度</code></pre><h5 id="根据公式，我们并不需要知道左右所有柱子高度，只需要知道其中一边的最高高度，然后保证这个高度比另一边最高高度小就可以了。"><a href="#根据公式，我们并不需要知道左右所有柱子高度，只需要知道其中一边的最高高度，然后保证这个高度比另一边最高高度小就可以了。" class="headerlink" title="根据公式，我们并不需要知道左右所有柱子高度，只需要知道其中一边的最高高度，然后保证这个高度比另一边最高高度小就可以了。"></a>根据公式，我们并不需要知道左右所有柱子高度，只需要知道其中一边的最高高度，然后保证这个高度比另一边最高高度小就可以了。</h5><p>而第二种思路就是这样做的，这里我们利用了双指针。以左指针left举例：</p>
+<ol>
+<li>对于左边柱子来说，只需要知道他的左侧高度最大值leftMax</li>
+<li>然后右边存在比他高的(并不需要知道右边所有的柱子高度)，这样就能保证左右高度最大值之间的较小值一定落在左侧，也就是左侧高度最大值</li>
+<li>而左侧高度最大值刚好是我们已知的leftMax, 这样就可以根据公式直接计算了，右边反之亦然。</li>
+</ol>
 
             </div>
             <hr />
@@ -1091,7 +1129,7 @@ func max(a, b int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">121.6k</span>
+            <span class="white-color">122.3k</span>
             
 
             <br>
