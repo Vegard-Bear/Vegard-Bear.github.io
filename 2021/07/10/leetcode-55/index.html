@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    837
+                    890
                 </div>
                 
 
@@ -569,6 +569,9 @@ func max(a, b int) int {
 <h3 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O((1))"></a>空间复杂度：O((1))</h3><p>不需要额外的开销。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>实际上我们可以看到本题用的是贪心算法，贪心算法的复杂度比动态规划更低，这是因为少了递归过程，只需要着眼于当下最优子结构的解决，局部最优解能决定全局最优解。</p>
 <p>贪心算法与动态规划的不同在于它对每个子问题的解决方案都做出选择，不能回退。动态规划则会保存以前的运算结果，并根据以前的结果对当前进行选择，有回退功能。</p>
+<blockquote>
+<p>如果到了最远距离刚好是最后一个位置也算达到，所以循环到n-1而不是n，这样就可以包含这种情况了，这个需要特别注意一下</p>
+</blockquote>
 
             </div>
             <hr />
@@ -1057,7 +1060,7 @@ func max(a, b int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">122.3k</span>
+            <span class="white-color">122.4k</span>
             
 
             <br>
