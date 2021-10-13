@@ -334,7 +334,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/27.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    740
+                    788
                 </div>
                 
 
@@ -577,6 +577,12 @@ func intervalSchedule(intvs [][]int) int {
 }</code></pre><h3 id="时间复杂度：O-NlogN"><a href="#时间复杂度：O-NlogN" class="headerlink" title="时间复杂度：O((NlogN))"></a>时间复杂度：O((NlogN))</h3><p>其中 n 是区间的数量。我们需要 O((nlogn)) 的时间对所有的区间按照右端点进行升序排序（其实就是快速排序），并且需要 O((n)) 的时间进行遍历。由于前者在渐进意义下大于后者，因此总时间复杂度为 O((nlogn))。</p>
 <h3 id="空间复杂度：O-logN"><a href="#空间复杂度：O-logN" class="headerlink" title="空间复杂度：O((logN))"></a>空间复杂度：O((logN))</h3><p>O((logN)) 即为排序需要使用的栈空间</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>只有具备贪心选择性质的问题才可以用贪心算法，贪心选择性质就是每一步都做出一个局部最优的选择，最终的结果就是全局最优。这是一种特殊性质，实际上只有一部分问题具有这个性质。</p>
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>计算不重叠区间个数有固定的套路：</p>
+<ol>
+<li>按照右边界大小排序</li>
+<li>设置最小右边界minEnd</li>
+<li>遍历比较左右边界，计数，更新minEnd</li>
+</ol>
 
             </div>
             <hr />
@@ -807,7 +813,7 @@ func intervalSchedule(intvs [][]int) int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="【leetcode-452】用最少数量的箭引爆气球">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="【leetcode-452】用最少数量的箭引爆气球">
                         
                         <span class="card-title">【leetcode-452】用最少数量的箭引爆气球</span>
                     </div>
@@ -860,7 +866,7 @@ func intervalSchedule(intvs [][]int) int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【leetcode-45】跳跃游戏 II">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="【leetcode-45】跳跃游戏 II">
                         
                         <span class="card-title">【leetcode-45】跳跃游戏 II</span>
                     </div>
