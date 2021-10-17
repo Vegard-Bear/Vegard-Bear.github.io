@@ -330,7 +330,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -489,7 +489,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
@@ -626,6 +626,13 @@ func (uf *unionFind) connected(p, q int) bool {
 }</code></pre><h3 id="时间复杂度：O-n-ClogC"><a href="#时间复杂度：O-n-ClogC" class="headerlink" title="时间复杂度：O((n+ClogC))"></a>时间复杂度：O((n+ClogC))</h3><p>其中 n 是 equations 中的方程数量，C 是变量的总数，在本题中变量都是小写字母，C≤26。上面的并查集代码中使用了路径压缩优化，对于每个方程的合并和查找的均摊时间复杂度都是 O((logC))。由于需要遍历每个方程，因此总时间复杂度是 O((n+Clog C))。</p>
 <h3 id="空间复杂度：O-C-。"><a href="#空间复杂度：O-C-。" class="headerlink" title="空间复杂度：O((C))。"></a>空间复杂度：O((C))。</h3><p>创建一个数组 parent 存储每个变量的连通分量信息，由于变量都是小写字母，因此 parent 是长度为 C。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>Uninon算法，也就是并查集算法其实是DFS算法的延伸，使用并查集算法的关键在于如何把原问题转化为图的动态连通性问题，比如本题的算式合法性问题就可以直接利用等价关系。</p>
+<h3 id="本题的注意点"><a href="#本题的注意点" class="headerlink" title="本题的注意点"></a>本题的注意点</h3><ol>
+<li>并查集的数据结构</li>
+<li>初始化并查集</li>
+<li>连接两个节点</li>
+<li>判断两个节点是否相连</li>
+<li>相等和不等关系与连通性的转化</li>
+</ol>
 
             </div>
             <hr />
@@ -857,7 +864,7 @@ func (uf *unionFind) connected(p, q int) bool {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="【leetcode-990】等式方程的可满足性">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="【leetcode-990】等式方程的可满足性">
                         
                         <span class="card-title">【leetcode-990】等式方程的可满足性</span>
                     </div>
@@ -911,7 +918,7 @@ func (uf *unionFind) connected(p, q int) bool {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【leetcode-20】有效的括号">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【leetcode-20】有效的括号">
                         
                         <span class="card-title">【leetcode-20】有效的括号</span>
                     </div>
