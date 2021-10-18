@@ -491,7 +491,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    788
+                    936
                 </div>
                 
 
@@ -596,14 +596,44 @@ dp[n] =
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-Sn"><a href="#时间复杂度：O-Sn" class="headerlink" title="时间复杂度：O((Sn))"></a>时间复杂度：O((Sn))</h3><p>其中 S 是金额，n 是面额数。我们一共需要计算 O((S)) 个状态，S 为题目所给的总金额。对于每个状态，每次需要枚举 n 个面额来转移状态，所以一共需要 O((Sn)) 的时间复杂度。</p>
 <h3 id="空间复杂度：O-S"><a href="#空间复杂度：O-S" class="headerlink" title="空间复杂度：O((S))"></a>空间复杂度：O((S))</h3><p>DP 数组需要开长度为总金额 S 的空间。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>对于动态规划问题最重要的是列出状态转移方程，需要弄清楚</p>
-<ol>
-<li>这个问题的 base case（最简单情况）是什么？</li>
-<li>有哪些状态？</li>
-<li>对于每个状态可以作出什么选择使得状态发生改变？</li>
-<li>如果定义 dp 数组来表示这种状态？</li>
-</ol>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题也可转化成背包问题，用二维dp数组求解，只是需要特别注意base case，解法如下：</p>
+<pre><code>func coinChange(coins []int, amount int) int {
+    // 定义dp数组，dp[i][j]表示前i种硬币凑成总金额为j所需的最少硬币个数
+    n := len(coins)
+    dp := make([][]int, n+1)
+    for i := 0; i &lt;= n; i++ {
+        dp[i] = make([]int, amount+1)
+    }
 
+    // 确定base case
+    for i := 0; i &lt;= n; i++ {
+        dp[i][0] = 0
+    }
+
+    // 如果是前0个硬币，则永远无法凑成amount
+    for i := 0; i &lt;= amount; i++ {
+        dp[0][i] = math.MaxInt32
+    }
+
+    // 推导状态转移方程
+    // 注意这里的i,j都是从0开始的，因为base case中已经解决了i和j为0的情况
+    for i := 1; i &lt;= n; i++ {
+        for j := 1; j &lt;= amount; j++ {
+            if coins[i-1] &gt; j {
+                dp[i][j] = dp[i-1][j]
+            } else {
+                dp[i][j] = min(dp[i-1][j], dp[i][j-coins[i-1]]+1)
+            }
+        }
+    }
+
+    // 没法凑成amount
+    if dp[n][amount] == math.MaxInt32 {
+        return -1
+    }
+
+    return dp[n][amount]
+}</code></pre>
             </div>
             <hr />
 
@@ -1103,7 +1133,7 @@ dp[n] =
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">122.7k</span>
+            <span class="white-color">122.8k</span>
             
 
             <br>
