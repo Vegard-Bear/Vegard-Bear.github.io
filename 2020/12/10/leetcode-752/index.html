@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.5k
                 </div>
                 
 
@@ -675,6 +675,13 @@
 <li>双向BFS存在局限，就是要知道终点在哪里</li>
 <li>双向BFS不再使用队列，而是使用 HashSet 方便快速地判断两个集合是否有交集</li>
 </ul>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><p>在算步数的时候，也就是层数的时候需要加一层循环，且第二层的循环条件如下：</p>
+<pre class="line-numbers language-go"><code class="language-go">    <span class="token keyword">for</span> <span class="token function">len</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">{</span>
+        size <span class="token operator">:=</span> <span class="token function">len</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size <span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+            <span class="token operator">...</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -1171,7 +1178,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">122.6k</span>
+            <span class="white-color">122.7k</span>
             
 
             <br>
