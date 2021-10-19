@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://vegard-bear.github.io/2020/12/30/leetcode-567/</loc>
+    
+    <lastmod>2021-10-19T12:26:47.369Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://vegard-bear.github.io/2020/12/27/leetcode-76/</loc>
     
     <lastmod>2021-10-19T11:32:49.007Z</lastmod>
@@ -355,13 +362,6 @@
     <loc>https://vegard-bear.github.io/2021/01/08/leetcode-300/</loc>
     
     <lastmod>2021-09-21T09:04:03.114Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://vegard-bear.github.io/2020/12/30/leetcode-567/</loc>
-    
-    <lastmod>2021-09-21T08:05:08.329Z</lastmod>
     
   </url>
   
