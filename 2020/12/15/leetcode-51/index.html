@@ -334,7 +334,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -497,7 +497,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
@@ -660,10 +660,10 @@ func backtrack(路径，选择列表) {
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-N"><a href="#时间复杂度：O-N" class="headerlink" title="时间复杂度：O((N!))"></a>时间复杂度：O((N!))</h3><p>其中 N 是皇后数量。</p>
 <h3 id="空间复杂度：O-N"><a href="#空间复杂度：O-N" class="headerlink" title="空间复杂度：O((N))"></a>空间复杂度：O((N))</h3><p>其中 N 是皇后数量。空间复杂度主要取决于递归调用层数、记录每行放置的皇后的列下标的数组以及三个集合，递归调用层数不会超过 N，数组的长度为 N，每个集合的元素个数都不会超过 N。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题有两个需要着重注意的点，特别容易错，我自己做的时候在这里踩了坑：</p>
-<ol>
-<li>对字符串重的某个字符进行赋值时，需要通过[]byte这种切片形式进行转化，不能直接给string中的某个字符进行赋值。</li>
-<li>用于拷贝其一条路径的临时变量一定要用 make 开辟空间，分配地址，不能用 var tmp []string{} 进行声明，否则无法拷贝成功。</li>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题有三个需要着重注意的点，特别容易错，我自己做的时候在这里卡了很久：</p>
+<h4 id="1-对字符串重的某个字符进行赋值时，需要通过-byte这种切片形式进行转化，不能直接给string中的某个字符进行赋值，注意转化完后还要专程拜访string拷贝回来"><a href="#1-对字符串重的某个字符进行赋值时，需要通过-byte这种切片形式进行转化，不能直接给string中的某个字符进行赋值，注意转化完后还要专程拜访string拷贝回来" class="headerlink" title="1. 对字符串重的某个字符进行赋值时，需要通过[]byte这种切片形式进行转化，不能直接给string中的某个字符进行赋值，注意转化完后还要专程拜访string拷贝回来"></a>1. 对字符串重的某个字符进行赋值时，需要通过[]byte这种切片形式进行转化，不能直接给string中的某个字符进行赋值，注意转化完后还要专程拜访string拷贝回来</h4><ol start="2">
+<li>用于拷贝其一条路径的临时变量一定要用 make 开辟空间，分配地址，不能用 var tmp []string{} 进行声明，否则无法拷贝成功</li>
+<li>go的for循环中如果同时需要用到两个变量，不能使用i++,j++而应该采用i,j=i+1,j+1</li>
 </ol>
 
             </div>
@@ -895,7 +895,7 @@ func backtrack(路径，选择列表) {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="【Go 基础】">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="【Go 基础】">
                         
                         <span class="card-title">【Go 基础】</span>
                     </div>
@@ -944,7 +944,7 @@ func backtrack(路径，选择列表) {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【leetcode-46】全排列">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="【leetcode-46】全排列">
                         
                         <span class="card-title">【leetcode-46】全排列</span>
                     </div>
@@ -1157,7 +1157,7 @@ func backtrack(路径，选择列表) {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">122.8k</span>
+            <span class="white-color">122.9k</span>
             
 
             <br>
