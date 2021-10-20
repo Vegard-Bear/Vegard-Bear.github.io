@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    878
+                    979
                 </div>
                 
 
@@ -587,6 +587,7 @@ func max(a, b int) int {
 }</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-n"><a href="#时间复杂度：O-n" class="headerlink" title="时间复杂度：O((n))"></a>时间复杂度：O((n))</h3><p>其中 n 为数组 nums 的长度。</p>
 <h3 id="空间复杂度：O-C"><a href="#空间复杂度：O-C" class="headerlink" title="空间复杂度：O((C))"></a>空间复杂度：O((C))</h3><p>不再需要额外定义一个dp数组了，只需要dp_0和dp_1两个变量，所以此算法的空间复杂度为常数。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>动态规划算法可通过状态压缩进一步降低空间复杂度。</p>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><p>本题与 <a href="https://vegard-bear.github.io/2021/01/08/leetcode-300/">最长递增子序列</a>的不同在于，递增子序列是可以不连续的，因此出现二层循环，扫描当前元素之前的任何一个序列，取最大值，而本题要求连续子数组，这样就不能扫描之前的所有元素了，只能扫描与之相邻的元素，也就是前一个元素。</p>
 
             </div>
             <hr />
@@ -1079,7 +1080,7 @@ func max(a, b int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">123k</span>
+            <span class="white-color">123.1k</span>
             
 
             <br>
