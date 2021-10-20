@@ -490,14 +490,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
                 
@@ -584,7 +584,13 @@ func max(a, b int) int {
 <blockquote>
 <p>所谓二维无非就是比一维多了一维，我们只需要在定义dp数组，base case以及推导状态转移方程上多一个维度的思考就行了</p>
 </blockquote>
-<h3 id="需要尤其注意的是二维数组开辟的大小比两个字符串的大小要-1。这是因为需要专门让索引为-0-的行和列表示空串，dp-0-和-dp-0-都应该初始化为-0，相当于-base-case。"><a href="#需要尤其注意的是二维数组开辟的大小比两个字符串的大小要-1。这是因为需要专门让索引为-0-的行和列表示空串，dp-0-和-dp-0-都应该初始化为-0，相当于-base-case。" class="headerlink" title="需要尤其注意的是二维数组开辟的大小比两个字符串的大小要+1。这是因为需要专门让索引为 0 的行和列表示空串，dp[0][..] 和 dp[..][0] 都应该初始化为 0，相当于 base case。"></a>需要尤其注意的是二维数组开辟的大小比两个字符串的大小要+1。这是因为需要专门让索引为 0 的行和列表示空串，dp[0][..] 和 dp[..][0] 都应该初始化为 0，相当于 base case。</h3>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><ol>
+<li><p>二维数组开辟的大小比两个字符串的大小要+1。这是因为需要专门让索引为 0 的行和列表示空串，dp[0][..] 和 dp[..][0] 都应该初始化为 0，相当于 base case。除此之外，其他地方的索引也应该相应改变，比如推导状态方程的时候。</p>
+</li>
+<li><p>由于这里的子序列也可以是不连续的，而且定义的时候不是定义以某个字符结尾，而是前多少个字符，这样最后返回的结果dp[l1][l2]一定就是最终的结果，而不需要遍历整个二维数组比较寻找最大值了。</p>
+</li>
+</ol>
+
             </div>
             <hr />
 
@@ -1076,7 +1082,7 @@ func max(a, b int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">123.1k</span>
+            <span class="white-color">123.2k</span>
             
 
             <br>
