@@ -334,7 +334,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
@@ -592,7 +592,11 @@ func min(a, b int) int  {
     return b
 }</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>n 为字符串 s 的长度</p>
 <h3 id="空间复杂度：O-n-2"><a href="#空间复杂度：O-n-2" class="headerlink" title="空间复杂度：O((n^2))"></a>空间复杂度：O((n^2))</h3><p>我们需要大小为 O((n^2)) 的 dp 数组来记录状态值。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><h5 id="这道题和-最长回文子序列-一样套用的都是单个字符串的二维dp数组模版。由此可见回文基本第一反应就是二维的动态规划。当然，这道题也有他的特殊之处，就是在插入的时候要注意加上插入的次数。"><a href="#这道题和-最长回文子序列-一样套用的都是单个字符串的二维dp数组模版。由此可见回文基本第一反应就是二维的动态规划。当然，这道题也有他的特殊之处，就是在插入的时候要注意加上插入的次数。" class="headerlink" title="这道题和 最长回文子序列 一样套用的都是单个字符串的二维dp数组模版。由此可见回文基本第一反应就是二维的动态规划。当然，这道题也有他的特殊之处，就是在插入的时候要注意加上插入的次数。"></a>这道题和 <font color="blue">最长回文子序列</font> 一样套用的都是单个字符串的二维dp数组模版。由此可见回文基本第一反应就是二维的动态规划。当然，这道题也有他的特殊之处，就是在插入的时候要注意加上插入的次数。</h5>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>这道题和 <font color="blue">最长回文子序列</font> 一样套用的都是单个字符串的二维dp数组模版。由此可见回文基本第一反应就是二维的动态规划。当然，这道题也有他的特殊之处，就是在插入的时候要注意加上插入的次数。事实上，状态转移方程的三种选择恰好对应了三种插入方式，要么左插，要么右插，要么左右都插。</p>
+<blockquote>
+<p>回文串的问题经常会用到二维动态规划，而且是二维动态规划里面特殊的一类。需要注意的是这种二维动态规划不需要将i=0和j=0单独空出来，还有i的遍历顺序需要逆着来。</p>
+</blockquote>
+
             </div>
             <hr />
 
@@ -822,7 +826,7 @@ func min(a, b int) int  {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【leetcode-10】正则表达式匹配">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="【leetcode-10】正则表达式匹配">
                         
                         <span class="card-title">【leetcode-10】正则表达式匹配</span>
                     </div>
@@ -877,7 +881,7 @@ func min(a, b int) int  {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="【Go源码解析6】接口">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【Go源码解析6】接口">
                         
                         <span class="card-title">【Go源码解析6】接口</span>
                     </div>
@@ -1090,7 +1094,7 @@ func min(a, b int) int  {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">123.3k</span>
+            <span class="white-color">123.4k</span>
             
 
             <br>
