@@ -492,14 +492,14 @@ Key 3: ((Ctrl-C))：复制选中区域到缓冲区。">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
                 
@@ -609,7 +609,12 @@ func max(a, b int) int {
     return b
 }</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>两层循环，每一层是操作数N。</p>
 <h3 id="空间复杂度：O-mn"><a href="#空间复杂度：O-mn" class="headerlink" title="空间复杂度：O((mn))"></a>空间复杂度：O((mn))</h3><p>需要开辟一个长度为N的dp数组。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>动态规划难就难在寻找状态转移，不同的定义可以产生不同的状态转移逻辑，虽然最后都能得到正确的结果，但是效率可能有巨大的差异。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题最后的实现很简单，难点主要在于一开始的理解。尤其是能分析出来按键序列只有两种非常重要：</p>
+<ol>
+<li>要么一直按A：A,A,A,A…,A（当N比较小时）</li>
+<li>要么先按几个A，再一直按C-A,C-C,C-v（当N比较大时）</li>
+</ol>
+<p>然后推导状态转移方程的时候进行选择即可。</p>
 
             </div>
             <hr />
@@ -1108,7 +1113,7 @@ func max(a, b int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">123.4k</span>
+            <span class="white-color">123.5k</span>
             
 
             <br>
