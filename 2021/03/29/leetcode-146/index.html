@@ -673,6 +673,9 @@ func (this *LRUCache) Put(key int, value int)  {
 <li>无论是get还是put都要将被访问的节点放到队头。</li>
 <li>哈希表和链表要记得同步更新。</li>
 </ol>
+<blockquote>
+<p>对于双向链表的定义需要特别注意，双向链表节点中需要同时定义key和value，然后在外部通过头尾节点标记一个双向链表。</p>
+</blockquote>
 
             </div>
             <hr />
@@ -1170,7 +1173,7 @@ int g
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">123.7k</span>
+            <span class="white-color">123.8k</span>
             
 
             <br>
