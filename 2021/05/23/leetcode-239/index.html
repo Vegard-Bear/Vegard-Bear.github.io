@@ -333,7 +333,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -496,14 +496,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
                 
@@ -642,7 +642,8 @@ func maxSlidingWindow(nums []int, k int) []int {
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>滑动窗口问题是一个非常经典的问题，并且难度是Hard，但是通过引入一个单调队列，维护一个滑动窗口，本题就引刃而解。</p>
 <h4 id="单调队列主要需要维护push、pop以及getMax三个方法，值得注意的是"><a href="#单调队列主要需要维护push、pop以及getMax三个方法，值得注意的是" class="headerlink" title="单调队列主要需要维护push、pop以及getMax三个方法，值得注意的是"></a>单调队列主要需要维护push、pop以及getMax三个方法，值得注意的是</h4><ol>
 <li>push的时候需要把前面比他小的都删掉，保持队头始终是最大元素</li>
-<li>pop的时候只需要检查队头即可，因为如果队头不是这个数字，说明这个数字已经被删掉了</li>
+<li>pop的时候只需要检查队头即可，因为如果队头不是这个数字，说明这个数字已经被删掉了（这个元素既然先于队头元素出窗口，那么意味着他也是先于队头元素进入窗口，那么肯定已经被压扁，除非它刚好就是队头，所以只需要判断要删除的元素是不是队头即可）</li>
+<li>这道题和一般的滑动窗口还有些不同，就是窗口的大小是固定的，所以可以不用left和right指针，正常的for循环依次遍历即可</li>
 </ol>
 
             </div>
@@ -874,7 +875,7 @@ func maxSlidingWindow(nums []int, k int) []int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="【leetcode-234】回文链表">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="【leetcode-234】回文链表">
                         
                         <span class="card-title">【leetcode-234】回文链表</span>
                     </div>
@@ -927,7 +928,7 @@ func maxSlidingWindow(nums []int, k int) []int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="【leetcode-236】二叉树的最近公共祖先">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="【leetcode-236】二叉树的最近公共祖先">
                         
                         <span class="card-title">【leetcode-236】二叉树的最近公共祖先</span>
                     </div>
@@ -1136,7 +1137,7 @@ func maxSlidingWindow(nums []int, k int) []int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">123.8k</span>
+            <span class="white-color">123.9k</span>
             
 
             <br>
