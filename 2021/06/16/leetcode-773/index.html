@@ -332,7 +332,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -491,7 +491,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.3k
                 </div>
                 
 
@@ -552,77 +552,87 @@
     { 3, 1, 5 },
     { 4, 2 }
 };</code></pre><p>这个含义就是，在一维字符串中，索引 i 在二维数组中的的相邻索引为 neighbor[i]，至此，我们就把这个问题完全转化成标准的 BFS 问题了，借助前文 BFS 算法框架的代码框架，直接就可以套出解法代码了。</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><pre><code>func slidingPuzzle(board [][]int) int {
-    // 将2*3的数组转化为字符串
-    m, n := 2,3
-    start := []byte(&quot;&quot;)
-    target := &quot;123450&quot;
-    for i := 0; i &lt; m; i++ {
-        for j := 0; j &lt; n;j++ {
-            start = append(start , byte(board[i][j] + &#39;0&#39;))
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h1 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h1><pre><code>func slidingPuzzle(board [][]int) int {
+    // 定义相邻元素下标数组
+    neighbours := [][]int{
+        {1, 3},
+        {0, 2, 4},
+        {1, 5},
+        {0, 4},
+        {1, 3, 5},
+        {2, 4},
+    }
+
+    // 定义起点
+    start := &quot;&quot;
+    for i := 0; i &lt; 2; i++ {
+        for j := 0; j &lt; 3; j++ {
+            start += strconv.Itoa(board[i][j])
         }
     }
 
-    // 记录一堆字符串的相邻索引
-    neighbor := [][]int{{1,3},{0,4,2},{1,5},{0,4},{3,1,5},{4,2}}
+    // 定义终点
+    target := &quot;123450&quot;
 
-    // 开始BFS遍历
-
-    // 定义一个队列记录当前的排列状态
-    q := make([][]byte, 0)
-    // 用一个map记录访问过的路径
+    // 定义visited数组，防止重复访问
     visited := make(map[string]bool, 0)
 
-    // 先把当前的排列加入队列，作为起点
-    q = append(q, start)
-    visited[string(start)] = true
+    // 定义队列
+    q := make([]string, 0)
 
-    // 初始化步数
+    // 将起点入队
+    q = append(q, start)
+
+    // 定义步数
     step := 0
 
+    // 开始遍历
     for len(q) &gt; 0 {
-        // 注意要提前取好长度，如果在循环中len(q)，则q一直在增长，不固定
-        length := len(q)
-        for i := 0; i &lt; length; i++ {
-            // 取队头，判断当前排列是否达到目标
+
+        // 注意求步数需要双层遍历
+        size := len(q)
+        for i := 0; i &lt; size; i++ {
+            // 从队头拿出一个元素
             cur := q[0]
             q = q[1:]
 
-            // 如果已经符合，直接返回步数
-            if string(cur) == target {
+            // 检查是否到了终点
+            if cur == target {
                 return step
             }
 
-            // 找到当前排列中数字0的位置index
-            var index int
-            for index = 0; cur[index] != &#39;0&#39;; index++ {
+            // 尝试移动滑板
+            // 先找到0所在的位置
+            index := 0
+            for ; index &lt; len(cur); index++ {
+                if cur[index] == &#39;0&#39; {
+                    break
+                }
             }
 
-            // 依次两两交换和0相邻数字，构造新的拼图，相当于BFS向下遍历一层
-            for _, adj := range neighbor[index] {
-                // 注意需要用一个新的切片进行拷贝，否则由于Go的切片共用内存，当前的cur也会随着new_board的改变而改变
-                tmp_board := make([]byte,len(cur))
-                copy(tmp_board, cur)
-                new_board := tmp_board
+            // 利用neighbours数组找到可以交换的元素，依次进行交换
+            neighbour := neighbours[index]
+            for j := 0; j &lt; len(neighbour); j++ {
+                // 用一个新的board存储交换后的结果
+                newBoard := make([]byte, len(cur))
+                copy(newBoard, cur)
 
-                // 交换和0相邻的数字
-                tmp_adj := new_board[adj]
-                new_board[adj] = new_board[index]
-                new_board[index] = tmp_adj
+                // 将0和相邻元素两辆交换
+                tmp := newBoard[neighbour[j]]
+                newBoard[neighbour[j]] = newBoard[index]
+                newBoard[index] = tmp
 
-                // 防止走回头路
-                if _, ok := visited[string(new_board)]; !ok {
-                    // 将新的拼图插入队列，用于下一次BFS遍历
-                    tmp := make([]byte,len(new_board))
-                    copy(tmp, new_board)
-                    q = append(q, tmp)
-                    visited[string(tmp)] = true
+                // 如果之前没有访问过，则将新的board加入队列
+                if !visited[string(newBoard)] {
+                    q = append(q, string(newBoard))
+                    visited[string(newBoard)] = true
                 }
             }
         }
         // 向下遍历了一层，记录步数+1
         step++
     }
+
     return -1
 }</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-R∗C∗-R∗C"><a href="#时间复杂度：O-R∗C∗-R∗C" class="headerlink" title="时间复杂度：O(R∗C∗(R∗C)!)"></a>时间复杂度：O(R∗C∗(R∗C)!)</h3><p>BFS的时间复杂度即可能存在的状态数。</p>
 <p>R, C 为棋盘的行数和列数。最多有 O((R∗C)!) 种可能的棋盘状态。</p>
@@ -873,7 +883,7 @@ for i := 0; i &lt; length; i++ {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="【leetcode-15】三数之和">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【leetcode-15】三数之和">
                         
                         <span class="card-title">【leetcode-15】三数之和</span>
                     </div>
@@ -926,7 +936,7 @@ for i := 0; i &lt; length; i++ {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="【leetcode-22】括号生成">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【leetcode-22】括号生成">
                         
                         <span class="card-title">【leetcode-22】括号生成</span>
                     </div>
@@ -1135,7 +1145,7 @@ for i := 0; i &lt; length; i++ {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">123.9k</span>
+            <span class="white-color">123.8k</span>
             
 
             <br>
