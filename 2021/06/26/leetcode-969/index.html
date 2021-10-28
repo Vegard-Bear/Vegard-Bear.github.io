@@ -332,7 +332,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -491,7 +491,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
@@ -608,8 +608,7 @@ func reverseCake(arr []int, i, j int)  {
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><h1 id="反思-1"><a href="#反思-1" class="headerlink" title="反思"></a>反思</h1><p>本题的整体思路就是先找到最大的那个烧饼下标index，然后翻转[0, index]煎饼，然后再全部翻转一次，这样每次就能保证最大的那个煎饼再最下面，然后再递归处理剩下的煎饼。值得注意的点：</p>
 <ol>
 <li>翻转煎饼本质是两两交换，可以考虑采用双指针避免纠结于交换元素的下标。</li>
-<li>两次翻转煎饼操作类似，只是操作的数组范围不同，可以考虑复用交换的方法。</li>
-<li>涉及到全局变量res, 记得开始要重置一下数组。</li>
+<li>两次翻转煎饼操作类似，只是操作的数组范围不同，可以考虑复用交换的方法。<h4 id="3-涉及到全局变量res-记得开始要重置一下数组。但是当主函数作为递归函数的时候，是不能在主函数中重置结果数组的，这样会导致最后的结果都被重置了，所以这种情况下只能想办法单独写一个递归函数出来，避免主函数成为递归函数，然后在主函数中重置结果数组。"><a href="#3-涉及到全局变量res-记得开始要重置一下数组。但是当主函数作为递归函数的时候，是不能在主函数中重置结果数组的，这样会导致最后的结果都被重置了，所以这种情况下只能想办法单独写一个递归函数出来，避免主函数成为递归函数，然后在主函数中重置结果数组。" class="headerlink" title="3. 涉及到全局变量res, 记得开始要重置一下数组。但是当主函数作为递归函数的时候，是不能在主函数中重置结果数组的，这样会导致最后的结果都被重置了，所以这种情况下只能想办法单独写一个递归函数出来，避免主函数成为递归函数，然后在主函数中重置结果数组。"></a>3. 涉及到全局变量res, 记得开始要重置一下数组。但是当主函数作为递归函数的时候，是不能在主函数中重置结果数组的，这样会导致最后的结果都被重置了，所以这种情况下只能想办法单独写一个递归函数出来，避免主函数成为递归函数，然后在主函数中重置结果数组。</h4></li>
 </ol>
 <ul>
 <li>进一步思考</li>
@@ -845,7 +844,7 @@ func reverseCake(arr []int, i, j int)  {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【leetcode-560】和为K的子数组">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【leetcode-560】和为K的子数组">
                         
                         <span class="card-title">【leetcode-560】和为K的子数组</span>
                     </div>
@@ -898,7 +897,7 @@ func reverseCake(arr []int, i, j int)  {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【leetcode-772】基本计算器 III">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="【leetcode-772】基本计算器 III">
                         
                         <span class="card-title">【leetcode-772】基本计算器 III</span>
                     </div>
@@ -1103,7 +1102,7 @@ func reverseCake(arr []int, i, j int)  {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">123.9k</span>
+            <span class="white-color">124k</span>
             
 
             <br>
