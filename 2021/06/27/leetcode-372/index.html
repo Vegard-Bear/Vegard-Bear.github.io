@@ -497,7 +497,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    911
+                    912
                 </div>
                 
 
@@ -605,18 +605,15 @@ func myPow(a, k int) int {
         return (sub * sub) % base
     }
 }
-</code></pre><h3 id="时间复杂度："><a href="#时间复杂度：" class="headerlink" title="时间复杂度："></a>时间复杂度：</h3><h3 id="空间复杂度："><a href="#空间复杂度：" class="headerlink" title="空间复杂度："></a>空间复杂度：</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><h1 id="反思-1"><a href="#反思-1" class="headerlink" title="反思"></a>反思</h1><p>本题很容易无从下手，切入点在b上，因为b是一个非常大的数，因此肯定不能直接转成整型。</p>
-<p>1.</p>
-<p>我们知道(a <em> b) % base = ((a % base) </em> (b % base)) % base，所以得想办法拆分。</p>
+</code></pre><h3 id="时间复杂度："><a href="#时间复杂度：" class="headerlink" title="时间复杂度："></a>时间复杂度：</h3><h3 id="空间复杂度："><a href="#空间复杂度：" class="headerlink" title="空间复杂度："></a>空间复杂度：</h3><h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题很容易无从下手，切入点在b上，因为b是一个非常大的数，因此肯定不能直接转成整型。</p>
+<p>注意点</p>
+<h2 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h2><p>我们知道(a <em> b) % base = ((a % base) </em> (b % base)) % base，所以得想办法拆分。</p>
 <p>a^b为一个数乘以另一个数的模式。举个例子，比如</p>
 <pre><code>a ^ 23 = (a ^ 2) ^ 10 * a ^ 3</code></pre><p>很明显此处可以用递归，这样就实现了降幂。</p>
-<p>2.</p>
-<p>此外，在求 a的b（b为个位数）次方的时候，可以使用一个小技巧，就是分b为奇数和偶数两种情况。比如：</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h2><p>此外，在求 a的b（b为个位数）次方的时候，可以使用一个小技巧，就是分b为奇数和偶数两种情况。比如：</p>
 <pre><code>        a ^ (b-1) * a (b为奇数)
 a ^ b = 
-        (a ^ (b/2))^2 (b为偶数)</code></pre><p>3.</p>
-<p>还需要注意的一点是只要是涉及到递归，都要在一开始考虑出口。也就是递归结束的条件！</p>
-<p>本题的处理技巧包括递归、模运算、幂运算技巧，还是很有价值的</p>
+        (a ^ (b/2))^2 (b为偶数)</code></pre><h2 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h2><h3 id="还需要注意的一点是只要是涉及到递归，都要在一开始考虑出口。也就是递归结束的条件！"><a href="#还需要注意的一点是只要是涉及到递归，都要在一开始考虑出口。也就是递归结束的条件！" class="headerlink" title="还需要注意的一点是只要是涉及到递归，都要在一开始考虑出口。也就是递归结束的条件！"></a>还需要注意的一点是只要是涉及到递归，都要在一开始考虑出口。也就是递归结束的条件！</h3><p>本题的处理技巧包括递归、模运算、幂运算技巧，还是很有价值的</p>
 
             </div>
             <hr />
