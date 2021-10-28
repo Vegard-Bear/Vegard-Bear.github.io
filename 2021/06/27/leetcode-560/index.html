@@ -492,14 +492,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    961
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
                 
@@ -604,7 +604,7 @@ func subarraySum(nums []int, k int) int {
 <li>前缀和数组长度比原数组+1，这样才能使得preSum[j] - preSum[i] 表示nums[i..j]的和</li>
 <li>可以通过哈希表边记录前缀和，边判断前缀和是否满足条件，但是表达式要准确，即 n, ok := visited[preSum[i]-k]，这样可以减少一层循环。</li>
 </ol>
-
+<h4 id="本题用到的前缀和和哈希表的技巧不难，关键是如何想到要用这个技巧，可以先简单认为在求【连续子数组的和】的时候前缀和技巧比较常用。"><a href="#本题用到的前缀和和哈希表的技巧不难，关键是如何想到要用这个技巧，可以先简单认为在求【连续子数组的和】的时候前缀和技巧比较常用。" class="headerlink" title="本题用到的前缀和和哈希表的技巧不难，关键是如何想到要用这个技巧，可以先简单认为在求【连续子数组的和】的时候前缀和技巧比较常用。"></a>本题用到的前缀和和哈希表的技巧不难，关键是如何想到要用这个技巧，可以先简单认为在求【连续子数组的和】的时候前缀和技巧比较常用。</h4>
             </div>
             <hr />
 
