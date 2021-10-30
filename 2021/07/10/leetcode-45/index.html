@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    819
+                    871
                 </div>
                 
 
@@ -568,6 +568,9 @@ func max(a, b int) int {
 <h3 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O((1))"></a>空间复杂度：O((1))</h3><p>不需要额外的开销。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>本题代码很简洁，但是思路上其实并不好理解，可能最好还是要手动模拟一下～</p>
 <p>本题仍然使用贪心算法，和<a href="https://leetcode-cn.com/problems/jump-game/" target="_blank" rel="noopener">55. 跳跃游戏</a>最大的不同可能就是在于本题并不是求最远能跳到的距离，而是跳到最后一个位置所用的最小步数，这就意味着并不是每次跳的越远越好，而是每次跳完之后，下一跳可选的范围越大越好，这样就能覆盖更多的距离，反向推导就是同样到达最后一个点所用的步数更少.</p>
+<blockquote>
+<p>值得注意的是这里循环最多只遍历到n-2是因为n-1已经是最后一个位置了，不需要再跳了，而n-2才需要考虑能不能跳到n-1</p>
+</blockquote>
 
             </div>
             <hr />
