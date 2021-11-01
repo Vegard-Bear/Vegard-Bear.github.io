@@ -491,14 +491,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    936
+                    959
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
                 
@@ -596,7 +596,7 @@ dp[n] =
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-Sn"><a href="#时间复杂度：O-Sn" class="headerlink" title="时间复杂度：O((Sn))"></a>时间复杂度：O((Sn))</h3><p>其中 S 是金额，n 是面额数。我们一共需要计算 O((S)) 个状态，S 为题目所给的总金额。对于每个状态，每次需要枚举 n 个面额来转移状态，所以一共需要 O((Sn)) 的时间复杂度。</p>
 <h3 id="空间复杂度：O-S"><a href="#空间复杂度：O-S" class="headerlink" title="空间复杂度：O((S))"></a>空间复杂度：O((S))</h3><p>DP 数组需要开长度为总金额 S 的空间。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题也可转化成背包问题，用二维dp数组求解，只是需要特别注意base case，解法如下：</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>本题也可转化成背包问题，用二维dp数组求解，<strong>只是需要特别注意base case, 因为这里是求最小值，所以定义base case的时候不能直接用0</strong>，解法如下：</p>
 <pre><code>func coinChange(coins []int, amount int) int {
     // 定义dp数组，dp[i][j]表示前i种硬币凑成总金额为j所需的最少硬币个数
     n := len(coins)
