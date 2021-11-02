@@ -331,7 +331,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -490,14 +490,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
                 
@@ -590,6 +590,10 @@ func max(a, b int) int {
 <li><p>由于这里的子序列也可以是不连续的，而且定义的时候不是定义以某个字符结尾，而是前多少个字符，这样最后返回的结果dp[l1][l2]一定就是最终的结果，而不需要遍历整个二维数组比较寻找最大值了。</p>
 </li>
 </ol>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>定义dp数组的时候需要思考该如何定义才有利于构建推导关系。</p>
+<p>比如题意要求是连续数组，则往往需要定义dp[i]为以nums[i]结尾，如果要求是严格递增子序列，也应该定义dp[i]为以nums[i]结尾，这样有利于推导状态转移方程。</p>
+<p>但像本题不要求连续，而且也不要求相邻元素有递增的关系，就可以定义dp[i]为数组nums前i个元素。</p>
+<p>还有值得注意的一点就是，如果定义为dp[i]为以nums[i]结尾，则最后返回结果的时候还要对dp数组进行一轮遍历才能获得最终结果，因为dp数组的最后一个值不一定我们想要的结果，但是如果是定义dp[i]为数组nums前i个元素的话就可以直接返回为dp数组的最后一个值了。</p>
 
             </div>
             <hr />
@@ -820,7 +824,7 @@ func max(a, b int) int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="【leetcode-72】编辑距离">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="【leetcode-72】编辑距离">
                         
                         <span class="card-title">【leetcode-72】编辑距离</span>
                     </div>
@@ -873,7 +877,7 @@ func max(a, b int) int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="【leetcode-53】最大子序和">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【leetcode-53】最大子序和">
                         
                         <span class="card-title">【leetcode-53】最大子序和</span>
                     </div>
@@ -1082,7 +1086,7 @@ func max(a, b int) int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">124.3k</span>
+            <span class="white-color">124.5k</span>
             
 
             <br>
