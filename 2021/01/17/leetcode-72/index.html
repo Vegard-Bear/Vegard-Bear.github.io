@@ -547,7 +547,7 @@ exection -&gt; execution (插入 &#39;u&#39;)</code></pre><p>提示：</p>
 <li>0 &lt;= word1.length, word2.length &lt;= 500</li>
 <li>word1 和 word2 由小写英文字母组成</li>
 </ul>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题和【leetcode 1143动态规划子序列】一样也是一道二维的动态规划算法题。解体套路也是非常的相似。</p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这道题和【leetcode 1143 最长公共子序列】一样也是一道二维的动态规划算法题。解体套路也是非常的相似。</p>
 <h2 id="动态规划三步走"><a href="#动态规划三步走" class="headerlink" title="动态规划三步走"></a>动态规划三步走</h2><h4 id="定义dp数组"><a href="#定义dp数组" class="headerlink" title="定义dp数组"></a>定义dp数组</h4><p>注意这里由于有两个字符串，所以我们需要定义一个二维的dp数组。</p>
 <h5 id="dp-i-j-表示对于-world1-1-i-和-world2-1-j-，它们的编辑距离度是-dp-i-j"><a href="#dp-i-j-表示对于-world1-1-i-和-world2-1-j-，它们的编辑距离度是-dp-i-j" class="headerlink" title="dp[i][j] 表示对于 world1[1..i] 和 world2[1..j]，它们的编辑距离度是 dp[i][j]"></a><center><font color="red">dp[i][j] 表示对于 world1[1..i] 和 world2[1..j]，它们的编辑距离度是 dp[i][j]</font></center></h5><h4 id="确定-base-case"><a href="#确定-base-case" class="headerlink" title="确定 base case"></a>确定 base case</h4><p>根据dp数组的定义。我们就可以确定 base case，即</p>
 <h5 id="dp-i-0-i-dp-0-j-j"><a href="#dp-i-0-i-dp-0-j-j" class="headerlink" title="dp[i][0] = i, dp[0][j] = j"></a><center><font color="red">dp[i][0] = i, dp[0][j] = j</font></center></h5><p>因为只要有一个字符串是空串，此时编辑距离就是另一个字符串的长度。</p>
@@ -598,7 +598,7 @@ func min(a, b int) int  {
     return b
 }</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度：O-mn"><a href="#时间复杂度：O-mn" class="headerlink" title="时间复杂度：O((mn))"></a>时间复杂度：O((mn))</h3><p>其中 m 为 word1 的长度，n 为 word2 的长度</p>
 <h3 id="空间复杂度：O-mn"><a href="#空间复杂度：O-mn" class="headerlink" title="空间复杂度：O((mn))"></a>空间复杂度：O((mn))</h3><p>我们需要大小为 O((mn)) 的 dp 数组来记录状态值。</p>
-<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>此题和【1143. 最长公共子序列】解法非常相似，都是属于二维的动态规划算法题，套用的是同一个模版。可以说唯一的区别是最长公共子序列求的是最大值，这里求的是最小值，替换一下状态转移方程中的选择函数就好了。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>此题和【1143. 最长公共子序列】解法非常相似，都是属于二维的动态规划算法题，套用的是同一个模版。可以说唯一的区别是最长公共子序列求的是最大值，这里求的是最小值，然后base case略有不同，替换一下状态转移方程中的选择函数就好了（插入、删除和替换恰好对应的是三种选择状态）。</p>
 <blockquote>
 <p>注意：插入、删除和替换恰好对应的是三种选择状态</p>
 </blockquote>
