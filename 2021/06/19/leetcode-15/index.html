@@ -331,7 +331,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -490,7 +490,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    877
+                    950
                 </div>
                 
 
@@ -591,7 +591,13 @@ func threeSum(nums []int) [][]int {
 }</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h3 id="时间复杂度：O-n-2"><a href="#时间复杂度：O-n-2" class="headerlink" title="时间复杂度：O((n^2))"></a>时间复杂度：O((n^2))</h3><p>因为2Sum使用的双指针是O((n))，然后再乘以3Sum外层的遍历O((n))就是O((n^2))</p>
 <h3 id="空间复杂度：O-n"><a href="#空间复杂度：O-n" class="headerlink" title="空间复杂度：O((n!))"></a>空间复杂度：O((n!))</h3><p>最后的结果是一个二维数组，每个一维数组的大小都为3，最坏的情况下会有n!个这样的组合。</p>
 <h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>做完了这道题还可以尝试一下四数之和（4Sum），以及拓展到n个数字之和（nSum）</p>
-<h4 id="这道题用到的技巧主要是双指针，建议先从两数之和开始做，尤其需要注意的是不管是两数还是三数都需要注意避开重复数字，而避开重复数字的技巧是一个难点"><a href="#这道题用到的技巧主要是双指针，建议先从两数之和开始做，尤其需要注意的是不管是两数还是三数都需要注意避开重复数字，而避开重复数字的技巧是一个难点" class="headerlink" title="这道题用到的技巧主要是双指针，建议先从两数之和开始做，尤其需要注意的是不管是两数还是三数都需要注意避开重复数字，而避开重复数字的技巧是一个难点"></a>这道题用到的技巧主要是双指针，建议先从两数之和开始做，尤其需要注意的是不管是两数还是三数都需要注意避开重复数字，而避开重复数字的技巧是一个难点</h4>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><ol>
+<li><p>这道题用到的技巧主要是双指针，建议先从两数之和开始做，尤其需要注意的是不管是两数还是三数都需要注意避开重复数字，而避开重复数字的技巧是一个难点</p>
+</li>
+<li><p>对于双指针，只要移动指针，就要时刻注意左指针小于右指针，否则会重复，还有就是降维的时候（就是由threeSum转化为twoSum的时候要注意从当前的下标+1开始遍历，这样能避免重复）</p>
+</li>
+</ol>
+
             </div>
             <hr />
 
@@ -821,7 +827,7 @@ func threeSum(nums []int) [][]int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【leetcode-772】基本计算器 III">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="【leetcode-772】基本计算器 III">
                         
                         <span class="card-title">【leetcode-772】基本计算器 III</span>
                     </div>
@@ -870,7 +876,7 @@ func threeSum(nums []int) [][]int {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【leetcode-773】滑动谜题">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【leetcode-773】滑动谜题">
                         
                         <span class="card-title">【leetcode-773】滑动谜题</span>
                     </div>
@@ -1079,7 +1085,7 @@ func threeSum(nums []int) [][]int {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">124.7k</span>
+            <span class="white-color">124.9k</span>
             
 
             <br>
