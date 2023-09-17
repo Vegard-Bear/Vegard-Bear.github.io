@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>goroutine多线程交替打印数字</title>
+      <link href="/2023/09/17/wg/"/>
+      <url>/2023/09/17/wg/</url>
+      
+        <content type="html"><![CDATA[<h1 id="goroutine多线程交替打印数字"><a href="#goroutine多线程交替打印数字" class="headerlink" title="goroutine多线程交替打印数字"></a>goroutine多线程交替打印数字</h1><pre><code>// 声明两个通道用于同步信号var ch1 = make(chan int, 0)var ch2 = make(chan int, 0)// 定义index记录当前打印到哪个数字了var index = 1func main() {    // 创建计数器    wg := sync.WaitGroup{}    go func() {        //每创建一个goroutine，需要增加一个计数        wg.Add(1)        for {            &lt;-ch1            fmt.Println(&quot;第一个goroutine打印：&quot;, index)            index++            ch2 &lt;- 1        }    }()    go func() {        for {            &lt;-ch2            fmt.Println(&quot;第二个goroutine打印：&quot;, index)            index++            if index &gt;= 100 {                // 说明打印完成，需要减少一个计数                wg.Done()                return            }            ch1 &lt;- 1        }    }()    // 开始，触发    ch1 &lt;- 1    // 结束    wg.Wait()}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> goroutine </tag>
+            
+            <tag> channel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>前序和后序遍历二叉树（非递归）</title>
       <link href="/2023/09/17/preorderertravers/"/>
       <url>/2023/09/17/preorderertravers/</url>
