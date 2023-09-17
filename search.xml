@@ -731,6 +731,37 @@
     
     
     <entry>
+      <title>前序和后序遍历二叉树（非递归）</title>
+      <link href="/2021/04/18/preorderertravers/"/>
+      <url>/2021/04/18/preorderertravers/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前序遍历二叉树（非递归）"><a href="#前序遍历二叉树（非递归）" class="headerlink" title="前序遍历二叉树（非递归）"></a>前序遍历二叉树（非递归）</h1><pre><code>// 前序遍历二叉树func PreOrderTraverse(root *TreeNode) {    // 判空    if root == nil {        return    }    // 设置一个p指针用于遍历    p := new(TreeNode)    // 设置一个栈用于存放节点    stack := make([]*TreeNode, 0)    // 开始遍历    // 只要p指针和栈有一个不为空    for p != nil || len(stack) &gt; 0 {        // 如果p非空，就先把节点压入栈，然后向左遍历        if p != nil {            fmt.Print(p.val)            stack = append(stack, p)            p = p.left        } else {            // p为空，说明到左边到底了，此时从栈顶弹出一个元素，然后遍历右边            p = stack[len(stack)-1]            stack = stack[:len(stack)-1]            p = p.right        }    }}</code></pre><h1 id="中序遍历二叉树（非递归）"><a href="#中序遍历二叉树（非递归）" class="headerlink" title="中序遍历二叉树（非递归）"></a>中序遍历二叉树（非递归）</h1><pre><code>// 中序遍历二叉树func InOrderTraverse(root *TreeNode) {    // 判空    if root == nil {        return    }    // 设置一个p指针用于遍历    p := new(TreeNode)    // 设置一个栈用于存放节点    stack := make([]*TreeNode, 0)    // 开始遍历    // 只要p指针和栈有一个不为空    for p != nil || len(stack) &gt; 0 {        // 如果p非空，就先把节点压入栈，然后向左遍历        if p != nil {            stack = append(stack, p)            p = p.left        } else {            // p为空，说明到左边到底了，此时从栈顶弹出一个元素，然后遍历右边            p = stack[len(stack)-1]            stack = stack[:len(stack)-1]            fmt.Print(p.val)            p = p.right        }    }}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> tree </tag>
+            
+            <tag> 栈 </tag>
+            
+            <tag> 二叉树 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Go 源码解析14】调度器</title>
       <link href="/2021/04/05/go-sourcecode-gmp/"/>
       <url>/2021/04/05/go-sourcecode-gmp/</url>
